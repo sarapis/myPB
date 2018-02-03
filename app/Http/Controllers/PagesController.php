@@ -7,23 +7,20 @@ use App\Http\Controllers\Controller;
 
 use App\Page;
 use Illuminate\Http\Request;
-use Validator;
-use Session;
-use Auth;
-use Route;
-use Sentinel;
-use Activation;
-use DB;
-use Hash;
-use Mail;
 use Carbon\Carbon;
+use Session;
+use Validator;
+use Sentinel;
+use Route;
+
 class PagesController extends Controller
 {
-    protected function validator(Request $request)
+    protected function validator(Request $request,$id='')
     {
         return Validator::make($request->all(), [
-            'slug' => 'required|max:35|min:2|string',
-            'name' => 'required|max:35|min:2|string',
+            'name' => 'required',
+            'title' => 'required',            
+            'body' => 'required',
         ]);
     }
     /**
@@ -55,6 +52,12 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
+        if ($this->validator($request,Sentinel::getUser()->id)->fails()) {
+            
+            return redirect()->back()
+                    ->withErrors($this->validator($request))
+                    ->withInput();
+        }
         
         Page::create($request->all());
 
@@ -101,6 +104,12 @@ class PagesController extends Controller
      */
     public function update($id, Request $request)
     {
+        if ($this->validator($request,Sentinel::getUser()->id)->fails()) {
+            
+            return redirect()->back()
+                    ->withErrors($this->validator($request))
+                    ->withInput();
+        }
         
         $page = Page::findOrFail($id);
         $page->update($request->all());

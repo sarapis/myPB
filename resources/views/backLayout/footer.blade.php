@@ -13,6 +13,8 @@
     <script src="{{ URL::asset('/backend/vendors/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
     <script src="{{ URL::asset('/backend/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ URL::asset('/backend/summernote/js/summernote.js')}}"></script>
     <!-- FastClick -->
     <script src="{{ URL::asset('/backend/vendors/fastclick/lib/fastclick.js') }}"></script>
     <!-- NProgress -->

@@ -5,7 +5,7 @@ Page
 
 @section('content')
 
-    <h1>Pages <a href="{{ url('pages/create') }}" class="btn btn-primary pull-right btn-sm">Add New Page</a></h1>
+    <h3>Pages <a href="{{ url('pages/create') }}" class="btn btn-primary pull-right btn-sm">Add New Page</a></h3>
     <div class="table table-responsive">
         <table class="table table-bordered table-striped table-hover" id="tblpages">
             <thead>
@@ -47,6 +47,7 @@ Page
                 },
             ],
             order: [[0, "asc"]],
+            responsive: true
         });
     });
 </script>

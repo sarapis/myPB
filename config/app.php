@@ -120,7 +120,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -182,6 +182,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         //Sentinel services
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
+        //Log Viewer
+        Arcanedev\LogViewer\LogViewerServiceProvider::class
 
 
     ],

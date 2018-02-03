@@ -4,13 +4,7 @@ Users
 @stop
 
 @section('content')
-<div class="page-title">
-  <div class="title_left">
-    <h3>All Users</h3>
-  </div>
-</div>
 
-<div class="clearfix"></div>
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
@@ -56,19 +50,19 @@ Users
                             <a href="{{route('user.edit', $user->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
                             @endif
                             @if (Sentinel::getUser()->hasAccess(['user.permissions']))
-                            <a href="{{route('user.permissions', $user->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-lock" data-toggle="tooltip" data-placement="top" title="" data-original-title="Permission"></i></a>
+                            <a href="{{route('user.permissions', $user->id)}}" class="btn btn-success btn-xs"><i class="fa fa-lock" data-toggle="tooltip" data-placement="top" title="" data-original-title="Permission"></i> </a>
                             @endif
 
                             @if(sizeof($user->activations) == 0)
                             @if (Sentinel::getUser()->hasAccess(['user.activate']))
-                            <a href="{{route('user.activate', $user->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-play" data-toggle="tooltip" data-placement="top" title="" data-original-title="Activate"></i></a>
+                            <a href="{{route('user.activate', $user->id)}}" class="btn btn-primary btn-xs"> <i class="fa fa-play" data-toggle="tooltip" data-placement="top" title="" data-original-title="Activate"></i> </a>
                             @endif
                             @else
                             @if (Sentinel::getUser()->hasAccess(['user.deactivate']))
                              <a href="{{route('user.deactivate', $user->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-pause" data-toggle="tooltip" data-placement="top" title="" data-original-title="Deactivate"></i></a>
                              @endif
                             @endif
-                            
+
                             @if (Sentinel::getUser()->hasAccess(['user.destroy']))
                             {!! Form::open(['method'=>'DELETE', 'route' => ['user.destroy', $user->id], 'style' => 'display:inline']) !!}
                             {{Form::button('<i class="fa fa-lock"></i>', array('type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'id'=>'delete-confirm'))}}

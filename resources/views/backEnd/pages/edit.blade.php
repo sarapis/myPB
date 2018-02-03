@@ -5,7 +5,7 @@ Edit Page
 
 @section('content')
 
-    <h1>Edit Page</h1>
+    <h3>Edit Page</h3>
     <hr/>
 
     {!! Form::model($page, [
@@ -31,7 +31,7 @@ Edit Page
             <div class="form-group {{ $errors->has('body') ? 'has-error' : ''}}">
                 {!! Form::label('body', 'Body: ', ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
+                    {!! Form::textarea('body',null, array('form-control','id'=>'summernote') ) !!}
                     {!! $errors->first('body', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
@@ -44,12 +44,13 @@ Edit Page
     </div>
     {!! Form::close() !!}
 
-    @if ($errors->any())
-        <ul class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+    $('#summernote').summernote({
+        height: 300
+    });
+    });
+  </script>
 @endsection

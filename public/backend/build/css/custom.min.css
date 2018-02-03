@@ -10,3 +10,7 @@
 	margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.nav-md .container.body .right_col {
+    padding: 75px 20px 0;
+ }

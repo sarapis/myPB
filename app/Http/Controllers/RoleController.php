@@ -14,7 +14,7 @@ use Sentinel;
 use Route;
 class RoleController extends Controller
 {
-      protected function validator(Request $request)
+    protected function validator(Request $request)
     {
         return Validator::make($request->all(), [
             'slug' => 'required|max:35|min:2|string',

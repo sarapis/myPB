@@ -24,6 +24,7 @@
   <!-- Datatables -->
   <link rel="stylesheet" href="{{ URL::asset('/backend/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ URL::asset('/backend/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}">
+  <link href="{{ URL::asset('/backend/summernote/css/summernote.css')}}" rel="stylesheet" type="text/css" />
   @yield('style')
   </head>
 

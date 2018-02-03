@@ -18,4 +18,9 @@ class HomeController extends Controller
     {
     	return view('backEnd.dashboard');
     }
+
+    public function logviewerdashboard($value='')
+    {
+        return redirect('log-viewer');
+    }
 }

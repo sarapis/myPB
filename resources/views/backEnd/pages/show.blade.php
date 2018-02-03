@@ -5,7 +5,7 @@ Page
 
 @section('content')
 
-    <h1>Page</h1>
+    <h3>Page</h3>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
             <thead>

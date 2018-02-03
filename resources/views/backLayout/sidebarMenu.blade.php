@@ -30,7 +30,7 @@
     <div class="menu_section">
       <h3>Main</h3>
       <ul class="nav side-menu">
-        <li><a href="/pages"><i class="fa fa-clone"></i> Pages</span></a>
+        <li><a href="{{route('pages.index')}}"><i class="fa fa-clone"></i> Pages</span></a>
         </li>    
         <li><a href="/datasync"><i class="fa fa-windows"></i> Datasync</a>
         </li>
@@ -64,6 +64,12 @@
           </ul>
         </li>
       @endif
+      <li><a><i class="fa fa-cog"></i> Log Viewer <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="/log-viewer"> Dashboard</a></li>
+          <li><a href="/log-viewer/logs"> Logs</a></li>
+        </ul>
+      </li>
       <li><a href="/logout"><i class="fa fa-sign-out red"></i> Logout</a></li>
         <!-- <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
