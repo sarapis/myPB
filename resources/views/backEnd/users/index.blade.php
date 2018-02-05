@@ -65,7 +65,7 @@ Users
 
                             @if (Sentinel::getUser()->hasAccess(['user.destroy']))
                             {!! Form::open(['method'=>'DELETE', 'route' => ['user.destroy', $user->id], 'style' => 'display:inline']) !!}
-                            {{Form::button('<i class="fa fa-lock"></i>', array('type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'id'=>'delete-confirm'))}}
+                            {{Form::button('<i class="fa fa-lock"></i>', array('type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'data-placement' => 'top', 'data-original-title' => 'Delete', 'id'=>'delete-confirm'))}}
                             {!! Form::close() !!}
                             @endif
                             
