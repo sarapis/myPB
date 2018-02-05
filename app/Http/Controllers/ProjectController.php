@@ -36,10 +36,10 @@ class ProjectController extends Controller
               
                 //$projects = Project::create($record);
                 //$name=$record['fields']['District-Ward_Name'];
-                var_dump($record['fields']);
+                
                 //exit();
             }
-            
+            var_dump($record['fields']);
             //$projects = Project::create($response[ 'records' ]);
 
         }
