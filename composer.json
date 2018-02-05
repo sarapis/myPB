@@ -24,7 +24,12 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "app/Functions/Airtable.php",
+            "app/Functions/Request.php",
+            "app/Functions/Response.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

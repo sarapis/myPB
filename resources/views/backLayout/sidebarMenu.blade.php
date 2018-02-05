@@ -9,7 +9,7 @@
   <!-- menu profile quick info -->
   <div class="profile">
     <div class="profile_pic">
-      <img src="{{ URL::asset('/images/img.jpg') }}" alt="..." class="img-circle profile_img">
+      <img src="{{ URL::asset('/images/myPB.png') }}" alt="..." class="img-circle profile_img">
     </div>
     <div class="profile_info">
       <span>Welcome,</span>
@@ -30,17 +30,17 @@
     <div class="menu_section">
       <h3>Main</h3>
       <ul class="nav side-menu">
-        <li><a href="{{route('pages.index')}}"><i class="fa fa-clone"></i> Pages</span></a>
+        <li><a href="{{route('pages.index')}}"><i class="fa fa-windows"></i> Pages</span></a>
         </li>    
-        <li><a href="/datasync"><i class="fa fa-windows"></i> Datasync</a>
+        <li><a href="/datasync"><i class="fa fa-database"></i> Datasync</a>
         </li>
         <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="tb_projects">Projects</a></li>
-            <li><a href="tb_processes">Processes Annual</a></li>
-            <li><a href="tb_district">District Ward</a></li>
-            <li><a href="tb_contacts">Contacts</a></li>
-            <li><a href="tb_agency">Agency</a></li>
+            <li><a href="/tb_projects">Projects</a></li>
+            <li><a href="/tb_processes">Processes Annual</a></li>
+            <li><a href="/tb_district">District Ward</a></li>
+            <li><a href="/tb_contacts">Contacts</a></li>
+            <li><a href="/tb_agency">Agency</a></li>
           </ul>
         </li>            
       </ul>

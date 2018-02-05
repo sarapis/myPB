@@ -40,14 +40,18 @@ Page
 <script type="text/javascript">
     $(document).ready(function(){
         $('#tblpages').DataTable({
-            columnDefs: [{
+           
+            order: [[0, "asc"]],
+            responsive: true,
+            "columnDefs": [
+            {
                 targets: [0],
                 visible: false,
                 searchable: false
                 },
-            ],
-            order: [[0, "asc"]],
-            responsive: true
+                { "width": "10%", "targets": 1 },
+                { "width": "10%", "targets": 4 }
+              ]
         });
     });
 </script>

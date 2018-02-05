@@ -14,6 +14,8 @@ Route::auth();
 Route::get('/', ['uses' => 'HomeController@home']);
 
 
+
+
  Route::group(['middleware' => ['web', 'auth', 'permission'] ], function () {
         Route::get('dashboard', ['uses' => 'HomeController@dashboard', 'as' => 'home.dashboard']);
 
@@ -33,5 +35,7 @@ Route::get('/', ['uses' => 'HomeController@home']);
         Route::post('role/check', ['uses' => 'RoleController@check']);
 
         Route::get('/logout', ['uses' => 'Auth\LoginController@logout']);
+
+        Route::get('/tb_projects', ['uses' => 'ProjectController@airtable']);
         
  });
