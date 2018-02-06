@@ -61,7 +61,9 @@ class ProcessController extends Controller
      */
     public function index()
     {
-        
+        $processes = Process::orderBy('name_process_annual')->paginate(15);
+
+        return view('backEnd.tables.tb_process', compact('processes'));
     }
 
     /**

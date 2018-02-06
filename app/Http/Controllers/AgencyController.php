@@ -58,7 +58,9 @@ class AgencyController extends Controller
      */
     public function index()
     {
-        //
+        $agencies = Agency::orderBy('name')->get();
+
+        return view('backEnd.tables.tb_agency', compact('agencies'));
     }
 
     /**

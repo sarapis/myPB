@@ -9,4 +9,14 @@ class Project extends Model
     protected $table = 'projects';
     
 	public $timestamps = false;
+
+	public function process()
+    {
+        return $this->belongsTo('App\Process', 'process_id', 'recordid');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\District', 'district_ward_name', 'recordid');
+    }
 }

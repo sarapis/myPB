@@ -58,7 +58,9 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        //
+        $districts = District::orderBy('name')->get();
+
+        return view('backEnd.tables.tb_district', compact('districts'));
     }
 
     /**

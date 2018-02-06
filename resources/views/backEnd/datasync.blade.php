@@ -34,7 +34,7 @@ Datasync
                   <td class="text-center">{{$airtable->records}}</td>
                   <td class="text-center">{{$airtable->syncdate}}</td> 
                   <td class="text-center">
-                    <button class="badge sync_now" style="background: #00a65a;">Sync Now</button>
+                    <button class="badge sync_now" name="{{$airtable->name}}" style="background: #00a65a;">Sync Now</button>
                     <button class="badge" style="background: #f39c12;"><a href="tb_{!! strtolower($airtable->name) !!}" style="color: white;">View Table</a></button>
                   </td>
                 </tr>
@@ -60,14 +60,14 @@ Datasync
 
     $('.sync_now').click(function(){
         $(this).hide();
-        var name = $(this).parent().prev().prev().prev().html();
+        name = $(this).attr('name');
 
         $(this).after($img);
         $here = $(this);
         name = name.toLowerCase();
         $.ajax({
             type: "GET",
-            url: '/sync'+name,
+            url: '/sync_'+name,
             success: function(result) {
                 $img.remove();
                 $here.show();

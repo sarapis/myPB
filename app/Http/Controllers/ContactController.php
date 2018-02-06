@@ -60,7 +60,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::orderBy('name')->get();
+
+        return view('backEnd.tables.tb_contacts', compact('contacts'));
     }
 
     /**

@@ -54,9 +54,9 @@ class ProjectController extends Controller
                 $project->vote_date = isset($record['fields']['Vote_Date'])?$record['fields']['Vote_Date']:null;
                 $project->pb_cycle = isset($record['fields']['PB_Cycle'])?$record['fields']['PB_Cycle']:null;
                 $project->cost_text = isset($record['fields']['Cost_Text'])?$record['fields']['Cost_Text']:null;
-                $project->cost_num = isset($record['fields']['cost_num'])?:null;
+                $project->cost_num = isset($record['fields']['Cost_Num'])? $record['fields']['Cost_Num']:null;
                 $project->category_topic_committee_raw = isset($record['fields']['Category_Topic_Committee_Raw'])? $record['fields']['Category_Topic_Committee_Raw']:null;
-                $project->category_topic_committee_raw = isset($record['fields']['Category_Type_Topic_Standardize'])? $record['fields']['Category_Type_Topic_Standardize']:null;
+                $project->category_type_topic_standardize = isset($record['fields']['Category_Type_Topic_Standardize'])? $record['fields']['Category_Type_Topic_Standardize']:null;
                 $project->project_location_raw = isset($record['fields']['Project_Location_Raw'])?$record['fields']['Project_Location_Raw']:null;
                 $project->project_address_clean = isset($record['fields']['Project_Address_Clean'])?$record['fields']['Project_Address_Clean']:null;
                 $project->location_city = isset($record['fields']['Location_City'])?$record['fields']['Location_City']:null;
@@ -90,7 +90,7 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::paginate(15);;
+        $projects = Project::orderBy('project_id')->paginate(20);
 
         return view('backEnd.tables.tb_projects', compact('projects'));
     }
