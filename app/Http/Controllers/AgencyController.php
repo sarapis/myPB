@@ -5,28 +5,51 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Functions\Airtable;
-use Agency;
+use App\Agency;
+use App\Airtables;
 
 class AgencyController extends Controller
 {
 
     public function airtable()
     {
-       $airtable = new Airtable(array(
+
+        Agency::truncate();
+        $airtable = new Airtable(array(
             'api_key'   => 'keyIvQZcMYmjNbtUO',
             'base'      => 'appeLDUKUOowGqOP5',
         ));
 
-        $request = $airtable->getContent( 'Contacts' );
+        $request = $airtable->getContent( 'Agency' );
 
         do {
 
+
             $response = $request->getResponse();
 
-            var_dump( $response[ 'records' ] );
+            $airtable_response = json_decode( $response, TRUE );
 
+            foreach ( $airtable_response['records'] as $record ) {
+
+                $agency = new Agency();
+                $agency->recordid = $record[ 'id' ];
+                $agency->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
+                $agency->agency_name = isset($record['fields']['Agency_Name'])?$record['fields']['Agency_Name']:null;
+                $agency->projects = isset($record['fields']['Projects'])? implode(",", $record['fields']['Projects']):null;
+                $agency->website = isset($record['fields']['Website'])?$record['fields']['Website']:null;
+                $agency->contacts = isset($record['fields']['Contacts'])? implode(",", $record['fields']['Contacts']):null;
+                $agency ->save();
+
+            }
+            
         }
         while( $request = $response->next() );
+
+        $date = date("Y/m/d H:i:s");
+        $airtable = Airtables::where('name', '=', 'Agency')->first();
+        $airtable->records = Agency::count();
+        $airtable->syncdate = $date;
+        $airtable->save();
     }
     /**
      * Display a listing of the resource.

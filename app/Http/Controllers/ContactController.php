@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Functions\Airtable;
-use Contact;
+use App\Contact;
+use App\Airtables;
 
 class ContactController extends Controller
 {
 
     public function airtable()
     {
-       $airtable = new Airtable(array(
+
+        Contact::truncate();
+        $airtable = new Airtable(array(
             'api_key'   => 'keyIvQZcMYmjNbtUO',
             'base'      => 'appeLDUKUOowGqOP5',
         ));
@@ -21,12 +24,34 @@ class ContactController extends Controller
 
         do {
 
+
             $response = $request->getResponse();
 
-            var_dump( $response[ 'records' ] );
+            $airtable_response = json_decode( $response, TRUE );
 
+            foreach ( $airtable_response['records'] as $record ) {
+
+                $contact = new Contact();
+                $contact->recordid = $record[ 'id' ];
+                $contact->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
+                $contact->email = isset($record['fields']['Email'])?$record['fields']['Email']:null;
+                $contact->phone = isset($record['fields']['Phone'])?$record['fields']['Phone']:null;
+                $contact->category = isset($record['fields']['Category'])?$record['fields']['Category']:null;
+                $contact->agency = isset($record['fields']['Agency'])? implode(",", $record['fields']['Agency']):null;
+                $contact->title = isset($record['fields']['Title'])?$record['fields']['Title']:null;
+                $contact->district_ward_name = isset($record['fields']['District-Ward_Name'])? implode(",", $record['fields']['District-Ward_Name']):null;
+                $contact ->save();
+
+            }
+            
         }
         while( $request = $response->next() );
+
+        $date = date("Y/m/d H:i:s");
+        $airtable = Airtables::where('name', '=', 'Contacts')->first();
+        $airtable->records = Contact::count();
+        $airtable->syncdate = $date;
+        $airtable->save();
     }
     /**
      * Display a listing of the resource.

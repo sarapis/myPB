@@ -9,7 +9,7 @@ User role
 <div class="panel-body">
     <a href="{{ url('role/create') }}" class="btn btn-success">New role</a>
     <div class="table">
-        <table class="table table-bordered table-striped table-hover" id="tblroles">
+        <table class="table table-striped jambo_table bulk_action" id="tblroles">
             <thead>
                 <tr>
                     <th>ID</th><th>Slug</th><th>Name</th><th>Action</th>
@@ -24,7 +24,7 @@ User role
                     <td><a href="{{ url('role', $item->id) }}">{{ $item->slug }}</a></td><td>{{ $item->name }}</td>
                     <td>
                      <a href="{{route('user.index',['type='.$item->name])}}" class="btn btn-success btn-xs">View Users</a>
-                        <a href="{{ url('role/' . $item->id . '/edit') }}" class="btn btn-success btn-xs">Edit</a> 
+                        <a href="{{ url('role/' . $item->id . '/edit') }}" class="btn btn-info btn-xs">Edit</a> 
                         <a href="{{ url('role/' . $item->id . '/permissions') }}" class="btn btn-warning btn-xs">Perrmissions</a> 
                         {!! Form::open([
                             'method'=>'DELETE',

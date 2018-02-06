@@ -315,7 +315,9 @@ class ComposerStaticInitbff251db51b636665ae84ef4bd180611
     );
 
     public static $classMap = array (
+        'AirtableGenerate' => __DIR__ . '/../..' . '/database/seeds/AirtableSeeder.php',
         'App\\Agency' => __DIR__ . '/../..' . '/app/Agency.php',
+        'App\\Airtable' => __DIR__ . '/../..' . '/app/Airtable.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Contact' => __DIR__ . '/../..' . '/app/Contact.php',
         'App\\District' => __DIR__ . '/../..' . '/app/District.php',
@@ -515,6 +517,7 @@ class ComposerStaticInitbff251db51b636665ae84ef4bd180611
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'CreateAgenciesTable' => __DIR__ . '/../..' . '/database/migrations/2018_02_03_103229_create_agencies_table.php',
+        'CreateAirtableTable' => __DIR__ . '/../..' . '/database/migrations/2018_02_06_002332_create_airtable_table.php',
         'CreateContactsTable' => __DIR__ . '/../..' . '/database/migrations/2018_02_03_103220_create_contacts_table.php',
         'CreateDisctrictsTable' => __DIR__ . '/../..' . '/database/migrations/2018_02_03_103207_create_disctricts_table.php',
         'CreatePagesTable' => __DIR__ . '/../..' . '/database/migrations/2018_02_02_130209_create_pages_table.php',

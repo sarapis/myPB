@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Page;
+use App\Airtables;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
@@ -137,6 +138,13 @@ class PagesController extends Controller
         Session::flash('status', 'success');
 
         return redirect('pages');
+    }
+
+    public function datasync()
+    {
+        $airtables = Airtables::all();
+
+        return view('backEnd.datasync', compact('airtables'));
     }
 
 }

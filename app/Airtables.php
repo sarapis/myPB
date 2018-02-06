@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class District extends Model
+class Airtables extends Model
 {
-    protected $table = 'district';
+    protected $table = 'airtable';
     
 	public $timestamps = false;
 }

@@ -19,7 +19,7 @@ Users
       </div>
       <div class="x_content">
 
-        <table class="table table-striped table-bordered bulk_action" id="tblUsers">
+        <table class="table table-striped jambo_table bulk_action" id="tblUsers">
             <thead>
                 <tr>
                     <th>Select All <input name="select_all" value="1" id="example-select-all" type="checkbox" /></th>

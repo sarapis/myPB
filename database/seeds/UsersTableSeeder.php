@@ -11,6 +11,10 @@ class UsersGenerate extends Seeder
      */
     public function run()
     {
+    	DB::table('users')->delete();
+    	DB::table('roles')->delete();
+    	DB::table('role_users')->delete();
+    	DB::table('activations')->delete();
          DB::table('users')->insert([
 			    [		'id' 			=> '1',
 			    		'email' 		=> 'admin@admin.com',

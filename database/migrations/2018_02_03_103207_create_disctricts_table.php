@@ -15,6 +15,7 @@ class CreateDisctrictsTable extends Migration
     {
         Schema::create('district', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('recordid');
             $table->string('name')->nullable();
             $table->text('projects')->nullable();
             $table->string('active_pb')->nullable();

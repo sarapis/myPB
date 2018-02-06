@@ -36,6 +36,17 @@ Route::get('/', ['uses' => 'HomeController@home']);
 
         Route::get('/logout', ['uses' => 'Auth\LoginController@logout']);
 
-        Route::get('/tb_projects', ['uses' => 'ProjectController@airtable']);
-        
+        Route::get('/projects', ['uses' => 'ProjectController@airtable']);  
+        Route::get('/sync_processes_annual', ['uses' => 'ProcessController@airtable']);
+        Route::get('/sync_district-ward', ['uses' => 'DistrictController@airtable']);
+        Route::get('/sync_contacts', ['uses' => 'ContactController@airtable']);
+        Route::get('/sync_agency', ['uses' => 'AgencyController@airtable']);
+
+        Route::get('/tb_projects', ['uses' => 'ProjectController@index']); 
+        Route::get('/tb_processes_annual', ['uses' => 'ProcessController@index']);
+        Route::get('/tb_district-ward', ['uses' => 'DistrictController@index']);
+        Route::get('/tb_contacts', ['uses' => 'ContactController@index']);
+        Route::get('/tb_agency', ['uses' => 'AgencyController@index']);
+
+        Route::get('/datasync', ['uses' => 'PagesController@datasync']);
  });

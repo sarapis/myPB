@@ -15,6 +15,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function(Blueprint $table) {
                 $table->increments('id');
+                $table->string('recordid');
                 $table->string('project_id')->nullable();
                 $table->string('project_title')->nullable();
                 $table->text('project_description')->nullable();
@@ -32,7 +33,7 @@ class CreateProjectsTable extends Migration
                 $table->string('cost_num')->nullable();
                 $table->string('category_topic_committee_raw')->nullable();
                 $table->string('category_type_topic_standardize')->nullable();
-                $table->string('project_location_raw')->nullable();
+                $table->text('project_location_raw')->nullable();
                 $table->string('project_address_clean')->nullable();
                 $table->string('location_city')->nullable();
                 $table->string('state')->nullable();

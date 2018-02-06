@@ -5,28 +5,54 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Functions\Airtable;
-use Process;
+use App\Process;
+use App\Airtables;
 
 class ProcessController extends Controller
 {
 
     public function airtable()
     {
-       $airtable = new Airtable(array(
+
+        Process::truncate();
+        $airtable = new Airtable(array(
             'api_key'   => 'keyIvQZcMYmjNbtUO',
             'base'      => 'appeLDUKUOowGqOP5',
         ));
 
-        $request = $airtable->getContent( 'Contacts' );
+        $request = $airtable->getContent( 'Processes_Annual' );
 
         do {
 
+
             $response = $request->getResponse();
 
-            var_dump( $response[ 'records' ] );
+            $airtable_response = json_decode( $response, TRUE );
 
+            foreach ( $airtable_response['records'] as $record ) {
+
+                $process = new Process();
+                $process->recordid = $record[ 'id' ];
+                $process->name_process_annual = isset($record['fields']['Name_Process_Annual'])?$record['fields']['Name_Process_Annual']:null;
+                $process->projects = isset($record['fields']['Projects'])? implode(",", $record['fields']['Projects']):null;
+                $process->vote_year = isset($record['fields']['Vote_Year'])?$record['fields']['Vote_Year']:null;
+                $process->process_name = isset($record['fields']['Process_Name'])?$record['fields']['Process_Name']:null;
+                $process->district_ward_name = isset($record['fields']['District-Ward_Name'])? implode(",", $record['fields']['District-Ward_Name']):null;
+                $process->voters = isset($record['fields']['Voters'])? implode(",", $record['fields']['Voters']):null;       
+                $process->city = isset($record['fields']['City'])?$record['fields']['City']:null;
+                
+                $process ->save();
+
+            }
+            
         }
         while( $request = $response->next() );
+
+        $date = date("Y/m/d H:i:s");
+        $airtable = Airtables::where('name', '=', 'Processes_Annual')->first();
+        $airtable->records = Process::count();
+        $airtable->syncdate = $date;
+        $airtable->save();
     }
     /**
      * Display a listing of the resource.

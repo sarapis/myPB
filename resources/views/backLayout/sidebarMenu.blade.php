@@ -1,7 +1,7 @@
 
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="{{url('dashboard')}}" class="site_title"><i class="fa fa-paw"></i> <span>Laravel Starter</span></a>
+    <a href="{{url('dashboard')}}" class="site_title"><i class="fa fa-paw"></i> <span>PBNYC</span></a>
   </div>
 
   <div class="clearfix"></div>
@@ -64,7 +64,7 @@
           </ul>
         </li>
       @endif
-      <li><a><i class="fa fa-cog"></i> Log Viewer <span class="fa fa-chevron-down"></span></a>
+      <li><a><i class="fa fa-list"></i> Log Viewer <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="/log-viewer"> Dashboard</a></li>
           <li><a href="/log-viewer/logs"> Logs</a></li>

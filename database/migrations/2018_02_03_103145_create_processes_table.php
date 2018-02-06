@@ -15,6 +15,7 @@ class CreateProcessesTable extends Migration
     {
         Schema::create('process', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('recordid');
             $table->string('name_process_annual')->nullable();
             $table->text('projects')->nullable();
             $table->string('vote_year')->nullable();

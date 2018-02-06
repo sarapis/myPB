@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AirtableGenerate' => $baseDir . '/database/seeds/AirtableSeeder.php',
     'App\\Agency' => $baseDir . '/app/Agency.php',
+    'App\\Airtable' => $baseDir . '/app/Airtable.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Contact' => $baseDir . '/app/Contact.php',
     'App\\District' => $baseDir . '/app/District.php',
@@ -206,6 +208,7 @@ return array(
     'Collective\\Html\\HtmlFacade' => $vendorDir . '/laravelcollective/html/src/HtmlFacade.php',
     'Collective\\Html\\HtmlServiceProvider' => $vendorDir . '/laravelcollective/html/src/HtmlServiceProvider.php',
     'CreateAgenciesTable' => $baseDir . '/database/migrations/2018_02_03_103229_create_agencies_table.php',
+    'CreateAirtableTable' => $baseDir . '/database/migrations/2018_02_06_002332_create_airtable_table.php',
     'CreateContactsTable' => $baseDir . '/database/migrations/2018_02_03_103220_create_contacts_table.php',
     'CreateDisctrictsTable' => $baseDir . '/database/migrations/2018_02_03_103207_create_disctricts_table.php',
     'CreatePagesTable' => $baseDir . '/database/migrations/2018_02_02_130209_create_pages_table.php',

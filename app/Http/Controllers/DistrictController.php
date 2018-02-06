@@ -5,28 +5,51 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Functions\Airtable;
-use District;
+use App\District;
+use App\Airtables;
 
 class DistrictController extends Controller
 {
 
     public function airtable()
     {
-       $airtable = new Airtable(array(
+
+        District::truncate();
+        $airtable = new Airtable(array(
             'api_key'   => 'keyIvQZcMYmjNbtUO',
             'base'      => 'appeLDUKUOowGqOP5',
         ));
 
-        $request = $airtable->getContent( 'Contacts' );
+        $request = $airtable->getContent( 'District-Ward' );
 
         do {
 
+
             $response = $request->getResponse();
 
-            var_dump( $response[ 'records' ] );
+            $airtable_response = json_decode( $response, TRUE );
 
+            foreach ( $airtable_response['records'] as $record ) {
+
+                $district = new District();
+                $district->recordid = $record[ 'id' ];
+                $district->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
+                $district->projects = isset($record['fields']['Projects'])? implode(",", $record['fields']['Projects']):null;
+                $district->active_pb = isset($record['fields']['Active_PB'])?$record['fields']['Active_PB']:null;
+                $district->processes_annual = isset($record['fields']['Processes_Annual'])? implode(",", $record['fields']['Processes_Annual']):null;
+                $district->contact_district = isset($record['fields']['Contact_District'])? implode(",", $record['fields']['Contact_District']):null;
+                $district ->save();
+
+            }
+            
         }
         while( $request = $response->next() );
+
+        $date = date("Y/m/d H:i:s");
+        $airtable = Airtables::where('name', '=', 'District-Ward')->first();
+        $airtable->records = District::count();
+        $airtable->syncdate = $date;
+        $airtable->save();
     }
     /**
      * Display a listing of the resource.
