@@ -124,7 +124,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        return response()->json($project);
     }
 
     /**
@@ -147,7 +148,42 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+        // $project = Project::where('id', '=', $id)->first();
+        $project->project_id = $request->project_id;
+        $project->project_title = $request->project_title;
+        $project->project_description = $request->project_description;
+        $project->project_status = $request->project_status;
+        $project->status_date_updated = $request->status_date_updated;
+        $project->source_ballot_link = $request->source_ballot_link;
+        $project->win_text = $request->win_text;
+        $project->win_calculate = $request->win_calculate;
+        $project->votes = $request->votes;
+        $project->vote_date = $request->vote_date;
+        $project->pb_cycle = $request->pb_cycle;
+        $project->cost_text = $request->cost_text;
+        $project->cost_num = $request->cost_num;
+        $project->category_topic_committee_raw = $request->category_topic_committee_raw;
+        $project->category_type_topic_standardize = $request->category_type_topic_standardize;
+        $project->project_location_raw = $request->project_location_raw;
+        $project->project_address_clean = $request->project_address_clean;
+        $project->location_city = $request->location_city;
+        $project->country = $request->country;
+        $project->zipcode = $request->zipcode;
+        $project->full_address = $request->full_address;
+        $project->latitude = $request->latitude;
+        $project->longitude = $request->longitude;
+        $project->neighborhood = $request->neighborhood;
+        $project->census_tract_or_local_id = $request->census_tract_or_local_id;
+        $project->bin = $request->bin;
+        $project->borough_code = $request->borough_code;
+        $project->name_dept_agency_cbo = $request->name_dept_agency_cbo;
+        $project->agency_project_code = $request->agency_project_code;
+        $project->flag = 'modified';
+        $project->save();
+        // var_dump($project);
+        // exit();
+        return response()->json($project);
     }
 
     /**

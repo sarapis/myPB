@@ -42,7 +42,8 @@ Route::get('/', ['uses' => 'HomeController@home']);
         Route::get('/sync_contacts', ['uses' => 'ContactController@airtable']);
         Route::get('/sync_agency', ['uses' => 'AgencyController@airtable']);
 
-        Route::get('/tb_projects', ['uses' => 'ProjectController@index']); 
+        //Route::get('/tb_projects', ['uses' => 'ProjectController@index']);
+        Route::resource('tb_projects', 'ProjectController');
         Route::get('/tb_processes', ['uses' => 'ProcessController@index']);
         Route::get('/tb_district', ['uses' => 'DistrictController@index']);
         Route::get('/tb_contacts', ['uses' => 'ContactController@index']);

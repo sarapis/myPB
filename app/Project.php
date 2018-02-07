@@ -15,6 +15,11 @@ class Project extends Model
         return $this->belongsTo('App\Process', 'process_id', 'recordid');
     }
 
+    public function agency()
+    {
+        return $this->hasmany('App\Agency', 'recordid', 'agency_code');
+    }
+
     public function district()
     {
         return $this->belongsTo('App\District', 'district_ward_name', 'recordid');
