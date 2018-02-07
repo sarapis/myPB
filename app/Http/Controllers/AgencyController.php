@@ -92,7 +92,8 @@ class AgencyController extends Controller
      */
     public function show($id)
     {
-        //
+        $agency= Agency::find($id);
+        return response()->json($agency);
     }
 
     /**
@@ -115,7 +116,14 @@ class AgencyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $agency = Agency::find($id);
+        $agency->name = $request->name;
+        $agency->agency_name = $request->agency_name;
+        $agency->website = $request->website;
+        $agency->flag = 'modified';
+        $agency->save();
+
+        return response()->json($agency);
     }
 
     /**

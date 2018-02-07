@@ -44,10 +44,10 @@ Route::get('/', ['uses' => 'HomeController@home']);
 
         //Route::get('/tb_projects', ['uses' => 'ProjectController@index']);
         Route::resource('tb_projects', 'ProjectController');
-        Route::get('/tb_processes', ['uses' => 'ProcessController@index']);
-        Route::get('/tb_district', ['uses' => 'DistrictController@index']);
-        Route::get('/tb_contacts', ['uses' => 'ContactController@index']);
-        Route::get('/tb_agency', ['uses' => 'AgencyController@index']);
-
+        Route::resource('tb_processes', 'ProcessController');
+        Route::resource('tb_district', 'DistrictController');
+        Route::resource('tb_contacts', 'ContactController');
+        Route::resource('tb_agency', 'AgencyController');
+        
         Route::get('/datasync', ['uses' => 'PagesController@datasync']);
  });

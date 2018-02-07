@@ -94,7 +94,8 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        $contact= Contact::find($id);
+        return response()->json($contact);
     }
 
     /**
@@ -117,7 +118,16 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $contact = Contact::find($id);
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->category = $request->category;
+        $contact->title = $request->title;
+        $contact->flag = 'modified';
+        $contact->save();
+
+        return response()->json($contact);
     }
 
     /**

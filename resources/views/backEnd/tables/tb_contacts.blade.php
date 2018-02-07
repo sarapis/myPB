@@ -2,7 +2,16 @@
 @section('title')
 Contacts
 @stop
+<style>
+    tr.modified{
+        background-color: red !important;
+    }
 
+    tr.modified > td{
+        background-color: red !important;
+        color: white;
+    }
+</style>
 @section('content')
 
 <div class="row">
@@ -30,7 +39,7 @@ Contacts
             </thead>
             <tbody>
               @foreach($contacts as $key => $contact)
-                <tr>
+                <tr id="contact{{$contact->id}}" class="{{$contact->flag}}">
                   <td class="text-center">{{$key+1}}</td>
                   <td class="text-center">{{$contact->name}}</td>
                   <td class="text-center">{{$contact->email}}</td>
@@ -39,7 +48,7 @@ Contacts
                   <td class="text-center">{{$contact->agency}}</td>
                   <td class="text-center">{{$contact->title}}</td>
                   <td>
-                    <button class="btn btn-block btn-primary btn-sm"><i class="fa fa-fw fa-edit"></i>Edit</button>
+                    <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$contact->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                   </td>
                 </tr>
               @endforeach             
@@ -48,6 +57,74 @@ Contacts
       </div>
     </div>
   </div>
+</div>
+<!-- Passing BASE URL to AJAX -->
+<input id="url" type="hidden" value="{{ \Request::url() }}">
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content form-horizontal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Contacts</h4>
+            </div>
+            <form class=" form-horizontal user" id="frmProducts" name="frmProducts"  novalidate="">
+                <div class="modal-body">
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">Name</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="name" name="name" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">Email</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="email" name="email" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">Phone</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="phone" name="phone" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Category</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" id="category">
+                                <option></option>
+                                <option value="Participant">Participant</option>
+                                <option value="PBP Volunteer">PBP Volunteer</option>
+                                <option value="PBP Staff">PBP Staff</option>
+                                <option value="Agency Representative">Agency Representative</option>
+                                <option value="District Representative">District Representative</option>
+                  
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">Title</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="title" name="title" value="">
+                      </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+                    <input type="hidden" id="id" name="id" value="0">
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
 </div>
 @endsection
 
@@ -76,4 +153,5 @@ $(document).ready(function() {
     } );
 } );
 </script>
+<script src="{{asset('js/contacts_ajaxscript.js')}}"></script>
 @endsection

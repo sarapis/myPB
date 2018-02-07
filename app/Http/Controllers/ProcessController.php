@@ -95,7 +95,8 @@ class ProcessController extends Controller
      */
     public function show($id)
     {
-        //
+        $process= Process::find($id);
+        return response()->json($process);
     }
 
     /**
@@ -118,7 +119,18 @@ class ProcessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $process = Process::find($id);
+        // $project = Project::where('id', '=', $id)->first();
+        $process->name_process_annual = $request->name_process_annual;
+        $process->vote_year = $request->vote_year;
+        $process->process_name = $request->process_name;
+        $process->voters = $request->voters;
+        $process->city = $request->city;
+        $process->flag = 'modified';
+        $process->save();
+        // var_dump($project);
+        // exit();
+        return response()->json($process);
     }
 
     /**

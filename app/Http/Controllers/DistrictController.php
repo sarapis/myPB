@@ -92,7 +92,8 @@ class DistrictController extends Controller
      */
     public function show($id)
     {
-        //
+        $district= District::find($id);
+        return response()->json($district);
     }
 
     /**
@@ -115,7 +116,13 @@ class DistrictController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $district = District::find($id);
+        $district->name = $request->name;
+        $district->active_pb = $request->active_pb;
+        $district->flag = 'modified';
+        $district->save();
+
+        return response()->json($district);
     }
 
     /**

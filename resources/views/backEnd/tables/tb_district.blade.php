@@ -1,15 +1,24 @@
 @extends('backLayout.app')
 @section('title')
-Processes_Annual
+District-Ward
 @stop
+<style>
+    tr.modified{
+        background-color: red !important;
+    }
 
+    tr.modified > td{
+        background-color: red !important;
+        color: white;
+    }
+</style>
 @section('content')
 
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Processes_Annual</h2>
+        <h2>District-Ward</h2>
         <div class="clearfix"></div>  
       </div>
       <div class="x_content" style="overflow: scroll;">
@@ -29,7 +38,7 @@ Processes_Annual
             </thead>
             <tbody>
               @foreach($districts as $key => $district)
-                <tr>
+                <tr id="district{{$district->id}}" class="{{$district->flag}}">
                   <td class="text-center">{{$key+1}}</td>
                   <td class="text-center">{{$district->name}}</td>
                   <td class="text-center">
@@ -52,7 +61,7 @@ Processes_Annual
                     @endif</td>
                   <td class="text-center">{{$district->contact_district}}</td>
                   <td>
-                    <button class="btn btn-block btn-primary"><i class="fa fa-fw fa-edit"></i>Edit</button>
+                    <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$district->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                   </td>
                 </tr>
               @endforeach             
@@ -61,6 +70,46 @@ Processes_Annual
       </div>
     </div>
   </div>
+</div>
+<!-- Passing BASE URL to AJAX -->
+<input id="url" type="hidden" value="{{ \Request::url() }}">
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content form-horizontal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">District-Ward</h4>
+            </div>
+            <form class=" form-horizontal user" id="frmProducts" name="frmProducts"  novalidate="">
+                <div class="modal-body">
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">Name</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="name" name="name" value="">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="text" class="col-sm-3 control-label">Active_PB</label>
+
+                      <div class="col-sm-7" style="padding-top: 7px;">
+                        <input type="checkbox" id="active_pb" name="active_pb">
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+                    <input type="hidden" id="id" name="id" value="0">
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
 </div>
 @endsection
 
@@ -89,4 +138,5 @@ $(document).ready(function() {
     } );
 } );
 </script>
+<script src="{{asset('js/district_ajaxscript.js')}}"></script>
 @endsection

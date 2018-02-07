@@ -2,7 +2,16 @@
 @section('title')
 Processes_Annual
 @stop
+<style>
+    tr.modified{
+        background-color: red !important;
+    }
 
+    tr.modified > td{
+        background-color: red !important;
+        color: white;
+    }
+</style>
 @section('content')
 
 <div class="row">
@@ -31,7 +40,7 @@ Processes_Annual
             </thead>
             <tbody>
               @foreach($processes as $key => $process)
-                <tr>
+                <tr id="process{{$process->id}}" class="{{$process->flag}}">
                   <td class="text-center">{{$key+1}}</td>
                   <td class="text-center">{{$process->name_process_annual}}</td>
                   <td class="text-center">
@@ -52,7 +61,7 @@ Processes_Annual
                   <td class="text-center">{{$process->voters}}</td>
                   <td class="text-center">{{$process->city}}</td>
                   <td>
-                    <button class="btn btn-block btn-primary"><i class="fa fa-fw fa-edit"></i>Edit</button>
+                    <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$process->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                   </td>
                 </tr>
               @endforeach             
@@ -62,6 +71,67 @@ Processes_Annual
       </div>
     </div>
   </div>
+</div>
+<!-- Passing BASE URL to AJAX -->
+<input id="url" type="hidden" value="{{ \Request::url() }}">
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content form-horizontal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Process_Annual</h4>
+            </div>
+            <form class=" form-horizontal user" id="frmProducts" name="frmProducts"  novalidate="">
+                <div class="modal-body">
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">Name Process Annual</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="name_process_annual" name="name_process_annual" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">Vote_Year</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="vote_year" name="vote_year" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">Process_Name</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="process_name" name="process_name" value="">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">Voters</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="voters" name="voters" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-3 control-label">City</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="city" name="city" value="">
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+                    <input type="hidden" id="id" name="id" value="0">
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
 </div>
 @endsection
 
@@ -90,4 +160,5 @@ $(document).ready(function() {
     } );
 } );
 </script>
+<script src="{{asset('js/process_ajaxscript.js')}}"></script>
 @endsection
