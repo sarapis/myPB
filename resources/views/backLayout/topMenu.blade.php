@@ -6,6 +6,7 @@
               </div>
 
               <ul class="nav navbar-nav navbar-right">
+
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="{{ URL::asset('/images/myPB.png') }}" alt="">{{Sentinel::getUser()->first_name.' ' .Sentinel::getUser()->last_name }}
@@ -27,7 +28,7 @@
                   </ul>
                 </li>
 
-                <li role="presentation" class="dropdown">
+                <!-- <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
                     <span class="badge bg-green">6</span>
@@ -90,6 +91,7 @@
                       </div>
                     </li>
                   </ul>
-                </li>
+                </li> -->
+                <li style="margin-top: 16px;"><div id="google_translate_element"></div></li>
               </ul>
             </nav>
