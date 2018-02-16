@@ -12,6 +12,7 @@
 */
 Route::auth();
 Route::get('/', ['uses' => 'HomeController@home']);
+Route::get('/about', ['uses' => 'HomeController@about']);
 
 
 

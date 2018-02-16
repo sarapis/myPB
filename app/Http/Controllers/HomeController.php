@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Page;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
     public function home($value='')
     {
-    	return view('welcome');
+        $home = Page::find(1);
+    	return view('frontEnd.home', compact('home'));
+    }
+    public function about($value='')
+    {
+        $about = Page::find(2);
+        return view('frontEnd.about', compact('about'));
     }
     public function YourhomePage($value='')
     {
