@@ -16,30 +16,30 @@
 
   <link rel="stylesheet" href="../../frontend/assets/css/site.min.css">
   <!-- Plugins -->
-  <link rel="stylesheet" href="../../../frontend/global/vendor/animsition/animsition.css">
-  <link rel="stylesheet" href="../../../frontend/global/vendor/asscrollable/asScrollable.css">
-  <link rel="stylesheet" href="../../../frontend/global/vendor/switchery/switchery.css">
-  <link rel="stylesheet" href="../../../frontend/global/vendor/intro-js/introjs.css">
-  <link rel="stylesheet" href="../../../frontend/global/vendor/slidepanel/slidePanel.css">
-  <link rel="stylesheet" href="../../../frontend/global/vendor/flag-icon-css/flag-icon.css">
-  <link rel="stylesheet" href="../../../frontend/global/vendor/waves/waves.css">
+  <link rel="stylesheet" href="../../../frontend/global/vend/animsition/animsition.css">
+  <link rel="stylesheet" href="../../../frontend/global/vend/asscrollable/asScrollable.css">
+  <link rel="stylesheet" href="../../../frontend/global/vend/switchery/switchery.css">
+  <link rel="stylesheet" href="../../../frontend/global/vend/intro-js/introjs.css">
+  <link rel="stylesheet" href="../../../frontend/global/vend/slidepanel/slidePanel.css">
+  <link rel="stylesheet" href="../../../frontend/global/vend/flag-icon-css/flag-icon.css">
+  <link rel="stylesheet" href="../../../frontend/global/vend/waves/waves.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="../../../frontend/global/fonts/material-design/material-design.min.css">
   <link rel="stylesheet" href="../../../frontend/global/fonts/brand-icons/brand-icons.min.css">
-  <link rel="stylesheet" href="../../../frontend/global/vendor/asrange/asRange.css">
+  <link rel="stylesheet" href="../../../frontend/global/vend/asrange/asRange.css">
   <link rel="stylesheet" href="../../../css/explorestyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
   <!--[if lt IE 9]>
-    <script src="../../../global/vendor/html5shiv/html5shiv.min.js"></script>
+    <script src="../../../frontend/global/vend/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
   <!--[if lt IE 10]>
-    <script src="../../../global/vendor/media-match/media.match.min.js"></script>
-    <script src="../../../global/vendor/respond/respond.min.js"></script>
+    <script src="../../../frontend/global/vend/media-match/media.match.min.js"></script>
+    <script src="../../../frontend/global/vend/respond/respond.min.js"></script>
     <![endif]-->
   <!-- Scripts -->
-  <script src="../../../frontend/global/vendor/breakpoints/breakpoints.js"></script>
+  <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
   <script>
   Breakpoints();
   </script>

@@ -1,17 +1,17 @@
-<script src="../../../frontend/global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
-  <script src="../../../frontend/global/vendor/jquery/jquery.js"></script>
-  <script src="../../../frontend/global/vendor/tether/tether.js"></script>
-  <script src="../../../frontend/global/vendor/bootstrap/bootstrap.js"></script>
-  <script src="../../../frontend/global/vendor/animsition/animsition.js"></script>
-  <script src="../../../frontend/global/vendor/mousewheel/jquery.mousewheel.js"></script>
-  <script src="../../../frontend/global/vendor/asscrollbar/jquery-asScrollbar.js"></script>
-  <script src="../../../frontend/global/vendor/asscrollable/jquery-asScrollable.js"></script>
-  <script src="../../../frontend/global/vendor/waves/waves.js"></script>
+<script src="../../../frontend/global/vend/babel-external-helpers/babel-external-helpers.js"></script>
+  <script src="../../../frontend/global/vend/jquery/jquery.js"></script>
+  <script src="../../../frontend/global/vend/tether/tether.js"></script>
+  <script src="../../../frontend/global/vend/bootstrap/bootstrap.js"></script>
+  <script src="../../../frontend/global/vend/animsition/animsition.js"></script>
+  <script src="../../../frontend/global/vend/mousewheel/jquery.mousewheel.js"></script>
+  <script src="../../../frontend/global/vend/asscrollbar/jquery-asScrollbar.js"></script>
+  <script src="../../../frontend/global/vend/asscrollable/jquery-asScrollable.js"></script>
+  <script src="../../../frontend/global/vend/waves/waves.js"></script>
   <!-- Plugins -->
-  <script src="../../../frontend/global/vendor/switchery/switchery.min.js"></script>
-  <script src="../../../frontend/global/vendor/intro-js/intro.js"></script>
-  <script src="../../../frontend/global/vendor/screenfull/screenfull.js"></script>
-  <script src="../../../frontend/global/vendor/slidepanel/jquery-slidePanel.js"></script>
+  <script src="../../../frontend/global/vend/switchery/switchery.min.js"></script>
+  <script src="../../../frontend/global/vend/intro-js/intro.js"></script>
+  <script src="../../../frontend/global/vend/screenfull/screenfull.js"></script>
+  <script src="../../../frontend/global/vend/slidepanel/jquery-slidePanel.js"></script>
   <!-- Scripts -->
   <script src="../../../frontend/global/js/State.js"></script>
   <script src="../../../frontend/global/js/Component.js"></script>
@@ -33,8 +33,8 @@
   <script src="../../../frontend/global/js/Plugin/asscrollable.js"></script>
   <script src="../../../frontend/global/js/Plugin/slidepanel.js"></script>
   <script src="../../../frontend/global/js/Plugin/switchery.js"></script>
-  <script src="../../../frontend/global/vendor/asrange/jquery-asRange.min.js"></script>
-  <script src="../../../frontend/global/vendor/ionrangeslider/ion.rangeSlider.min.js"></script>
+  <script src="../../../frontend/global/vend/asrange/jquery-asRange.min.js"></script>
+  <script src="../../../frontend/global/vend/ionrangeslider/ion.rangeSlider.min.js"></script>
   <script src="../../../frontend/global/js/Plugin/asrange.js"></script>
   <script src="../../../frontend/global/js/Plugin/ionrangeslider.js"></script>
   <script>
