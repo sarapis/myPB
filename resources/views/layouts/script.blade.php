@@ -33,6 +33,10 @@
   <script src="../../../frontend/global/js/Plugin/asscrollable.js"></script>
   <script src="../../../frontend/global/js/Plugin/slidepanel.js"></script>
   <script src="../../../frontend/global/js/Plugin/switchery.js"></script>
+  <script src="../../../frontend/global/vendor/asrange/jquery-asRange.min.js"></script>
+  <script src="../../../frontend/global/vendor/ionrangeslider/ion.rangeSlider.min.js"></script>
+  <script src="../../../frontend/global/js/Plugin/asrange.js"></script>
+  <script src="../../../frontend/global/js/Plugin/ionrangeslider.js"></script>
   <script>
   (function(document, window, $) {
     'use strict';
@@ -41,4 +45,20 @@
       Site.run();
     });
   })(document, window, jQuery);
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $("#sidebar").mCustomScrollbar({
+              theme: "minimal"
+          });
+
+          $('#sidebarCollapse').on('click', function () {
+              $('#sidebar, #content').toggleClass('active');
+              $('.collapse.in').toggleClass('in');
+              $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+          });
+      });
   </script>

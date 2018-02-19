@@ -10,7 +10,7 @@ Home
           <!-- Panel -->
           <div class="panel">
             <div class="panel-body">
-                <p>{!! $home->body !!}</p>
+                {!! $home->body !!}
             </div>
           </div>
           <!-- End Panel -->

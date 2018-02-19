@@ -12,7 +12,12 @@
 */
 Route::auth();
 Route::get('/', ['uses' => 'HomeController@home']);
+Route::get('/home', function () {
+    //return view('welcome');
+    return redirect('/');
+});
 Route::get('/about', ['uses' => 'HomeController@about']);
+Route::get('/explore', 'ExploreController@index');
 
 
 

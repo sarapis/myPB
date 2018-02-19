@@ -10,12 +10,13 @@ class HomeController extends Controller
 {
     public function home($value='')
     {
-        $home = Page::find(1);
+        $home = Page::where('name', 'Home')->first();
+
     	return view('frontEnd.home', compact('home'));
     }
     public function about($value='')
     {
-        $about = Page::find(2);
+        $about = Page::where('name', 'About')->first();
         return view('frontEnd.about', compact('about'));
     }
     public function YourhomePage($value='')
