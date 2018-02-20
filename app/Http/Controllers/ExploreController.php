@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Project;
 use App\District;
+use App\Contact;
 
 class ExploreController extends Controller
 {
@@ -49,7 +50,9 @@ class ExploreController extends Controller
     public function profile($id)
     {
         $project = Project::find($id);
-        return view('frontEnd.profile', compact('project'));
+        $district = $project->district_ward_name;
+        $contact = Contact::where('district_ward_name', '=', $district)->first();
+        return view('frontEnd.profile', compact('project', 'contact'));
     }
 
     /**

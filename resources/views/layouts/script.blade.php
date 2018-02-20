@@ -48,7 +48,9 @@
   </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
+<!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRz1OxLb5JVc6fXRlsT_3ARAyRRGBYuio&callback=initMap">
+    </script> -->
   <script type="text/javascript">
       $(document).ready(function () {
           $("#sidebar").mCustomScrollbar({

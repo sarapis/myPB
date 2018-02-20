@@ -26,10 +26,18 @@
                             @endforeach
                         </ul>
                     </li>
+                    <li>
+                        <a href="#projectstatus" data-toggle="collapse" aria-expanded="false">Project Status</a>
+                        <ul class="collapse list-unstyled" id="projectstatus">
+                            @foreach($states as $state)
+                            <li><a href="#">{{$state->project_status}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
                 </ul>    
                 <!-- Example Range -->
                 <div class="row m-5">
-                    <div class="col-md-4 pl-5 pt-20"><a class="text-white">Range</a></div>
+                    <div class="col-md-4 pl-5 pt-20"><a class="text-white">Cost</a></div>
                     <div class="col-md-8 example mt-30 mb-0">
                       <div class="asRange" data-plugin="asRange" data-namespace="rangeUi" data-step="50"
                       data-min="0" data-max="175000" data-range="true" data-tip=true data-value="[10000,70000]"></div>
@@ -58,14 +66,7 @@
                 </div>
                 <!-- End Example Range -->
                 <ul class="list-unstyled components pt-0">    
-                    <li>
-                        <a href="#projectstatus" data-toggle="collapse" aria-expanded="false">Project Status</a>
-                        <ul class="collapse list-unstyled" id="projectstatus">
-                            @foreach($states as $state)
-                            <li><a href="#">{{$state->project_status}}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    
                     <li>
                         <a href="#projectcategory" data-toggle="collapse" aria-expanded="false">Project Category</a>
                         <ul class="collapse list-unstyled" id="projectcategory">
