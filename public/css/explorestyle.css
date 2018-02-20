@@ -44,7 +44,7 @@ a, a:hover, a:focus {
     position: fixed;
     top: 0;
     left: 0;
-    height: calc(100vh - 44px);
+    height: 100vh;
     z-index: 999;
     background: #7386D5;
     color: #fff;

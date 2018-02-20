@@ -40,7 +40,7 @@ Agency
               @foreach($agencies as $key => $agency)
                 <tr id="agency{{$agency->id}}" class="{{$agency->flag}}">
                   <td class="text-center">{{$key+1}}</td>
-                  <td class="text-center">{{$agency->name}}</td>
+                  <td class="text-center">{{$agency->agency_code}}</td>
                   <td class="text-center">{{$agency->agency_name}}</td>
                   <td class="text-center">@foreach($agency->project as $project)
                     <span class="badge bg-green">{{$project->project_id}}</span>
@@ -76,7 +76,7 @@ Agency
                       <label for="inputPassword3" class="col-sm-3 control-label">Name</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="name" name="name" value="">
+                        <input type="text" class="form-control" id="agency_code" name="agency_code" value="">
                       </div>
                     </div>
                     <div class="form-group">

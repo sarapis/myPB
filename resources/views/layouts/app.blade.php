@@ -11,5 +11,5 @@
 	</div>
 	<!-- /page content -->
 
- @include('layouts.footer')
+<!--  @include('layouts.footer') -->
  @include('layouts.script')

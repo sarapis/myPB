@@ -48,4 +48,7 @@
       padding-top: 66px;
     }
   </style>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="../../../js/gmaps.js"></script>
 </head>

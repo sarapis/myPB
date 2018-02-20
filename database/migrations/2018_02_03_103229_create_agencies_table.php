@@ -16,7 +16,7 @@ class CreateAgenciesTable extends Migration
         Schema::create('agency', function (Blueprint $table) {
             $table->increments('id');
             $table->string('recordid');
-            $table->string('name')->nullable();
+            $table->string('agency_code')->nullable();
             $table->string('agency_name')->nullable();
             $table->text('projects')->nullable();
             $table->string('website')->nullable();

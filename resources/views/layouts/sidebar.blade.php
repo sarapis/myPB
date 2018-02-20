@@ -21,9 +21,9 @@
                     <li>
                         <a href="#district" data-toggle="collapse" aria-expanded="false">District</a>
                         <ul class="collapse list-unstyled" id="district">
-                            <li><a href="#">Home 1</a></li>
-                            <li><a href="#">Home 2</a></li>
-                            <li><a href="#">Home 3</a></li>
+                            @foreach($districts as $district)
+                            <li><a href="#">{{$district->name}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>    
@@ -61,25 +61,25 @@
                     <li>
                         <a href="#projectstatus" data-toggle="collapse" aria-expanded="false">Project Status</a>
                         <ul class="collapse list-unstyled" id="projectstatus">
-                            <li><a href="#">Page 1</a></li>
-                            <li><a href="#">Page 2</a></li>
-                            <li><a href="#">Page 3</a></li>
+                            @foreach($states as $state)
+                            <li><a href="#">{{$state->project_status}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li>
                         <a href="#projectcategory" data-toggle="collapse" aria-expanded="false">Project Category</a>
                         <ul class="collapse list-unstyled" id="projectcategory">
-                            <li><a href="#">Page 1</a></li>
-                            <li><a href="#">Page 2</a></li>
-                            <li><a href="#">Page 3</a></li>
+                            @foreach($categories as $category)
+                            <li><a href="#">{{$category->category_topic_committee_raw}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li>
                         <a href="#cityagency" data-toggle="collapse" aria-expanded="false">City Agency</a>
                         <ul class="collapse list-unstyled" id="cityagency">
-                            <li><a href="#">Page 1</a></li>
-                            <li><a href="#">Page 2</a></li>
-                            <li><a href="#">Page 3</a></li>
+                            @foreach($cities as $city)
+                            <li><a href="#">{{$city->location_city}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>

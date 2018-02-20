@@ -16,9 +16,13 @@ Route::get('/home', function () {
     //return view('welcome');
     return redirect('/');
 });
+Route::get('/admin', function () {
+    //return view('welcome');
+    return redirect('/login');
+});
 Route::get('/about', ['uses' => 'HomeController@about']);
 Route::get('/explore', 'ExploreController@index');
-
+Route::get('/profile/{id}', 'ExploreController@profile');
 
 
 

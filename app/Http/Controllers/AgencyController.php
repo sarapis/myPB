@@ -33,7 +33,7 @@ class AgencyController extends Controller
 
                 $agency = new Agency();
                 $agency->recordid = $record[ 'id' ];
-                $agency->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
+                $agency->agency_code = isset($record['fields']['Agency_Code'])?$record['fields']['Agency_Code']:null;
                 $agency->agency_name = isset($record['fields']['Agency_Name'])?$record['fields']['Agency_Name']:null;
                 $agency->projects = isset($record['fields']['Projects'])? implode(",", $record['fields']['Projects']):null;
                 $agency->website = isset($record['fields']['Website'])?$record['fields']['Website']:null;
@@ -58,7 +58,7 @@ class AgencyController extends Controller
      */
     public function index()
     {
-        $agencies = Agency::orderBy('name')->get();
+        $agencies = Agency::orderBy('agency_code')->get();
 
         return view('backEnd.tables.tb_agency', compact('agencies'));
     }
@@ -117,7 +117,7 @@ class AgencyController extends Controller
     public function update(Request $request, $id)
     {
         $agency = Agency::find($id);
-        $agency->name = $request->name;
+        $agency->agency_code = $request->agency_code;
         $agency->agency_name = $request->agency_name;
         $agency->website = $request->website;
         $agency->flag = 'modified';

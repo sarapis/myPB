@@ -24,7 +24,7 @@ $(document).ready(function(){
             success: function (data) {
                 console.log(data);
                 $('#id').val(data.id);
-                $('#name').val(data.name);
+                $('#agency_code').val(data.agency_code);
                 $('#agency_name').val(data.agency_name);
                 $('#website').val(data.website);
                 $('#btn-save').val("update");
@@ -49,7 +49,7 @@ $(document).ready(function(){
 
         e.preventDefault(); 
         var formData = {
-            name: $('#name').val(),
+            agency_code: $('#agency_code').val(),
             agency_name: $('#agency_name').val(),
             website: $('#website').val()
         }

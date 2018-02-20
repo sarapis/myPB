@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-About
+Profile
 @stop
 
 @section('content')
@@ -9,7 +9,15 @@ About
           <!-- Panel -->
           <div class="panel">
             <div class="panel-body">
-                {!! $about->body !!}
+                <h4>{{$project->project_title}}</h4>
+                <p>{{$project->status_date_updated}}</p>
+            </div>
+          </div>
+          <!-- End Panel -->
+          <!-- Panel -->
+          <div class="panel">
+            <div class="panel-body">
+                
             </div>
           </div>
           <!-- End Panel -->

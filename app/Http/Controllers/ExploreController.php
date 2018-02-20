@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Project;
+use App\District;
 
 class ExploreController extends Controller
 {
     public function index()
     {
-
-        return view('frontEnd.explore');
+        $projects = Project::sortable()->paginate(20);
+        $districts = District::orderBy('name')->get();
+        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+        $categories = Project::orderBy('category_topic_committee_raw')->distinct()->get(['category_topic_committee_raw']);
+        $cities = Project::orderBy('location_city')->distinct()->get(['location_city']);
+        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
     }
 
     /**
@@ -30,7 +37,7 @@ class ExploreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -39,9 +46,10 @@ class ExploreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function profile($id)
     {
-
+        $project = Project::find($id);
+        return view('frontEnd.profile', compact('project'));
     }
 
     /**

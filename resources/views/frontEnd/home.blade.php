@@ -4,7 +4,7 @@ Home
 @stop
 
 @section('content')
-<div class="page-content">
+
     <div class="row">
         <div class="col-xl-7 col-md-7">
           <!-- Panel -->
@@ -36,5 +36,5 @@ Home
         </div>
           <!-- End Panel -->
     </div>
-</div>
+
 @endsection

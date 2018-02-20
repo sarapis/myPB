@@ -183,9 +183,9 @@ return [
         //Sentinel services
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         //Log Viewer
-        Arcanedev\LogViewer\LogViewerServiceProvider::class
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
 
-
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class
     ],
 
     /*
