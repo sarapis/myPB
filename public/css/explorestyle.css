@@ -40,25 +40,25 @@ a, a:hover, a:focus {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 #sidebar {
-    width: 250px;
+    width: 270px;
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
-    color: #fff;
+    background: #f3f3f3;
+    color: #424242;
     transition: all 0.3s;
     padding-top: 66px;
 }
 
 #sidebar.active {
-    margin-left: -250px;
+    margin-left: -270px;
 }
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #b8e6e2;
 }
 
 #sidebar ul.components {
@@ -72,8 +72,11 @@ a, a:hover, a:focus {
 
 #sidebar ul li a {
     padding: 10px;
+    padding-left: 20px;
     font-size: 1.1em;
     display: block;
+    color: #424242;
+    font-weight: 400;
 }
 #sidebar ul li a:hover {
     color: #7386D5;
@@ -82,9 +85,19 @@ a, a:hover, a:focus {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #f3f3f3;
 }
 
+.text-side{
+    color: #424242 !important;
+    font-weight: 400;
+    
+}
+p.text-side{
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(57,73,76,.35);
+}
 
 a[data-toggle="collapse"] {
     position: relative;
@@ -97,6 +110,7 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     right: 20px;
     font-family: 'Glyphicons Halflings';
     font-size: 0.6em;
+    color: #424242;
 }
 
 .nav-link::before{
@@ -111,8 +125,8 @@ a[aria-expanded="true"]::before {
 
 ul ul a {
     font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #6d7fcc;
+    padding-left: 20px !important;
+    background: #f3f3f3;
 }
 
 ul.CTAs {
@@ -131,16 +145,27 @@ a.download {
     color: #7386D5;
 }
 a.article, a.article:hover {
-    background: #6d7fcc !important;
+    background: #f3f3f3 !important;
     color: #fff !important;
 }
 
+li.status-side:hover {
+    background: #f3f3f3 !important;
+    color: #fff !important;
+}
 
+.bg-custom{
+  background-color: #3f897a;
+}
+
+p{
+    color: #424242;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
-    width: calc(100% - 250px);
+    width: calc(100% - 270px);
     padding: 40px;
     transition: all 0.3s;
     position: absolute;
@@ -157,7 +182,7 @@ a.article, a.article:hover {
 ----------------------------------------------------- */
 @media (max-width: 768px) {
     #sidebar {
-        margin-left: -250px;
+        margin-left: -270px;
     }
     #sidebar.active {
         margin-left: 0;
@@ -166,9 +191,78 @@ a.article, a.article:hover {
         width: 100%;
     }
     #content.active {
-        width: calc(100% - 250px);
+        width: calc(100% - 270px);
     }
     #sidebarCollapse span {
         display: none;
     }
+}
+
+.nav.nav-tabs.nav-tabs-line{
+    background: #b8e6e2;
+}
+
+.input-search{
+    box-shadow: 0 1px 6px rgba(57,73,76,.35);
+}
+.form-control.search-form{
+    border-radius: 0;
+    border: 0;
+    font-size: 12px;
+    color: #424242;
+    height: 45px;
+    font-weight: 400;
+}
+.input-search .input-search-icon {
+    font-size: 16px;
+    left: 0px;
+    text-align: center;
+    pointer-events: none;
+    color: #000000;
+}
+
+.option-side{
+    margin: 7px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 6px rgba(57,73,76,.35);
+}
+.nav-tabs-line .nav-item.open .nav-link, .nav-tabs-line .nav-item.open .nav-link:focus, .nav-tabs-line .nav-item.open .nav-link:hover, .nav-tabs-line .nav-item.show .nav-link, .nav-tabs-line .nav-item.show .nav-link:focus, .nav-tabs-line .nav-item.show .nav-link:hover, .nav-tabs-line .nav-link.active, .nav-tabs-line .nav-link.active:focus, .nav-tabs-line .nav-link.active:hover {
+    color: #3f51b5;
+    border-bottom: 2px solid #3f897a;
+    background-color: transparent;
+}
+.tab-menu{
+    width: 100px;
+    text-align: center;
+}
+.rangeUi-bar{
+    background-color: #000000;
+    height: 3px;
+}
+.rangeUi-selected {
+    background-color: #009688;
+    height: 3px;
+}
+.rangeUi-pointer{
+    width: 14px;
+    height: 14px;
+    top: -5px;
+    background-color: #009688;
+    border: 0;
+}
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    font-size: 1em;
+}
+.range-side{
+    margin: 7px;
+}
+.status-side{
+    background-color: #f3f3f3;
+}
+.btn-warning, .btn-warning.focus, .btn-warning:focus, .btn-warning:hover {
+    border-color: #ffea00;
+    background-color: #ffea00;
+}
+.btn .icon{
+    margin: 0;
 }

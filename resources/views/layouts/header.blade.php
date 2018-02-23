@@ -1,4 +1,4 @@
-  <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse" role="navigation">
+  <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse bg-custom" role="navigation">
     <div class="navbar-header">
       <button type="button" id="sidebarCollapse" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided">
           <i class="glyphicon glyphicon-align-left"></i>
@@ -9,11 +9,10 @@
         <i class="icon md-more" aria-hidden="true"></i>
       </button>
       <a class="navbar-brand navbar-brand-center" href="/">
-        <img class="navbar-brand-logo navbar-brand-logo-normal" src="../../images/myPB.png"
+        <img class="navbar-brand-logo navbar-brand-logo-normal" src="../../images/mypb.png"
         title="myPB">
-        <img class="navbar-brand-logo navbar-brand-logo-special" src="../../images/myPB.png"
+        <img class="navbar-brand-logo navbar-brand-logo-special" src="../../images/mypb.png"
         title="myPB">
-        <span class="navbar-brand-text hidden-xs-down"> myPB</span>
       </a>
     </div>
     <div class="navbar-container container-fluid">
@@ -52,14 +51,14 @@
         </ul>
         <!-- End Navbar Toolbar -->
         <!-- Navbar Toolbar Right -->
-        <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+        <!-- <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
           <li class="nav-item" id="toggleChat">
             <a class="nav-link" data-toggle="site-sidebar" href="javascript:void(0)" title="Chat"
             data-url="../site-sidebar.tpl">
               <i class="icon md-comment" aria-hidden="true"></i>
             </a>
           </li>
-        </ul>
+        </ul> -->
         <!-- End Navbar Toolbar Right -->
       </div>
       <!-- End Navbar Collapse -->

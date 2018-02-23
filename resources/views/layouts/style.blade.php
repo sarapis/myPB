@@ -24,9 +24,11 @@
   <link rel="stylesheet" href="../../../frontend/global/vend/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="../../../frontend/global/vend/waves/waves.css">
   <!-- Fonts -->
+   <link rel="stylesheet" href="../../../../frontend/global/fonts/font-awesome/font-awesome.css">
   <link rel="stylesheet" href="../../../frontend/global/fonts/material-design/material-design.min.css">
   <link rel="stylesheet" href="../../../frontend/global/fonts/brand-icons/brand-icons.min.css">
   <link rel="stylesheet" href="../../../frontend/global/vend/asrange/asRange.css">
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
   <link rel="stylesheet" href="../../../css/explorestyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>

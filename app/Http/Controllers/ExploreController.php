@@ -25,9 +25,14 @@ class ExploreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function status($id)
     {
-        //
+        $projects = Project::where('project_status', '=', $id)->sortable()->paginate(20);
+        $districts = District::orderBy('name')->get();
+        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+        $categories = Project::orderBy('category_topic_committee_raw')->distinct()->get(['category_topic_committee_raw']);
+        $cities = Project::orderBy('location_city')->distinct()->get(['location_city']);
+        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
     }
 
     /**

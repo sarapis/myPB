@@ -23,7 +23,7 @@ Route::get('/admin', function () {
 Route::get('/about', ['uses' => 'HomeController@about']);
 Route::get('/explore', 'ExploreController@index');
 Route::get('/profile/{id}', 'ExploreController@profile');
-
+Route::get('/explore/status_{id}', 'ExploreController@status');
 
 
  Route::group(['middleware' => ['web', 'auth', 'permission'] ], function () {
