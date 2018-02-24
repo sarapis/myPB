@@ -11,6 +11,7 @@
   <link rel="shortcut icon" href="../../frontend/assets/images/favicon.ico">
   <!-- Stylesheets -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
   <link rel="stylesheet" href="../../../frontend/global/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../../frontend/global/css/bootstrap-extend.min.css">
 
@@ -42,12 +43,53 @@
     <![endif]-->
   <!-- Scripts -->
   <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
+  
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   <script>
   Breakpoints();
   </script>
-  <style>
-    body{
-      padding-top: 66px;
-    }
-  </style>
+  <script>
+  $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 175000,
+      values: [ 750, 175000 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+    $( "#slider-range-year" ).slider({
+      range: true,
+      min: 2012,
+      max: 2018,
+      values: [ 2012, 2017 ],
+      slide: function( event, ui ) {
+        $( "#amount-year" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount-year" ).val(  $( "#slider-range-year" ).slider( "values", 0 ) +
+      " - " + $( "#slider-range-year" ).slider( "values", 1 ) );
+
+    $( "#slider-range-vote" ).slider({
+      range: true,
+      min: 0,
+      max: 6000,
+      values: [ 750, 3000 ],
+      slide: function( event, ui ) {
+        $( "#amount-vote" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount-vote" ).val(  $( "#slider-range-vote" ).slider( "values", 0 ) +
+      " - " + $( "#slider-range-vote" ).slider( "values", 1 ) );
+
+  } );
+  </script>
+<script src="../../../../js/gmaps.js"></script>
 </head>

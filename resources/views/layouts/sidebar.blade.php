@@ -1,10 +1,14 @@
 <nav id="sidebar">
     <div class="sidebar-header" style="padding: 10px;">
         <div class="form-group" style="margin: 0;">
-            <div class="input-search">
-                <i class="input-search-icon md-search" aria-hidden="true"></i>
-                <input type="text" class="form-control search-form" name="" placeholder="Search district and keywords">
-            </div>
+        <!--begin::Form-->
+            <form method="post" action="{{action('ExploreController@search')}}" >
+                {{ csrf_field() }}
+                <div class="input-search">
+                    <i class="input-search-icon md-search" aria-hidden="true"></i>
+                    <input type="text" class="form-control search-form" name="search" placeholder="Search district and keywords">
+                </div>
+            </form>
         </div>
     </div>
     <!-- Example Tabs In The Panel -->
@@ -46,34 +50,54 @@
                 </ul>    
                 <!-- Example Range -->
                 <div class="row range-side">
-                    <div class="col-md-5 pl-5 pt-20"><a class="text-side">Cost</a></div>
-                    <div class="col-md-7 example mt-30 mb-0 p-0">
-                      <div class="asRange" data-plugin="asRange" data-namespace="rangeUi" data-step="50"
-                      data-min="0" data-max="175000" data-range="true" data-tip=true data-value="[10000,70000]"></div>
-                      <p class="text-side mt-15 mb-0">$0 - $ 175,000</p>
+                    <div class="col-md-5 pl-5 pt-10"><a class="text-side">Cost</a></div>
+                    <div class="col-md-7 example mb-0 p-0">
+                        
+                         
+                        <div id="slider-range" class="ml-10 mr-10"></div>
+                        <p class="text-side text-center mt-15 mb-0">
+                          <input type="text" id="amount" readonly style="border:0;    width: 100%;text-align: center;">
+                        </p>
                     </div>
                 </div>
                 <!-- End Example Range -->
                 <!-- Example Range -->
                 <div class="row range-side">
-                    <div class="col-md-5 pl-5 pt-20 pr-0"><a class="text-side">Year of Vote</a></div>
-                    <div class="col-md-7 example mt-30 mb-0 p-0">
-                      <div class="asRange" data-plugin="asRange" data-namespace="rangeUi" data-step="1"
-                      data-min="2012" data-max="2017" data-range="true" data-tip=true data-value="[2012,2015]"></div>
-                      <p class="text-side mt-15 mb-0">2012 - 2017</p>
+                    <div class="col-md-5 pl-5 pt-10"><a class="text-side">Year of Vote</a></div>
+                    <div class="col-md-7 example mb-0 p-0">
+                        
+                         
+                        <div id="slider-range-year" class="ml-10 mr-10"></div>
+                        <p class="text-side text-center mt-15 mb-0">
+                          <input type="text" id="amount-year" readonly style="border:0;    width: 100%;text-align: center;">
+                        </p>
                     </div>
                 </div>
                 <!-- End Example Range -->
                 <!-- Example Range -->
-                <div class="row range-side">
+                <!-- <div class="row range-side">
                     <div class="col-md-5 pl-5 pt-20"><a class="text-side">Vote</a></div>
                     <div class="col-md-7 example mt-30 mb-0 p-0">
                       <div class="asRange" data-plugin="asRange" data-namespace="rangeUi" data-step="1"
                       data-min="0" data-max="6000" data-range="true" data-tip=true data-value="[1000,5000]"></div>
                       <p class="text-side mt-15 mb-0">0 - 6000</p>
                     </div>
+                </div> -->
+                <!-- End Example Range -->
+                <!-- Example Range -->
+                <div class="row range-side">
+                    <div class="col-md-5 pl-5 pt-10"><a class="text-side">Vote</a></div>
+                    <div class="col-md-7 example mb-0 p-0">
+                        
+                         
+                        <div id="slider-range-vote" class="ml-10 mr-10"></div>
+                        <p class="text-side text-center mt-15 mb-0">
+                          <input type="text" id="amount-vote" readonly style="border:0;    width: 100%;text-align: center;">
+                        </p>
+                    </div>
                 </div>
                 <!-- End Example Range -->
+                
                 <ul class="list-unstyled components pt-0">    
                     
                     <li class="option-side">

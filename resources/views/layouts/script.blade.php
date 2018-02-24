@@ -1,5 +1,5 @@
 <script src="../../../frontend/global/vend/babel-external-helpers/babel-external-helpers.js"></script>
-  <script src="../../../frontend/global/vend/jquery/jquery.js"></script>
+  <!-- <script src="../../../frontend/global/vend/jquery/jquery.js"></script> -->
   <script src="../../../frontend/global/vend/tether/tether.js"></script>
   <script src="../../../frontend/global/vend/bootstrap/bootstrap.js"></script>
   <script src="../../../frontend/global/vend/animsition/animsition.js"></script>

@@ -27,6 +27,7 @@ Route::get('/explore/status_{id}', 'ExploreController@status');
 Route::get('/explore/district_{id}', 'ExploreController@district');
 Route::get('/explore/category_{id}', 'ExploreController@category');
 Route::get('/explore/cityagency_{id}', 'ExploreController@cityagency');
+Route::post('/search', 'ExploreController@search');
 
 
  Route::group(['middleware' => ['web', 'auth', 'permission'] ], function () {

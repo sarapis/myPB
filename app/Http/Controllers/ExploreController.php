@@ -71,9 +71,19 @@ class ExploreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function search(Request $request)
     {
-        
+        $search = $request->input('search');
+        $projects= Project::with('district')->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district', function ($q)  use($search){
+               $q->where('name', 'like', '%'.$search.'%');
+            })->sortable()->paginate(20);
+
+
+        $districts = District::orderBy('name')->get();
+        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
     }
 
     /**
