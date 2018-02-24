@@ -22,7 +22,9 @@
                         <a href="#district" class="text-side" data-toggle="collapse" aria-expanded="false">District</a>
                         <ul class="collapse list-unstyled" id="district">
                             @foreach($districts as $district)
-                            <li><a href="/explore/district_{{$district->recordid}}" class="text-side">{{$district->name}}</a></li>
+                                @if($district->name!='')
+                                <li><a href="/explore/district_{{$district->recordid}}" class="text-side">{{$district->name}}</a></li>
+                                @endif
                             @endforeach
                         </ul>
                     </li>
