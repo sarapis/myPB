@@ -10,6 +10,8 @@ class Project extends Model
     use Sortable;
 
     protected $table = 'projects';
+
+    protected $primaryKey = 'id';
     
 	public $timestamps = false;
 

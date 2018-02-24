@@ -30,7 +30,7 @@ class CreateProjectsTable extends Migration
                 $table->string('vote_date')->nullable();
                 $table->string('pb_cycle')->nullable();
                 $table->string('cost_text')->nullable();
-                $table->string('cost_num')->nullable();
+                $table->integer('cost_num')->nullable();
                 $table->string('category_topic_committee_raw')->nullable();
                 $table->string('category_type_topic_standardize')->nullable();
                 $table->text('project_location_raw')->nullable();

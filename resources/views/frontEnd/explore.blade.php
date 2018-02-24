@@ -24,7 +24,7 @@ Explore
                           <tr>
                             <th class="text-center">@sortablelink('project_status', 'Status')</th>
                             <th class="text-center">@sortablelink('project_title', 'Name')</th>
-                            <th class="text-center">@sortablelink('cost_text', 'Price')</th>
+                            <th class="text-center">@sortablelink('cost_num', 'Price')</th>
                             <th class="text-center">@sortablelink('process.vote_year', 'Year')</th>
                             <th class="text-center">@sortablelink('votes', 'Votes')</th>
                             <th class="text-center">@sortablelink('status_date_updated', 'Update')</th>
@@ -34,22 +34,39 @@ Explore
                             @foreach($projects as $project)
                             <tr>
                                 <td class="text-center">
-                                    @if($project->project_status=='Complete')
-                                        <button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic"><i class="icon fa-check" aria-hidden="true"></i></button>
-                                    @elseif($project->project_status=='Project Status Needed')
-                                        <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
-                                    @elseif($project->project_status=='Rejected')
-                                        <button type="button" class="btn btn-floating btn-xs waves-effect waves-classic"></button>
-                                    @else
-                                        <button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic"><i class="icon fa-minus" aria-hidden="true"></i></button>
+                                    @if($project->project_status!='')
+                                        @if($project->project_status=='Complete')
+                                            <button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic"><i class="icon fa-check" aria-hidden="true"></i></button>
+                                        @elseif($project->project_status=='Project Status Needed')
+                                            <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
+                                        @elseif($project->project_status=='Rejected')
+                                            <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
+                                        @else
+                                            <button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic"><i class="icon fa-minus" aria-hidden="true"></i></button>
+                                        @endif
                                     @endif
-                                <td><a href="/profile/{{$project->id}}">{{$project->project_title}}</a></td>
                                 <td>
-                                  ${{number_format($project->cost_text)}}
+                                    @if($project->project_title!='')
+                                        <a href="/profile/{{$project->id}}">{{$project->project_title}}</a></td>
+                                    @endif
+                                <td>
+                                    @if($project->cost_num!='')
+                                        ${{number_format($project->cost_num)}}
+                                    @endif
                                 </td>
-                                <td>{{$project->process->vote_year}}</td>
-                                <td>{{$project->votes}}</td>
-                                <td>{{$project->status_date_updated}}</td>
+                                <td>
+                                    @if($project->process->vote_year!='')
+                                        {{$project->process->vote_year}}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($project->votes!='')
+                                        {{$project->votes}}
+                                    @endif</td>
+                                <td>
+                                    @if($project->status_date_updated!='')
+                                        {{$project->status_date_updated}}</td>
+                                    @endif
                             </tr>
                             @endforeach
                         </tbody>

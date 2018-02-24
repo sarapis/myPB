@@ -4,8 +4,8 @@ Profile
 @stop
 
 @section('content')
-<div class="row" style="display: block;">
-    <div class="col-xl-7 col-md-7" style="overflow: auto;height: auto;float: left;clear: both;">
+<div class="row">
+    <div class="col-xl-7 col-md-7">
       <!-- Panel -->
       <div class="panel">
         <div class="panel-body">
@@ -18,22 +18,7 @@ Profile
         </div>
       </div>
       <!-- End Panel -->
-      
-    </div>
-    <div class="col-xl-5 col-md-5" style="float: right;">
       <!-- Panel -->
-        <div class="panel">
-            <div id="mymap" style="height: 30vh;"></div>
-            <div class="panel-body">
-                <h4>{{$project->project_address_clean}}</h4>
-                <h4>{{$project->location_city}}</h4>
-                <h4>{{$project->state}}, {{$project->zipcode}}</h4>
-            </div>
-        </div>
-    </div>
-      <!-- End Panel -->
-    <div class="col-xl-7 col-md-7" style="display: block;float: left;">
-    <!-- Panel -->
       <div class="panel">
         <div class="panel-body">
             <h2 class="text-center">{{number_format($project->votes)}} &nbsp&nbspvotes</h2>
@@ -52,6 +37,18 @@ Profile
       </div>
       <!-- End Panel -->
     </div>
+    <div class="col-xl-5 col-md-5">
+      <!-- Panel -->
+        <div class="panel">
+            <div id="mymap" style="height: 30vh;"></div>
+            <div class="panel-body">
+                <h4>{{$project->project_address_clean}}</h4>
+                <h4>{{$project->location_city}}</h4>
+                <h4>{{$project->state}}, {{$project->zipcode}}</h4>
+            </div>
+        </div>
+    </div>
+      <!-- End Panel -->
 </div>
 <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBW3D0csUKNr8q5xQiIJwaqbETdKGm2Zg&callback=initMap"
   type="text/javascript"></script>
