@@ -15,8 +15,8 @@ class ExploreController extends Controller
         $projects = Project::sortable()->paginate(20);
         $districts = District::orderBy('name')->get();
         $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
-        $categories = Project::orderBy('category_topic_committee_raw')->distinct()->get(['category_topic_committee_raw']);
-        $cities = Project::orderBy('location_city')->distinct()->get(['location_city']);
+        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
         return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
     }
 
@@ -27,11 +27,41 @@ class ExploreController extends Controller
      */
     public function status($id)
     {
-        $projects = Project::where('project_status', '=', $id)->sortable()->paginate(20);
+        $projects = Project::where('project_status', 'like', '%' . $id . '%')->sortable()->paginate(20);
         $districts = District::orderBy('name')->get();
         $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
-        $categories = Project::orderBy('category_topic_committee_raw')->distinct()->get(['category_topic_committee_raw']);
-        $cities = Project::orderBy('location_city')->distinct()->get(['location_city']);
+        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+    }
+
+    public function district($id)
+    {
+        $projects = Project::where('district_ward_name', '=', $id)->sortable()->paginate(20);
+        $districts = District::orderBy('name')->get();
+        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+    }
+
+    public function category($id)
+    {
+        $projects = Project::where('category_type_topic_standardize', '=', $id)->sortable()->paginate(20);
+        $districts = District::orderBy('name')->get();
+        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+    }
+
+    public function cityagency($id)
+    {
+        $projects = Project::where('name_dept_agency_cbo', '=', $id)->sortable()->paginate(20);
+        $districts = District::orderBy('name')->get();
+        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
         return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
     }
 

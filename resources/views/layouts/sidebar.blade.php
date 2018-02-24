@@ -22,7 +22,7 @@
                         <a href="#district" class="text-side" data-toggle="collapse" aria-expanded="false">District</a>
                         <ul class="collapse list-unstyled" id="district">
                             @foreach($districts as $district)
-                            <li><a href="#" class="text-side">{{$district->name}}</a></li>
+                            <li><a href="/explore/district_{{$district->recordid}}" class="text-side">{{$district->name}}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -38,7 +38,7 @@
                                     <li><a href="/explore/status_{{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></a></li>
                                 @endif
                             @endforeach
-                                <li><a href="/explore/status_inprocess" class="text-side"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In Process</span></a></li>
+                                <li><a href="/explore/status_In process" class="text-side"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In Process</span></a></li>
                         </ul>
                     </li>
                 </ul>    
@@ -78,7 +78,9 @@
                         <a href="#projectcategory" class="text-side" data-toggle="collapse" aria-expanded="false">Project Category</a>
                         <ul class="collapse list-unstyled" id="projectcategory">
                             @foreach($categories as $category)
-                            <li><a href="#" class="text-side">{{$category->category_topic_committee_raw}}</a></li>
+                                @if($category->category_type_topic_standardize!='')
+                                <li><a href="/explore/category_{{$category->category_type_topic_standardize}}" class="text-side">{{$category->category_type_topic_standardize}}</a></li>
+                                @endif
                             @endforeach
                         </ul>
                     </li>
@@ -86,7 +88,9 @@
                         <a href="#cityagency" class="text-side" data-toggle="collapse" aria-expanded="false">City Agency</a>
                         <ul class="collapse list-unstyled" id="cityagency">
                             @foreach($cities as $city)
-                            <li><a href="#" class="text-side">{{$city->location_city}}</a></li>
+                                @if($city->name_dept_agency_cbo!='')
+                                <li><a href="/explore/cityagency_{{$city->name_dept_agency_cbo}}" class="text-side">{{$city->name_dept_agency_cbo}}</a></li>
+                                @endif
                             @endforeach
                         </ul>
                     </li>

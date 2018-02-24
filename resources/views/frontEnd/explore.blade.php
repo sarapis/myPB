@@ -36,8 +36,10 @@ Explore
                                 <td class="text-center">
                                     @if($project->project_status=='Complete')
                                         <button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic"><i class="icon fa-check" aria-hidden="true"></i></button>
-                                    @elseif($project->project_status=='Project Status Need')
+                                    @elseif($project->project_status=='Project Status Needed')
                                         <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
+                                    @elseif($project->project_status=='Rejected')
+                                        <button type="button" class="btn btn-floating btn-xs waves-effect waves-classic"></button>
                                     @else
                                         <button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic"><i class="icon fa-minus" aria-hidden="true"></i></button>
                                     @endif

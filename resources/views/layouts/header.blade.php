@@ -28,11 +28,11 @@
                 </i>
             </a>
           </li>
-          <li class="nav-item hidden-sm-down" id="toggleFullscreen">
+          <!-- <li class="nav-item hidden-sm-down" id="toggleFullscreen">
             <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
               <span class="sr-only">Toggle fullscreen</span>
             </a>
-          </li>
+          </li> -->
 <!--           <li class="nav-item hidden-float">
             <a class="nav-link icon md-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"
             role="button">
@@ -40,13 +40,13 @@
             </a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="/explore"> Explore </a>
+            <a class="nav-link" href="/explore"><b>Explore</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/about"><b>About</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://www.participatorybudgeting.org/donate/" target="_blank">Donate</a>
+            <a class="nav-link" href="https://www.participatorybudgeting.org/donate/" target="_blank"><b>Donate<b></a>
           </li>
         </ul>
         <!-- End Navbar Toolbar -->
