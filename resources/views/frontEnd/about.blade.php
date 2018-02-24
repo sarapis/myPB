@@ -17,13 +17,13 @@ About
         <div class="col-xl-5 col-md-5">
           <!-- Panel -->
             <div class="panel">
-                <div class="panel-body bg-info">
+                <div class="panel-body bg-custom">
                     <div class="form-group">
-                        <h4>Does your NYC neighborhood do PB?</h4>
+                        <h4 class="text-white">Does your NYC neighborhood do PB?</h4>
                         <div class="form-group">
                             <div class="input-search">
                                 <i class="input-search-icon md-search" aria-hidden="true"></i>
-                                <input type="text" class="form-control" name="" placeholder="Search...">
+                                <input type="text" class="form-control text-black" name="" placeholder="Address search" style="border-radius:0;">
                             </div>
                         </div>
                     </div>
