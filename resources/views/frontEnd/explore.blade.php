@@ -14,7 +14,7 @@ Explore
     @include('layouts.sidebar')
     <!-- Page Content Holder -->
     <div id="content" style="padding: 0;">
-        <div id="map" style="height: 30vh;"></div>
+        <!-- <div id="map" style="height: 30vh;"></div> -->
         <!-- Example Striped Rows -->
         <div class="panel">
             <div class="panel-body pt-0">
