@@ -5,9 +5,9 @@
 
     <!-- page content -->
     <div class="page">
-	    <div class="page-content">
-	      @yield('content')
-	    </div>
+
+	    @yield('content')
+	    
 	</div>
 	<!-- /page content -->
 

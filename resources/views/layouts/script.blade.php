@@ -1,4 +1,5 @@
-<script src="../../../frontend/global/vend/babel-external-helpers/babel-external-helpers.js"></script>
+<!-- Core  -->
+  <script src="../../../frontend/global/vend/babel-external-helpers/babel-external-helpers.js"></script>
   <!-- <script src="../../../frontend/global/vend/jquery/jquery.js"></script> -->
   <script src="../../../frontend/global/vend/tether/tether.js"></script>
   <script src="../../../frontend/global/vend/bootstrap/bootstrap.js"></script>
@@ -12,6 +13,8 @@
   <script src="../../../frontend/global/vend/intro-js/intro.js"></script>
   <script src="../../../frontend/global/vend/screenfull/screenfull.js"></script>
   <script src="../../../frontend/global/vend/slidepanel/jquery-slidePanel.js"></script>
+  <script src="../../../frontend/global/vend/moment/moment.min.js"></script>
+  <script src="../../../frontend/global/vend/footable/footable.min.js"></script>
   <!-- Scripts -->
   <script src="../../../frontend/global/js/State.js"></script>
   <script src="../../../frontend/global/js/Component.js"></script>
@@ -33,10 +36,7 @@
   <script src="../../../frontend/global/js/Plugin/asscrollable.js"></script>
   <script src="../../../frontend/global/js/Plugin/slidepanel.js"></script>
   <script src="../../../frontend/global/js/Plugin/switchery.js"></script>
-  <script src="../../../frontend/global/vend/asrange/jquery-asRange.min.js"></script>
-  <script src="../../../frontend/global/vend/ionrangeslider/ion.rangeSlider.min.js"></script>
-  <script src="../../../frontend/global/js/Plugin/asrange.js"></script>
-  <script src="../../../frontend/global/js/Plugin/ionrangeslider.js"></script>
+  <script src="../../frontend/assets/examples/js/tables/footable.js"></script>
   <script>
   (function(document, window, $) {
     'use strict';
@@ -59,6 +59,18 @@
               $('#sidebar, #content').toggleClass('active');
               $('.collapse.in').toggleClass('in');
               $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+          });
+
+          $('#sidebarCollapse1').on('click', function () {
+              $('#sidebar, #content').toggleClass('active');
+              $('.collapse.in').toggleClass('in');
+              $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+          });
+          $("#tab_filter").click(function(){
+            $('#btn-filter span').text("Selected Filter");
+          });
+          $("#tab_sort").click(function(){
+            $('#btn-filter span').text("Selected Sort");
           });
       });
   </script>

@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="../../../frontend/global/vend/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="../../../frontend/global/vend/waves/waves.css">
   <!-- Fonts -->
+  <link rel="stylesheet" href="../../../../frontend/global/fonts/web-icons/web-icons.css">
    <link rel="stylesheet" href="../../../../frontend/global/fonts/font-awesome/font-awesome.css">
   <link rel="stylesheet" href="../../../frontend/global/fonts/material-design/material-design.min.css">
   <link rel="stylesheet" href="../../../frontend/global/fonts/brand-icons/brand-icons.min.css">
@@ -51,6 +52,7 @@
   <script>
   Breakpoints();
   </script>
+  
   <script>
   $( function() {
     $( "#slider-range" ).slider({

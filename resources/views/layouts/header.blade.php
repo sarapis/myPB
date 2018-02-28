@@ -1,65 +1,51 @@
   <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse bg-custom" role="navigation">
     <div class="navbar-header">
-      <button type="button" id="sidebarCollapse" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided">
-          <i class="glyphicon glyphicon-align-left"></i>
-          <span>Toggle Sidebar</span>
-      </button>
-      <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
-      data-toggle="collapse">
-        <i class="icon md-more" aria-hidden="true"></i>
-      </button>
-      <a class="navbar-brand navbar-brand-center" href="/">
+      <a class="navbar-brand p-25 pl-15" href="/">
         <img class="navbar-brand-logo navbar-brand-logo-normal" src="../../images/mypb.png"
         title="myPB">
         <img class="navbar-brand-logo navbar-brand-logo-special" src="../../images/mypb.png"
         title="myPB">
       </a>
+      <!-- <a class="navbar-brand nav-item nav-link mr-0 pl-0 pr-5" href="/explore">Explore</a>
+      <a class="navbar-brand nav-item nav-link mr-0 pl-0 pr-5" href="/about">About</a>
+      <a class="navbar-brand nav-item nav-link mr-0 pl-0 pr-5" href="https://www.participatorybudgeting.org/donate/" target="_blank">Donate</a>
+      <a class="navbar-brand nav-item mr-0 pl-0 pr-5" href="">Español</a> -->
+        <ul class="nav navbar-toolbar nav-menubar">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/explore"><b>Explore</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/about"><b>About</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="https://www.participatorybudgeting.org/donate/" target="_blank"><b>Donate</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white"><b>Español</b></a>
+          </li>
+        </ul>
     </div>
     <div class="navbar-container container-fluid">
       <!-- Navbar Collapse -->
-      <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
+      <div class="collapse navbar-collapse navbar-collapse-toolbar show">
         <!-- Navbar Toolbar -->
+        <button type="button" id="sidebarCollapse" class="navbar-toggler hamburger hamburger-close navbar-toggler-center hided" style="color: #757575;">
+          <i class="icon glyphicon glyphicon-align-justify"></i>
+          <span>Toggle Sidebar</span>
+        </button>
+
+        <button type="button" id="btn-filter" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic"><b><span> Selected Filter </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+
         <ul class="nav navbar-toolbar">
           <li class="nav-item hidden-float" id="toggleMenubar">
             <a class="nav-link" data-toggle="menubar" href="#" role="button">
-              <i class="icon hamburger hamburger-arrow-left">
+              <i class="icon hamburger hamburger-arrow-left bg-black">
                   <span class="sr-only">Toggle menubar</span>
                   <span class="hamburger-bar"></span>
                 </i>
             </a>
           </li>
-          <!-- <li class="nav-item hidden-sm-down" id="toggleFullscreen">
-            <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
-              <span class="sr-only">Toggle fullscreen</span>
-            </a>
-          </li> -->
-<!--           <li class="nav-item hidden-float">
-            <a class="nav-link icon md-search" data-toggle="collapse" href="#" data-target="#site-navbar-search"
-            role="button">
-              <span class="sr-only">Toggle Search</span>
-            </a>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link" href="/explore"><b>Explore</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/about"><b>About</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://www.participatorybudgeting.org/donate/" target="_blank"><b>Donate<b></a>
-          </li>
         </ul>
-        <!-- End Navbar Toolbar -->
-        <!-- Navbar Toolbar Right -->
-        <!-- <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
-          <li class="nav-item" id="toggleChat">
-            <a class="nav-link" data-toggle="site-sidebar" href="javascript:void(0)" title="Chat"
-            data-url="../site-sidebar.tpl">
-              <i class="icon md-comment" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul> -->
-        <!-- End Navbar Toolbar Right -->
       </div>
       <!-- End Navbar Collapse -->
       <!-- Site Navbar Seach -->
@@ -77,4 +63,5 @@
       </div>
       <!-- End Site Navbar Seach -->
     </div>
+
   </nav>

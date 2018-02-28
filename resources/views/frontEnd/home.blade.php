@@ -5,7 +5,7 @@ Home
 
 @section('content')
 
-    <div class="row">
+    <div class="row p-20">
         <div class="col-xl-7 col-md-7">
           <!-- Panel -->
           <div class="panel">

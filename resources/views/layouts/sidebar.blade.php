@@ -1,8 +1,8 @@
 <nav id="sidebar">
-    <div class="sidebar-header" style="padding: 10px;">
+    <div class="sidebar-header p-10">
         <div class="form-group" style="margin: 0;">
         <!--begin::Form-->
-            <form method="post" action="{{action('ExploreController@search')}}" >
+            <form method="post" action="{{action('ExploreController@search')}}" class="mb-5">
                 {{ csrf_field() }}
                 <div class="input-search">
                     <i class="input-search-icon md-search" aria-hidden="true"></i>
@@ -13,11 +13,16 @@
     </div>
     <!-- Example Tabs In The Panel -->
     <div class="nav-tabs-horizontal" data-plugin="tabs">
-        <ul class="nav nav-tabs nav-tabs-line" role="tablist">
-          <li class="nav-item tab-menu"><a class="nav-link active" data-toggle="tab" href="#exampleTopHome"
-            aria-controls="exampleTopHome" role="tab">FILTER</a></li>
-          <li class="nav-item tab-menu"><a class="nav-link" data-toggle="tab" href="#exampleTopComponents"
-            aria-controls="exampleTopComponents" role="tab">SORT</a></li>
+        <ul class="nav nav-tabs nav-tabs-line" role="tablist" style="height: 45px;">
+            <li class="nav-item tab-menu"><a class="nav-link active" data-toggle="tab" href="#exampleTopHome"
+            aria-controls="exampleTopHome" role="tab" id="tab_filter">FILTER</a></li>
+            <li class="nav-item tab-menu"><a class="nav-link" data-toggle="tab" href="#exampleTopComponents"
+            aria-controls="exampleTopComponents" role="tab" id="tab_sort">SORT</a></li>
+            <li class="nav-item tab-menu" style="width: 50px; ">
+                 <button type="button" id="sidebarCollapse1" class="navbar-toggler  hamburger-close navbar-toggler-center hided" style="color: #757575; padding-top:0px; padding-right: 0px; padding-left: 40px;">
+                  <i class="icon glyphicon glyphicon-chevron-left"></i>
+                </button>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="exampleTopHome" role="tabpanel">

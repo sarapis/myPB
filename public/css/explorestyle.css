@@ -50,7 +50,8 @@ a, a:hover, a:focus {
     background: #f3f3f3;
     color: #424242;
     transition: all 0.3s;
-    padding-top: 66px;
+    z-index: 3000;
+    margin-top: 66px;
     box-shadow: 0 1px 6px rgba(57,73,76,.35);
 }
 
@@ -178,7 +179,13 @@ p{
     width: 100%;
 }
 
-
+#btn-filter{
+  display: none;
+  margin-top: 17px;
+}
+.collapse.navbar-collapse.navbar-collapse-toolbar{
+  background: #f1f4f5; 
+}
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
@@ -193,10 +200,14 @@ p{
         width: 100%;
     }
     #content.active {
+        /*left: 270px;*/
         width: calc(100% - 270px);
     }
     #sidebarCollapse span {
         display: none;
+    }
+    #btn-filter{
+       display: block;
     }
 }
 
@@ -347,4 +358,34 @@ p{
 }
 .ui-state-focus, .ui-state-active, .ui-state-hover{
     border: 0px !important;
+}
+.navbar-toggler {
+  float: left;
+}
+.navbar-default .navbar-toggler{
+  font-size: 15px;
+}
+.site-navbar .navbar-header{
+  width: 100%;
+}
+.navbar-brand.nav-item{
+  font-size: 15px;
+}
+
+@media (max-width: 479px) {
+  .nav-menubar li a{
+    padding-left: 10px;
+    padding-right: 0px;
+  }
+}
+@media (max-width: 991px) {
+  .page{
+  padding-top: 50px;
+  }
+  .footable-header{
+    display: none;
+  }
+}
+.collapse.navbar-collapse.navbar-collapse-toolbar.show{
+  border: 0;
 }
