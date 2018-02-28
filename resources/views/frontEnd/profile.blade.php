@@ -19,6 +19,7 @@ Profile
     <!-- Panel -->      
     <div class="panel">
       <div class="panel-body">
+          <h2>{{$project->project_status}}</h2>
           <h4>{{$project->status_date_updated}} {{$project->project_id}}</h4>
           <h4>{{$project->name_dept_agency_cbo}}</h4>
           <h4>{{$project->district->name}}</h4>
