@@ -6,7 +6,7 @@
                 {{ csrf_field() }}
                 <div class="input-search">
                     <i class="input-search-icon md-search" aria-hidden="true"></i>
-                    <input type="text" class="form-control search-form" name="search" placeholder="Search district and keywords">
+                    <input type="text" class="form-control search-form" name="search" placeholder="Search for Projects">
                 </div>
             </form>
         </div>
