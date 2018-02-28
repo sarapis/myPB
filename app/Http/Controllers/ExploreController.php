@@ -96,7 +96,7 @@ class ExploreController extends Controller
     {
         $project = Project::find($id);
         $district = $project->district_ward_name;
-        $contact = Contact::where('district_ward_name', '=', $district)->first();
+        $contact = Contact::where('district_ward_name', 'like', '%'.$district.'%')->first();
         return view('frontEnd.profile', compact('project', 'contact'));
     }
 
