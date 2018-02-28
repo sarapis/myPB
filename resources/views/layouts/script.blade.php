@@ -48,7 +48,6 @@
   </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
   <script type="text/javascript">
       $(document).ready(function () {
           $("#sidebar").mCustomScrollbar({
@@ -73,4 +72,115 @@
           });
       });
   </script>
+  <script>
+  $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 175000,
+      values: [ 750, 175000 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      
+        var value1 = ui.values[0]; var value2 = ui.values[1];
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          }
+        })
+        $.ajax({ 
+          type: "GET", 
+          url: "/filter", 
+          data: {
+            price_min: value1,
+            price_max: value2,
+            vote_min: $( "#slider-range-vote" ).slider( "values", 0 ),
+            vote_max: $( "#slider-range-vote" ).slider( "values", 1 ),
+            year_min: $( "#slider-range-year" ).slider( "values", 0 ),
+            year_max: $( "#slider-range-year" ).slider( "values", 1 )
+          },
+          cache: false, 
+          success: function(html){ console.log(html); } });
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+    // $( "#slider-range-year" ).slider({
+    //   range: true,
+    //   min: 2012,
+    //   max: 2018,
+    //   values: [ 2012, 2017 ],
+    //   slide: function( event, ui ) {
+    //     $( "#amount-year" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+    //   }
+    // });
+
+
+     $( "#slider-range-year" ).slider({ 
+      range: true, 
+      min: 2012, 
+      max: 2018, 
+      values: [ 2012, 2017 ], 
+      slide: function( event, ui ) { 
+        $( "#amount-year" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        var value1 = ui.values[0]; var value2 = ui.values[1];
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          }
+        })
+        $.ajax({ 
+          type: "GET", 
+          url: "/filter", 
+          data: {
+            price_min: $( "#slider-range" ).slider( "values", 0 ),
+            price_max: $( "#slider-range" ).slider( "values", 1 ),
+            vote_min: $( "#slider-range-vote" ).slider( "values", 0 ),
+            vote_max: $( "#slider-range-vote" ).slider( "values", 1 ),
+            year_min: value1,
+            year_max: value2
+          },
+          cache: false, 
+          success: function(html){ console.log(html); } }); } }); 
+
+
+
+    $( "#amount-year" ).val(  $( "#slider-range-year" ).slider( "values", 0 ) +
+      " - " + $( "#slider-range-year" ).slider( "values", 1 ) );
+
+    $( "#slider-range-vote" ).slider({
+      range: true,
+      min: 0,
+      max: 6000,
+      values: [ 750, 3000 ],
+      slide: function( event, ui ) {
+        $( "#amount-vote" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        var value1 = ui.values[0]; var value2 = ui.values[1];
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          }
+        })
+        $.ajax({ 
+          type: "GET", 
+          url: "/filter", 
+          data: {
+            price_min: $( "#slider-range" ).slider( "values", 0 ),
+            price_max: $( "#slider-range" ).slider( "values", 1 ),
+            vote_min: value1,
+            vote_max: value2,
+            year_min: $( "#slider-range-vote" ).slider( "values", 0 ),
+            year_max: $( "#slider-range-vote" ).slider( "values", 1 )
+          },
+          cache: false, 
+          success: function(html){ console.log(html); } });
+        }
+    });
+    $( "#amount-vote" ).val(  $( "#slider-range-vote" ).slider( "values", 0 ) +
+      " - " + $( "#slider-range-vote" ).slider( "values", 1 ) );
+
+  } );
+  </script>
+
   

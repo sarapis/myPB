@@ -169,7 +169,7 @@ p{
 ----------------------------------------------------- */
 #content {
     width: calc(100% - 270px);
-    padding: 40px;
+    padding: 0px;
     transition: all 0.3s;
     position: absolute;
     top: 0;
@@ -201,13 +201,16 @@ p{
     }
     #content.active {
         /*left: 270px;*/
-        width: calc(100% - 270px);
+        /*width: calc(100% - 270px);*/
     }
     #sidebarCollapse span {
         display: none;
     }
     #btn-filter{
        display: block;
+    }
+    #content{
+      padding-top: 50px;
     }
 }
 
@@ -384,14 +387,17 @@ p{
   .nav-link {
     font-size: 12px;
   }
+  .footable-header{
+    display: none;
+  }
+  #content{
+    padding-top: 50px;
+  }
 }
 @media (max-width: 991px) {
   .page{
   padding-top: 50px;
-  }
-  .footable-header{
-    display: none;
-  }
+  } 
 }
 .collapse.navbar-collapse.navbar-collapse-toolbar.show{
   border: 0;

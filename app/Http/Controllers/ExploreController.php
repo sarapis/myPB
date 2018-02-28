@@ -100,6 +100,21 @@ class ExploreController extends Controller
         return view('frontEnd.profile', compact('project', 'contact'));
     }
 
+
+    public function filterValues(Request $request)
+    {
+        $price_min = $request->input('price_min');
+        $price_max = $request->input('price_max');
+        $year_min = $request->input('year_min');
+        $year_max = $request->input('year_max');
+        $vote_min = $request->input('vote_min');
+        $vote_max = $request->input('vote_max');
+        
+
+      $projects = Project::with('process')->whereBetween('cost_text', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
+               $q->whereBetween('vote_year', [$year_min, $year_max]); })->get();
+      return response()->json($projects);
+    }
     /**
      * Show the form for editing the specified resource.
      *

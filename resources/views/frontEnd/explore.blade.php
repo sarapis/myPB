@@ -23,7 +23,7 @@ Explore
 <div class="wrapper">
     @include('layouts.sidebar')
     <!-- Page Content Holder -->
-    <div id="content p-0">
+    <div id="content">
         <!-- <div id="map" style="height: 30vh;"></div> -->
         <!-- Example Striped Rows -->
         <div class="panel">
