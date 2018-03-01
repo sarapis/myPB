@@ -32,7 +32,7 @@
                         <ul class="collapse list-unstyled" id="district">
                             @foreach($districts as $district)
                                 @if($district->name!='')
-                                <li><a href="/explore/district_{{$district->recordid}}" class="text-side">{{$district->name}}</a></li>
+                                <li>{{$district->name}}</li>
                                 @endif
                             @endforeach
                         </ul>
@@ -42,14 +42,14 @@
                         <ul class="collapse list-unstyled" id="projectstatus">
                             @foreach($states as $state)
                                 @if($state->project_status=='Complete')
-                                    <li><a href="?status={{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Completed</span></a></li>
+                                    <li><i class="icon fa-check" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Completed</span></li>
                                 @elseif($state->project_status=='Rejected')
-                                    <li><a href="?status={{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">Not Funded</span></a></li>
+                                    <li><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">Not Funded</span></li>
                                 @elseif($state->project_status=='Project Status Needed')
-                                    <li><a href="?status={{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></a></li>
+                                    <li><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></li>
                                 @endif
                             @endforeach
-                                <li><a href="?status=In process" class="text-side"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In Process</span></a></li>
+                                <li><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In Process</span></li>
                         </ul>
                     </li>
                 </ul>    
@@ -110,7 +110,7 @@
                         <ul class="collapse list-unstyled" id="projectcategory">
                             @foreach($categories as $category)
                                 @if($category->category_type_topic_standardize!='')
-                                <li><a href="/explore/category_{{$category->category_type_topic_standardize}}" class="text-side">{{$category->category_type_topic_standardize}}</a></li>
+                                <li>{{$category->category_type_topic_standardize}}</li>
                                 @endif
                             @endforeach
                         </ul>
@@ -120,7 +120,7 @@
                         <ul class="collapse list-unstyled" id="cityagency">
                             @foreach($cities as $city)
                                 @if($city->name_dept_agency_cbo!='')
-                                <li><a href="/explore/cityagency_{{$city->name_dept_agency_cbo}}" class="text-side">{{$city->name_dept_agency_cbo}}</a></li>
+                                <li>{{$city->name_dept_agency_cbo}}</li>
                                 @endif
                             @endforeach
                         </ul>

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
   <meta name="description" content="bootstrap admin template">
   <meta name="author" content="">
+  <meta name="_token" content="{!! csrf_token() !!}" />
   <title>@yield('title')| PBNYC</title>
   <link rel="apple-touch-icon" href="../../frontend/assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="../../frontend/assets/images/favicon.ico">
@@ -48,7 +49,7 @@
   <script src="../../../frontend/global/vend/jquery/jquery.js"></script>
 <!--   <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
   <script>
   Breakpoints();
   </script>

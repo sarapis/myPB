@@ -125,6 +125,14 @@ class ExploreController extends Controller
             return response()->json($projects);
 
     }
+    public function filterValues1(Request $request)
+    {
+        $district = $request->input('District');
+        $status = $request->input('Status');
+        $category = $request->input('Category');
+        $city = $request->input('City');
+        var_dump($district, $status, $category, $city);
+    }
     /**
      * Show the form for editing the specified resource.
      *
