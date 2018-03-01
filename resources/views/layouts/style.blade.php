@@ -48,7 +48,7 @@
   <script src="../../../frontend/global/vend/jquery/jquery.js"></script>
 <!--   <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
   <script>
   Breakpoints();
   </script>
