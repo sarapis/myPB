@@ -33,9 +33,12 @@
           <i class="icon glyphicon glyphicon-align-justify"></i>
           <span>Toggle Sidebar</span>
         </button>
-
-        <button type="button" id="btn-filter" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic"><b><span> Selected Filter </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
-
+        <div id = "filter_buttons">
+          <button type="button" id="btn-distric" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left hidden"><b><span> District:</span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+          <button type="button" id="btn-status" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left hidden"><b><span> Status: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+          <button type="button" id="btn-category" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left hidden"><b><span> Category: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+          <button type="button" id="btn-city" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left hidden"><b><span> City: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+        </div>
         <ul class="nav navbar-toolbar">
           <li class="nav-item hidden-float" id="toggleMenubar">
             <a class="nav-link" data-toggle="menubar" href="#" role="button">

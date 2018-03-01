@@ -103,17 +103,27 @@ class ExploreController extends Controller
 
     public function filterValues(Request $request)
     {
-        $price_min = $request->input('price_min');
-        $price_max = $request->input('price_max');
+        $price_min = (int)$request->input('price_min');
+        $price_max = (int)$request->input('price_max');
         $year_min = $request->input('year_min');
         $year_max = $request->input('year_max');
-        $vote_min = $request->input('vote_min');
-        $vote_max = $request->input('vote_max');
+        $vote_min = (int)$request->input('vote_min');
+        $vote_max = (int)$request->input('vote_max');
         
 
-      $projects = Project::with('process')->whereBetween('cost_text', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
+        $projects = Project::with('process')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
                $q->whereBetween('vote_year', [$year_min, $year_max]); })->get();
-      return response()->json($projects);
+
+        $districts = District::orderBy('name')->get();
+        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+      
+        // var_dump($projects);
+        // exit();
+      return view('frontEnd.explore1', compact('projects', 'districts', 'states', 'categories', 'cities'))->render();
+            return response()->json($projects);
+
     }
     /**
      * Show the form for editing the specified resource.

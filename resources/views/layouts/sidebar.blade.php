@@ -42,14 +42,14 @@
                         <ul class="collapse list-unstyled" id="projectstatus">
                             @foreach($states as $state)
                                 @if($state->project_status=='Complete')
-                                    <li><a href="/explore/status_{{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Completed</span></a></li>
+                                    <li><a href="?status={{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Completed</span></a></li>
                                 @elseif($state->project_status=='Rejected')
-                                    <li><a href="/explore/status_{{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">Not Funded</span></a></li>
+                                    <li><a href="?status={{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">Not Funded</span></a></li>
                                 @elseif($state->project_status=='Project Status Needed')
-                                    <li><a href="/explore/status_{{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></a></li>
+                                    <li><a href="?status={{$state->project_status}}" class="text-side"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></a></li>
                                 @endif
                             @endforeach
-                                <li><a href="/explore/status_In process" class="text-side"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In Process</span></a></li>
+                                <li><a href="?status=In process" class="text-side"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In Process</span></a></li>
                         </ul>
                     </li>
                 </ul>    

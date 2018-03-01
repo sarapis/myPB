@@ -14,7 +14,7 @@
   <script src="../../../frontend/global/vend/screenfull/screenfull.js"></script>
   <script src="../../../frontend/global/vend/slidepanel/jquery-slidePanel.js"></script>
   <script src="../../../frontend/global/vend/moment/moment.min.js"></script>
-  <script src="../../../frontend/global/vend/footable/footable.min.js"></script>
+  <script src="../../../frontend/global/vend/footable/footable.js"></script>
   <!-- Scripts -->
   <script src="../../../frontend/global/js/State.js"></script>
   <script src="../../../frontend/global/js/Component.js"></script>
@@ -64,12 +64,21 @@
               $('.collapse.in').toggleClass('in');
               $('a[aria-expanded=true]').attr('aria-expanded', 'false');
           });
-          $("#tab_filter").click(function(){
-            $('#btn-filter span').text("Selected Filter");
+          $('#distrit li').click(function(){
+              var district = $(this).html();
+              $('#btn-filter span').html("District:"+district);
+              $('#btn-filter').show();
           });
-          $("#tab_sort").click(function(){
-            $('#btn-filter span').text("Selected Sort");
-          });
+          function sendfilter(){
+            //$.ajax()
+            filter_value = [];
+            $('#filter_buttons button').each(function(){
+                if($(this).css('display') != 'none')
+                {
+                  $('span', $(this)).html()
+                }
+            });
+          }
       });
   </script>
   <script>
@@ -78,7 +87,7 @@
       range: true,
       min: 0,
       max: 175000,
-      values: [ 750, 175000 ],
+      values: [ 0, 175000 ],
       slide: function( event, ui ) {
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       
@@ -100,7 +109,11 @@
             year_max: $( "#slider-range-year" ).slider( "values", 1 )
           },
           cache: false, 
-          success: function(html){ console.log(html); } });
+          success: function(html){ 
+            console.log(html); 
+            $('#content').html(html);
+          } 
+        });
       }
     });
     $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
@@ -121,7 +134,7 @@
       range: true, 
       min: 2012, 
       max: 2018, 
-      values: [ 2012, 2017 ], 
+      values: [ 2012, 2018 ], 
       slide: function( event, ui ) { 
         $( "#amount-year" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         var value1 = ui.values[0]; var value2 = ui.values[1];
@@ -142,7 +155,7 @@
             year_max: value2
           },
           cache: false, 
-          success: function(html){ console.log(html); } }); } }); 
+          success: function(html){ $('#content').html(html); } }); } }); 
 
 
 
@@ -153,7 +166,7 @@
       range: true,
       min: 0,
       max: 6000,
-      values: [ 750, 3000 ],
+      values: [ 0, 6000 ],
       slide: function( event, ui ) {
         $( "#amount-vote" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         var value1 = ui.values[0]; var value2 = ui.values[1];
@@ -170,11 +183,11 @@
             price_max: $( "#slider-range" ).slider( "values", 1 ),
             vote_min: value1,
             vote_max: value2,
-            year_min: $( "#slider-range-vote" ).slider( "values", 0 ),
-            year_max: $( "#slider-range-vote" ).slider( "values", 1 )
+            year_min: $( "#slider-range-year" ).slider( "values", 0 ),
+            year_max: $( "#slider-range-year" ).slider( "values", 1 )
           },
           cache: false, 
-          success: function(html){ console.log(html); } });
+          success: function(html){ $('#content').html(html); } });
         }
     });
     $( "#amount-vote" ).val(  $( "#slider-range-vote" ).slider( "values", 0 ) +
