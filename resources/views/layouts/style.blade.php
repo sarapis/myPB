@@ -44,7 +44,6 @@
     <script src="../../../frontend/global/vend/respond/respond.min.js"></script>
     <![endif]-->
   <!-- Scripts -->
-  <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
   
   <script src="../../../frontend/global/vend/jquery/jquery.js"></script>
 <!--   <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
@@ -52,9 +51,14 @@
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
+  <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
   <script>
   Breakpoints();
   </script>
-  
- 
+  <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5a98fe1e54d8310013ae576a&product=inline-share-buttons' async='async'></script>
+ <style>
+   #st-1 .st-btn[data-network='sharethis'] {
+    background: transparent !important;
+  }
+ </style>
 </head>

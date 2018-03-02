@@ -24,8 +24,9 @@
             <a class="nav-link text-white"><b>Español</b></a>
           </li>
         </ul>
+        <div class="sharethis-inline-share-buttons pt-10"></div>
     </div>
-    <div class="navbar-container container-fluid">
+    <div class="navbar-container container-fluid p-0">
       <!-- Navbar Collapse -->
       <div class="collapse navbar-collapse navbar-collapse-toolbar show">
         <!-- Navbar Toolbar -->

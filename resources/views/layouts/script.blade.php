@@ -110,6 +110,7 @@
                   //form_data[] = value_array[1];
                 }
             });
+            ///
             $.ajaxSetup({
               headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -123,6 +124,7 @@
               cache: false, // To unable request pages to be cached
               processData: false,
               success: function(data) {
+
                 $('#content').html(data);
               },
               error: function(errResponse) {
@@ -137,8 +139,8 @@
     $( "#slider-range" ).slider({
       range: true,
       min: 0,
-      max: 175000,
-      values: [ 0, 175000 ],
+      max: 1500000,
+      values: [ 0, 1500000 ],
       slide: function( event, ui ) {
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       
@@ -181,8 +183,8 @@
     $( "#slider-range-vote" ).slider({
       range: true,
       min: 0,
-      max: 6000,
-      values: [ 0, 6000 ],
+      max: 5293,
+      values: [ 0, 5293 ],
       slide: function( event, ui ) {
         $( "#amount-vote" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         var value1 = ui.values[0]; var value2 = ui.values[1];
@@ -200,14 +202,15 @@
         })
         $.ajax({ 
           type: "GET", 
-          url: "/filter", 
+          url: "/explore", 
           data: {
             price_min: $( "#slider-range" ).slider( "values", 0 ),
             price_max: $( "#slider-range" ).slider( "values", 1 ),
             vote_min: $( "#slider-range-vote" ).slider( "values", 0 ),
             vote_max: $( "#slider-range-vote" ).slider( "values", 1 ),
             year_min: $( "#slider-range-year" ).slider( "values", 0 ),
-            year_max: $( "#slider-range-year" ).slider( "values", 1 )
+            year_max: $( "#slider-range-year" ).slider( "values", 1 ),
+            is_ajax:true
           },
           cache: false, 
           success: function(html){ 

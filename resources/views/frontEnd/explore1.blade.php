@@ -42,7 +42,7 @@ Breakpoints();
                                 @if($project->project_status=='Complete')
                                     <button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic"><i class="icon fa-check" aria-hidden="true"></i></button>
                                 @elseif($project->project_status=='Project Status Needed')
-                                    <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic"></button>
                                 @elseif($project->project_status=='Rejected')
                                     <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
                                 @else
@@ -92,7 +92,6 @@ Breakpoints();
                 </tfoot>
             </table>
         </div>
-        
     </div>
     <!-- End Example Striped Rows -->
 </div>

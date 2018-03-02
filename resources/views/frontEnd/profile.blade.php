@@ -2,7 +2,16 @@
 @section('title')
 Profile
 @stop
-
+<style>
+   .navbar-container.container-fluid{
+        display: none !important;
+    }
+    @media (max-width: 991px){
+        .page {
+            padding-top: 0px !important;
+        }
+    }
+</style>
 @section('content')
 <div class="page-header p-10">
     @if($project->project_status=='Complete')

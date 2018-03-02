@@ -424,3 +424,12 @@ p{
 .collapse.navbar-collapse.navbar-collapse-toolbar.show{
   border: 0;
 }
+@media (min-width: 768px) {
+  .collapse.navbar-collapse.navbar-collapse-toolbar.show{
+    padding: 10px;
+    padding-left: 300px;
+  }
+  #btn-district, #btn-status, #btn-category, #btn-city{
+    margin-top: 0px;
+  }
+}

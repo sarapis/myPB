@@ -28,7 +28,7 @@ Route::get('/explore/district_{id}', 'ExploreController@district');
 Route::get('/explore/category_{id}', 'ExploreController@category');
 Route::get('/explore/cityagency_{id}', 'ExploreController@cityagency');
 Route::post('/search', 'ExploreController@search');
-Route::get('/filter', 'ExploreController@filterValues');
+// Route::get('/filter', 'ExploreController@filterValues');
 
 Route::post('/range', 'ExploreController@filterValues1');
 
