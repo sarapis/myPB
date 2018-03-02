@@ -91,6 +91,29 @@ a, a:hover, a:focus {
     background: #f3f3f3;
 }
 
+.option-li {
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.1em;
+    display: block;
+    color: #424242;
+    font-weight: 400;
+}
+.option-li:hover {
+    color: #7386D5;
+    background: #fff;
+    cursor: pointer;
+}
+
+.option-li.active{
+    color: #fff;
+    background: #f3f3f3;
+}
+
+.option-ul{
+  background-color: #f3f3f3;
+}
+
 .text-side{
     color: #424242 !important;
     font-weight: 400;
@@ -179,8 +202,7 @@ p{
     width: 100%;
 }
 
-#btn-filter{
-  display: none;
+#btn-district, #btn-status, #btn-category, #btn-city{
   margin-top: 17px;
 }
 .collapse.navbar-collapse.navbar-collapse-toolbar{

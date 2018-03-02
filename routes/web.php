@@ -30,6 +30,8 @@ Route::get('/explore/cityagency_{id}', 'ExploreController@cityagency');
 Route::post('/search', 'ExploreController@search');
 Route::get('/filter', 'ExploreController@filterValues');
 
+Route::post('/range', 'ExploreController@filterValues1');
+
 
  Route::group(['middleware' => ['web', 'auth', 'permission'] ], function () {
         Route::get('dashboard', ['uses' => 'HomeController@dashboard', 'as' => 'home.dashboard']);

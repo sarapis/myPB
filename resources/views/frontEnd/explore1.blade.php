@@ -15,6 +15,10 @@
     color: #000000;
 }
 </style>
+<script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
+<script>
+Breakpoints();
+</script>
 <div class="panel">
     <div class="panel-body p-5">
         <div class="example table-responsive">
@@ -88,12 +92,9 @@
                 </tfoot>
             </table>
         </div>
-       
+        
     </div>
     <!-- End Example Striped Rows -->
 </div>
-<script src="../../../global/vendor/breakpoints/breakpoints.js"></script>
-<script>
-Breakpoints();
-</script>
+
 <script src="../../frontend/assets/examples/js/tables/footable.js"></script>

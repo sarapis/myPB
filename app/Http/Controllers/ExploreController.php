@@ -121,8 +121,42 @@ class ExploreController extends Controller
       
         // var_dump($projects);
         // exit();
-      return view('frontEnd.explore1', compact('projects', 'districts', 'states', 'categories', 'cities'))->render();
-            return response()->json($projects);
+      return view('frontEnd.explore1', compact('projects'))->render();
+            //return response()->json($projects);
+
+    }
+    public function filterValues1(Request $request)
+    {
+        $district = $request->input('District');
+        $status = $request->input('Status');
+        $category = $request->input('Category');
+        $city = $request->input('City');
+        if($status == 'Not Funded'){
+            $status = 'Rejected';
+        }
+
+        $projects = Project::with('district');
+
+        if($district!=NULL){
+            $projects = $projects->orwhereHas('district', function ($q)  use($district){
+               $q->where('name', '=', $district);
+            });
+        }
+
+        if($status!=NULL){
+            $projects = $projects->where('project_status', 'like', '%'.$status.'%');
+        }
+
+        if($category!=NULL){
+            $projects = $projects->where('category_type_topic_standardize', '=', $category);
+        }
+
+        if($city!=NULL){
+            $projects = $projects->where('name_dept_agency_cbo', '=', $city);
+        }
+        $projects = $projects->get();
+
+        return view('frontEnd.explore1', compact('projects'))->render();
 
     }
     /**

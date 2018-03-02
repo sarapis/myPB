@@ -50,6 +50,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
   <script type="text/javascript">
       $(document).ready(function () {
+        
           $("#sidebar").mCustomScrollbar({
               theme: "minimal"
           });
@@ -64,19 +65,69 @@
               $('.collapse.in').toggleClass('in');
               $('a[aria-expanded=true]').attr('aria-expanded', 'false');
           });
-          $('#distrit li').click(function(){
-              var district = $(this).html();
-              $('#btn-filter span').html("District:"+district);
-              $('#btn-filter').show();
+          $('#district li').click(function(){
+
+              var value = $(this).html();
+              $('#btn-district span').html("District:"+value);
+              $('#btn-district').show();
+              sendfilter();
+          });
+          $('#projectstatus li').click(function(){
+              var value = $('span',this).html();
+              $('#btn-status span').html("Status:"+value);
+              $('#btn-status').show();
+              sendfilter();
+          });
+          $('#projectcategory li').click(function(){
+              var value = $(this).html();
+              $('#btn-category span').html("Category:"+value);
+              $('#btn-category').show();
+              sendfilter();
+          });
+          $('#cityagency li').click(function(){
+              var value = $(this).html();
+              $('#btn-city span').html("City:"+value);
+              $('#btn-city').show();
+              sendfilter();
+          });
+          $('#filter_buttons button').click(function(){
+              $(this).hide();
+              sendfilter();
           });
           function sendfilter(){
-            //$.ajax()
-            filter_value = [];
-            $('#filter_buttons button').each(function(){
+           
+            var form_data = new FormData();    
+            // var form_data = [];
+            // var form_name = [];
+            $('#filter_buttons button').each(function(index){
+                
                 if($(this).css('display') != 'none')
                 {
-                  $('span', $(this)).html()
+                  var values = $('span', $(this)).html();
+                  value_array = values.split(':');
+                 
+                  form_data.append(value_array[0],value_array[1]);
+                  //form_data[] = value_array[1];
                 }
+            });
+            $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+              }
+            })    
+            $.ajax({
+              type: 'POST',
+              url: "/range",
+              data: form_data,
+              contentType: false, // The content type used when sending data to the server.
+              cache: false, // To unable request pages to be cached
+              processData: false,
+              success: function(data) {
+                $('#content').html(data);
+              },
+              error: function(errResponse) {
+              
+              }
             });
           }
       });
@@ -92,30 +143,12 @@
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       
         var value1 = ui.values[0]; var value2 = ui.values[1];
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-          }
-        })
-        $.ajax({ 
-          type: "GET", 
-          url: "/filter", 
-          data: {
-            price_min: value1,
-            price_max: value2,
-            vote_min: $( "#slider-range-vote" ).slider( "values", 0 ),
-            vote_max: $( "#slider-range-vote" ).slider( "values", 1 ),
-            year_min: $( "#slider-range-year" ).slider( "values", 0 ),
-            year_max: $( "#slider-range-year" ).slider( "values", 1 )
-          },
-          cache: false, 
-          success: function(html){ 
-            console.log(html); 
-            $('#content').html(html);
-          } 
-        });
+
+        
       }
     });
+
+    
     $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
       " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
@@ -138,24 +171,7 @@
       slide: function( event, ui ) { 
         $( "#amount-year" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         var value1 = ui.values[0]; var value2 = ui.values[1];
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-          }
-        })
-        $.ajax({ 
-          type: "GET", 
-          url: "/filter", 
-          data: {
-            price_min: $( "#slider-range" ).slider( "values", 0 ),
-            price_max: $( "#slider-range" ).slider( "values", 1 ),
-            vote_min: $( "#slider-range-vote" ).slider( "values", 0 ),
-            vote_max: $( "#slider-range-vote" ).slider( "values", 1 ),
-            year_min: value1,
-            year_max: value2
-          },
-          cache: false, 
-          success: function(html){ $('#content').html(html); } }); } }); 
+         } }); 
 
 
 
@@ -170,6 +186,13 @@
       slide: function( event, ui ) {
         $( "#amount-vote" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         var value1 = ui.values[0]; var value2 = ui.values[1];
+        
+        }
+    });
+
+    $( "#amount-vote" ).val(  $( "#slider-range-vote" ).slider( "values", 0 ) +
+      " - " + $( "#slider-range-vote" ).slider( "values", 1 ) );
+    $('.ui-slider-handle.ui-corner-all.ui-state-default').mouseup(function(){
         $.ajaxSetup({
           headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -181,17 +204,18 @@
           data: {
             price_min: $( "#slider-range" ).slider( "values", 0 ),
             price_max: $( "#slider-range" ).slider( "values", 1 ),
-            vote_min: value1,
-            vote_max: value2,
+            vote_min: $( "#slider-range-vote" ).slider( "values", 0 ),
+            vote_max: $( "#slider-range-vote" ).slider( "values", 1 ),
             year_min: $( "#slider-range-year" ).slider( "values", 0 ),
             year_max: $( "#slider-range-year" ).slider( "values", 1 )
           },
           cache: false, 
-          success: function(html){ $('#content').html(html); } });
-        }
-    });
-    $( "#amount-vote" ).val(  $( "#slider-range-vote" ).slider( "values", 0 ) +
-      " - " + $( "#slider-range-vote" ).slider( "values", 1 ) );
+          success: function(html){ 
+            console.log(html); 
+            $('#content').html(html);
+          } 
+        });
+      });
 
   } );
   </script>
