@@ -22,12 +22,13 @@ Route::get('/admin', function () {
 });
 Route::get('/about', ['uses' => 'HomeController@about']);
 Route::get('/explore', 'ExploreController@index');
+// Route::post('/explore', 'ExploreController@index');
 Route::get('/profile/{id}', 'ExploreController@profile');
 Route::get('/explore/status_{id}', 'ExploreController@status');
 Route::get('/explore/district_{id}', 'ExploreController@district');
 Route::get('/explore/category_{id}', 'ExploreController@category');
 Route::get('/explore/cityagency_{id}', 'ExploreController@cityagency');
-Route::post('/search', 'ExploreController@search');
+// Route::post('/search', 'ExploreController@search');
 // Route::get('/filter', 'ExploreController@filterValues');
 
 Route::post('/range', 'ExploreController@filterValues1');

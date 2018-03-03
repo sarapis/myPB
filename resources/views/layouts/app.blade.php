@@ -7,9 +7,11 @@
     <div class="page">
 
 	    @yield('content')
-	    
+	<div class="overlay"></div>    
 	</div>
+	
 	<!-- /page content -->
 	 @include('layouts.footer')
+
 </body>
  @include('layouts.script')

@@ -19,21 +19,31 @@ class ExploreController extends Controller
 
             if ($request->get('is_ajax')) {
 
-            $price_min = (int)$request->input('price_min');
-            $price_max = (int)$request->input('price_max');
-            $year_min = $request->input('year_min');
-            $year_max = $request->input('year_max');
-            $vote_min = (int)$request->input('vote_min');
-            $vote_max = (int)$request->input('vote_max');
-        
+                $price_min = (int)$request->input('price_min');
+                $price_max = (int)$request->input('price_max');
+                $year_min = $request->input('year_min');
+                $year_max = $request->input('year_max');
+                $vote_min = (int)$request->input('vote_min');
+                $vote_max = (int)$request->input('vote_max');
+            
 
-            $projects = Project::with('process')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
-               $q->whereBetween('vote_year', [$year_min, $year_max]); })->sortable()->get();
+                $projects = Project::with('process')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
+                   $q->whereBetween('vote_year', [$year_min, $year_max]); })->sortable()->get();
 
-            // var_dump($projects);
-            // exit();
-            return view('frontEnd.explore1', compact('projects', 'districts', 'states', 'categories', 'cities'))->render();
-        }
+                // var_dump($projects);
+                // exit();
+                return view('frontEnd.explore1', compact('projects', 'districts', 'states', 'categories', 'cities'))->render();
+            }
+
+            if ($request->input('search')) {
+
+                $search = $request->input('search');
+                $projects= Project::with('district')->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district', function ($q)  use($search){
+                    $q->where('name', 'like', '%'.$search.'%');
+                })->sortable()->paginate(20);
+
+                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+            }
 
         $projects = Project::sortable()->paginate(20);
         

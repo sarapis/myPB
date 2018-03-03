@@ -43,7 +43,7 @@ a, a:hover, a:focus {
 #sidebar {
     width: 270px;
     position: fixed;
-    top: 0;
+    top: 66px;
     left: 0;
     height: 100vh;
     z-index: 999;
@@ -51,8 +51,8 @@ a, a:hover, a:focus {
     color: #424242;
     transition: all 0.3s;
     z-index: 3000;
-    margin-top: 66px;
     box-shadow: 0 1px 6px rgba(57,73,76,.35);
+    overflow-y: scroll;
 }
 
 #sidebar.active {
@@ -432,4 +432,15 @@ p{
   #btn-district, #btn-status, #btn-category, #btn-city{
     margin-top: 0px;
   }
+}
+.overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    display: none;
+}
+.mCSB_container{
+  padding-bottom: 200px;
 }

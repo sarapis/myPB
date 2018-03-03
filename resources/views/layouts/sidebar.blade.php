@@ -2,7 +2,7 @@
     <div class="sidebar-header p-10">
         <div class="form-group" style="margin: 0;">
         <!--begin::Form-->
-            <form method="post" action="{{action('ExploreController@search')}}" class="mb-5">
+            <form method="get" action="{{action('ExploreController@index')}}" class="mb-5">
                 {{ csrf_field() }}
                 <div class="input-search">
                     <i class="input-search-icon md-search" aria-hidden="true"></i>

@@ -36,6 +36,10 @@ About
                             </div>
                         </div>
                     </div>
+                    <div class="input-group">
+                        <input id="location" class="form-control gm-err-autocomplete">
+                        <label class="input-group-addon" for="location"><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i></label>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <p>What do people fund when given the opportunity? Check out how New York neighborhoods are spending public money and explore PB-generated projects here</p>
