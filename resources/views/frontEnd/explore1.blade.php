@@ -109,7 +109,6 @@ Breakpoints();
             </table>
         </div>
     </div>
-    <!-- End Example Striped Rows -->
 </div>
 
 <script src="../../frontend/assets/examples/js/tables/footable.js"></script>
