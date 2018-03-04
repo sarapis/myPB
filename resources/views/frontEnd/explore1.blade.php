@@ -21,15 +21,21 @@
 .collapse.navbar-collapse.navbar-collapse-toolbar.show{
     padding:5px;
 }
+.site-footer{
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    z-index: 9000;
+    width: 100%;
+    left: 271px;
+}
 </style>
 <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
 <script>
 Breakpoints();
 </script>
 
-<div id="content">
-
-    <div class="panel">
+<div class="panel">
     <div class="panel-body p-5">
         <div class="example table-responsive">
             <table class="table table-striped toggle-arrow-tiny"  id="examplePagination">
@@ -104,8 +110,8 @@ Breakpoints();
         </div>
     </div>
     <!-- End Example Striped Rows -->
-    </div>
 </div>
+
 <script src="../../frontend/assets/examples/js/tables/footable.js"></script>
 <script>
     $(document).ready(function(){
