@@ -13,17 +13,19 @@ Profile
     }
 </style>
 @section('content')
-<div class="page-header p-10">
-    @if($project->project_status=='Complete')
-        <h3><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check m-0" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">{{$project->project_title}}</span></h3>
-    @elseif($project->project_status=='Rejected')
-        <h3><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">{{$project->project_title}}</span></h3>
-    @elseif($project->project_status=='Project Status Needed')
-        <h3><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove  m-0" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">{{$project->project_title}}</span></h3>
-    @else
-    <h3><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus m-0" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">{{$project->project_title}}</span></h3>
-    @endif
-</div>
+
+  <div class="col-md-12">
+      @if($project->project_status=='Complete')
+          <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check m-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
+      @elseif($project->project_status=='Rejected')
+          <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
+      @elseif($project->project_status=='Project Status Needed')
+          <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button>{{$project->project_title}}</h3>
+      @else
+      <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus m-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
+      @endif
+  </div>
+
   <div class="col-md-7">
     <!-- Panel -->      
     <div class="panel">
@@ -64,6 +66,7 @@ Profile
       </div>
     </div>
   </div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
  <script type="text/javascript">
