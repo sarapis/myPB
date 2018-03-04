@@ -130,10 +130,10 @@
             <div class="tab-pane" id="exampleTopComponents" role="tabpanel">
                 <ul class="list-unstyled components">
                     <li class="nav-tabs">
-                        <a href="?sort=cost_text&order=asc">Price: Low to High</a>
+                        <a href="?sort=cost_num&order=asc">Price: Low to High</a>
                     </li>
                     <li class="nav-tabs">
-                        <a href="?sort=cost_text&order=desc">Price: High to Low</a>
+                        <a href="?sort=cost_num&order=desc">Price: High to Low</a>
                     </li>
                     <li class="nav-tabs">
                         <a href="?sort=process.vote_year&order=asc">Year: Low to High</a>

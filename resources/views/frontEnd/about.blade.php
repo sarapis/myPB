@@ -35,6 +35,7 @@ About
                                 <input type="text" class="form-control text-black" name="" placeholder="Search Street Address" style="border-radius:0;">
                             </div>
                         </div>
+                        <a href="https://council.nyc.gov/pb/participate/" target="_blank"><h4 class="text-white mb-0">FIND OUT!</h4></a>
                     </div>
                     <div class="input-group">
                         <input id="location" class="form-control gm-err-autocomplete">
