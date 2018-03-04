@@ -14,12 +14,22 @@
     font-size: 25px;
     color: #000000;
 }
+#content{
+    padding-top: 0 !important;
+
+}
+.collapse.navbar-collapse.navbar-collapse-toolbar.show{
+    padding:5px;
+}
 </style>
 <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
 <script>
 Breakpoints();
 </script>
-<div class="panel">
+
+<div id="content">
+
+    <div class="panel">
     <div class="panel-body p-5">
         <div class="example table-responsive">
             <table class="table table-striped toggle-arrow-tiny"  id="examplePagination">
@@ -94,6 +104,12 @@ Breakpoints();
         </div>
     </div>
     <!-- End Example Striped Rows -->
+    </div>
 </div>
-
 <script src="../../frontend/assets/examples/js/tables/footable.js"></script>
+<script>
+    $(document).ready(function(){
+        var text= $('.navbar-container').css('height');
+        $('.page').css('margin-top',text);
+    });
+</script>

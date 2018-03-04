@@ -30,26 +30,22 @@
       <!-- Navbar Collapse -->
       <div class="collapse navbar-collapse navbar-collapse-toolbar show">
         <!-- Navbar Toolbar -->
-        <button type="button" id="sidebarCollapse" class="navbar-toggler hamburger hamburger-close navbar-toggler-center hided" style="color: #757575;">
-          <i class="icon glyphicon glyphicon-align-justify"></i>
-          <span>Toggle Sidebar</span>
-        </button>
-        <div id = "filter_buttons">
-          <button type="button" id="btn-district" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> District:</span><i class="icon wb-close" aria-hidden="true"></i></b></button>
-          <button type="button" id="btn-status" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Status: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
-          <button type="button" id="btn-category" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Category: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
-          <button type="button" id="btn-city" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> City: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+        <div class="row">
+          <div class="nav_mark pl-20" style="width: 20%">
+            <button type="button" id="sidebarCollapse" class="navbar-toggler hamburger hamburger-close navbar-toggler-center hided" style="color: #757575;">
+              <i class="icon glyphicon glyphicon-align-justify"></i>
+              <span>Toggle Sidebar</span>
+            </button>
+          </div>
+          <div class="filter_title" style="width: 80%; display: inline;">
+            <div id = "filter_buttons">
+              <button type="button" id="btn-district" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> District:</span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+              <button type="button" id="btn-status" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Status: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+              <button type="button" id="btn-category" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Category: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+              <button type="button" id="btn-city" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> City: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+            </div>
+          </div>
         </div>
-        <ul class="nav navbar-toolbar">
-          <li class="nav-item hidden-float" id="toggleMenubar">
-            <a class="nav-link" data-toggle="menubar" href="#" role="button">
-              <i class="icon hamburger hamburger-arrow-left bg-black">
-                  <span class="sr-only">Toggle menubar</span>
-                  <span class="hamburger-bar"></span>
-                </i>
-            </a>
-          </li>
-        </ul>
       </div>
       <!-- End Navbar Collapse -->
       <!-- Site Navbar Seach -->
