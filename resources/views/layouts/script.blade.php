@@ -82,13 +82,17 @@
           });
           $('#projectcategory li').click(function(){
               var value = $(this).html();
+
               $('#btn-category span').html("Category:"+value);
+              
+
               $('#btn-category').show();
               sendfilter();
           });
           $('#cityagency li').click(function(){
               var value = $(this).html();
               $('#btn-city span').html("City:"+value);
+
               $('#btn-city').show();
               sendfilter();
           });
@@ -106,8 +110,10 @@
                 if($(this).css('display') != 'none')
                 {
                   var values = $('span', $(this)).html();
+
                   value_array = values.split(':');
-                 
+                  value_array[1] = value_array[1].replace('&amp;','&');    
+
                   form_data.append(value_array[0],value_array[1]);
                   //form_data[] = value_array[1];
                 }
@@ -126,7 +132,7 @@
               cache: false, // To unable request pages to be cached
               processData: false,
               success: function(data) {
-
+                console.log(data);
                 $('#content').html(data);
               },
               error: function(errResponse) {

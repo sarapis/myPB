@@ -160,6 +160,7 @@ class ExploreController extends Controller
         $district = $request->input('District');
         $status = $request->input('Status');
         $category = $request->input('Category');
+        
         $city = $request->input('City');
         if($status == 'Not Funded'){
             $status = 'Rejected';
