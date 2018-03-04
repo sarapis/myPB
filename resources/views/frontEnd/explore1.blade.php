@@ -18,17 +18,6 @@
     padding-top: 0 !important;
 
 }
-.collapse.navbar-collapse.navbar-collapse-toolbar.show{
-    padding:5px;
-}
-.site-footer{
-    position: fixed;
-    bottom: 0;
-    background: #fff;
-    z-index: 9000;
-    width: 100%;
-    left: 271px;
-}
 </style>
 <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
 <script>
