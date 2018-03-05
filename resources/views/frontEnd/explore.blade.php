@@ -108,10 +108,14 @@ Explore
     </div>
 </div>
 <script>
-$(document).ready(function () {
-  var district = <?php print_r(json_encode($count->name)) ?>;
-  $('#btn-district span').html("District:"+district);
-  $('#btn-district').show();
+ $(document).ready(function () {
+    var address_district = <?php echo json_encode($address_district); ?>;
+    if( address_district != ''){
+    
+        $('#btn-district span').html("District:"+address_district);
+        $('#btn-district').show();
+    };
+
 });
 </script>
 @endsection

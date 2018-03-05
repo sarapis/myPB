@@ -16,6 +16,9 @@ class ExploreController extends Controller
             $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
             $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
             $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+            $address_district= District::where('name', '=', 1)->get();
+            // var_dump($address_district);
+            // exit();
 
             if ($request->get('is_ajax')) {
 
@@ -74,17 +77,17 @@ class ExploreController extends Controller
                     $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
                 })->sortable()->paginate(20);
 
-                $count=District::where('cityCouncilDistrict', '=', $cityCouncilDistrict)->first();
+                $address_district=District::where('cityCouncilDistrict', '=', $cityCouncilDistrict)->first()->name;
                 
-                if($count == NULL){
+                if($address_district == NULL){
                     return redirect()->back();
                 }
-                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'count'));
+                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district'));
             }
 
         $projects = Project::sortable()->paginate(20);
         
-        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'count', 'address_district'));
     }
 
     /**
