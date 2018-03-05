@@ -107,4 +107,12 @@ Explore
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+  var district = <?php print_r(json_encode($count->name)) ?>;
+  $('#btn-district span').html("District:"+district);
+  $('#btn-district').show();
+});
+</script>
 @endsection
+

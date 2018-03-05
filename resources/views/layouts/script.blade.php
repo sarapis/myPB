@@ -50,10 +50,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
   <script type="text/javascript">
       $(document).ready(function () {
-          var district = <?php print_r(json_encode($count->name)) ?>;
-          $('#btn-district span').html("District:"+district);
-          $('#btn-district').show();
-
+          
           $("#sidebar").mCustomScrollbar({
               theme: "minimal"
           });
