@@ -60,8 +60,7 @@ class ExploreController extends Controller
 
 
                 $result  = json_decode($content);
-                var_dump($result);
-                exit();
+                
                 $housenumber=$result->features[0]->properties->housenumber;
                 $street=$result->features[0]->properties->street;
                 $zipcode=$result->features[0]->properties->postalcode;
