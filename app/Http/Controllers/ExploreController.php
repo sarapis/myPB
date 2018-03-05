@@ -74,14 +74,12 @@ class ExploreController extends Controller
                     $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
                 })->sortable()->paginate(20);
 
-                $count=Project::with('district')->orwhereHas('district', function ($q)  use($cityCouncilDistrict){
-                    $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
-                })->count();
+                $count=District::where('cityCouncilDistrict', '=', $cityCouncilDistrict)->first();
                 
                 if($count == NULL){
                     return redirect()->back();
                 }
-                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'count'));
             }
 
         $projects = Project::sortable()->paginate(20);
