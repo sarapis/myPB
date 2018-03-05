@@ -11,6 +11,9 @@ Home
             padding-top: 0px !important;
         }
     }
+    .pac-logo:after{
+      display: none;
+    }
 </style>
 @section('content')
 
@@ -48,5 +51,11 @@ Home
         </div>
           <!-- End Panel -->
     </div>
-
+<script>
+  function initAutocomplete() {
+      var input = document.getElementById('location');
+      var searchBox = new google.maps.places.SearchBox(input);
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-RQR_KenWPqcgUbOtMLreNVWeTV1wcSo&libraries=places&callback=initAutocomplete" async defer></script>
 @endsection
