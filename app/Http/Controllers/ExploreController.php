@@ -45,6 +45,45 @@ class ExploreController extends Controller
                 return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
             }
 
+            if ($request->input('address')) {
+                $location = $request->input('address');
+                // var_dump($location);
+                // exit();
+                // $location = str_replace(",","%",$location);
+                $location = str_replace(" ","%20",$location);
+                
+
+                $content = file_get_contents("https://geosearch.planninglabs.nyc/v1/autocomplete?text=".$location);
+
+
+                $result  = json_decode($content);
+                $housenumber=$result->features[0]->properties->housenumber;
+                $street=$result->features[0]->properties->street;
+                $zipcode=$result->features[0]->properties->postalcode;
+                
+                $street = str_replace(" ","%20",$street);
+                $url = 'https://api.cityofnewyork.us/geoclient/v1/address.json?houseNumber=' . $housenumber . '&street=' . $street . '&zip=' . $zipcode . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
+
+                $geoclient = file_get_contents($url);
+
+                $geo  = json_decode($geoclient);
+
+                $cityCouncilDistrict=$geo->address->cityCouncilDistrict;
+                
+                $projects= Project::with('district')->orwhereHas('district', function ($q)  use($cityCouncilDistrict){
+                    $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
+                })->sortable()->paginate(20);
+
+                $count=Project::with('district')->orwhereHas('district', function ($q)  use($cityCouncilDistrict){
+                    $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
+                })->count();
+                
+                if($count == NULL){
+                    return redirect()->back();
+                }
+                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+            }
+
         $projects = Project::sortable()->paginate(20);
         
         return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));

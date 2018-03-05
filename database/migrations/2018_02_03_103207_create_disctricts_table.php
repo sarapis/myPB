@@ -21,6 +21,7 @@ class CreateDisctrictsTable extends Migration
             $table->string('active_pb')->nullable();
             $table->text('processes_annual')->nullable();
             $table->string('contact_district')->nullable();
+            $table->string('cityCouncilDistrict')->nullable();
             $table->string('flag')->nullable();
         });
     }

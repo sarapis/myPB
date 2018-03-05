@@ -38,6 +38,7 @@ class DistrictController extends Controller
                 $district->active_pb = isset($record['fields']['Active_PB'])?$record['fields']['Active_PB']:null;
                 $district->processes_annual = isset($record['fields']['Processes_Annual'])? implode(",", $record['fields']['Processes_Annual']):null;
                 $district->contact_district = isset($record['fields']['Contact_District'])? implode(",", $record['fields']['Contact_District']):null;
+                $district->cityCouncilDistrict = isset($record['fields']['cityCouncilDistrict'])?$record['fields']['cityCouncilDistrict']:null;
                 $district ->save();
 
             }
