@@ -396,10 +396,11 @@ p{
 .navbar-brand.nav-item{
   font-size: 15px;
 }
-
+.st-btn .st-first .st-last{
+  padding-left: 0 !important;
+}
 @media (max-width: 479px) {
   .nav-menubar li a{
-    padding-left: 10px;
     padding-right: 0px;
   }
   .navbar-brand{
@@ -414,6 +415,9 @@ p{
   }
   #content{
     padding-top: 50px;
+  }
+  .goog-te-gadget-simple .goog-te-menu-value span {
+    font-size: 12px !important;
   }
 }
 @media (max-width: 991px) {

@@ -57,8 +57,40 @@
   </script>
   <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5a98fe1e54d8310013ae576a&product=inline-share-buttons' async='async'></script>
  <style>
-   #st-1 .st-btn[data-network='sharethis'] {
+  body{
+    top: 0 !important;
+  }
+  #st-1 .st-btn[data-network='sharethis'] {
     background: transparent !important;
+    padding-left: 0;
+  }
+  #google_translate_element{
+    padding-top: 21px;
+  }
+  .goog-te-banner-frame.skiptranslate{
+    display: none;
+  }
+  .goog-te-gadget img {
+    display: none;
+  }
+  .goog-te-gadget-simple {
+    background-color: transparent !important;
+    border: 0 !important;
+  }
+  .goog-te-gadget-simple .goog-te-menu-value span {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .goog-te-menu-value span{
+    font-family: 'Poppins', sans-serif !important;
+  }
+  
+  .goog-te-menu-value span:nth-child(3){
+    display: none;
+  }
+  .goog-te-menu-value span:nth-child(5){
+    display: none;
   }
  </style>
 </head>
