@@ -448,3 +448,7 @@ p{
 .mCSB_container{
   padding-bottom: 200px;
 }
+.btn_findout{
+  background-color: transparent;
+  border: 0;
+}

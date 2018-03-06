@@ -33,15 +33,17 @@ Home
                 <div class="panel-body bg-custom">
                     <div class="form-group">
                         <h4 class="text-white">Does your NYC neighborhood do PB?</h4>
+                        <form method="get" action="/explore">
                         <div class="form-group">
-                            <form method="get" action="/explore">
+                            
                               <div class="input-search">
                                   <i class="input-search-icon md-search" aria-hidden="true"></i>
                                   <input id="location" type="text" class="form-control text-black" name="address" placeholder="Search Street Address" style="border-radius:0;">
                               </div>
-                            </form>
+                            
                         </div>
-                        <a href="https://council.nyc.gov/pb/participate/" target="_blank"><h4 class="text-white mb-0">FIND OUT!</h4></a>
+                        <button type="submit" class="btn_findout"><h4 class="text-white mb-0">FIND OUT!</h4></button>
+                        </form>
                     </div>
                 </div>
                 <div class="panel-body">

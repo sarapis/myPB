@@ -92,5 +92,19 @@
   .goog-te-menu-value span:nth-child(5){
     display: none;
   }
+  .goog-te-menu-value span:nth-child(1){
+    
+  }
+  .goog-te-gadget-simple .goog-te-menu-value span {
+    visibility: hidden;
+  }
+  .goog-te-gadget-simple .goog-te-menu-value span:before {
+    content: 'Languages';
+    visibility: visible;
+  }
+  .goog-te-menu-value {
+    max-width: 80px;
+    display: inline-block;
+  }
  </style>
 </head>
