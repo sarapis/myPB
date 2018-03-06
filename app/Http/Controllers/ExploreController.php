@@ -45,7 +45,7 @@ class ExploreController extends Controller
                     $q->where('name', 'like', '%'.$search.'%');
                 })->sortable()->paginate(20);
 
-                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district'));
             }
 
             if ($request->input('address')) {
@@ -78,11 +78,15 @@ class ExploreController extends Controller
                     $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
                 })->sortable()->paginate(20);
 
-                $address_district=District::where('cityCouncilDistrict', '=', $cityCouncilDistrict)->first()->name;
+                $address_district=District::where('cityCouncilDistrict', '=', $cityCouncilDistrict)->first();
+                
                 
                 if($address_district == NULL){
                     return redirect()->back();
                 }
+                
+                $address_district=$address_district->name;
+                
                 return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district'));
             }
 
@@ -91,50 +95,50 @@ class ExploreController extends Controller
         return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'count', 'address_district'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function status($id)
-    {
-        $projects = Project::where('project_status', 'like', '%' . $id . '%')->sortable()->paginate(20);
-        $districts = District::orderBy('name')->get();
-        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
-        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
-        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
-    }
+    // /**
+    //  * Show the form for creating a new resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function status($id)
+    // {
+    //     $projects = Project::where('project_status', 'like', '%' . $id . '%')->sortable()->paginate(20);
+    //     $districts = District::orderBy('name')->get();
+    //     $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+    //     $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+    //     $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+    //     return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+    // }
 
-    public function district($id)
-    {
-        $projects = Project::where('district_ward_name', '=', $id)->sortable()->paginate(20);
-        $districts = District::orderBy('name')->get();
-        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
-        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
-        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
-    }
+    // public function district($id)
+    // {
+    //     $projects = Project::where('district_ward_name', '=', $id)->sortable()->paginate(20);
+    //     $districts = District::orderBy('name')->get();
+    //     $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+    //     $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+    //     $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+    //     return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+    // }
 
-    public function category($id)
-    {
-        $projects = Project::where('category_type_topic_standardize', '=', $id)->sortable()->paginate(20);
-        $districts = District::orderBy('name')->get();
-        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
-        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
-        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
-    }
+    // public function category($id)
+    // {
+    //     $projects = Project::where('category_type_topic_standardize', '=', $id)->sortable()->paginate(20);
+    //     $districts = District::orderBy('name')->get();
+    //     $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+    //     $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+    //     $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+    //     return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+    // }
 
-    public function cityagency($id)
-    {
-        $projects = Project::where('name_dept_agency_cbo', '=', $id)->sortable()->paginate(20);
-        $districts = District::orderBy('name')->get();
-        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
-        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
-        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
-    }
+    // public function cityagency($id)
+    // {
+    //     $projects = Project::where('name_dept_agency_cbo', '=', $id)->sortable()->paginate(20);
+    //     $districts = District::orderBy('name')->get();
+    //     $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+    //     $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+    //     $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+    //     return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -142,20 +146,20 @@ class ExploreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
-        $projects= Project::with('district')->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district', function ($q)  use($search){
-               $q->where('name', 'like', '%'.$search.'%');
-            })->sortable()->paginate(20);
+    // public function search(Request $request)
+    // {
+    //     $search = $request->input('search');
+    //     $projects= Project::with('district')->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district', function ($q)  use($search){
+    //            $q->where('name', 'like', '%'.$search.'%');
+    //         })->sortable()->paginate(20);
 
 
-        $districts = District::orderBy('name')->get();
-        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
-        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
-        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
-    }
+    //     $districts = District::orderBy('name')->get();
+    //     $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+    //     $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+    //     $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+    //     return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities'));
+    // }
 
     /**
      * Display the specified resource.
