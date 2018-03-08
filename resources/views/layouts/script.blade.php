@@ -107,51 +107,8 @@
               $(this).hide();
               sendfilter();
           });
-          function sendfilter(){
-           
-            var form_data = new FormData();    
-            // var form_data = [];
-            // var form_name = [];
-            $('#filter_buttons button').each(function(index){
-                
-                if($(this).css('display') != 'none')
-                {
-                  var values = $('span', $(this)).html();
 
-                  value_array = values.split(':');
-                  value_array[1] = value_array[1].replace('&amp;','&');    
-                  value_array[1] = value_array[1].slice(1);
-                  form_data.append(value_array[0],value_array[1]);
-                  //form_data[] = value_array[1];
-                }
-            });
-            ///
-            $.ajaxSetup({
-              headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-              }
-            })    
-            $.ajax({
-              type: 'POST',
-              url: "/range",
-              data: form_data,
-              contentType: false, // The content type used when sending data to the server.
-              cache: false, // To unable request pages to be cached
-              processData: false,
-              success: function(data) {
-                console.log(data);
-                $('#content').html(data);
-              },
-              error: function(errResponse) {
-              
-              }
-            });
-          }
-      });
-  </script>
-  <script>
 
-  $( function() {
 
 
 
@@ -214,91 +171,59 @@
     $( "#amount-vote" ).val(  $( "#slider-range-vote" ).slider( "values", 0 ) +
       " - " + $( "#slider-range-vote" ).slider( "values", 1 ) );
     $('.ui-slider-handle.ui-corner-all.ui-state-default').mouseup(function(){
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-          }
-        })
-        $.ajax({ 
-          type: "GET", 
-          url: "/explore", 
-          data: {
-            price_min: $( "#slider-range" ).slider( "values", 0 ),
-            price_max: $( "#slider-range" ).slider( "values", 1 ),
-            vote_min: $( "#slider-range-vote" ).slider( "values", 0 ),
-            vote_max: $( "#slider-range-vote" ).slider( "values", 1 ),
-            year_min: $( "#slider-range-year" ).slider( "values", 0 ),
-            year_max: $( "#slider-range-year" ).slider( "values", 1 ),
-            is_ajax:true
-          },
-          cache: false, 
-          success: function(html){ 
-            console.log(html); 
-            $('#content').html(html);
-          } 
-        });
+          sendfilter();      
       });
 
-  } );
-  </script>
-  <script type="text/javascript">
-  $('document').ready(function () {
-      
-      $('.goog-te-menu-value span').eq(0).on('DOMSubtreeModified',function(){
-        alert('changed')
-      })
-      //$('#google_translate_element').on("click", function () {
-        //$('.goog-te-menu-value').append('<span>Languages</span>');  
-      //alert($('.goog-te-menu-value span').eq(0).html());
+          function sendfilter(){
+           
+            var form_data = new FormData();    
+            // var form_data = [];
+            // var form_name = [];
+            form_data.append('price_min',$( "#slider-range" ).slider( "values", 0 ));
+            form_data.append('price_max',$( "#slider-range" ).slider( "values", 1 ));
+            form_data.append('vote_min',$( "#slider-range-vote" ).slider( "values", 0 ));
+            form_data.append('vote_max',$( "#slider-range-vote" ).slider( "values", 1 ));
+            form_data.append('year_min',$( "#slider-range-year" ).slider( "values", 0 ));
+            form_data.append('year_max',$( "#slider-range-year" ).slider( "values", 1 ));
+            form_data.append('is_ajax',1);
+            
+            $('#filter_buttons button').each(function(index){
+                
+                if($(this).css('display') != 'none')
+                {
+                  var values = $('span', $(this)).html();
 
-    //     // Change font family and color
-    //     $("iframe").contents().find(".goog-te-menu2-item div, .goog-te-menu2-item:link div, .goog-te-menu2-item:visited div, .goog-te-menu2-item:active div, .goog-te-menu2 *")
-    //         .css({
-    //             'color': '#544F4B',
-    //             'font-family': '"Poppins", sans-serif',
-    //             'width':'auto'
-    //         });
-    //     // Change menu's padding
-    //     $("iframe").contents().find('.goog-te-menu2-item-selected').css ('display', 'none');
-      
-    //     // Change menu's padding
-    //     $("iframe").contents().find('.goog-te-menu2').css ('padding', '0px');
-      
-    //     // Change the padding of the languages
-    //     $("iframe").contents().find('.goog-te-menu2-item div').css('padding', '20px');
-      
-    //     // Change the width of the languages
-    //     $("iframe").contents().find('.goog-te-menu2-item').css('width', '100%');
-    //     $("iframe").contents().find('td').css('width', '100%');
-      
-    //     // Change hover effects
-    //     $("iframe").contents().find(".goog-te-menu2-item div").hover(function () {
-    //         $(this).css('background-color', '#3f897a').find('span.text').css('color', 'white');
-    //     }, function () {
-    //         $(this).css('background-color', 'white').find('span.text').css('color', '#544F4B');
-    //     });
-
-    //     // Change Google's default blue border
-    //     $("iframe").contents().find('.goog-te-menu2').css('border', 'none');
-
-    //     // Change the iframe's box shadow
-    //     $(".goog-te-menu-frame").css('box-shadow', '0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3)');
-        
-      
-      
-    //     // Change the iframe's size and position?
-    //     $(".goog-te-menu-frame").css({
-    //         'height': '50px',
-    //         'width': '80px',
-    //         'top': '67px'
-    //     });
-    //     // Change iframes's size
-    //     $("iframe").contents().find('.goog-te-menu2').css({
-    //         'height': '50px',
-    //         'width': '80px'
-    //     });
-  //   });
-});
+                  value_array = values.split(':');
+                  value_array[1] = value_array[1].replace('&amp;','&');    
+                  value_array[1] = value_array[1].slice(1);
+                  form_data.append(value_array[0],value_array[1]);
+                  //form_data[] = value_array[1];
+                }
+            });
+            ///
+            $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+              }
+            })    
+            $.ajax({
+              type: 'POST',
+              url: "/range",
+              data: form_data,
+              contentType: false, // The content type used when sending data to the server.
+              cache: false, // To unable request pages to be cached
+              processData: false,
+              success: function(data) {
+                console.log(data);
+                //console.log(111);              
+                $('#content').html(data);
+              },
+              error: function(errResponse) {
+              
+              }
+            });
+          }
+      });
 
   </script>
 

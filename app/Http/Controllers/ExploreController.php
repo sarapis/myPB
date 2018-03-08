@@ -17,26 +17,10 @@ class ExploreController extends Controller
             $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
             $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
             $address_district= District::where('name', '=', 1)->get();
-            // var_dump($address_district);
-            // exit();
-
-            if ($request->get('is_ajax')) {
-
-                $price_min = (int)$request->input('price_min');
-                $price_max = (int)$request->input('price_max');
-                $year_min = $request->input('year_min');
-                $year_max = $request->input('year_max');
-                $vote_min = (int)$request->input('vote_min');
-                $vote_max = (int)$request->input('vote_max');
             
 
-                $projects = Project::with('process')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
-                   $q->whereBetween('vote_year', [$year_min, $year_max]); })->sortable()->get();
 
-                // var_dump($projects);
-                // exit();
-                return view('frontEnd.explore1', compact('projects', 'districts', 'states', 'categories', 'cities'))->render();
-            }
+           
 
             if ($request->input('search')) {
 
@@ -208,43 +192,62 @@ class ExploreController extends Controller
     }
     public function filterValues1(Request $request)
     {
-        $district = $request->input('District');
-        $status = $request->input('Status');
-        $category = $request->input('Category');        
-        $city = $request->input('City');
-
-        if($status == 'Not Funded'){
-            $status = 'Rejected';
-        }
-
-        $projects = Project::with('district');
-
-        if($district!=NULL){
-            $projects = $projects->orwhereHas('district', function ($q)  use($district){
-               $q->where('name', '=', $district);
-            });
-        }
-
-        if($status!='NULL'){
-            if($status=='Rejected'){
+       
                 
-                $projects = $projects->where('project_status', '=', 'Lost vote')->orwhere('project_status', '=', 'On hold - Requires Additional Funds')->orwhere('project_status', '=', 'Rejected');
-            }
-            else{
-                $projects = $projects->where('project_status', 'like', '%'.$status.'%');
-            }
-        }
+                $price_min = (int)$request->input('price_min');
+                $price_max = (int)$request->input('price_max');
+                $year_min = $request->input('year_min');
+                $year_max = $request->input('year_max');
+                $vote_min = (int)$request->input('vote_min');
+                $vote_max = (int)$request->input('vote_max');
 
-        if($category!=NULL){
-            $projects = $projects->where('category_type_topic_standardize', '=', $category);
-        }
+                $district = $request->input('District');
+                $status = $request->input('Status');
+                $category = $request->input('Category');        
+                $city = $request->input('City');
 
-        if($city!=NULL){
-            $projects = $projects->where('name_dept_agency_cbo', '=', $city);
-        }
-        $projects = $projects->get();
+            
+               
+               
 
-        return view('frontEnd.explore1', compact('projects'))->render();
+                $projects = Project::with('process')->with('district')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
+                   $q->whereBetween('vote_year', [$year_min, $year_max]); });
+                $projects = $projects->get();
+                 var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
+                 exit(); 
+                
+                if($status == 'Not Funded'){
+                    $status = 'Rejected';
+                }
+
+                if($district!=NULL){
+                    $projects = $projects->orwhereHas('district', function ($q)  use($district){
+                       $q->where('name', '=', $district);
+                    });
+                }
+                
+                if($status!='NULL'){
+                    if($status=='Rejected'){
+                        
+                        $projects = $projects->where('project_status', '=', 'Lost vote')->orwhere('project_status', '=', 'On hold - Requires Additional Funds')->orwhere('project_status', '=', 'Rejected');
+                    }
+                    else{
+                        $projects = $projects->where('project_status', '=', "Complete");
+                        
+                    }
+                }
+
+                if($category!=NULL){
+                    $projects = $projects->where('category_type_topic_standardize', '=', $category);
+                }
+
+                if($city!=NULL){
+                    $projects = $projects->where('name_dept_agency_cbo', '=', $city);
+                }
+                
+                
+                return view('frontEnd.explore1', compact('projects'))->render();
+
 
     }
     /**
