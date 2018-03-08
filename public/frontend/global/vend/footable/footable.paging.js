@@ -655,9 +655,9 @@
 		enabled: false,
 		countFormat: '{CP} of {TP}',
 		current: 1,
-		limit: 5,
+		limit: 2,
 		position: 'center',
-		size: 10,
+		size: 20,
 		strings: {
 			first: '&laquo;',
 			prev: '&lsaquo;',

@@ -15,6 +15,7 @@
   <script src="../../../frontend/global/vend/slidepanel/jquery-slidePanel.js"></script>
   <script src="../../../frontend/global/vend/moment/moment.min.js"></script>
   <script src="../../../frontend/global/vend/footable/footable.js"></script>
+  <script src="../../../frontend/global/vend/footable/footable.paging.js"></script>
   <!-- Scripts -->
   <script src="../../../frontend/global/js/State.js"></script>
   <script src="../../../frontend/global/js/Component.js"></script>
