@@ -56,6 +56,10 @@ Breakpoints();
                                     <button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic"></button>
                                 @elseif($project->project_status=='Rejected')
                                     <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
+                                @elseif($project->project_status=='Lost vote')
+                                    <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
+                                @elseif($project->project_status=='On hold - Requires Additional Funds')
+                                    <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
                                 @else
                                     <button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic"><i class="icon fa-minus" aria-hidden="true"></i></button>
                                 @endif

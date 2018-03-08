@@ -40,16 +40,14 @@
                     <li class="option-side">
                         <a href="#projectstatus" class="text-side" data-toggle="collapse" aria-expanded="false">Project Status</a>
                         <ul class="collapse list-unstyled option-ul" id="projectstatus">
-                            @foreach($states as $state)
-                                @if($state->project_status=='Complete')
-                                    <li class="option-li"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Complete</span></li>
-                                @elseif($state->project_status=='Rejected')
-                                    <li class="option-li"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Not Funded</span></li>
-                                @elseif($state->project_status=='Project Status Needed')
-                                    <li class="option-li"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></li>
-                                @endif
-                            @endforeach
-                                <li class="option-li"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In process</span></li>
+                    
+                            <li class="option-li"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Complete</span></li>
+                        
+                            <li class="option-li"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Not Funded</span></li>
+                      
+                            <li class="option-li"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></li>
+                    
+                            <li class="option-li"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In process</span></li>
                         </ul>
                     </li>
                 </ul>    

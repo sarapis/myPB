@@ -210,9 +210,9 @@ class ExploreController extends Controller
     {
         $district = $request->input('District');
         $status = $request->input('Status');
-        $category = $request->input('Category');
-        
+        $category = $request->input('Category');        
         $city = $request->input('City');
+
         if($status == 'Not Funded'){
             $status = 'Rejected';
         }
@@ -225,8 +225,14 @@ class ExploreController extends Controller
             });
         }
 
-        if($status!=NULL){
-            $projects = $projects->where('project_status', 'like', '%'.$status.'%');
+        if($status!='NULL'){
+            if($status=='Rejected'){
+                
+                $projects = $projects->where('project_status', '=', 'Lost vote')->orwhere('project_status', '=', 'On hold - Requires Additional Funds')->orwhere('project_status', '=', 'Rejected');
+            }
+            else{
+                $projects = $projects->where('project_status', 'like', '%'.$status.'%');
+            }
         }
 
         if($category!=NULL){
