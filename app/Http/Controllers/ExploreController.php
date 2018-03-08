@@ -212,9 +212,11 @@ class ExploreController extends Controller
 
                 $projects = Project::with('process')->with('district')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
                    $q->whereBetween('vote_year', [$year_min, $year_max]); });
+                
+
                 $projects = $projects->get();
-                 var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
-                 exit(); 
+                 // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
+                 // exit(); 
                 
                 if($status == 'Not Funded'){
                     $status = 'Rejected';
