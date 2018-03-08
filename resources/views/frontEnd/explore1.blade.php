@@ -27,7 +27,13 @@ Breakpoints();
 <div class="panel">
     <div class="panel-body p-5">
         <div class="example table-responsive">
-            <table class="table table-striped toggle-arrow-tiny"  id="examplePagination">
+            <div id="exampleShow">
+                <button type="button" class="btn  btn-primary" data-page-size="5">5</button>
+                <button type="button" class="btn  btn-primary" data-page-size="10">10</button>
+                <button type="button" class="btn  btn-primary" data-page-size="15">15</button>
+                <button type="button" class="btn  btn-primary" data-page-size="20">20</button>
+            </div>
+            <table class="table table-striped toggle-arrow-tiny"  id="examplePagination" data-paging="true">
                 <thead>
                   <tr>
                     <th class="text-center">Status</th>
@@ -86,7 +92,7 @@ Breakpoints();
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colspan="5">
+                    <td colspan="20">
                       <div class="text-right">
                         <ul class="pagination">
                             

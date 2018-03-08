@@ -204,6 +204,7 @@ p{
 
 #btn-district, #btn-status, #btn-category, #btn-city{
   margin-top: 17px;
+  border: solid 2px;
 }
 .collapse.navbar-collapse.navbar-collapse-toolbar{
   background: #f1f4f5; 
@@ -452,3 +453,36 @@ p{
   background-color: transparent;
   border: 0;
 }
+/*
+.ui-menu .ui-menu-item:hover:before {
+    content: '' !important;
+    font-family: 'Font Awesome';
+    font-weight: normal;
+    font-style: normal;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 3px;
+    vertical-align: middle;
+    float: left;
+    color: white !important;
+}*/
+.ui-menu .ui-menu-item .ui-menu-item-wrapper:before {
+    content: '' !important;
+    font-family: 'Font Awesome';
+    font-weight: normal;
+    font-style: normal;
+    margin-left: 10px;
+    margin-right: 10px;    
+    vertical-align: middle;
+    float: left;
+}
+.ui-menu .ui-menu-item .ui-state-active{
+  background: #3f897a;
+  padding-left: 7px;
+    
+}
+/*.ui-menu .ui-menu-item{
+  width: 100%;
+  margin-left: 10px;
+  float: left;
+}*/

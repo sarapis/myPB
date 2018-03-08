@@ -49,10 +49,11 @@ class ExploreController extends Controller
             }
 
             if ($request->input('address')) {
-                $location = $request->input('address');
+                $location = $request->get('address');
                 // var_dump($location);
                 // exit();
-                // $location = str_replace(",","%",$location);
+                $location = str_replace("+","%20",$location);
+                $location = str_replace(",",",",$location);
                 $location = str_replace(" ","%20",$location);
                 
 
@@ -61,18 +62,23 @@ class ExploreController extends Controller
 
                 $result  = json_decode($content);
                 
-                $housenumber=$result->features[0]->properties->housenumber;
-                $street=$result->features[0]->properties->street;
-                $zipcode=$result->features[0]->properties->postalcode;
-                
-                $street = str_replace(" ","%20",$street);
-                $url = 'https://api.cityofnewyork.us/geoclient/v1/address.json?houseNumber=' . $housenumber . '&street=' . $street . '&zip=' . $zipcode . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
+                // var_dump($result->features[0]);
+                // exit();
+                //$housenumber=$result->features[3]->properties->housenumber;
+                // var_dump($housenumber);
+                // exit();
+                $name=$result->features[0]->properties->name;
+                $zip=$result->features[0]->properties->postalcode;
+                // var_dump($street, $zipcode);
+                // exit();
+                $name = str_replace(" ","%20",$name);
+                $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
 
                 $geoclient = file_get_contents($url);
 
                 $geo  = json_decode($geoclient);
 
-                $cityCouncilDistrict=$geo->address->cityCouncilDistrict;
+                $cityCouncilDistrict=$geo->place->cityCouncilDistrict;
                 
                 $projects= Project::with('district')->orwhereHas('district', function ($q)  use($cityCouncilDistrict){
                     $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);

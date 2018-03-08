@@ -30,7 +30,7 @@ Profile
     <!-- Panel -->      
     <div class="panel">
       <div class="panel-body">
-          <h2>{{$project->project_status}}</h2>
+          <h4><b>{{$project->project_status}}</b></h4>
           <h4>{{$project->status_date_updated}} {{$project->project_id}}</h4>
           <h4>{{$project->name_dept_agency_cbo}}</h4>
           <h4>{{$project->district->name}}</h4>
@@ -61,8 +61,7 @@ Profile
       <div id="mymap" style="height: 30vh;"></div>
       <div class="panel-body">
           <h4>{{$project->project_address_clean}}</h4>
-          <h4>{{$project->location_city}}</h4>
-          <h4>{{$project->state}}, {{$project->zipcode}}</h4>
+          <h4>{{$project->location_city}}, {{$project->state}}, {{$project->zipcode}}</h4>
       </div>
     </div>
   </div>

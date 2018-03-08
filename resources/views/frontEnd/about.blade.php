@@ -54,12 +54,54 @@ About
     </div>
 
 
-<script>
+<!-- <script>
   function initAutocomplete() {
+
+      var options = {
+        types: ['geocode'],
+        componentRestrictions: { country: 'us'}
+       };
+
       var input = document.getElementById('location');
-      var searchBox = new google.maps.places.SearchBox(input);
+      var searchBox = new google.maps.places.Autocomplete(input, options);
   }
+  </script> -->
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-RQR_KenWPqcgUbOtMLreNVWeTV1wcSo&libraries=places&callback=initAutocomplete" async defer></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script>
+
+$(function () {
+    var getData = function (request, response) {
+        $.getJSON(
+            "https://geosearch.planninglabs.nyc/v1/autocomplete?text=" + request.term,
+            function (data) {
+                response(data.features);
+                
+                var label = new Object();
+                for(i = 0; i < data.features.length; i++)
+                    label[i] = data.features[i].properties.label;
+                response(label);
+            });
+    };
+ 
+    var selectItem = function (event, ui) {
+        $("#location").val(ui.item.value);
+        return false;
+    }
+ 
+    $("#location").autocomplete({
+        source: getData,
+        select: selectItem,
+        minLength: 2,
+        change: function() {
+            console.log(selectItem);
+
+        }
+    });
+});
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-RQR_KenWPqcgUbOtMLreNVWeTV1wcSo&libraries=places&callback=initAutocomplete" async defer></script>
 @endsection
 

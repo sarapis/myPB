@@ -44,6 +44,10 @@
   // ----------
   (function() {
     $('#examplePagination').footable();
+
+    // var pagesize = 25;
+    // FooTable.get('#examplePagination').pageSize(pagesize);
+
     $('#exampleShow [data-page-size]').on('click', function(e) {
       e.preventDefault();
       var pagesize = $(this).data('pageSize');

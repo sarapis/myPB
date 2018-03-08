@@ -76,20 +76,20 @@
           $('#district li').click(function(){
 
               var value = $(this).html();
-              $('#btn-district span').html("District:"+value);
+              $('#btn-district span').html("District: "+value);
               $('#btn-district').show();
               sendfilter();
           });
           $('#projectstatus li').click(function(){
               var value = $('span',this).html();
-              $('#btn-status span').html("Status:"+value);
+              $('#btn-status span').html("Status: "+value);
               $('#btn-status').show();
               sendfilter();
           });
           $('#projectcategory li').click(function(){
               var value = $(this).html();
 
-              $('#btn-category span').html("Category:"+value);
+              $('#btn-category span').html("Category: "+value);
               
 
               $('#btn-category').show();
@@ -97,7 +97,7 @@
           });
           $('#cityagency li').click(function(){
               var value = $(this).html();
-              $('#btn-city span').html("City:"+value);
+              $('#btn-city span').html("City: "+value);
 
               $('#btn-city').show();
               sendfilter();
@@ -119,7 +119,7 @@
 
                   value_array = values.split(':');
                   value_array[1] = value_array[1].replace('&amp;','&');    
-
+                  value_array[1] = value_array[1].slice(1);
                   form_data.append(value_array[0],value_array[1]);
                   //form_data[] = value_array[1];
                 }
