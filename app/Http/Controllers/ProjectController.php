@@ -69,10 +69,11 @@ class ProjectController extends Controller
                 $project->neighborhood = isset($record['fields']['Neighborhood'])?$record['fields']['Neighborhood']:null;
                 $project->census_tract_or_local_id = isset($record['fields']['Census_Tract-or-Local_ID'])?$record['fields']['Census_Tract-or-Local_ID']:null;
                 $project->bin = isset($record['fields']['BIN'])?$record['fields']['BIN']:null;
-                $project->borough_code = isset($record['fields']['Borough Code'])?$record['fields']['Borough Code']:null;
+                $project->borough_code = isset($record['fields']['Borough_Code'])?$record['fields']['Borough_Code']:null;
                 $project->name_dept_agency_cbo = isset($record['fields']['Name_Dept_Agency_CBO'])? implode(",", $record['fields']['Name_Dept_Agency_CBO']):null;
                 $project->agency_code = isset($record['fields']['Agency_Code'])?implode(",", $record['fields']['Agency_Code']):null;
                 $project->agency_project_code = isset($record['fields']['Agency_Project_Code'])?$record['fields']['Agency_Project_Code']:null;
+                $project->vote_year = isset($record['fields']['Vote_Year'])?implode(",", $record['fields']['Vote_Year']):null;
                 $project ->save();
 
             }

@@ -205,16 +205,12 @@ class ExploreController extends Controller
                 $status = $request->input('Status');
                 $category = $request->input('Category');        
                 $city = $request->input('City');
-
             
-               
-               
 
-                $projects = Project::with('process')->with('district')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
-                   $q->whereBetween('vote_year', [$year_min, $year_max]); });
+                $projects = Project::with('district')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereBetween('vote_year', [$year_min, $year_max]);
                 
 
-                $projects = $projects->get();
+                // 
                  // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
                  // exit(); 
                 
@@ -223,18 +219,23 @@ class ExploreController extends Controller
                 }
 
                 if($district!=NULL){
-                    $projects = $projects->orwhereHas('district', function ($q)  use($district){
+                    $projects = $projects->with('district')->orwhereHas('district', function ($q)  use($district){
                        $q->where('name', '=', $district);
                     });
+                    // var_dump($projects);
+                    // exit();
                 }
                 
                 if($status!='NULL'){
                     if($status=='Rejected'){
                         
-                        $projects = $projects->where('project_status', '=', 'Lost vote')->orwhere('project_status', '=', 'On hold - Requires Additional Funds')->orwhere('project_status', '=', 'Rejected');
+
+                        $projects = $projects->where('project_status', '=', 'Lost vote')->orwhere('project_status','like', '=', 'On hold - Requires Additional Funds')->orwhere('project_status', '=', 'Rejected');
+                      
+                        
                     }
                     else{
-                        $projects = $projects->where('project_status', '=', "Complete");
+                        $projects = $projects->where('project_status', 'like', '%'.$status.'%');
                         
                     }
                 }
@@ -247,7 +248,8 @@ class ExploreController extends Controller
                     $projects = $projects->where('name_dept_agency_cbo', '=', $city);
                 }
                 
-                
+                $projects = $projects->get();
+
                 return view('frontEnd.explore1', compact('projects'))->render();
 
 
