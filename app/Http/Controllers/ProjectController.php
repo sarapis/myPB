@@ -50,7 +50,7 @@ class ProjectController extends Controller
                 $project->district_ward_name = isset($record['fields']['District-Ward_Name'])? implode(",", $record['fields']['District-Ward_Name']):null;
                 $project->win_text = isset($record['fields']['Win_Text'])?$record['fields']['Win_Text']:null;
                 $project->win_calculate = isset($record['fields']['Win_Calculate'])?$record['fields']['Win_Calculate']:null;
-                $project->votes = isset($record['fields']['Votes'])?$record['fields']['Votes']:null;
+                $project->votes = isset($record['fields']['Votes'])?$record['fields']['Votes']:0;
                 $project->vote_date = isset($record['fields']['Vote_Date'])?$record['fields']['Vote_Date']:null;
                 $project->pb_cycle = isset($record['fields']['PB_Cycle'])?$record['fields']['PB_Cycle']:null;
                 $project->cost_text = isset($record['fields']['Cost_Text'])?$record['fields']['Cost_Text']:null;
