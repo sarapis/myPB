@@ -52,6 +52,14 @@ About
         </div>
           <!-- End Panel -->
     </div>
+<!--     <div class="fade-in">
+      <div class="loader-overlay">
+        <div class="loader-content">
+          <div class="loader-index">
+          </div>
+        </div>
+      </div>
+    </div> -->
 
 
 <!-- <script>

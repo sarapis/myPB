@@ -232,7 +232,7 @@ class ExploreController extends Controller
                         
                         $projects = $projects->whereIn('project_status',['Lost vote', 'On hold - Requires Additional Funds', 'Rejected']);
                       
-                        
+
                     }
                     else{
                         $projects = $projects->where('project_status', 'like', '%'.$status.'%');
