@@ -194,12 +194,12 @@ class ExploreController extends Controller
     {
        
                 
-                $price_min = (int)$request->input('price_min');
-                $price_max = (int)$request->input('price_max');
-                $year_min = $request->input('year_min');
-                $year_max = $request->input('year_max');
-                $vote_min = (int)$request->input('vote_min');
-                $vote_max = (int)$request->input('vote_max');
+                $price_min = (int)$request->input('price_min')-1;
+                $price_max = (int)$request->input('price_max')+1;
+                $year_min = $request->input('year_min')-1;
+                $year_max = $request->input('year_max')+1;
+                $vote_min = (int)$request->input('vote_min')-1;
+                $vote_max = (int)$request->input('vote_max')+1;
 
                 $district = $request->input('District');
                 $status = $request->input('Status');
