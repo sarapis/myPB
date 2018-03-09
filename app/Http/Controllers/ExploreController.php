@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Project;
 use App\District;
 use App\Contact;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 class ExploreController extends Controller
 {
@@ -177,7 +181,7 @@ class ExploreController extends Controller
         
 
         $projects = Project::with('process')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
-               $q->whereBetween('vote_year', [$year_min, $year_max]); })->sortable()->paginate(20);;
+               $q->whereBetween('vote_year', [$year_min, $year_max]); })->sortable()->paginate(20);
 
         $districts = District::orderBy('name')->get();
         $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
@@ -194,44 +198,39 @@ class ExploreController extends Controller
     {
        
                 
-                $price_min = (int)$request->input('price_min')-1;
-                $price_max = (int)$request->input('price_max')+1;
-                $year_min = $request->input('year_min')-1;
-                $year_max = $request->input('year_max')+1;
-                $vote_min = (int)$request->input('vote_min')-1;
-                $vote_max = (int)$request->input('vote_max')+1;
+                $price_min = (int)$request->input('price_min');
+                $price_max = (int)$request->input('price_max');
+                $year_min = $request->input('year_min');
+                $year_max = $request->input('year_max');
+                $vote_min = (int)$request->input('vote_min');
+                $vote_max = (int)$request->input('vote_max');
 
                 $district = $request->input('District');
                 $status = $request->input('Status');
                 $category = $request->input('Category');        
                 $city = $request->input('City');
             
+                // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city);
+                //  exit(); 
 
-                $projects = Project::with('district')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereBetween('vote_year', [$year_min, $year_max]);
-                
-
-                // 
+                $projects = Project::whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereBetween('vote_year', [$year_min, $year_max]);
+                           
                  // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
                  // exit(); 
-                
-                if($status == 'Not Funded'){
-                    $status = 'Rejected';
-                }
+
 
                 if($district!=NULL){
 
-                     
-                    $projects = $projects->whereHas('district', function ($q)  use($district){
-                       $q->where('name', '=', $district);
-                    });
+                    $district = District::where('name', '=', $district)->first();
+                    $district = $district->recordid;
+                    $projects = $projects->where('district_ward_name', '=', $district);
                     
                 }
                 
-                if($status!='NULL'){
-                    if($status=='Rejected'){
+                if($status!=NULL){
+                    if($status=='Not Funded'){
                         
-
-                        $projects = $projects->where('project_status', '=', 'Lost vote')->orwhere('project_status','like', '=', 'On hold - Requires Additional Funds')->orwhere('project_status', '=', 'Rejected');
+                        $projects = $projects->whereIn('project_status',['Lost vote', 'On hold - Requires Additional Funds', 'Rejected']);
                       
                         
                     }
@@ -249,7 +248,9 @@ class ExploreController extends Controller
                     $projects = $projects->where('name_dept_agency_cbo', '=', $city);
                 }
                 
+                
                 $projects = $projects->get();
+
 
                 return view('frontEnd.explore1', compact('projects'))->render();
 

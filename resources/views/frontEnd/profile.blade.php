@@ -15,15 +15,21 @@ Profile
 @section('content')
 
   <div class="col-md-12">
-      @if($project->project_status=='Complete')
-          <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check m-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
-      @elseif($project->project_status=='Rejected')
-          <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
-      @elseif($project->project_status=='Project Status Needed')
-          <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button>{{$project->project_title}}</h3>
-      @else
-      <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus m-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
-      @endif
+  
+          @if($project->project_status=='Complete')
+              <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
+          @elseif($project->project_status=='Project Status Needed')
+              <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button>{{$project->project_title}}</h3>
+          @elseif($project->project_status=='Rejected')
+              <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
+          @elseif($project->project_status=='Lost vote')
+              <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
+          @elseif($project->project_status=='On hold - Requires Additional Funds')
+              <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
+          @else
+              <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
+          @endif
+
   </div>
 
   <div class="col-md-7">
