@@ -219,11 +219,12 @@ class ExploreController extends Controller
                 }
 
                 if($district!=NULL){
-                    $projects = $projects->with('district')->orwhereHas('district', function ($q)  use($district){
+
+                     
+                    $projects = $projects->whereHas('district', function ($q)  use($district){
                        $q->where('name', '=', $district);
                     });
-                    // var_dump($projects);
-                    // exit();
+                    
                 }
                 
                 if($status!='NULL'){
