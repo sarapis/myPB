@@ -4,8 +4,7 @@ Explore
 @stop
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="../../../frontend/global/vend/footable/footable.core.css">
-  <link rel="stylesheet" href="../../frontend/assets/examples/css/tables/footable.css">
+
 <style type="text/css">
 .table a{
     text-decoration:none !important;
@@ -31,14 +30,14 @@ Explore
                 <div class="example table-responsive">
                     <table class="table table-striped toggle-arrow-tiny"  id="examplePagination">
                         <thead>
-                          <tr>
+                          <tr class="footable-header">
                             <th class="text-center">@sortablelink('project_status', 'Status')</th>
                             <th class="pr-20">@sortablelink('project_title', 'Name')</th>
-                            <th data-breakpoints="all">@sortablelink('cost_num', 'Price')</th>
+                            <!-- <th data-breakpoints="all">@sortablelink('cost_num', 'Price')</th>
                             <th data-breakpoints="all">@sortablelink('process.vote_year', 'Year')</th>
                             <th data-breakpoints="all">@sortablelink('votes', 'Votes')</th>
                             <th data-breakpoints="all">@sortablelink('status_date_updated', 'Update')</th>
-                            <th data-toggle="true"></th>
+                            <th data-toggle="true"></th> -->
                           </tr>
                         </thead>
                         <tbody>
@@ -66,7 +65,7 @@ Explore
                                         <a href="/profile/{{$project->id}}">{{$project->project_title}}</a>
                                     @endif
                                 </td>
-                                <td>
+                                <!-- <td>
                                     @if($project->cost_num!='')
                                         ${{number_format($project->cost_num)}}
                                     @endif
@@ -85,8 +84,8 @@ Explore
                                     @if($project->status_date_updated!='')
                                         {{$project->status_date_updated}}
                                     @endif
-                                </td>
-                                <td></td>
+                                </td> -->
+                                <td><i class="fa fa-chevron-right" style="padding-top: 8px;"></i></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -122,7 +121,6 @@ Explore
 
 });
 </script>
-@endsection
 <script>
 $(document).ready(function(){
     $(document).ajaxStart(function(){
@@ -144,4 +142,6 @@ $(document).ready(function(){
     });
 });
 </script>
+@endsection
+
 

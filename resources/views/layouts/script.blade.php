@@ -1,6 +1,5 @@
 <!-- Core  -->
   <script src="../../../frontend/global/vend/babel-external-helpers/babel-external-helpers.js"></script>
-  <!-- <script src="../../../frontend/global/vend/jquery/jquery.js"></script> -->
   <script src="../../../frontend/global/vend/tether/tether.js"></script>
   <script src="../../../frontend/global/vend/bootstrap/bootstrap.js"></script>
   <script src="../../../frontend/global/vend/animsition/animsition.js"></script>
@@ -14,8 +13,7 @@
   <script src="../../../frontend/global/vend/screenfull/screenfull.js"></script>
   <script src="../../../frontend/global/vend/slidepanel/jquery-slidePanel.js"></script>
   <script src="../../../frontend/global/vend/moment/moment.min.js"></script>
-  <script src="../../../frontend/global/vend/footable/footable.js"></script>
-  <script src="../../../frontend/global/vend/footable/footable.paging.js"></script>
+  
   <!-- Scripts -->
   <script src="../../../frontend/global/js/State.js"></script>
   <script src="../../../frontend/global/js/Component.js"></script>
@@ -37,7 +35,7 @@
   <script src="../../../frontend/global/js/Plugin/asscrollable.js"></script>
   <script src="../../../frontend/global/js/Plugin/slidepanel.js"></script>
   <script src="../../../frontend/global/js/Plugin/switchery.js"></script>
-  <script src="../../frontend/assets/examples/js/tables/footable.js"></script>
+
   <script>
   (function(document, window, $) {
     'use strict';

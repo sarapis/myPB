@@ -35,14 +35,14 @@ Breakpoints();
             </div> -->
             <table class="table table-striped toggle-arrow-tiny"  id="examplePagination" data-paging="true">
                 <thead>
-                  <tr>
+                  <tr class="footable-header">
                     <th class="text-center">Status</th>
                     <th data-toggle="true" class="pr-20">Name</th>
-                    <th data-breakpoints="all">Price</th>
+<!--                     <th data-breakpoints="all">Price</th>
                     <th data-breakpoints="all">Year</th>
                     <th data-breakpoints="all">Votes</th>
                     <th data-breakpoints="all">Update</th>
-                    <th data-breakpoints="all"></th>
+                    <th data-breakpoints="all"></th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -70,7 +70,7 @@ Breakpoints();
                                 <a href="/profile/{{$project->id}}">{{$project->project_title}}</a>
                             @endif
                         </td>
-                        <td>
+                        <!-- <td>
                             @if($project->cost_num!='')
                                 ${{number_format($project->cost_num)}}
                             @endif
@@ -89,8 +89,8 @@ Breakpoints();
                             @if($project->status_date_updated!='')
                                 {{$project->status_date_updated}}
                             @endif
-                        </td>
-                        <td></td>
+                        </td> -->
+                        <td><i class="fa fa-chevron-right" style="padding-top: 8px;"></i></td>
                     </tr>
                     @endforeach
                 </tbody>
