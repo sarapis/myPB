@@ -128,28 +128,28 @@
             <div class="tab-pane" id="exampleTopComponents" role="tabpanel">
                 <ul class="list-unstyled components">
                     <li class="nav-tabs">
-                        <a href="?sort=cost_num&order=asc">Price: Low to High</a>
+                        <a>Price: Low to High</a>
                     </li>
                     <li class="nav-tabs">
-                        <a href="?sort=cost_num&order=desc">Price: High to Low</a>
+                        <a>Price: High to Low</a>
                     </li>
                     <li class="nav-tabs">
-                        <a href="?sort=process.vote_year&order=asc">Year: Low to High</a>
+                        <a>Year: Low to High</a>
                     </li>
                     <li class="nav-tabs">
-                        <a href="?sort=process.vote_year&order=desc">Year: High to Low</a>
+                        <a>Year: High to Low</a>
                     </li>
                     <li class="nav-tabs">
-                        <a href="?sort=votes&order=asc">Votes: Low to High</a>
+                        <a>Votes: Low to High</a>
                     </li>
                     <li class="nav-tabs">
-                        <a href="?sort=votes&order=desc">Votes: High to Low</a>
+                        <a>Votes: High to Low</a>
                     </li>
                     <li class="nav-tabs">
-                        <a href="?sort=status_date_updated&order=asc">Update: Low to High</a>
+                        <a>Update: Low to High</a>
                     </li>
                     <li class="nav-tabs">
-                        <a href="?sort=status_date_updated&order=desc">Update: High to Low</a>
+                        <a>Update: High to Low</a>
                     </li>
                 </ul>
             </div>

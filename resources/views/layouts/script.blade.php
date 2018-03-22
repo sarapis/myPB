@@ -55,7 +55,7 @@
   </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script type="text/javascript">
       $(document).ready(function () {
-          
+          var selected_sort="";
           $("#sidebar").mCustomScrollbar({
               theme: "minimal"
           });
@@ -138,6 +138,10 @@
     //   }
     // });
 
+    $('#exampleTopComponents a').click(function(){
+        selected_sort = $(this).html();
+        sendfilter();
+    });
 
      $( "#slider-range-year" ).slider({ 
       range: true, 
@@ -183,6 +187,8 @@
             form_data.append('vote_max',$( "#slider-range-vote" ).slider( "values", 1 ));
             form_data.append('year_min',$( "#slider-range-year" ).slider( "values", 0 ));
             form_data.append('year_max',$( "#slider-range-year" ).slider( "values", 1 ));
+            if(selected_sort)
+              form_data.append('selected_sort',selected_sort);
             form_data.append('is_ajax',1);
             
             $('#filter_buttons button').each(function(index){
@@ -213,7 +219,7 @@
               processData: false,
               success: function(data) {
                 
-                //console.log(111);              
+                console.log(data);
                 $('#content').html(data);
               },
               error: function(errResponse) {
