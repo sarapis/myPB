@@ -81,7 +81,7 @@ class ExploreController extends Controller
                 
                 $address_district=$address_district->name;
                 
-                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district'));
+                return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district','location'));
             }
 
         $projects = Project::sortable()->paginate(20);
@@ -146,6 +146,7 @@ class ExploreController extends Controller
                 $category = $request->input('Category');        
                 $city = $request->input('City');
                 $sort = $request->input('selected_sort');
+                $location = $request->input('address');
 
                 // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city);
                 //  exit(); 
@@ -154,7 +155,7 @@ class ExploreController extends Controller
                            
                  // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
                  // exit(); 
-
+                
 
                 if($district!=NULL){
 
@@ -220,11 +221,56 @@ class ExploreController extends Controller
                     }
 
                 }
+                $address_district="";
+
+                if($location != NULL)
+                {
+                    
+                    $location = str_replace("+","%20",$location);
+                    $location = str_replace(",",",",$location);
+                    $location = str_replace(" ","%20",$location);
+                    
+
+                    $content = file_get_contents("https://geosearch.planninglabs.nyc/v1/autocomplete?text=".$location);
+
+
+                    $result  = json_decode($content);
+                    
+                    // var_dump($result->features[0]);
+                    // exit();
+                    //$housenumber=$result->features[3]->properties->housenumber;
+                    // var_dump($housenumber);
+                    // exit();
+                    $name=$result->features[0]->properties->name;
+                    $zip=$result->features[0]->properties->postalcode;
+                    // var_dump($street, $zipcode);
+                    // exit();
+                    $name = str_replace(" ","%20",$name);
+                    $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
+
+                    $geoclient = file_get_contents($url);
+
+                    $geo  = json_decode($geoclient);
+
+                    $cityCouncilDistrict=$geo->place->cityCouncilDistrict;
+                    
+                    $projects= $projects->with('district')->orwhereHas('district', function ($q)  use($cityCouncilDistrict){
+                        $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
+                    });
+
+                    $address_district=District::where('cityCouncilDistrict', '=', $cityCouncilDistrict)->first();
                 
+                
+                    if($address_district == NULL){
+                        return redirect()->back();
+                    }
+                    
+                    $address_district=$address_district->name;
+                }
                 $projects = $projects->get();
 
 
-                return view('frontEnd.explore1', compact('projects'))->render();
+                return view('frontEnd.explore1', compact('projects','address_district'))->render();
 
 
     }

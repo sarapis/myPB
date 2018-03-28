@@ -190,7 +190,7 @@
             if(selected_sort)
               form_data.append('selected_sort',selected_sort);
             form_data.append('is_ajax',1);
-            
+            form_data.append('address',$('#location').val());
             $('#filter_buttons button').each(function(index){
                 
                 if($(this).css('display') != 'none')

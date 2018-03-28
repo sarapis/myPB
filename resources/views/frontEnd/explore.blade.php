@@ -26,6 +26,7 @@ Explore
         <!-- <div id="map" style="height: 30vh;"></div> -->
         <!-- Example Striped Rows -->
         <div class="panel">
+
             <div class="panel-body p-5">
                 <div class="example table-responsive">
                     <table class="table table-striped toggle-arrow-tiny"  id="examplePagination">
@@ -115,10 +116,9 @@ Explore
     var address_district = <?php echo json_encode($address_district); ?>;
     if( address_district != ''){
     
-        $('#btn-district span').html("District:"+address_district);
+        $('#btn-district span').html("District: "+address_district);
         $('#btn-district').show();
     };
-
 });
 </script>
 <script>

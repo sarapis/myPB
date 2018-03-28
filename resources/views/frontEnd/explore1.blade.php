@@ -130,6 +130,13 @@ $(document).ready(function(){
           loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
           onLoadEvent: true
         });
+
+        var address_district = <?php echo json_encode($address_district); ?>;
+        if( address_district != ''){
+        
+            $('#btn-district span').html("District:"+address_district);
+            $('#btn-district').show();
+        };
     });
     $(document).ajaxComplete(function(){
 

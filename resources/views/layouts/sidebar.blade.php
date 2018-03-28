@@ -156,3 +156,11 @@
         </div>
     </div>
 </nav>
+<?php
+var_dump(isset($location));
+?>
+@if(isset($location) == TRUE)
+    <input type="hidden" name="location" id="location" value="{{$location}}">
+@else
+    <input type="hidden" name="location" id="location" value="">
+@endif
