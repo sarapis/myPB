@@ -34,15 +34,15 @@ Home
                     <div class="form-group">
                         <h4 class="text-white">Does your NYC neighborhood do PB?</h4>
                         <form method="get" action="/explore">
-                        <div class="form-group">
-                            
-                              <div class="input-search">
-                                  <i class="input-search-icon md-search" aria-hidden="true"></i>
-                                  <input id="location" type="text" class="form-control text-black" name="address" placeholder="Search Street Address" style="border-radius:0;">
-                              </div>
-                            
-                        </div>
-                        <button type="submit" class="btn_findout"><h4 class="text-white mb-0">FIND OUT!</h4></button>
+                          <div class="form-group">
+                              
+                                <div class="input-search">
+                                    <i class="input-search-icon md-search" aria-hidden="true"></i>
+                                    <input id="location" type="text" class="form-control text-black" name="address" placeholder="Search Street Address" style="border-radius:0;">
+                                </div>
+                              
+                          </div>
+                          <button type="submit" class="btn_findout"><h4 class="text-white mb-0">FIND OUT!</h4></button>
                         </form>
                     </div>
                 </div>
@@ -59,5 +59,8 @@ Home
       var searchBox = new google.maps.places.SearchBox(input);
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-RQR_KenWPqcgUbOtMLreNVWeTV1wcSo&libraries=places&callback=initAutocomplete" async defer></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-RQR_KenWPqcgUbOtMLreNVWeTV1wcSo&libraries=places&callback=initAutocomplete" async defer></script> -->
 @endsection
