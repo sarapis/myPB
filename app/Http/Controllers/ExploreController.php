@@ -76,7 +76,7 @@ class ExploreController extends Controller
                 
                 
                 if($address_district == NULL){
-                    return redirect()->back();
+                    return redirect('/about');
                 }
                 
                 $address_district=$address_district->name;
@@ -262,7 +262,7 @@ class ExploreController extends Controller
                 
                 
                     if($address_district == NULL){
-                        return redirect()->back();
+                        return redirect('/about');
                     }
                     
                     $address_district=$address_district->name;
