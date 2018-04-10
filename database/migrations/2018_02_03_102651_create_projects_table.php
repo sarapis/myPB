@@ -20,6 +20,7 @@ class CreateProjectsTable extends Migration
                 $table->string('project_title')->nullable();
                 $table->text('project_description')->nullable();
                 $table->string('project_status')->nullable();
+                $table->integer('project_status_flag')->nullable();
                 $table->string('status_date_updated')->nullable();
                 $table->string('process_id')->nullable();
                 $table->string('source_ballot_link')->nullable();

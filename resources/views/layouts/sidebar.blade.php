@@ -42,12 +42,14 @@
                         <ul class="collapse list-unstyled option-ul" id="projectstatus">
                     
                             <li class="option-li"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Complete</span></li>
+
+                            <li class="option-li"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In process</span></li>
                         
                             <li class="option-li"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Not Funded</span></li>
                       
                             <li class="option-li"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></li>
                     
-                            <li class="option-li"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In process</span></li>
+                            
                         </ul>
                     </li>
                 </ul>    
@@ -146,10 +148,10 @@
                         <a>Votes: High to Low</a>
                     </li>
                     <li class="nav-tabs">
-                        <a>Update: Low to High</a>
+                        <a>Status: Complete to Needed</a>
                     </li>
                     <li class="nav-tabs">
-                        <a>Update: High to Low</a>
+                        <a>Status: Needed to Complete</a>
                     </li>
                 </ul>
             </div>

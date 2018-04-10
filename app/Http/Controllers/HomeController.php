@@ -14,15 +14,24 @@ class HomeController extends Controller
 
     	return view('frontEnd.home', compact('home'));
     }
+
     public function about($value='')
     {
         $about = Page::where('name', 'About')->first();
         return view('frontEnd.about', compact('about'));
     }
+
+    public function feedback($value='')
+    {
+        $feedback = Page::where('name', 'Feedback')->first();
+        return view('frontEnd.feedback', compact('feedback'));
+    }
+
     public function YourhomePage($value='')
     {
     	return view('home');
     }
+
     public function dashboard($value='')
     {
     	return view('backEnd.dashboard');

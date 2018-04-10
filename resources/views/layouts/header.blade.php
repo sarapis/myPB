@@ -21,7 +21,10 @@
             <a class="nav-link text-white" href="https://www.participatorybudgeting.org/donate/" target="_blank"><b>Donate</b></a>
           </li>
           <li class="nav-item">
-            <div id="google_translate_element" class="nav-link">
+            <a class="nav-link text-white" href="/feedback"><b>Feedback</b></a>
+          </li>
+          <li class="nav-item">
+            <div id="google_translate_element" class="nav-link"><!-- <b>Languages</b> -->
             </div>
           </li>
         </ul>

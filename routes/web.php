@@ -21,6 +21,7 @@ Route::get('/admin', function () {
     return redirect('/login');
 });
 Route::get('/about', ['uses' => 'HomeController@about']);
+Route::get('/feedback', ['uses' => 'HomeController@feedback']);
 Route::get('/explore', 'ExploreController@index');
 
 // Route::post('/explore', 'ExploreController@index');

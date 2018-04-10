@@ -212,12 +212,12 @@ class ExploreController extends Controller
                         $projects = $projects->orderBy('votes', 'desc');
                     }
 
-                    if($sort=='Update: Low to High'){
-                        $projects = $projects->orderBy('status_date_updated');
+                    if($sort=='Status: Complete to Needed'){
+                        $projects = $projects->orderBy('project_status_flag');
                     }
 
-                    if($sort=='Update: High to Low'){
-                        $projects = $projects->orderBy('status_date_updated', 'desc');
+                    if($sort=='Status: Needed to Complete'){
+                        $projects = $projects->orderBy('project_status_flag', 'desc');
                     }
 
                 }
