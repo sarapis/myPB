@@ -26,6 +26,9 @@
   <link rel="stylesheet" href="../../../frontend/global/vend/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="../../../frontend/global/vend/waves/waves.css">
   <!-- Fonts -->
+<!--   <link rel="stylesheet" href="../../../frontend/global/vend/footable/footable.bootstrap.css">
+  <link rel="stylesheet" href="../../../frontend/global/vend/footable/footable.core.css">
+  <link rel="stylesheet" href="../../assets/examples/css/tables/footable.css"> -->
   <link rel="stylesheet" href="../../../../frontend/global/fonts/web-icons/web-icons.css">
    <link rel="stylesheet" href="../../../../frontend/global/fonts/font-awesome/font-awesome.css">
   <link rel="stylesheet" href="../../../frontend/global/fonts/material-design/material-design.min.css">

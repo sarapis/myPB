@@ -13,7 +13,7 @@
   <script src="../../../frontend/global/vend/screenfull/screenfull.js"></script>
   <script src="../../../frontend/global/vend/slidepanel/jquery-slidePanel.js"></script>
   <script src="../../../frontend/global/vend/moment/moment.min.js"></script>
-  
+<!--   <script src="../../../frontend/global/vend/footable/footable.min.js"></script> -->
   <!-- Scripts -->
   <script src="../../../frontend/global/js/State.js"></script>
   <script src="../../../frontend/global/js/Component.js"></script>
@@ -35,7 +35,7 @@
   <script src="../../../frontend/global/js/Plugin/asscrollable.js"></script>
   <script src="../../../frontend/global/js/Plugin/slidepanel.js"></script>
   <script src="../../../frontend/global/js/Plugin/switchery.js"></script>
-
+<!--   <script src="../../assets/examples/js/tables/footable.js"></script> -->
   <script>
   (function(document, window, $) {
     'use strict';

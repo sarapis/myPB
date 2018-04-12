@@ -4,7 +4,7 @@
 @include('layouts.header')
 
     <!-- page content -->
-    <div class="page container-fluid">
+    <div class="page container-fluid pl-0">
 
 	    @yield('content')
 	<div class="overlay"></div>    
