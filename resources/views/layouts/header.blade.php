@@ -10,25 +10,20 @@
       <a class="navbar-brand nav-item nav-link mr-0 pl-0 pr-5" href="/about">About</a>
       <a class="navbar-brand nav-item nav-link mr-0 pl-0 pr-5" href="https://www.participatorybudgeting.org/donate/" target="_blank">Donate</a>
       <a class="navbar-brand nav-item mr-0 pl-0 pr-5" href="">Español</a> -->
-        <ul class="nav navbar-toolbar nav-menubar">
+        
+        <ul class="nav navbar-toolbar nav-menubar pull-right">
           <li class="nav-item">
             <a class="nav-link text-white" href="/explore"><b>Explore</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/about"><b>About</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="https://www.participatorybudgeting.org/donate/" target="_blank"><b>Donate</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/feedback"><b>Feedback</b></a>
           </li>
           <li class="nav-item">
             <div id="google_translate_element" class="nav-link"><!-- <b>Languages</b> -->
             </div>
           </li>
+          <li class="nav-item">
+            <div class="sharethis-inline-share-buttons pt-10"></div>
+          </li>
         </ul>
-        <div class="sharethis-inline-share-buttons pt-10"></div>
+        
     </div>
     <div class="navbar-container container-fluid p-0">
       <!-- Navbar Collapse -->

@@ -181,7 +181,7 @@ li.status-side:hover {
 }
 
 .bg-custom{
-  background-color: #3f897a;
+  background-color: #3f8a7b;
 }
 
 p{
@@ -194,9 +194,10 @@ p{
     width: calc(100% - 270px);
     padding: 0px;
     transition: all 0.3s;
-    position: absolute;
+    margin-left: 270px; 
+/*    position: absolute;
     top: 0;
-    right: 0;
+    right: 0;*/
 }
 #content.active {
     width: 100%;
@@ -234,6 +235,24 @@ p{
     }
     #content{
       padding-top: 50px;
+      margin-left: 0;
+    }
+    .feedback-btn{
+      text-align: center;
+      padding-bottom: 40px;
+    }
+    .fd-learn{
+      border-right: solid 0px !important;
+      border-bottom: solid 1px #acacac;
+      text-align: center;
+    }
+    .fd-more{
+      padding-bottom: 30px;
+    }
+    .fd-design{
+      padding-left: 15px !important;
+      padding-top: 30px;
+      text-align: center;
     }
 }
 
@@ -481,8 +500,44 @@ p{
   padding-left: 7px;
     
 }
-/*.ui-menu .ui-menu-item{
-  width: 100%;
-  margin-left: 10px;
-  float: left;
-}*/
+.site-footer {
+  padding: 0;
+  height: auto;
+}
+.footer-feedback{
+  background-color: #3f8a7b;
+  min-height: 68px;
+  color: white;
+}
+.feedback-title{
+  font-size: 1.3em;
+  color: white;
+}
+.btn-feedback{
+  background-color: #b8e6e2;
+  color: #3c3c3c;
+  width: 140px;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  height: 45px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16)
+}
+.footer-content{
+  background-color: #464646;
+  color: white;
+  padding: 20px 8% 20px 8%;
+}
+.fd-content{
+  font-family: Roboto,sans-serif;
+  font-size: 1.3em;
+  font-weight: 500;
+}
+.fd-link{
+  font-size: 1.2em;
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+}
+.fd-learn{
+  border-right: solid 1px #acacac;
+}

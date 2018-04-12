@@ -16,7 +16,7 @@ Feedback
     }
 </style>
 @section('content')
-    <div class="row p-20">
+    <div class="row pt-20">
         <div class="col-xl-7 col-md-7">
           <!-- Panel -->
           <div class="panel">
