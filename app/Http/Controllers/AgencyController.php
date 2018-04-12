@@ -20,7 +20,7 @@ class AgencyController extends Controller
             'base'      => 'appeLDUKUOowGqOP5',
         ));
 
-        $request = $airtable->getContent( 'Agency' );
+        $request = $airtable->getContent( 'Agency_CBO' );
 
         do {
 

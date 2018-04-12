@@ -19,13 +19,6 @@ Explore
 }
 </style>
 
-  <style type="text/css">
-    #map {
-      width: 100%;
-      height: 100%;
-      margin-top: 23px;
-    }
-  </style>
 @section('content')
 <div class="wrapper">
     @include('layouts.sidebar')
@@ -33,8 +26,8 @@ Explore
     <div id="content">
         <!-- <div id="map" style="height: 30vh;"></div> -->
         <!-- Example Striped Rows -->
-        <div class="row container-fluid">
-            <div class="col-md-8 pl-0 pr-0">
+        <div class="row">
+            <div class="col-md-8 pr-0">
                 <div class="panel m-15 content-panel">
 
                     <div class="panel-body p-0">

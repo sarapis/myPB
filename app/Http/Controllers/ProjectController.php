@@ -45,11 +45,12 @@ class ProjectController extends Controller
                 $project->project_status = isset($record['fields']['Project_Status'])?$record['fields']['Project_Status']:null;
                 if(isset($record['fields']['Project_Status']))
                 {
-                    $flag = array('Lost vote'=> 3, 'Rejected'=>3, 'On hold - Requires Additional Funds'=>3, 'In process: Funds Appropriated'=>2, 'In process: In Design'=>2, 'In process: out for Bid'=> 2, 'In process: Pre-construction'=> 2, 'In process: Scoping'=>2, 'In process: Under Construction'=>2, 'Complete'=>1, 'Project Status Needed'=>4);
+                    $flag = array('Not funded: Lost vote'=> 3, 'Not funded: Not Eligible'=>3, 'Not funded: Requires Additional Funds'=>3, 'Not funded: Funds Not Appropriated'=>3,'In process: Funds Appropriated'=>2, 'In process: In Design'=>2, 'In process: Out for Bid'=> 2, 'In process: Part of Capital Plan - Funding Approved'=> 2,  'In process: Pre-construction'=> 2, 'In process: PREPARING BID'=> 2, 'In process: Scoping'=>2, 'In process: Under Construction'=>2, 'Complete'=>1, 'Project Status Needed'=>4);
                     $project->project_status_flag = $flag[$record['fields']['Project_Status']];                    
                 }
 
                 $project->status_date_updated = isset($record['fields']['Status_date_updated'])?$record['fields']['Status_date_updated']:null;
+                $project->agency_code = isset($record['fields']['Agency_Code'])?implode(",", $record['fields']['Agency_Code']):null;
                 $project->process_id = isset($record['fields']['Process_ID'])? implode(",", $record['fields']['Process_ID']):null;
 
                 $project->source_ballot_link = isset($record['fields']['Source_Ballot_Link'])?$record['fields']['Source_Ballot_Link']:null;
@@ -61,6 +62,10 @@ class ProjectController extends Controller
                 $project->pb_cycle = isset($record['fields']['PB_Cycle'])?$record['fields']['PB_Cycle']:null;
                 $project->cost_text = isset($record['fields']['Cost_Text'])?$record['fields']['Cost_Text']:null;
                 $project->cost_num = isset($record['fields']['Cost_Num'])? $record['fields']['Cost_Num']:null;
+                $project->fiscal_year = isset($record['fields']['fiscal_year'])? $record['fields']['fiscal_year']:null;              
+                $project->cost_appropriated = isset($record['fields']['cost_appropriated'])? $record['fields']['cost_appropriated']:null;
+                $project->cost_subproject = isset($record['fields']['cost_subproject'])? $record['fields']['cost_subproject']:null;
+                $project->vote_year = isset($record['fields']['Vote_Year'])?implode(",", $record['fields']['Vote_Year']):null;
                 $project->category_topic_committee_raw = isset($record['fields']['Category_Topic_Committee_Raw'])? $record['fields']['Category_Topic_Committee_Raw']:null;
                 $project->category_type_topic_standardize = isset($record['fields']['Category_Type_Topic_Standardize'])? $record['fields']['Category_Type_Topic_Standardize']:null;
                 $project->project_location_raw = isset($record['fields']['Project_Location_Raw'])?$record['fields']['Project_Location_Raw']:null;
@@ -77,9 +82,9 @@ class ProjectController extends Controller
                 $project->bin = isset($record['fields']['BIN'])?$record['fields']['BIN']:null;
                 $project->borough_code = isset($record['fields']['Borough_Code'])?$record['fields']['Borough_Code']:null;
                 $project->name_dept_agency_cbo = isset($record['fields']['Name_Dept_Agency_CBO'])? implode(",", $record['fields']['Name_Dept_Agency_CBO']):null;
-                $project->agency_code = isset($record['fields']['Agency_Code'])?implode(",", $record['fields']['Agency_Code']):null;
+                
                 $project->agency_project_code = isset($record['fields']['Agency_Project_Code'])?$record['fields']['Agency_Project_Code']:null;
-                $project->vote_year = isset($record['fields']['Vote_Year'])?implode(",", $record['fields']['Vote_Year']):null;
+                
                 $project ->save();
 
             }

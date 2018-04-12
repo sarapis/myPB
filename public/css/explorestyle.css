@@ -262,6 +262,9 @@ p{
       padding-top: 30px;
       text-align: center;
     }
+    #map {
+      display: none;
+    }
 }
 
 .nav.nav-tabs.nav-tabs-line{
@@ -551,4 +554,9 @@ p{
 }
 .table a{
   color: #424242;
+}
+#map {
+  width: 100%;
+  height: 100%;
+  margin-top: 23px;
 }
