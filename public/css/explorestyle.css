@@ -40,19 +40,21 @@ a, a:hover, a:focus {
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
 #sidebar {
-    width: 270px;
-    position: fixed;
-    top: 67.5px;
-    left: 0;
-    height: 100vh;
-    z-index: 999;
+    min-width: 270px;
+    max-width: 270px;
     background: #f3f3f3;
     color: #424242;
+    z-index: 300;
+    padding-top: 22px;
     transition: all 0.3s;
-    z-index: 3000;
     box-shadow: 0 1px 6px rgba(57,73,76,.35);
-    overflow-y: scroll;
+
 }
 
 #sidebar.active {
@@ -187,6 +189,9 @@ li.status-side:hover {
 p{
     color: #424242;
 }
+.content-panel{
+  background: #f3f3f3;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -194,7 +199,7 @@ p{
     width: calc(100% - 270px);
     padding: 0px;
     transition: all 0.3s;
-    margin-left: 270px; 
+    background: white;
 /*    position: absolute;
     top: 0;
     right: 0;*/
@@ -209,6 +214,9 @@ p{
 }
 .collapse.navbar-collapse.navbar-collapse-toolbar{
   background: #f1f4f5; 
+}
+.mCustomScrollBox{
+  height: auto !important;
 }
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -540,4 +548,7 @@ p{
 }
 .fd-learn{
   border-right: solid 1px #acacac;
+}
+.table a{
+  color: #424242;
 }

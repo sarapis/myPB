@@ -24,8 +24,8 @@
 Breakpoints();
 </script>
 
-<div class="panel">
-    <div class="panel-body p-5">
+<div class="panel m-15 content-panel">
+    <div class="panel-body p-0">
         <div class="example table-responsive">
 <!--             <div id="exampleShow">
                 <button type="button" class="btn  btn-primary" data-page-size="5">5</button>
@@ -90,7 +90,7 @@ Breakpoints();
                                 {{$project->status_date_updated}}
                             @endif
                         </td> -->
-                        <td><i class="fa fa-chevron-right" style="padding-top: 8px;"></i></td>
+                        <td><i class="fa fa-chevron-right" style="padding-top: 8px;color: #000000;"></i></td>
                     </tr>
                     @endforeach
                 </tbody>

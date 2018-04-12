@@ -85,8 +85,10 @@ class ExploreController extends Controller
             }
 
         $projects = Project::sortable()->paginate(20);
+
+        $location_maps = Project::all();
         
-        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'count', 'address_district'));
+        return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'count', 'address_district', 'location_maps'));
     }
 
   

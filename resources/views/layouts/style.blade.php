@@ -45,8 +45,8 @@
     <![endif]-->
   <!-- Scripts -->
   
-  <script src="../../../frontend/global/vend/jquery/jquery.js"></script>
-<!--   <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+  <!-- <script src="../../../frontend/global/vend/jquery/jquery.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
@@ -56,6 +56,11 @@
   Breakpoints();
   </script>
   <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5a98fe1e54d8310013ae576a&product=inline-share-buttons' async='async'></script>
+  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTMtpxeKLL1goekXSe73nSY8mtgK9q2ys&v=3.exp&callback=initMap"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-Ba1uQA_-eQ0zAA-ymOSrfrakLUZsHo">
+    </script>
+  <script src="{{asset('js/gmaps.js')}}"></script>
+
  <style>
   body{
     top: 0 !important;
