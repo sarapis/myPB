@@ -135,10 +135,20 @@ $(document).ready(function(){
   var locations = <?php print_r(json_encode($projects)) ?>;
   console.log(locations);
 
+     var sumlat = 0.0;
+    var sumlng = 0.0;
+    for(var i = 0; i < locations['data'].length; i ++)
+    {
+        sumlat += parseFloat(locations['data'][i].latitude);
+        sumlng += parseFloat(locations['data'][i].longitude);
+
+    }
+    var avglat = sumlat/locations['data'].length;
+    var avglng = sumlng/locations['data'].length;
     var mymap = new GMaps({
       el: '#map',
-      lat: 40.726172,
-      lng: -73.910452,
+      lat: avglat,
+      lng: avglng,
       zoom:10
     });
 
