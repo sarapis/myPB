@@ -25,7 +25,8 @@ Breakpoints();
 </script>
 
 <div class="row">
-    <div class="col-md-8 p-0">
+    <div class="col-md-8 pr-0">
+
         <div class="panel m-15 content-panel">
             <div class="panel-body p-0">
                 <div class="example table-responsive">
@@ -96,8 +97,10 @@ Breakpoints();
 <script src="../../frontend/assets/examples/js/tables/footable.js"></script>
 <script>
     $(document).ready(function(){
-        var text= $('.navbar-container').css('height');
-        $('.page').css('margin-top',text);
+        if(screen.width > 768){
+            var text= $('.navbar-container').css('height');
+            $('.page').css('margin-top',text);
+        }
     });
 </script>
 <script>

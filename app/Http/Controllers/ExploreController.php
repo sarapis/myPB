@@ -215,11 +215,11 @@ class ExploreController extends Controller
                     }
 
                     if($sort=='Status: Complete to Needed'){
-                        $projects = $projects->orderBy('project_status_flag');
+                        $projects = $projects->orderBy('project_status_category');
                     }
 
                     if($sort=='Status: Needed to Complete'){
-                        $projects = $projects->orderBy('project_status_flag', 'desc');
+                        $projects = $projects->orderBy('project_status_category', 'desc');
                     }
 
                 }

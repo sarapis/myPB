@@ -36,7 +36,7 @@
               <span>Toggle Sidebar</span>
             </button>
           </div>
-          <div class="filter_title" style="width: 80%; display: inline;">
+          <div class="filter_title filter-mobile" style="width: 80%;display: inline;">
             <div id = "filter_buttons">
               <button type="button" id="btn-district" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> District:</span><i class="icon wb-close" aria-hidden="true"></i></b></button>
               <button type="button" id="btn-status" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Status: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>

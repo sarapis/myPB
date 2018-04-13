@@ -28,6 +28,8 @@ Explore
         <!-- Example Striped Rows -->
         <div class="row">
             <div class="col-md-8 pr-0">
+
+
                 <div class="panel m-15 content-panel">
 
                     <div class="panel-body p-0">
@@ -35,8 +37,8 @@ Explore
                             <table class="table table-striped toggle-arrow-tiny"  id="examplePagination">
                                 <thead>
                                   <tr class="footable-header">
-                                    <th class="text-center">@sortablelink('project_status', 'Status')</th>
-                                    <th class="pr-20">@sortablelink('project_title', 'Name')</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="pr-20">Name</th>
                                     <!-- <th data-breakpoints="all">@sortablelink('cost_num', 'Price')</th>
                                     <th data-breakpoints="all">@sortablelink('process.vote_year', 'Year')</th>
                                     <th data-breakpoints="all">@sortablelink('votes', 'Votes')</th>
