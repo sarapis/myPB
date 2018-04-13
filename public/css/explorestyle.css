@@ -574,3 +574,36 @@ p{
   height: 1166px;
   margin-top: 15px;
 }
+.ui-front {
+  z-index: 1000;
+}
+.ui-autocomplete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: default;
+}
+.ui-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  outline: 0;
+}
+
+.ui-widget-content {
+  background: #ffffff;
+  color: #333333;
+}
+.ui-widget.ui-widget-content {
+  border: 1px solid #c5c5c5;
+}
+.input-search.sidebar-search{
+  box-shadow: 0 1px 6px rgba(57,73,76,.35) !important;
+}
+.nav-tabs-horizontal.ui-tabs.ui-corner-all.ui-widget.ui-widget-content.sidebar-tab{
+  border: none;
+}
+
+
+

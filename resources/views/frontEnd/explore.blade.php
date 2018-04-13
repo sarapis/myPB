@@ -17,6 +17,12 @@ Explore
     font-size: 25px;
     color: #000000;
 }
+.ui-menu .ui-menu-item .ui-state-active {
+    padding-left: 0 !important;
+}
+ul#ui-id-1 {
+    width: 260px !important;
+}
 </style>
 
 @section('content')
@@ -132,25 +138,12 @@ Explore
 });
 </script>
 <script>
-$(document).ready(function(){
-    $(document).ajaxStart(function(){
-
-         $("*").animsition({
-          inClass: 'fade-in',
-          inDuration: 800,
-          loading: true,
-          loadingClass: 'loader-overlay',
-          loadingParentElement: 'html',
-          loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
-          onLoadEvent: true
-        });
+    $(document).ready(function(){
+        if(screen.width > 768){
+            var text= $('.navbar-container').css('height');
+            $('.page').css('margin-top',text);
+        }
     });
-    $(document).ajaxComplete(function(){
-
-        $('.loader-overlay').remove();
-
-    });
-});
 </script>
 <script>
   var locations = <?php print_r(json_encode($projects)) ?>;

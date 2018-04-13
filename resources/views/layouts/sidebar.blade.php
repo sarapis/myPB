@@ -1,5 +1,5 @@
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 <nav id="sidebar">
     <div class="sidebar-header p-10">
         <div class="form-group" style="margin: 0;">
@@ -14,7 +14,7 @@
         </div>
     </div>
     <!-- Example Tabs In The Panel -->
-    <div class="nav-tabs-horizontal" data-plugin="tabs">
+    <div class="nav-tabs-horizontal sidebar-tab" data-plugin="tabs">
         <ul class="nav nav-tabs nav-tabs-line" role="tablist" style="height: 45px;">
             <li class="nav-item tab-menu"><a class="nav-link active" data-toggle="tab" href="#exampleTopHome"
             aria-controls="exampleTopHome" role="tab" id="tab_filter">FILTER</a></li>
@@ -28,19 +28,28 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="exampleTopHome" role="tabpanel">
-                <ul class="list-unstyled components mb-0 pb-5">
-                    <!-- <li class="option-side">
-                        <form method="get" action="/explore">
-                            <div class="form-group">
-                              
-                                <div class="input-search">
-                                    <i class="input-search-icon md-search" aria-hidden="true"></i>
-                                    <input id="location" type="text" class="form-control text-black" name="address" placeholder="Search Street Address" style="border-radius:0;">
-                                </div>
-                              
+<!--                 <div class="form-group" style="margin: 0;">
+                    <form method="get" action="/explore">
+                        <div class="form-group">
+                          
+                            <div class="input-search sidebar-search">
+                                <i class="input-search-icon md-search" aria-hidden="true"></i>
+                                <input id="location" type="text" class="form-control text-black" name="address" placeholder="Search Street Address" style="border-radius:0;">
                             </div>
-                        </form>
-                    </li> -->
+                          
+                        </div>
+                    </form>
+                </div> -->
+                <div class="form-group" style="padding: 7px 7px 0 7px; margin-bottom: 0px;">
+                <!--begin::Form-->
+                    <form method="get" class="mb-5">
+                        <div class="input-search">
+                            <i class="input-search-icon md-search" aria-hidden="true"></i>
+                            <input id="location" type="text" class="form-control search-form" name="address" placeholder="Search Street Address">
+                        </div>
+                    </form>
+                </div>
+                <ul class="list-unstyled components mb-0 pb-5">
                     <li class="option-side">
                         <a href="#district" class="text-side" data-toggle="collapse" aria-expanded="false">District</a>
                         <ul class="collapse list-unstyled option-ul" id="district">

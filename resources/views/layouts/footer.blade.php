@@ -11,13 +11,13 @@
     	<div class="col-md-7 fd-learn">
     		<div class="row">
     			<div class="col-md-6 fd-more">
-    				<div class="pb-5"><a href="" class="fd-content">LEARN MORE</a></div>
+    				<div class="pb-5"><a class="fd-content">LEARN MORE</a></div>
     				<div class="pb-3"><a href="/about" class="fd-link">About This Project</a></div>
     				<div class="pb-3"><a href="https://www.participatorybudgeting.org/" target="_blank" class="fd-link">About PBP</a></div>
     				<div><a href="https://participatorybudgeting.us2.list-manage.com/subscribe?u=d7a76e4fc718437c43d63cba5&id=14ff270bc2" target="_blank" class="fd-link">Join Our Mailing List</a></div>
     			</div>
     			<div class="col-md-6 fd-more">
-    				<div class="pb-5"><a href="https://www.participatorybudgeting.org/donate/" target="_blank" class="fd-content">GET INVOLVED</a></div>
+    				<div class="pb-5"><a class="fd-content">GET INVOLVED</a></div>
     				<div class="pb-3"><a href="https://www.participatorybudgeting.org/democracy-made-by-you/" target="_blank" class="fd-link">Donate</a></div>
     				<div class="pb-3"><a href="mailto:mypb@participatorybudgeting.org" target="_top" class="fd-link">Contact</a></div>
     				<div><a href="https://www.participatorybudgeting.org/join-the-community/volunteer/" target="_blank" class="fd-link">Volunteer</a></div>

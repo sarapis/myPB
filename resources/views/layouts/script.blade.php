@@ -54,6 +54,8 @@
 
   </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script type="text/javascript">
+
+
       $(document).ready(function () {
           var selected_sort="";
           $("#sidebar").mCustomScrollbar({
@@ -205,6 +207,16 @@
                 }
             });
             ///
+            $("*").animsition({
+              inClass: 'fade-in',
+              inDuration: 800,
+              loading: true,
+              loadingClass: 'loader-overlay',
+              loadingParentElement: 'html',
+              loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
+              onLoadEvent: true
+            });
+            
             $.ajaxSetup({
               headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -219,7 +231,8 @@
               processData: false,
               success: function(data) {
                 
-                console.log(data);
+                $('.loader-overlay').remove();
+                
                 $('#content').html(data);
               },
               error: function(errResponse) {
