@@ -29,10 +29,10 @@ ul#ui-id-1 {
 <div class="wrapper">
     @include('layouts.sidebar')
     <!-- Page Content Holder -->
-    <div id="content">
+    <div id="content" class="container">
         <!-- <div id="map" style="height: 30vh;"></div> -->
         <!-- Example Striped Rows -->
-        <div class="row">
+        <div class="row" style="margin-right: 0">
             <div class="col-md-8 pr-0">
 
 
@@ -122,7 +122,7 @@ ul#ui-id-1 {
                 </div>
             </div>
             <div class="col-md-4 p-0">
-                <div id="map"></div>
+                <div id="map" style="width: unset;"></div>
             </div>
         </div>
     </div>
