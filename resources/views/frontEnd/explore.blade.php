@@ -40,9 +40,9 @@ ul#ui-id-1 {
 
                     <div class="panel-body p-0">
                         <div class="example table-responsive">
-                            <table class="table table-striped toggle-arrow-tiny"  id="examplePagination">
+                            <table class="table"  id="test_table" data-pagination="true" data-show-columns="true">
                                 <thead>
-                                  <tr class="footable-header">
+                                  <tr>
                                     <th class="text-center">Status</th>
                                     <th class="pr-20">Name</th>
                                     <!-- <th data-breakpoints="all">@sortablelink('cost_num', 'Price')</th>

@@ -24,7 +24,7 @@
 Breakpoints();
 </script>
 
-<div class="row">
+<div class="row" style="margin-right: 0">
     <div class="col-md-8 pr-0">
 
         <div class="panel m-15 content-panel">
@@ -36,7 +36,7 @@ Breakpoints();
                         <button type="button" class="btn  btn-primary" data-page-size="15">15</button>
                         <button type="button" class="btn  btn-primary" data-page-size="20">20</button>
                     </div> -->
-                    <table class="table table-striped toggle-arrow-tiny"  id="examplePagination" data-paging="true">
+                    <table class="table table-striped toggle-arrow-tiny"  id="test_table" data-pagination="true" data-show-columns="true">
                         <thead>
                             <tr class="footable-header">
                                 <th class="text-center">Status</th>
@@ -90,11 +90,10 @@ Breakpoints();
         </div>
     </div>
     <div class="col-md-4 p-0">
-        <div id="map"></div>
+        <div id="map" style="width: unset;"></div>
     </div>
 </div>
 
-<script src="../../frontend/assets/examples/js/tables/footable.js"></script>
 <script>
     $(document).ready(function(){
         if(screen.width > 768){
@@ -137,14 +136,14 @@ $(document).ready(function(){
 
      var sumlat = 0.0;
     var sumlng = 0.0;
-    for(var i = 0; i < locations['data'].length; i ++)
+    for(var i = 0; i < locations.length; i ++)
     {
-        sumlat += parseFloat(locations['data'][i].latitude);
-        sumlng += parseFloat(locations['data'][i].longitude);
+        sumlat += parseFloat(locations[i].latitude);
+        sumlng += parseFloat(locations[i].longitude);
 
     }
-    var avglat = sumlat/locations['data'].length;
-    var avglng = sumlng/locations['data'].length;
+    var avglat = sumlat/locations.length;
+    var avglng = sumlng/locations.length;
     var mymap = new GMaps({
       el: '#map',
       lat: avglat,

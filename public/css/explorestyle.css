@@ -279,7 +279,7 @@ p{
       display: none;
     }
     #btn-district, #btn-status, #btn-category, #btn-city{
-      margin-top: 0px;
+      margin-top: 15px;
     }
 }
 
@@ -571,7 +571,7 @@ p{
 }
 #map {
   width: 100%;
-  height: 1166px;
+  height: 700px;
   margin-top: 15px;
 }
 .ui-front {

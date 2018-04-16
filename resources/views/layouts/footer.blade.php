@@ -27,7 +27,7 @@
     	<div class="col-md-5 pl-50 fd-design">
     		<div class="pb-3"><a href="http://participatorybudgeting.org" target="_blank" class="fd-link">Design by PBP</a></div>
 				<div class="pb-3"><a href="http://sarapis.org" target="_blank" class="fd-link">Development by Sarapis</a></div>
-				<div class="pb-5"><a href="" class="fd-link">Democract by You</a></div>
+				<div class="pb-5"><a class="fd-link">Democracy by You</a></div>
 				<div class="pb-3"><a href="" class="fd-link" style="color: #727272;">© 2018 Participatory Budgeting</a></div>
     	</div>
     </div>

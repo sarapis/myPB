@@ -42,7 +42,7 @@
                 </div> -->
                 <div class="form-group" style="padding: 7px 7px 0 7px; margin-bottom: 0px;">
                 <!--begin::Form-->
-                    <form method="get" class="mb-5">
+                    <form method="get" class="mb-5" id="search_location">
                         <div class="input-search">
                             <i class="input-search-icon md-search" aria-hidden="true"></i>
                             <input id="location" type="text" class="form-control search-form" name="address" placeholder="Search Street Address">
@@ -50,7 +50,7 @@
                     </form>
                 </div>
                 <ul class="list-unstyled components mb-0 pb-5">
-                    <li class="option-side">
+<!--                     <li class="option-side">
                         <a href="#district" class="text-side" data-toggle="collapse" aria-expanded="false">District</a>
                         <ul class="collapse list-unstyled option-ul" id="district">
                             @foreach($districts as $district)
@@ -59,7 +59,7 @@
                                 @endif
                             @endforeach
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="option-side">
                         <a href="#projectstatus" class="text-side" data-toggle="collapse" aria-expanded="false">Project Status</a>
                         <ul class="collapse list-unstyled option-ul" id="projectstatus">
@@ -217,5 +217,11 @@ $(function () {
 
         }
     });
+
+    $('.ui-menu').click(function(){
+        $('#search_location').submit();
+    });
+
+  
 });
 </script>
