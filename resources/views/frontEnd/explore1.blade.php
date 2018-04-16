@@ -141,8 +141,17 @@ $(document).ready(function(){
         sumlng += parseFloat(locations[i].longitude);
 
     }
+
     var avglat = sumlat/locations.length;
     var avglng = sumlng/locations.length;
+
+    console.log(avglat);
+
+    if(!avglat){
+        avglat = 40.730981;
+        avglng = -73.998107
+    }
+
     var mymap = new GMaps({
       el: '#map',
       lat: avglat,

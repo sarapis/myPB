@@ -572,8 +572,9 @@ p{
 #map {
 /*  position: relative;*/
   width: 33.333333%;
-  height: 700px;
+  height: 485px;
   margin-top: 15px;
+  z-index: 30000;
 }
 .ui-front {
   z-index: 1000;
