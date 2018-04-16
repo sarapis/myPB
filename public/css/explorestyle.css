@@ -572,7 +572,7 @@ p{
 #map {
 /*  position: relative;*/
   width: 33.333333%;
-  height: 485px;
+  height: 60%;
   margin-top: 15px;
   z-index: 30000;
 }
