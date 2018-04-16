@@ -604,6 +604,11 @@ p{
 .nav-tabs-horizontal.ui-tabs.ui-corner-all.ui-widget.ui-widget-content.sidebar-tab{
   border: none;
 }
-
+#slider-range.ui-widget-content{
+  background: #000000;
+}
+#slider-range.ui-widget.ui-widget-content{
+  border: 0;
+}
 
 
