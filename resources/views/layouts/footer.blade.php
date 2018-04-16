@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<div class="container-fluid" style="position: relative;
+    z-index: 1;">
   	<div class="row footer-feedback">
     	<div class="col-md-8 text-center" style="padding-left: 85px;padding-right: 85px;">
     		<h3 class="feedback-title">Love it? Change it? We'd love to hear your thoughts!</h3>

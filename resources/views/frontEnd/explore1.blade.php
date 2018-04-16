@@ -18,6 +18,12 @@
     padding-top: 0 !important;
 
 }
+/*.page{
+    margin-top: 55px !important;
+}*/
+#map{
+    position: fixed !important;
+}
 </style>
 <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
 <script>
@@ -90,18 +96,10 @@ Breakpoints();
         </div>
     </div>
     <div class="col-md-4 p-0">
-        <div id="map" style="width: unset;"></div>
+        <div id="map" style="position: fixed !important;"></div>
     </div>
 </div>
 
-<script>
-    $(document).ready(function(){
-        if(screen.width > 768){
-            var text= $('.navbar-container').css('height');
-            $('.page').css('margin-top',text);
-        }
-    });
-</script>
 <script>
 $(document).ready(function(){
     $(document).ajaxStart(function(){
@@ -130,6 +128,7 @@ $(document).ready(function(){
     });
 });
 </script>
+
 <script>
   var locations = <?php print_r(json_encode($projects)) ?>;
   console.log(locations);
@@ -163,4 +162,8 @@ $(document).ready(function(){
           //}
         });
    });
+    if(screen.width > 768){
+          var text= $('.navbar-container').css('height');
+          $('.page').css('margin-top',text);
+      }
 </script>

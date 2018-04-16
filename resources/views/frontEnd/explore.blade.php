@@ -23,6 +23,9 @@ Explore
 ul#ui-id-1 {
     width: 260px !important;
 }
+#map{
+    position: fixed !important;
+}
 </style>
 
 @section('content')
@@ -122,7 +125,7 @@ ul#ui-id-1 {
                 </div>
             </div>
             <div class="col-md-4 p-0">
-                <div id="map" style="width: unset;"></div>
+                <div id="map" style="position: fixed !important;"></div>
             </div>
         </div>
     </div>
