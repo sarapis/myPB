@@ -13,8 +13,8 @@ Profile
     }
 </style>
 @section('content')
-
-  <div class="col-md-12">
+<div class="container-fluid pl-0 pr-0">
+  <div class="col-md-4">
   
           @if($project->project_status_category=='Complete')
               <h3 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h3>
@@ -28,7 +28,7 @@ Profile
 
   </div>
 
-  <div class="col-md-7">
+  <div class="col-md-5">
     <!-- Panel -->      
     <div class="panel">
       <div class="panel-body">
@@ -57,7 +57,7 @@ Profile
     </div>
     <!-- End Panel -->
   </div>
-  <div class="col-md-5">
+  <div class="col-md-3 p-0">
     <!-- Panel -->
     <div class="panel">
       <div id="mymap" style="height: 30vh;"></div>
@@ -67,7 +67,7 @@ Profile
       </div>
     </div>
   </div>
-
+</div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
  <script type="text/javascript">

@@ -642,4 +642,6 @@ p{
   border: unset;
   border-bottom: 2px solid #3f897a;
 }
-
+.ui-loader.ui-corner-all.ui-body-a.ui-loader-default{
+  display: none;
+}
