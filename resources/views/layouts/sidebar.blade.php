@@ -16,7 +16,7 @@
     <!-- Example Tabs In The Panel -->
     <div class="nav-tabs-horizontal sidebar-tab" data-plugin="tabs">
         <ul class="nav nav-tabs nav-tabs-line" role="tablist" style="height: 45px;">
-            <li class="nav-item tab-menu"><a class="nav-link active" data-toggle="tab" href="#exampleTopHome"
+            <li class="nav-item tab-menu active"><a class="nav-link" data-toggle="tab" href="#exampleTopHome"
             aria-controls="exampleTopHome" role="tab" id="tab_filter">FILTER</a></li>
             <li class="nav-item tab-menu"><a class="nav-link" data-toggle="tab" href="#exampleTopComponents"
             aria-controls="exampleTopComponents" role="tab" id="tab_sort">SORT</a></li>

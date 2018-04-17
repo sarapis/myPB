@@ -312,11 +312,12 @@ p{
     background-color: #ffffff;
     box-shadow: 0 1px 6px rgba(57,73,76,.35);
 }
-.nav-tabs-line .nav-item.open .nav-link, .nav-tabs-line .nav-item.open .nav-link:focus, .nav-tabs-line .nav-item.open .nav-link:hover, .nav-tabs-line .nav-item.show .nav-link, .nav-tabs-line .nav-item.show .nav-link:focus, .nav-tabs-line .nav-item.show .nav-link:hover, .nav-tabs-line .nav-link.active, .nav-tabs-line .nav-link.active:focus, .nav-tabs-line .nav-link.active:hover {
+#sidebar.nav-tabs-line .nav-item.open .nav-link, .nav-tabs-line .nav-item.open .nav-link:focus, .nav-tabs-line .nav-item.open .nav-link:hover, .nav-tabs-line .nav-item.show .nav-link, .nav-tabs-line .nav-item.show .nav-link:focus, .nav-tabs-line .nav-item.show .nav-link:hover, .nav-tabs-line .nav-link.active, .nav-tabs-line .nav-link.active:focus, .nav-tabs-line .nav-link.active:hover {
     color: #3f51b5;
     border-bottom: 2px solid #3f897a;
     background-color: transparent;
 }
+
 .tab-menu{
     width: 100px;
     text-align: center;
@@ -629,4 +630,15 @@ p{
   border: 0;
 }
 
+#sidebar ul li.active > a.nav-link.ui-tabs-anchor{
+  background-color: unset;
+  color: #424242;
+}
+.nav-tabs-line, .nav-link.active{
+  border-bottom: 0px;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus{
+  border: unset;
+  border-bottom: 2px solid #3f897a;
+}
 
