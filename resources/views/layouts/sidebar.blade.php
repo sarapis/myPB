@@ -28,7 +28,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="exampleTopHome" role="tabpanel">
-<!--                 <div class="form-group" style="margin: 0;">
+            <!-- <div class="form-group" style="margin: 0;">
                     <form method="get" action="/explore">
                         <div class="form-group">
                           
@@ -41,7 +41,7 @@
                     </form>
                 </div> -->
                 <div class="form-group" style="padding: 7px 7px 0 7px; margin-bottom: 0px;">
-                <!--begin::Form-->
+                    <!--begin::Form-->
                     <form method="get" class="mb-5" id="search_location">
                         <div class="input-search">
                             <i class="input-search-icon md-search" aria-hidden="true"></i>
@@ -50,7 +50,7 @@
                     </form>
                 </div>
                 <ul class="list-unstyled components mb-0 pb-5">
-<!--                     <li class="option-side">
+<!--                <li class="option-side">
                         <a href="#district" class="text-side" data-toggle="collapse" aria-expanded="false">District</a>
                         <ul class="collapse list-unstyled option-ul" id="district">
                             @foreach($districts as $district)
@@ -180,13 +180,14 @@
             </div>
         </div>
     </div>
-</nav>
 
+</nav>
 @if(isset($location) == TRUE)
     <input type="hidden" name="location" id="location" value="{{$location}}">
 @else
     <input type="hidden" name="location" id="location" value="">
 @endif
+
 <script>
 
 $(function () {

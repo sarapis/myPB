@@ -40,12 +40,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+
 <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
   <!--script src="https://raw.githubusercontent.com/719media/bootstrap-table/bootstrap4/src/bootstrap-table.js"></script-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
   <!--[if lt IE 9]>
     <script src="../../../frontend/global/vend/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
@@ -55,10 +52,10 @@
     <![endif]-->
   <!-- Scripts -->
   
-  <!-- <script src="../../../frontend/global/vend/jquery/jquery.js"></script> -->
+<!--   <script src="../../../frontend/global/vend/jquery/jquery.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+  <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
   <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
