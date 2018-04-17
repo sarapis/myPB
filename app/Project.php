@@ -22,7 +22,7 @@ class Project extends Model
 
     public function agency()
     {
-        return $this->hasmany('App\Agency', 'recordid', 'agency_code');
+        return $this->hasmany('App\Agency', 'recordid', 'agency_code', 'agencycode');
     }
 
     public function district()

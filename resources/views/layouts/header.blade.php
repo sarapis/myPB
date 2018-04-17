@@ -40,6 +40,9 @@
             <div id = "filter_buttons">
               <button type="button" id="btn-district" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> District:</span><i class="icon wb-close" aria-hidden="true"></i></b></button>
               <button type="button" id="btn-status" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Status: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+              <button type="button" id="btn-cost" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Cost: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+              <button type="button" id="btn-year" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Year of Vote: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
+              <button type="button" id="btn-vote" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Vote: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
               <button type="button" id="btn-category" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> Category: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
               <button type="button" id="btn-city" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left" style="display:none;"><b><span> City: </span><i class="icon wb-close" aria-hidden="true"></i></b></button>
             </div>

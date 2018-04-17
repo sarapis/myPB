@@ -120,7 +120,8 @@
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       
         var value1 = ui.values[0]; var value2 = ui.values[1];
-
+        $( "#btn-cost span" ).html("Cost: " + $("#amount").val());
+        $('#btn-cost').show();
         
       }
     });
@@ -129,6 +130,7 @@
     $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
       " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
+    
     // $( "#slider-range-year" ).slider({
     //   range: true,
     //   min: 2012,
@@ -152,13 +154,15 @@
       slide: function( event, ui ) { 
         $( "#amount-year" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         var value1 = ui.values[0]; var value2 = ui.values[1];
+        $( "#btn-year span" ).html("Year of Vote: " + $("#amount-year").val());
+        $('#btn-year').show();
          } }); 
 
 
 
     $( "#amount-year" ).val(  $( "#slider-range-year" ).slider( "values", 0 ) +
       " - " + $( "#slider-range-year" ).slider( "values", 1 ) );
-
+   
     $( "#slider-range-vote" ).slider({
       range: true,
       min: 0,
@@ -167,12 +171,14 @@
       slide: function( event, ui ) {
         $( "#amount-vote" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         var value1 = ui.values[0]; var value2 = ui.values[1];
-        
+        $( "#btn-vote span" ).html("Vote: " + $("#amount-vote").val());
+        $('#btn-vote').show();
         }
     });
 
     $( "#amount-vote" ).val(  $( "#slider-range-vote" ).slider( "values", 0 ) +
       " - " + $( "#slider-range-vote" ).slider( "values", 1 ) );
+    
     $('.ui-slider-handle.ui-corner-all.ui-state-default').mouseup(function(){
           sendfilter();      
       });

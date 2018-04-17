@@ -77,9 +77,13 @@ Projects
                   <td class="text-center"><span class="badge bg-orange">{{$project->process()->first()->name_process_annual}}</span></td>
                   
                   <td class="text-center"><span class="badge bg-red">{{$project->district()->first()->name}}</span></td>
-                  <td class="text-center">@if($project->agency_code!=null)
-                    <span class="badge bg-purple">{{$project->agency()->first()->name}}</span>
+                  <td class="text-center">
+                    @if($project->agency_code!=null)
+                    <span class="badge bg-purple">{{$project->agency()->first()['agency_code']}}</span>
+                    @else
+                    <span class="badge bg-purple"></span>
                     @endif
+
                   </td>
                   <td class="text-center"><span class="badge bg-blue">{{$project->category_type_topic_standardize}}</span></td>
                   <td class="text-center">{{$project->project_title}}</td>
@@ -161,18 +165,12 @@ Projects
                       </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-4 control-label">Project_Status</label>
+                        <label for="inputPassword3" class="col-sm-4 control-label">Status_Category</label>
                         <div class="col-sm-7">
-                            <select class="form-control" id="project_status">
-                                <option></option>
-                                <option value="Rejected">Rejected</option>
-                                <option value="In process: Funds Appropriated">In process: Funds Appropriated</option>
-                                <option value="In process: In Design">In process: In Design</option>
-                                <option value="In process: out for Bid">In process: out for Bid</option>
-                                <option value="In process: Pre-construction">In process: Pre-construction</option>
-                                <option value="In process: Scoping">In process: Scoping</option>
-                                <option value="In process: Under Construction">In process: Under Construction</option>
+                            <select class="form-control" id="project_status_category">
                                 <option value="Complete">Complete</option>
+                                <option value="In process">In process</option>
+                                <option value="Not funded">Not funded</option>
                                 <option value="Project Status Needed">Project Status Needed</option>
                             </select>
                         </div>

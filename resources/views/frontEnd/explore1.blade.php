@@ -54,16 +54,12 @@ Breakpoints();
                             @foreach($projects as $project)
                             <tr> 
                                 <td class="text-center">
-                                    @if($project->project_status!='')
-                                        @if($project->project_status=='Complete')
+                                    @if($project->project_status_category!='')
+                                        @if($project->project_status_category=='Complete')
                                             <button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic"><i class="icon fa-check" aria-hidden="true"></i></button>
-                                        @elseif($project->project_status=='Project Status Needed')
+                                        @elseif($project->project_status_category=='Project Status Needed')
                                             <button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic"></button>
-                                        @elseif($project->project_status=='Rejected')
-                                            <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
-                                        @elseif($project->project_status=='Lost vote')
-                                            <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
-                                        @elseif($project->project_status=='On hold - Requires Additional Funds')
+                                        @elseif($project->project_status_category=='Not funded')
                                             <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
                                         @else
                                             <button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic"><i class="icon fa-minus" aria-hidden="true"></i></button>

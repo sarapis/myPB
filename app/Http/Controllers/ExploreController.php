@@ -168,16 +168,8 @@ class ExploreController extends Controller
                 }
                 
                 if($status!=NULL){
-                    if($status=='Not Funded'){
-                        
-                        $projects = $projects->whereIn('project_status',['Lost vote', 'On hold - Requires Additional Funds', 'Rejected']);
-                      
 
-                    }
-                    else{
-                        $projects = $projects->where('project_status', 'like', '%'.$status.'%');
-                        
-                    }
+                    $projects = $projects->where('project_status_category', 'like', '%'.$status.'%');
                 }
 
                 if($category!=NULL){

@@ -27,7 +27,7 @@ $(document).ready(function(){
                 $('#project_id').val(data.project_id);
                 $('#project_title').val(data.project_title);
                 $('#project_description').val(data.project_description);
-                $('#project_status').val(data.project_status);
+                $('#project_status_category').val(data.project_status_category);
                 $('#status_date_updated').val(data.status_date_updated);
                 $('#source_ballot_link').val(data.source_ballot_link);
                 $('#win_text').val(data.win_text);
@@ -79,7 +79,7 @@ $(document).ready(function(){
             project_id: $('#project_id').val(),
             project_title: $('#project_title').val(),
             project_description: $('#project_description').val(),
-            project_status: $('#project_status').val(),
+            project_status_category: $('#project_status_category').val(),
             status_date_updated: $('#status_date_updated').val(),
             source_ballot_link: $('#source_ballot_link').val(),
             win_text: $('#win_text').val(),

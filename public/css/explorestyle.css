@@ -207,7 +207,8 @@ p{
     width: 100%;
 }
 
-#btn-district, #btn-status, #btn-category, #btn-city{
+#btn-district, #btn-status, #btn-category, #btn-city,
+#btn-cost, #btn-year, #btn-vote{
   margin: 8px;
   margin-top: 10px;
   border: solid 2px;

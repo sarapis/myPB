@@ -166,7 +166,7 @@ class ProjectController extends Controller
         $project->project_id = $request->project_id;
         $project->project_title = $request->project_title;
         $project->project_description = $request->project_description;
-        $project->project_status = $request->project_status;
+        $project->project_status_category = $request->project_status_category;
         $project->status_date_updated = $request->status_date_updated;
         $project->source_ballot_link = $request->source_ballot_link;
         $project->win_text = $request->win_text;
