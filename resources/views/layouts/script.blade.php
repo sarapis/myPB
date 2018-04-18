@@ -72,22 +72,22 @@
                 }
             }
     });
-    $("#sidebar").swipe({
-        swipeStatus:function(event, phase, direction, distance, duration, fingers)
-            {
-                if (phase=="move" && direction =="right") {
+    // $("#sidebar").swipe({
+    //     swipeStatus:function(event, phase, direction, distance, duration, fingers)
+    //         {
+    //             // if (phase=="move" && direction =="right") {
 
-                // console.log('aaaaa');
-                     $("#sidebar").addClass("active");
-                     return false;
-                }
-                if (phase=="move" && direction =="left") {
+    //             // // console.log('aaaaa');
+    //             //      $("#sidebar").addClass("active");
+    //             //      return false;
+    //             // }
+    //             if (phase=="move" && direction =="left") {
 
-                       $("#sidebar").removeClass("active");
-                       return false;
-                }
-            }
-    }); 
+    //                    $("#sidebar").removeClass("active");
+    //                    return false;
+    //             }
+    //         }
+    // }); 
 
 </script>
   <script type="text/javascript">
