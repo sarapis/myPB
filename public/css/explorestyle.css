@@ -282,6 +282,9 @@ p{
     #btn-district, #btn-status, #btn-category, #btn-city{
       margin-top: 15px;
     }
+    .profile-location{
+      display: block;
+    }
 }
 
 .nav.nav-tabs.nav-tabs-line{
@@ -541,10 +544,24 @@ p{
   font-size: 1.3em;
   color: white;
 }
+.profile-title{
+  font-size: 1.3em;
+  color: #424242;
+}
 .btn-feedback{
   background-color: #b8e6e2;
   color: #3c3c3c;
   width: 140px;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  height: 45px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.16)
+}
+.btn-profile{
+  background-color: #b8e6e2;
+  color: #3c3c3c;
+  width: 290px;
   margin-top: 12px;
   font-size: 16px;
   font-weight: 400;
