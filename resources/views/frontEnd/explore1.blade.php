@@ -157,14 +157,22 @@ $(document).ready(function(){
 
 
     $.each( locations, function(index, value ){
+        var icon;
+        if(value.project_status_category == "Complete")
+            icon = '<button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-check" aria-hidden="true"></i></button>';
+        else if(value.project_status_category == "Project Status Needed")
+            icon = '<button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"></button>';
+        else if(value.project_status_category == "Not funded")
+            icon = '<button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-remove" aria-hidden="true"></i></button>';
+        else
+            icon ='<button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-minus" aria-hidden="true"></i></button>';
+
         mymap.addMarker({
           lat: value.latitude,
-          lng: value.longitude
-          // ,
-          // title: value.city,
-          // click: function(e) {
-          //   alert('This is '+value.city+', gujarat from India.');
-          //}
+          lng: value.longitude,
+          infoWindow: {
+            content: ('<a href="/profile/'+value.id+'" style="color:#424242;font-weight:500;font-size:14px;">'+icon+value.project_title+'</a>')
+          }
         });
    });
     if(screen.width > 768){
