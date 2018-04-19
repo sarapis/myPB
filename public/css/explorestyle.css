@@ -602,6 +602,7 @@ p{
   height: 60%;
   margin-top: 15px;
   z-index: 30000;
+  box-shadow: 0 1px 6px rgba(57,73,76,.35);
 }
 .ui-front {
   z-index: 1000;

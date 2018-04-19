@@ -92,7 +92,7 @@ Profile
   <div class="col-md-3 p-15">
     <!-- Panel -->
     <div class="panel">
-      <div id="map" class="mr-5"></div>
+      <div id="map" class="mr-5 mt-0"></div>
       <div class="panel-body profile-location">
           <h4>{{$project->project_address_clean}}</h4>
           <h4>{{$project->location_city}}, {{$project->state}}, {{$project->zipcode}}</h4>
