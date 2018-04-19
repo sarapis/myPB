@@ -2,6 +2,7 @@
 @section('title')
 Profile
 @stop
+<meta name="description" content="{{$project->profile_title}}">
 <style>
    .navbar-container.container-fluid{
         display: none !important;
