@@ -40,7 +40,7 @@ Profile
     @else
         <h4 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
     @endif
-    <div class="panel">
+    <div class="panel mb-15">
       <div class="panel-body p-15">
         <h4><b>{{$project->project_status}}</b></h4>
         @if($project->status_date_update!=null)
@@ -49,7 +49,7 @@ Profile
       </div>
     </div>
 
-    <div class="panel">
+    <div class="panel mb-0">
       <div class="panel-body p-15">
         <h4><b>BALLOT INFORMATION</b></h4>
         <h5 class="profile-title">Project appeared on {{$project->district->name}} PBNYC ballot in {{$project->vote_year}} with a cost of ${{number_format($project->cost_text)}}. {{$project->win_text}} with {{$project->votes}} votes</h5>
@@ -60,10 +60,11 @@ Profile
 
   <div class="col-md-5 pt-15">
     <!-- Panel -->      
+    @if($project->project_status_category != 'Not funded' && $project->project_status_category != 'Project Status Needed')
     <div class="panel mb-15">
       <div class="panel-body p-15">
           <h4><b>IMPLEMENTATION PLAN</b></h4>
-          <h5 class="profile-title">$ appropriated by NYCC in {{$project->fiscal_year}}, with implementation by {{$project->name_dept_agency_cbo}}.</h5>
+          <h5 class="profile-title">${{$project->cost_appropriated}} by NYCC in {{$project->fiscal_year}}, with implementation by {{$project->name_dept_agency_cbo}}.</h5>
           <h5 class="profile-title">Capital projects typically take between 3-7 years from funding to completion.</h5>
 <!--           <h4>{{$project->status_date_updated}} {{$project->project_id}}</h4>
           <h4>{{$project->name_dept_agency_cbo}}</h4>
@@ -72,10 +73,11 @@ Profile
           <h4>{{$contact->phone}}</h4> -->
       </div>
     </div>
+    @endif
     <div class="panel mb-15" style="background: #3f8a7b;">
       <div class="panel-body text-center p-15">
         <h5 class="feedback-title">Not finding what you're looking for?</h5>
-        <button class="btn btn-block btn-profile waves-effect waves-classic waves-effect waves-classic"><a href="mailto:{{$contact->email}}" target="_top"  class="ui-link">Email Your Counical Member</a></button>
+        <button class="btn btn-block btn-profile waves-effect waves-classic waves-effect waves-classic"><a href="mailto:{{$contact->email}}" target="_top"  class="ui-link">Email Your Council Member</a></button>
       </div>
     </div>
     <div class="panel mb-15">
@@ -113,7 +115,9 @@ Profile
      mymap.addMarker({
       lat: locations.latitude,
       lng: locations.longitude,
-      title: locations.project_title
+      infoWindow: {
+          content: ('<span style="color:#424242;font-weight:500;font-size:14px;">'+locations.project_address_clean+', '+locations.location_city+', '+locations.state+', '+locations.zipcode+'</span>')
+      }
     });
 
   </script>
