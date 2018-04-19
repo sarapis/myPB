@@ -235,9 +235,15 @@ p{
     #sidebar.active {
         margin-left: 0;
         margin-top: 18px;
+        position: absolute;
+        height: calc(100% - 68px);
     }
     #content {
         width: 100%;
+        position: absolute;
+        bottom: 0;
+        top: 68px;
+        overflow-y: scroll;
     }
     #content.active {
         /*left: 270px;*/
@@ -489,12 +495,13 @@ p{
 
 }
 .overlay {
-    position: fixed;
+    position: absolute;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 998;
+    z-index: 1;
     display: none;
+    top: 0;
 }
 .mCSB_container{
   padding-bottom: 200px;
