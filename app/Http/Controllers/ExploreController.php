@@ -76,7 +76,7 @@ class ExploreController extends Controller
                 
                 
                 if($address_district == NULL){
-                    return redirect('/about');
+                    return redirect('/explore')->with('success', 'no rpoject');
                 }
                 
                 $address_district=$address_district->name;
@@ -256,7 +256,7 @@ class ExploreController extends Controller
                 
                 
                     if($address_district == NULL){
-                        return redirect('/about');
+                        return redirect('/explore')->with('success', 'no rpoject');
                     }
                     
                     $address_district=$address_district->name;

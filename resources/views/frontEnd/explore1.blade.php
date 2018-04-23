@@ -92,7 +92,7 @@ Breakpoints();
         </div>
     </div>
     <div class="col-md-4 p-0">
-        <div id="map" style="position: fixed !important;"></div>
+        <div id="map" style="position: fixed !important;width: 28%;"></div>
     </div>
 </div>
 

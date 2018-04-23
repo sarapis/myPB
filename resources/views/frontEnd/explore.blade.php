@@ -37,8 +37,17 @@ ul#ui-id-1 {
         <!-- Example Striped Rows -->
         <div class="row" style="margin-right: 0">
             <div class="col-md-8 pr-0">
-
-
+                @if (session('success'))
+                <div class="pl-15 pr-15 pt-15">
+                    <div class="alert dark alert-dismissible" role="alert" style="background: #3f8a7b;
+                    color: white;">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="feedback-title">You're district doesn't have Participatory Budgeting (PB) yet. PB is a democratic process in which community members directly decide how to spend part of a public budget in their neighborhood. In the US and Canada 414,000 people have worked together to decide how to spend over $299 Million dollars during the last decade - and we’re just getting started. To advocate to your elected officials to PB, [get their contact info here https://myreps.participatorybudgeting.org/].</h4>
+                    </div>
+                </div>
+                @endif
                 <div class="panel m-15 content-panel">
 
                     <div class="panel-body p-0">
@@ -121,7 +130,7 @@ ul#ui-id-1 {
                 </div>
             </div>
             <div class="col-md-4 p-0">
-                <div id="map" style="position: fixed !important;"></div>
+                <div id="map" style="position: fixed !important;width: 28%;"></div>
             </div>
         </div>
     </div>
