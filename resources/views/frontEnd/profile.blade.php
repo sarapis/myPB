@@ -14,6 +14,7 @@ Profile
     }
     #map{
       position: fixed !important;
+
     }
     .profile-location{
       display: none;
@@ -93,7 +94,7 @@ Profile
   <div class="col-md-3 p-15">
     <!-- Panel -->
     <div class="panel">
-      <div id="map" class="mr-5 mt-0"></div>
+      <div id="map" class="mr-5 mt-0" style="width: 25%;"></div>
       <div class="panel-body profile-location">
           <h4>{{$project->project_address_clean}}</h4>
           <h4>{{$project->location_city}}, {{$project->state}}, {{$project->zipcode}}</h4>
@@ -117,6 +118,7 @@ Profile
       lat: locations.latitude,
       lng: locations.longitude,
       infoWindow: {
+          maxWidth: 250,
           content: ('<span style="color:#424242;font-weight:500;font-size:14px;">'+locations.project_address_clean+', '+locations.location_city+', '+locations.state+', '+locations.zipcode+'</span>')
       }
     });

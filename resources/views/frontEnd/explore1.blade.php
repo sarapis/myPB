@@ -171,6 +171,7 @@ $(document).ready(function(){
           lat: value.latitude,
           lng: value.longitude,
           infoWindow: {
+            maxWidth: 250,
             content: ('<a href="/profile/'+value.id+'" style="color:#424242;font-weight:500;font-size:14px;">'+icon+value.project_title+'</a>')
           }
         });
