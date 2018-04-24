@@ -42,7 +42,6 @@ Profile
     @else
         <h4 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
     @endif
-    <p class="pb-15">Remove dangerous millwork and large equipment from room; install new furniture, sink, drying rack, and art storage.</p>
     <div class="panel mb-15">
       <div class="panel-body p-15">
         <h4><b>{{$project->project_status}}</b></h4>
