@@ -2,6 +2,7 @@
 
   <link rel="stylesheet" href="../../../frontend/global/vend/footable/footable.core.css">
   <link rel="stylesheet" href="../../frontend/assets/examples/css/tables/footable.css">
+
 <style type="text/css">
 .table a{
     text-decoration:none !important;
@@ -35,14 +36,8 @@ Breakpoints();
 
         <div class="panel m-15 content-panel">
             <div class="panel-body p-0">
-                <div class="example table-responsive">
-        <!--             <div id="exampleShow">
-                        <button type="button" class="btn  btn-primary" data-page-size="5">5</button>
-                        <button type="button" class="btn  btn-primary" data-page-size="10">10</button>
-                        <button type="button" class="btn  btn-primary" data-page-size="15">15</button>
-                        <button type="button" class="btn  btn-primary" data-page-size="20">20</button>
-                    </div> -->
-                    <table class="table table-striped toggle-arrow-tiny"  id="test_table" data-pagination="true" data-show-columns="true">
+
+                    <table class="table table-striped toggle-arrow-tiny" id="example" style="width:100%">
                         <thead>
                             <tr class="footable-header">
                                 <th class="text-center">Status</th>
@@ -71,23 +66,12 @@ Breakpoints();
                                         <a href="/profile/{{$project->id}}">{{$project->project_title}}</a>
                                     @endif
                                 </td>
-                                <td><i class="fa fa-chevron-right" style="padding-top: 8px;color: #000000;"></i></td>
+                                <td class="pull-right"><i class="fa fa-chevron-right" style="padding-top: 8px;color: #000000;"></i></td>
                             </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                          <tr>
-                            <td colspan="20">
-                              <div class="text-right">
-                                <ul class="pagination">
-                                    
-                                </ul>
-                              </div>
-                            </td>
-                          </tr>
-                        </tfoot>
                     </table>
-                </div>
+
             </div>
         </div>
     </div>
@@ -187,4 +171,17 @@ $(document).ready(function(){
           
           $('.page').css('margin-top',height);
       }
+
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        
+        "pageLength": 25,
+        "searching": false,
+        "info":     false,
+        "lengthChange": false
+    } );
+} );
 </script>
