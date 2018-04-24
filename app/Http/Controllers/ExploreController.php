@@ -143,6 +143,9 @@ class ExploreController extends Controller
                 $vote_min = (int)$request->input('vote_min');
                 $vote_max = (int)$request->input('vote_max');
 
+                $search = $request->input('Search');
+
+
                 $district = $request->input('District');
                 $status = $request->input('Status');
                 $category = $request->input('Category');        
@@ -157,7 +160,7 @@ class ExploreController extends Controller
                            
                  // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
                  // exit(); 
-                
+               
 
                 if($district!=NULL){
 
@@ -260,6 +263,18 @@ class ExploreController extends Controller
                     }
                     
                     $address_district=$address_district->name;
+                }
+                 if($search != NULL)
+                {
+                    // $projects = $projects->with('district')->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district', function ($q)  use($search){
+                    // $q->where('name', 'like', '%'.$search.'%');
+                    // });
+
+                    $projects = $projects->with('district')->where(function($q) use($search){
+                        $q->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district',function($qq) use($search) {
+                            $qq->where('name', 'like', '%'.$search.'%');
+                        });
+                    });
                 }
                 $projects = $projects->get();
 

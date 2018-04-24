@@ -127,7 +127,7 @@ $(document).ready(function(){
 
 <script>
   var locations = <?php print_r(json_encode($projects)) ?>;
-  console.log(locations);
+  
 
      var sumlat = 0.0;
     var sumlng = 0.0;
@@ -141,7 +141,7 @@ $(document).ready(function(){
     var avglat = sumlat/locations.length;
     var avglng = sumlng/locations.length;
 
-    console.log(avglat);
+  
 
     if(!avglat){
         avglat = 40.730981;

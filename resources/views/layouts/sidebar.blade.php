@@ -4,13 +4,12 @@
     <div class="sidebar-header p-10">
         <div class="form-group" style="margin: 0;">
         <!--begin::Form-->
-            <form method="get" action="{{action('ExploreController@index')}}" class="mb-5">
-                {{ csrf_field() }}
+            <div class="mb-5">
                 <div class="input-search">
                     <i class="input-search-icon md-search" aria-hidden="true"></i>
-                    <input type="text" class="form-control search-form" name="search" placeholder="Search for Projects">
+                    <input type="text" class="form-control search-form" name="search" placeholder="Search for Projects" id="search_address">
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <!-- Example Tabs In The Panel -->

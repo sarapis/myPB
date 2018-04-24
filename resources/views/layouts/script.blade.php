@@ -98,6 +98,7 @@
           $("#sidebar").mCustomScrollbar({
               theme: "minimal"
           });
+
           $('#sidebarCollapse').on('click', function () {
               $('#sidebar, #content').toggleClass('active');
               $('.overlay').fadeToggle();
@@ -118,6 +119,16 @@
               $('#btn-district').show();
               sendfilter();
           });
+
+          $('#search_address').change(function(){
+              var value = $(this).val();
+              $('#btn-search span').html("Search: "+value);
+              $('#btn-search').show();
+              if(value == "")
+                $('#btn-search').hide();
+              sendfilter();
+          });
+
           $('#projectstatus li').click(function(){
               var value = $('span',this).html();
               $('#btn-status span').html("Status: "+value);
@@ -273,7 +284,7 @@
               cache: false, // To unable request pages to be cached
               processData: false,
               success: function(data) {
-                
+                  
                 $('.loader-overlay').remove();
                 
                 $('#content').html(data);
