@@ -176,8 +176,10 @@ $(document).ready(function(){
           }
         });
    });
-    if(screen.width > 768){
+    if(screen.width < 768){
           var text= $('.navbar-container').css('height');
-          $('.page').css('margin-top',text);
+          var height = text.slice(0, -2);
+          height -= 16;
+          $('.page').css('padding-top',height);
       }
 </script>
