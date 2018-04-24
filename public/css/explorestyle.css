@@ -234,7 +234,6 @@ p{
     }
     #sidebar.active {
         margin-left: 0;
-        margin-top: 18px;
         position: absolute;
         height: calc(100% - 68px);
     }
@@ -285,7 +284,7 @@ p{
     .filter-desktop{
       display: none;
     }
-    #btn-district, #btn-status, #btn-category, #btn-city{
+    #btn-district, #btn-status, #btn-category, #btn-city, #btn-year, #btn-vote, #btn-cost{
       margin-top: 15px;
     }
     .profile-location{
