@@ -36,6 +36,9 @@
   <script src="../../../frontend/global/js/Plugin/slidepanel.js"></script>
   <script src="../../../frontend/global/js/Plugin/switchery.js"></script>
 
+<script>
+$('#widget').draggable();
+</script>
  <script>
   (function(document, window, $) {
     'use strict';
@@ -130,6 +133,8 @@
                 $('#btn-search').hide();
               sendfilter();
           });
+
+          
 
           $('#projectstatus li').click(function(){
               var value = $('span',this).html();

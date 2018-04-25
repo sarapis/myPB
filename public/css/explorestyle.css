@@ -44,7 +44,10 @@ a, a:hover, a:focus {
     display: flex;
     align-items: stretch;
 }
-
+.ui-slider-handle{
+  -ms-touch-action: none;
+  touch-action: none;
+}
 #sidebar {
     min-width: 270px;
     max-width: 270px;
