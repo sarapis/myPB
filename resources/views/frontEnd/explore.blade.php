@@ -151,8 +151,9 @@ ul#ui-id-1 {
           var text= $('.navbar-container').css('height');
           var height = text.slice(0, -2);
           $('.page').css('padding-top', height);
+          $('#content').css('top', height);
         }
-        else if(screen.width < 768){
+        else{
           var text= $('.navbar-container').css('height');
           var height = text.slice(0, -2);
           $('.page').css('margin-top', height);
