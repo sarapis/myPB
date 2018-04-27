@@ -117,7 +117,7 @@ Projects
                   
                   <td class="text-center">{{$project->agency_project_code}}</td>
 
-                  <td class="text-center">{{$project->project_budget_type}}</td>
+                  <td class="text-center"><span class="badge bg-blue">{{$project->project_budget_type}}</span></td>
 
                   <td class="text-center">
                     <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$project->id}}" style="width: 80px;"><i class="fa fa-fw fa-edit"></i>Edit</button>

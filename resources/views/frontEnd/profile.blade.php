@@ -58,19 +58,21 @@ Profile
       </div>
     </div>
 
-    @if($project->project_budget_type=='Capital')
-    <div class="panel mb-0">
-      <div class="panel-body p-15">
-        <h5 class="profile-title">This is a <b>Capital Project</b> so it will likely take between 3-7 years from funding to completion.</h5>
+    @if($project->project_status_category != 'Not funded' && $project->project_status_category != 'Project Status Needed')
+      @if($project->project_budget_type=='Capital')
+      <div class="panel mb-0">
+        <div class="panel-body p-15">
+          <h5 class="profile-title">This is a <b>Capital Project</b> so it will likely take between 3-7 years from funding to completion.</h5>
+        </div>
       </div>
-    </div>
-    @endif
-    @if($project->project_budget_type=='Expense')
-    <div class="panel mb-0">
-      <div class="panel-body p-15">
-        <h5 class="profile-title">This is an <b>Expense Project</b> so it will likely be completed within 1-2 years.</h5>
+      @endif
+      @if($project->project_budget_type=='Expense')
+      <div class="panel mb-0">
+        <div class="panel-body p-15">
+          <h5 class="profile-title">This is an <b>Expense Project</b> so it will likely be completed within 1-2 years.</h5>
+        </div>
       </div>
-    </div>
+      @endif
     @endif
   </div>
 
