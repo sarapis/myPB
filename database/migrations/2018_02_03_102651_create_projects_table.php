@@ -50,6 +50,7 @@ class CreateProjectsTable extends Migration
                 $table->string('name_dept_agency_cbo')->nullable();
                 $table->string('agency_code')->nullable();
                 $table->string('agency_project_code')->nullable();
+                $table->string('project_budget_type')->nullable();
                 $table->string('flag')->nullable();
             });
     }

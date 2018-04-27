@@ -51,13 +51,27 @@ Profile
       </div>
     </div>
 
-    <div class="panel mb-0">
+    <div class="panel mb-15">
       <div class="panel-body p-15">
         <h4><b>BALLOT INFORMATION</b></h4>
         <h5 class="profile-title">Project appeared on {{$project->district->name}} PBNYC ballot in {{$project->vote_year}} with a cost of ${{number_format($project->cost_text)}}. {{$project->win_text}} with {{$project->votes}} votes</h5>
       </div>
     </div>
 
+    @if($project->project_budget_type=='Capital')
+    <div class="panel mb-0">
+      <div class="panel-body p-15">
+        <h5 class="profile-title">This is a <b>Capital Project</b> so it will likely take between 3-7 years from funding to completion.</h5>
+      </div>
+    </div>
+    @endif
+    @if($project->project_budget_type=='Expense')
+    <div class="panel mb-0">
+      <div class="panel-body p-15">
+        <h5 class="profile-title">This is an <b>Expense Project</b> so it will likely be completed within 1-2 years.</h5>
+      </div>
+    </div>
+    @endif
   </div>
 
   <div class="col-md-5 pt-15">
@@ -67,12 +81,6 @@ Profile
       <div class="panel-body p-15">
           <h4><b>IMPLEMENTATION PLAN</b></h4>
           <h5 class="profile-title">${{$project->cost_appropriated}} by NYCC in {{$project->fiscal_year}}, with implementation by {{$project->name_dept_agency_cbo}}.</h5>
-          <h5 class="profile-title">Capital projects typically take between 3-7 years from funding to completion.</h5>
-<!--           <h4>{{$project->status_date_updated}} {{$project->project_id}}</h4>
-          <h4>{{$project->name_dept_agency_cbo}}</h4>
-          <h4>{{$project->district->name}}</h4>
-          <h4>{{$contact->email}}</h4>
-          <h4>{{$contact->phone}}</h4> -->
       </div>
     </div>
     @endif
@@ -82,7 +90,7 @@ Profile
         <button class="btn btn-block btn-profile waves-effect waves-classic waves-effect waves-classic"><a href="mailto:{{$contact->email}}" target="_top"  class="ui-link">Email Your Council Member</a></button>
       </div>
     </div>
-    <div class="panel mb-15">
+    <div class="panel mb-0">
       <div class="panel-body p-15">
           <h4><b>PROJECT DETAILS</b></h4>
           <h5 class="profile-title"><b>{{$project->category_type_topic_standardize}}</b></h5>

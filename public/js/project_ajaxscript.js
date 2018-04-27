@@ -22,7 +22,7 @@ $(document).ready(function(){
             type: "GET",
             url: url + '/' + id,
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 $('#id').val(data.id);
                 $('#project_id').val(data.project_id);
                 $('#project_title').val(data.project_title);
@@ -54,6 +54,7 @@ $(document).ready(function(){
                 $('#borough_code').val(data.borough_code);
                 $('#name_dept_agency_cbo').val(data.name_dept_agency_cbo);
                 $('#agency_project_code').val(data.agency_project_code);
+                $('#project_budget_type').val(data.project_budget_type);
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -106,7 +107,8 @@ $(document).ready(function(){
             bin: $('#bin').val(),
             borough_code: $('#borough_code').val(),
             name_dept_agency_cbo: $('#name_dept_agency_cbo').val(),
-            agency_project_code: $('#agency_project_code').val()
+            agency_project_code: $('#agency_project_code').val(),
+            project_budget_type: $('#project_budget_type').val()
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]
@@ -119,14 +121,14 @@ $(document).ready(function(){
             my_url += '/' + id;
         }
 
-        console.log(formData);
+        // console.log(formData);
         $.ajax({
             type: type,
             url: my_url,
             data: formData,
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 // var product = '<tr id="project' + data.id + '"><td class="text-center">' + data.project_projectid + '</td><td class="text-center">' + data.project_managingagency + '</td>';
                 // product += '<td class="text-center"><button class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill open_modal" title="Edit details" value="' + data.bodystyleid + '"><i class="la la-edit"></i></button>';
                 // product += ' <button class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill delete-product" title="Delete" value="' + data.bodystyleid + '"><i class="la la-trash"></i></button></td></tr>';

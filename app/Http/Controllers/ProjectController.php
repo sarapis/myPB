@@ -85,6 +85,8 @@ class ProjectController extends Controller
                 $project->name_dept_agency_cbo = isset($record['fields']['Name_Dept_Agency_CBO'])? implode(",", $record['fields']['Name_Dept_Agency_CBO']):null;
                 
                 $project->agency_project_code = isset($record['fields']['Agency_Project_Code'])?$record['fields']['Agency_Project_Code']:null;
+
+                $project->project_budget_type = isset($record['fields']['Project_Budget_Type'])?$record['fields']['Project_Budget_Type']:null;
                 
                 $project ->save();
 
@@ -192,6 +194,7 @@ class ProjectController extends Controller
         $project->borough_code = $request->borough_code;
         $project->name_dept_agency_cbo = $request->name_dept_agency_cbo;
         $project->agency_project_code = $request->agency_project_code;
+        $project->project_budget_type = $request->project_budget_type;
         $project->flag = 'modified';
         $project->save();
         // var_dump($project);

@@ -63,6 +63,7 @@ Projects
                     <th class="text-center">Name_Dept_Agency_CBO</th>
                     
                     <th class="text-center">Agency_Project_Code</th>
+                    <th class="text-center">Project_Budget_Type</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -115,6 +116,8 @@ Projects
                   <td class="text-center">{{$project->name_dept_agency_cbo}}</td>
                   
                   <td class="text-center">{{$project->agency_project_code}}</td>
+
+                  <td class="text-center">{{$project->project_budget_type}}</td>
 
                   <td class="text-center">
                     <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$project->id}}" style="width: 80px;"><i class="fa fa-fw fa-edit"></i>Edit</button>
@@ -365,7 +368,7 @@ Projects
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Name Dept Agency CBO</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label" style="padding-top: 0;">Name Dept Agency CBO</label>
 
                       <div class="col-sm-7">
                         <input type="text" class="form-control" id="name_dept_agency_cbo" name="name_dept_agency_cbo" value="">
@@ -377,6 +380,16 @@ Projects
                       <div class="col-sm-7">
                         <input type="text" class="form-control" id="agency_project_code" name="agency_project_code" value="">
                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-4 control-label" style="padding-top: 0;">Project Budget Type</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" id="project_budget_type">
+                                <option></option>
+                                <option value="Capital">Capital</option>
+                                <option value="Expense">Expense</option>
+                            </select>
+                        </div>
                     </div>
                   </dir>
                 </div>
