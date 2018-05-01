@@ -5,7 +5,7 @@
     		<h3 class="feedback-title">Love it? Change it? We'd love to hear your thoughts!</h3>
     	</div>
     	<div class="col-md-4 feedback-btn">
-    		<button class="btn btn-block btn-feedback waves-effect waves-classic"><a href="/feedback">Feedback</a></button>
+    		<button class="btn btn-block btn-feedback waves-effect waves-classic" style="padding: 0;"><a href="/feedback" style="display: block;line-height: 45px;">Feedback</a></button>
     	</div>
     </div>
     <div class="row footer-content">
