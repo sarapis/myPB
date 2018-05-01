@@ -158,10 +158,35 @@ $('#widget').draggable();
               $('#btn-city').show();
               sendfilter();
           });
+          $('#btn-cost').click(function(){
+            $( "#slider-range" ).slider({
+              values: [ 0, 1500000 ]
+            });
+            $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+              " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+          });
+
+          $('#btn-year').click(function(){
+            $( "#slider-range-year" ).slider({
+              values: [ 2012, 2018 ]
+            });
+            $( "#amount-year" ).val(  $( "#slider-range-year" ).slider( "values", 0 ) +
+             " - " + $( "#slider-range-year" ).slider( "values", 1 ) );
+          });
+
+          $('#btn-vote').click(function(){
+            $( "#slider-range-vote" ).slider({
+              values: [ 0, 5293 ]
+            });
+            $( "#amount-vote" ).val(  $( "#slider-range-vote" ).slider( "values", 0 ) +
+              " - " + $( "#slider-range-vote" ).slider( "values", 1 ) );
+          });
+
           $('#filter_buttons button').click(function(){
               $(this).hide();
               sendfilter();
           });
+
 
 
 
