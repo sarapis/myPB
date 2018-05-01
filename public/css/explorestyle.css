@@ -672,3 +672,6 @@ p{
 .ui-loader.ui-corner-all.ui-body-a.ui-loader-default{
   display: none;
 }
+.fd-link{
+  display: block;
+}

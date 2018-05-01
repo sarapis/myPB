@@ -15,7 +15,7 @@
     				<div class="pb-5"><a class="fd-content">LEARN MORE</a></div>
     				<div class="pb-3"><a href="/about" class="fd-link">About This Project</a></div>
     				<div class="pb-3"><a href="https://www.participatorybudgeting.org/" target="_blank" class="fd-link">About PBP</a></div>
-    				<div><a href="https://participatorybudgeting.us2.list-manage.com/subscribe?u=d7a76e4fc718437c43d63cba5&id=14ff270bc2" target="_blank" class="fd-link">Join Our Mailing List</a></div>
+    				<div><a href="http://info.participatorybudgeting.org/mypb-news" target="_blank" class="fd-link">Join Our Mailing List</a></div>
     			</div>
     			<div class="col-md-6 fd-more">
     				<div class="pb-5"><a class="fd-content">GET INVOLVED</a></div>
