@@ -6714,7 +6714,7 @@
 
       dialogsInBody: false,
 
-      maximumImageFileSize: null,
+      maximumImageFileSize: 51200,
 
       callbacks: {
         onInit: null,
@@ -6725,9 +6725,11 @@
         onKeydown: null,
         onSubmit: null,
         onImageUpload: null,
-        onImageUploadError: null
+        onImageUploadError: function(image){
+            $('.alert_file_size').text('Please, select less then 50kb image.');
+            $('.alert_box').fadeIn(1000);
+      }
       },
-
       codemirror: {
         mode: 'text/html',
         htmlMode: true,
