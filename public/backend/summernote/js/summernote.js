@@ -6724,23 +6724,7 @@
         onKeyup: null,
         onKeydown: null,
         onSubmit: null,
-        onImageUpload: function(files) {
-          var url = $('.url').val();
-          // alert(url);
-			var $editor = $(this);
-			var data = new FormData();
-		    data.append('file', files[0]);
-		    $.ajax({
-		        url: url,
-		        method: 'POST',
-		        data: data,
-		        processData: false,
-		        contentType: false,
-		        success: function(response) {
-		          $editor.summernote('insertImage', response);
-		        }
-		    });
-        },
+        onImageUpload: null,
         onImageUploadError: null
       },
 
