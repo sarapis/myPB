@@ -67,11 +67,31 @@
 
                             <li class="option-li"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In process</span></li>
                         
-                            <li class="option-li"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Not funded</span></li>
+                            <li class="option-li"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Not Funded</span></li>
                       
                             <li class="option-li"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></li>
                     
                             
+                        </ul>
+                    </li>
+                    <li class="option-side">
+                        <a href="#projectcategory" class="text-side" data-toggle="collapse" aria-expanded="false">Project Category</a>
+                        <ul class="collapse list-unstyled option-ul" id="projectcategory">
+                            @foreach($categories as $category)
+                                @if($category->category_type_topic_standardize!='')
+                                <li class="option-li">{{$category->category_type_topic_standardize}}</li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="option-side">
+                        <a href="#cityagency" class="text-side" data-toggle="collapse" aria-expanded="false">City Agency</a>
+                        <ul class="collapse list-unstyled option-ul" id="cityagency">
+                            @foreach($cities as $city)
+                                @if($city->name_dept_agency_cbo!='')
+                                <li class="option-li">{{$city->name_dept_agency_cbo}}</li>
+                                @endif
+                            @endforeach
                         </ul>
                     </li>
                 </ul>    
@@ -124,30 +144,6 @@
                     </div>
                 </div>
                 <!-- End Example Range -->
-                
-                <ul class="list-unstyled components pt-0">    
-                    
-                    <li class="option-side">
-                        <a href="#projectcategory" class="text-side" data-toggle="collapse" aria-expanded="false">Project Category</a>
-                        <ul class="collapse list-unstyled option-ul" id="projectcategory">
-                            @foreach($categories as $category)
-                                @if($category->category_type_topic_standardize!='')
-                                <li class="option-li">{{$category->category_type_topic_standardize}}</li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li class="option-side">
-                        <a href="#cityagency" class="text-side" data-toggle="collapse" aria-expanded="false">City Agency</a>
-                        <ul class="collapse list-unstyled option-ul" id="cityagency">
-                            @foreach($cities as $city)
-                                @if($city->name_dept_agency_cbo!='')
-                                <li class="option-li">{{$city->name_dept_agency_cbo}}</li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </li>
-                </ul>
             </div>
             <div class="tab-pane" id="exampleTopComponents" role="tabpanel">
                 <ul class="list-unstyled components">

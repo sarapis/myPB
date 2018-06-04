@@ -13,7 +13,10 @@
         
         <ul class="nav navbar-toolbar nav-menubar pull-right">
           <li class="nav-item">
-            <a class="nav-link text-white" href="/explore"><b>Explore</b></a>
+            <a class="nav-link text-white" href="/summary"><b>Summary</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/explore"><b>Projects</b></a>
           </li>
           <li class="nav-item">
             <div id="google_translate_element" class="nav-link"><!-- <b>Languages</b> -->
