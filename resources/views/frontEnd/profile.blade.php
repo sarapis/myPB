@@ -17,8 +17,10 @@ Profile
       display: none;
     }
     .overlay{
-      display: block;
-      width: 270px;
+      display: block !important;
+      width: 270px !important;
+      height: 100% !important;
+      z-index: 999 !important;
     }
     @media (max-width: 768px) {
       #map{
@@ -27,18 +29,25 @@ Profile
           position: relative !important;
           display: block !important;
           z-index: 1 !important;
-        }    
+        }
+      .overlay{
+        display: none !important;
+      }  
     }
 </style>
 @section('content')
 <div class="wrapper">
+
   @include('layouts.sidebar')
+
   <div id="content" class="container">
     <div class="row container-fluid m-0 p-0">
       <div class="col-md-8">
-      
+        <div class="row">
+          <button type="button" id="btn-status" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left waves-effect waves-classic ml-15 mt-30 mb-0" style=""><b><span>{{$project->project_title}} </span><a href="/explore"> <i class="icon wb-close" aria-hidden="true"></i></a></b></button>
+        </div>
         @if($project->project_status_category=='Complete')
-            <h4 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
+            <h4 class="m-0 pt-20 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
         @elseif($project->project_status_category=='Project Status Needed')
             <h4 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button>{{$project->project_title}}</h4>
         @elseif($project->project_status_category=='Not funded')
@@ -46,9 +55,21 @@ Profile
         @else
             <h4 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
         @endif
+
         <div class="panel mb-15">
           <div class="panel-body p-15">
-            <h4><b>{{$project->project_status}}</b></h4>
+            <h4><div class="pull-left pt-5"><b>{{$project->project_status}}</b></div>
+              @if($project->project_status_category=='Complete')
+                  <div class="pull-right"><button type="button" class="btn btn-floating btn-success btn-xs mr-10"><i class="icon fa-check mr-0" aria-hidden="true"></i></button></div>
+                @elseif($project->project_status_category=='Project Status Needed')
+                  <div class="pull-right">  <button type="button" class="btn btn-floating  btn-xs mr-10"></button>
+                  </div>
+                @elseif($project->project_status_category=='Not funded')
+                    <div class="pull-right"><button type="button" class="btn btn-floating btn-danger btn-xs mr-10"><i class="icon fa-remove mr-0" aria-hidden="true"></i></button></div>
+                @else
+                    <div class="pull-right"><button type="button" class="btn btn-floating btn-warning btn-xs mr-10"><i class="icon fa-minus mr-0" aria-hidden="true"></i></button></div>
+              @endif
+            </h4>
             @if($project->status_date_update!=null)
             <p>Last updated {{$project->status_date_updated}}</p>
             @endif
@@ -116,6 +137,21 @@ Profile
     </div>
   </div>
 </div>
+<script>
+    $(document).ready(function(){
+        if(screen.width < 768){
+          var text= $('.navbar-container').css('height');
+          var height = text.slice(0, -2);
+          $('#sidebar').css('top', height);
+          $('#content').css('top', height);
+        }
+        else{
+          var text= $('.navbar-container').css('height');
+          var height = text.slice(0, -2);
+          $('.page').css('margin-top', height);
+        }
+    });
+</script>
  <script type="text/javascript">
 
     var locations = <?php print_r(json_encode($project)) ?>;
@@ -130,6 +166,7 @@ Profile
      mymap.addMarker({
       lat: locations.latitude,
       lng: locations.longitude,
+      icon: "https://maps.google.com/mapfiles/ms/micons/green.png",
       infoWindow: {
           maxWidth: 250,
           content: ('<span style="color:#424242;font-weight:500;font-size:14px;">'+locations.project_address_clean+', '+locations.location_city+', '+locations.state+', '+locations.zipcode+'</span>')
