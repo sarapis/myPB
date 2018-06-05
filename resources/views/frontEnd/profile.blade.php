@@ -163,10 +163,27 @@ Profile
       zoom:13
     });
 
+    var status = locations.project_status_category;
+    var statusicon = '';
+    console.log(status);
+    if(status == 'Complete'){
+        statusicon = "https://maps.google.com/mapfiles/ms/micons/green.png"
+      }
+    if(status == 'Not funded'){
+        statusicon = "https://maps.google.com/mapfiles/ms/micons/red.png"
+      }
+    if(status == 'In process'){
+        statusicon = "https://maps.google.com/mapfiles/ms/micons/yellow.png"
+      }
+    if(status == 'Project Status Needed'){
+        statusicon = "https://maps.google.com/mapfiles/ms/micons/grey.png"
+      }
+      
+
      mymap.addMarker({
       lat: locations.latitude,
       lng: locations.longitude,
-      icon: "https://maps.google.com/mapfiles/ms/micons/green.png",
+      icon: statusicon,      
       infoWindow: {
           maxWidth: 250,
           content: ('<span style="color:#424242;font-weight:500;font-size:14px;">'+locations.project_address_clean+', '+locations.location_city+', '+locations.state+', '+locations.zipcode+'</span>')

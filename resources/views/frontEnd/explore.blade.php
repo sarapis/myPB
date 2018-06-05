@@ -182,20 +182,29 @@ ul#ui-id-1 {
 
     $.each( locations['data'], function(index, value ){
         var icon;
-        if(value.project_status_category == "Complete")
+        var statusicon;
+        if(value.project_status_category == "Complete"){
             icon = '<button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-check" aria-hidden="true"></i></button>';
-        else if(value.project_status_category == "Project Status Needed")
+            statusicon = "https://maps.google.com/mapfiles/ms/micons/green.png";
+        }
+        else if(value.project_status_category == "Project Status Needed"){
             icon = '<button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"></button>';
-        else if(value.project_status_category == "Not funded")
+            statusicon = "https://maps.google.com/mapfiles/ms/micons/grey.png";
+        }
+        else if(value.project_status_category == "Not funded"){
             icon = '<button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-remove" aria-hidden="true"></i></button>';
-        else
+            statusicon = "https://maps.google.com/mapfiles/ms/micons/red.png";
+        }
+        else{
             icon ='<button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-minus" aria-hidden="true"></i></button>';
+            statusicon = "https://maps.google.com/mapfiles/ms/micons/yellow.png";
+        }
 
         mymap.addMarker({
             lat: value.latitude,
             lng: value.longitude,
             title: value.city,
-                   
+            icon : statusicon,      
             infoWindow: {
                 maxWidth: 250,
                 content: ('<a href="/profile/'+value.id+'" style="color:#424242;font-weight:500;font-size:14px;">'+icon+value.project_title+'</a>')
