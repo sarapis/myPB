@@ -185,19 +185,19 @@ ul#ui-id-1 {
         var statusicon;
         if(value.project_status_category == "Complete"){
             icon = '<button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-check" aria-hidden="true"></i></button>';
-            statusicon = "https://maps.google.com/mapfiles/ms/micons/green.png";
+            statusicon = "/images/icon/completed-map-pin.png";
         }
         else if(value.project_status_category == "Project Status Needed"){
             icon = '<button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"></button>';
-            statusicon = "https://maps.google.com/mapfiles/ms/micons/grey.png";
+            statusicon = "/images/icon/status-needed-map-pin.png";
         }
         else if(value.project_status_category == "Not funded"){
             icon = '<button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-remove" aria-hidden="true"></i></button>';
-            statusicon = "https://maps.google.com/mapfiles/ms/micons/red.png";
+            statusicon = "/images/icon/not-funded-map-pin.png";
         }
         else{
             icon ='<button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-minus" aria-hidden="true"></i></button>';
-            statusicon = "https://maps.google.com/mapfiles/ms/micons/yellow.png";
+            statusicon = "/images/icon/in-progress-map-pin.png";
         }
 
         mymap.addMarker({

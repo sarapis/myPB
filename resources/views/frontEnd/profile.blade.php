@@ -167,16 +167,16 @@ Profile
     var statusicon = '';
     console.log(status);
     if(status == 'Complete'){
-        statusicon = "https://maps.google.com/mapfiles/ms/micons/green.png"
+        statusicon = "/images/icon/completed-map-pin.png"
       }
     if(status == 'Not funded'){
-        statusicon = "https://maps.google.com/mapfiles/ms/micons/red.png"
+        statusicon = "/images/icon/not-funded-map-pin.png"
       }
     if(status == 'In process'){
-        statusicon = "https://maps.google.com/mapfiles/ms/micons/yellow.png"
+        statusicon = "/images/icon/in-progress-map-pin.png"
       }
     if(status == 'Project Status Needed'){
-        statusicon = "https://maps.google.com/mapfiles/ms/micons/grey.png"
+        statusicon = "/images/icon/status-needed-map-pin.png"
       }
       
 
