@@ -33,6 +33,8 @@ Route::get('/explore/cityagency_{id}', 'ExploreController@cityagency');
 // Route::post('/search', 'ExploreController@search');
 // Route::get('/filter', 'ExploreController@filterValues');
 
+Route::get('/summary', 'SummaryController@index');
+
 Route::post('/range', 'ExploreController@filterValues1');
 
 
