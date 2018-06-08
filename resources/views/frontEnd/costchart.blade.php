@@ -1,7 +1,7 @@
 <script>
-    var cost_reports = <?php print_r(json_encode($cost_reports)) ?>;
+    var cost_reports = <?php echo(json_encode($cost_reports)) ?>;
 
-
+    console.log(cost_reports);
     var chart = AmCharts.makeChart("chartdiv_cost", {
         "hideCredits":true,
         "type": "serial",
@@ -13,17 +13,83 @@
             "valueWidth": 10,
         },
         "dataProvider": [
-        
-        @foreach ($cost_reports as $key => $value)
             {
-
-            "category": "{{ $key }}".replace(/&amp;/g, '&'),
-            "Complete": @if(isset($value['Complete'])) {{ $value['Complete']}} @else 0 @endif,
-            "In process": @if(isset($value['In process'])) {{ $value['In process']}} @else 0 @endif,
-            "Not funded": @if(isset($value['Not funded'])) {{ $value['Not funded']}} @else 0 @endif,
-            "Project Status Needed": @if(isset($value['Project Status Needed'])) {{ $value['Project Status Needed']}} @else 0 @endif
-            },    
-        @endforeach
+            "category": "0-$99,999",
+            "Complete": @if(isset($cost_reports['0-$99,999']['Complete'])) {{ $cost_reports['0-$99,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['0-$99,999']['In process'])) {{ $cost_reports['0-$99,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['0-$99,999']['Not funded'])) {{ $cost_reports['0-$99,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['0-$99,999']['Project Status Needed'])) {{ $cost_reports['0-$99,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "100k-$199,999",
+            "Complete": @if(isset($cost_reports['100k-$199,999']['Complete'])) {{ $cost_reports['100k-$199,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['100k-$199,999']['In process'])) {{ $cost_reports['100k-$199,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['100k-$199,999']['Not funded'])) {{ $cost_reports['100k-$199,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['100k-$199,999']['Project Status Needed'])) {{ $cost_reports['100k-$199,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "200k-$299,999",
+            "Complete": @if(isset($cost_reports['200k-$299,999']['Complete'])) {{ $cost_reports['200k-$299,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['200k-$299,999']['In process'])) {{ $cost_reports['200k-$299,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['200k-$299,999']['Not funded'])) {{ $cost_reports['200k-$299,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['200k-$299,999']['Project Status Needed'])) {{ $cost_reports['200k-$299,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "300k-$399,999",
+            "Complete": @if(isset($cost_reports['300k-$399,999']['Complete'])) {{ $cost_reports['300k-$399,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['300k-$399,999']['In process'])) {{ $cost_reports['300k-$399,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['300k-$399,999']['Not funded'])) {{ $cost_reports['300k-$399,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['300k-$399,999']['Project Status Needed'])) {{ $cost_reports['300k-$399,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "400k-$499,999",
+            "Complete": @if(isset($cost_reports['400k-$499,999']['Complete'])) {{ $cost_reports['400k-$499,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['400k-$499,999']['In process'])) {{ $cost_reports['400k-$499,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['400k-$499,999']['Not funded'])) {{ $cost_reports['400k-$499,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['400k-$499,999']['Project Status Needed'])) {{ $cost_reports['400k-$499,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "500k-$599,999",
+            "Complete": @if(isset($cost_reports['500k-$599,999']['Complete'])) {{ $cost_reports['500k-$599,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['500k-$599,999']['In process'])) {{ $cost_reports['500k-$599,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['500k-$599,999']['Not funded'])) {{ $cost_reports['500k-$599,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['500k-$599,999']['Project Status Needed'])) {{ $cost_reports['500k-$599,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "600k-$699,999",
+            "Complete": @if(isset($cost_reports['600k-$699,999']['Complete'])) {{ $cost_reports['600k-$699,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['600k-$699,999']['In process'])) {{ $cost_reports['600k-$699,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['600k-$699,999']['Not funded'])) {{ $cost_reports['600k-$699,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['600k-$699,999']['Project Status Needed'])) {{ $cost_reports['600k-$699,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "700k-$799,999",
+            "Complete": @if(isset($cost_reports['700k-$799,999']['Complete'])) {{ $cost_reports['700k-$799,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['700k-$799,999']['In process'])) {{ $cost_reports['700k-$799,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['700k-$799,999']['Not funded'])) {{ $cost_reports['700k-$799,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['700k-$799,999']['Project Status Needed'])) {{ $cost_reports['700k-$799,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "800k-$899,999",
+            "Complete": @if(isset($cost_reports['800k-$899,999']['Complete'])) {{ $cost_reports['800k-$899,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['800k-$899,999']['In process'])) {{ $cost_reports['800k-$899,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['800k-$899,999']['Not funded'])) {{ $cost_reports['800k-$899,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['800k-$899,999']['Project Status Needed'])) {{ $cost_reports['800k-$899,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "900k-$999,999",
+            "Complete": @if(isset($cost_reports['900k-$999,999']['Complete'])) {{ $cost_reports['900k-$999,999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['900k-$999,999']['In process'])) {{ $cost_reports['900k-$999,999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['900k-$999,999']['Not funded'])) {{ $cost_reports['900k-$999,999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['900k-$999,999']['Project Status Needed'])) {{ $cost_reports['900k-$999,999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "$1,000,000+",
+            "Complete": @if(isset($cost_reports['$1,000,000+']['Complete'])) {{ $cost_reports['$1,000,000+']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($cost_reports['$1,000,000+']['In process'])) {{ $cost_reports['$1,000,000+']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($cost_reports['$1,000,000+']['Not funded'])) {{ $cost_reports['$1,000,000+']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($cost_reports['$1,000,000+']['Project Status Needed'])) {{ $cost_reports['$1,000,000+']['Project Status Needed']}} @else 0 @endif
+            }
          ],
         "valueAxes": [{
             "stackType": "regular",

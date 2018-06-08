@@ -34,7 +34,7 @@ class SummaryController extends Controller
                 $category_reports[$value->category_type_topic_standardize][$value->project_status_category] = $value->count;
             }
 
-            $sqlQuery = 'SELECT vote_range, project_status_category, count(*) as count FROM (select project_status_category, case  when votes = 0 then \'unkown\'when votes >= 1 and votes < 500 then \'1-499\'when votes >= 500 and votes < 1000 then \'500-999\'when votes >= 1000 and votes < 1500 then \'1000-1499\'when votes >= 1500 and votes < 2000 then \'1500-1999\'when votes >= 2000 and votes < 2500 then \'2000-2499\'when votes >= 2500 and votes < 3000 then \'2500-2999\'else \'3000+\' end as vote_range from mypb.projects) as temp group by temp.vote_range, temp.project_status_category';
+            $sqlQuery = 'SELECT vote_range, project_status_category, count(*) as count FROM (select project_status_category, case  when votes = 0 then \'unknown\'when votes >= 1 and votes < 500 then \'1-499\'when votes >= 500 and votes < 1000 then \'500-999\'when votes >= 1000 and votes < 1500 then \'1000-1499\'when votes >= 1500 and votes < 2000 then \'1500-1999\'when votes >= 2000 and votes < 2500 then \'2000-2499\'when votes >= 2500 and votes < 3000 then \'2500-2999\'else \'3000+\' end as vote_range from mypb.projects) as temp group by temp.vote_range, temp.project_status_category';
             $vote_query = DB::select($sqlQuery); 
             $vote_reports;
             foreach ($vote_query as $value) {
@@ -48,7 +48,7 @@ class SummaryController extends Controller
                 800000 then \'700k-$799,999\'when cost_num >= 800000 and cost_num <
                 900000 then \'800k-$899,999\'when cost_num >= 900000 and cost_num <
                 1000000 then \'900k-$999,999\'else \'$1,000,000+\' end as cost_range from
-                mypb.projects) as temp group by temp.cost_range, temp.project_status_category';
+                mypb.projects where cost_num != \'null\') as temp group by temp.cost_range, temp.project_status_category';
             $cost_query = DB::select($sql_cost); 
             $cost_reports;
             foreach ($cost_query as $value) {

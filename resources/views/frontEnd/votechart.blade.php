@@ -1,6 +1,8 @@
 <script>
     var vote_reports = <?php print_r(json_encode($vote_reports)) ?>;
 
+    console.log(vote_reports);
+
     var chart = AmCharts.makeChart("chartdiv_vote", {
         "hideCredits":true,
         "type": "serial",
@@ -12,17 +14,62 @@
             "valueWidth": 10,
         },
         "dataProvider": [
-        
-        @foreach ($vote_reports as $key => $value)
             {
-
-            "category": "{{ $key }}".replace(/&amp;/g, '&'),
-            "Complete": @if(isset($value['Complete'])) {{ $value['Complete']}} @else 0 @endif,
-            "In process": @if(isset($value['In process'])) {{ $value['In process']}} @else 0 @endif,
-            "Not funded": @if(isset($value['Not funded'])) {{ $value['Not funded']}} @else 0 @endif,
-            "Project Status Needed": @if(isset($value['Project Status Needed'])) {{ $value['Project Status Needed']}} @else 0 @endif
-            },    
-        @endforeach
+            "category": "Unknown",
+            "Complete": @if(isset($vote_reports['unknown']['Complete'])) {{ $vote_reports['unknown']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($vote_reports['unknown']['In process'])) {{ $vote_reports['unknown']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($vote_reports['unknown']['Not funded'])) {{ $vote_reports['unknown']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($vote_reports['unknown']['Project Status Needed'])) {{ $vote_reports['unknown']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "1-499",
+            "Complete": @if(isset($vote_reports['1-499']['Complete'])) {{ $vote_reports['1-499']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($vote_reports['1-499']['In process'])) {{ $vote_reports['1-499']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($vote_reports['1-499']['Not funded'])) {{ $vote_reports['1-499']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($vote_reports['1-499']['Project Status Needed'])) {{ $vote_reports['1-499']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "500-999",
+            "Complete": @if(isset($vote_reports['500-999']['Complete'])) {{ $vote_reports['500-999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($vote_reports['500-999']['In process'])) {{ $vote_reports['500-999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($vote_reports['500-999']['Not funded'])) {{ $vote_reports['500-999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($vote_reports['500-999']['Project Status Needed'])) {{ $vote_reports['500-999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "1,000-1,499",
+            "Complete": @if(isset($vote_reports['1000-1499']['Complete'])) {{ $vote_reports['1000-1499']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($vote_reports['1000-1499']['In process'])) {{ $vote_reports['1000-1499']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($vote_reports['1000-1499']['Not funded'])) {{ $vote_reports['1000-1499']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($vote_reports['1000-1499']['Project Status Needed'])) {{ $vote_reports['1000-1499']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "1,500-1,999",
+            "Complete": @if(isset($vote_reports['1500-1999']['Complete'])) {{ $vote_reports['1500-1999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($vote_reports['1500-1999']['In process'])) {{ $vote_reports['1500-1999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($vote_reports['1500-1999']['Not funded'])) {{ $vote_reports['1500-1999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($vote_reports['1500-1999']['Project Status Needed'])) {{ $vote_reports['1500-1999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "2,000-2,499",
+            "Complete": @if(isset($vote_reports['2000-2499']['Complete'])) {{ $vote_reports['2000-2499']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($vote_reports['2000-2499']['In process'])) {{ $vote_reports['2000-2499']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($vote_reports['2000-2499']['Not funded'])) {{ $vote_reports['2000-2499']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($vote_reports['2000-2499']['Project Status Needed'])) {{ $vote_reports['2000-2499']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "2,500-2,999",
+            "Complete": @if(isset($vote_reports['2500-2999']['Complete'])) {{ $vote_reports['2500-2999']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($vote_reports['2500-2999']['In process'])) {{ $vote_reports['2500-2999']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($vote_reports['2500-2999']['Not funded'])) {{ $vote_reports['2500-2999']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($vote_reports['2500-2999']['Project Status Needed'])) {{ $vote_reports['2500-2999']['Project Status Needed']}} @else 0 @endif
+            },
+            {
+            "category": "3,000+",
+            "Complete": @if(isset($vote_reports['3000+']['Complete'])) {{ $vote_reports['3000+']['Complete']}} @else 0 @endif,
+            "In process": @if(isset($vote_reports['3000+']['In process'])) {{ $vote_reports['3000+']['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($vote_reports['3000+']['Not funded'])) {{ $vote_reports['3000+']['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($vote_reports['3000+']['Project Status Needed'])) {{ $vote_reports['3000+']['Project Status Needed']}} @else 0 @endif
+            }
          ],
         "valueAxes": [{
             "stackType": "regular",
@@ -83,6 +130,7 @@
             "gridAlpha": 0,
             "gridThickness" : 0,
             "position": "left",
+            "autoWrap": true,
             "title": "Number of Votes"
         },
         "export": {
