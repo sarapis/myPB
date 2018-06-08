@@ -1,16 +1,26 @@
 @extends('layouts.app')
 @section('title')
-Projects
+Summary
 @stop
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 
 <style type="text/css">
-#chartdiv {
+#chartdiv_category {
     width       : 100%;
-    height      : 500px;
-    font-size   : 11px;
-}   
+    height      : 450px;
+    font-size   : 14px;
+}
+#chartdiv_vote {
+    width       : 100%;
+    height      : 450px;
+    font-size   : 14px;
+} 
+#chartdiv_cost {
+    width       : 100%;
+    height      : 450px;
+    font-size   : 14px;
+}    
 #map{
     position: fixed !important;
 }
@@ -30,11 +40,28 @@ Projects
         <div class="row" style="margin-right: 0">
             <div class="col-md-8 pr-0">
                 <div class="panel m-15 content-panel">
-
-                    <div class="panel-body p-0">
-                        <div id="chartdiv"></div>                   
+                    <div class="panel-title pt-5 pb-0 text-center">
+                        <h3>PROJECTS BY CATEGORY</h3>
                     </div>
-                    <!-- End Example Striped Rows -->
+                    <div class="panel-body p-0">
+                        <div id="chartdiv_category"></div>                   
+                    </div>
+                </div>
+                <div class="panel m-15 content-panel">
+                    <div class="panel-title pt-5 pb-0 text-center">
+                        <h3>PROJECTS BY VOTE</h3>
+                    </div>
+                    <div class="panel-body p-0">
+                        <div id="chartdiv_vote"></div>                   
+                    </div>
+                </div>
+                <div class="panel m-15 content-panel">
+                    <div class="panel-title pt-5 pb-0 text-center">
+                        <h3>PROJECTS BY COST</h3>
+                    </div>
+                    <div class="panel-body p-0">
+                        <div id="chartdiv_cost"></div>                   
+                    </div>
                 </div>
             </div>
             <div class="col-md-4 p-0">
@@ -68,96 +95,10 @@ Projects
         }
     });
 </script>
-<script>
-     var category_reports = <?php print_r(json_encode($category_reports)) ?>;
-     console.log(category_reports);
-</script>
-<script>
-   
-    var chart = AmCharts.makeChart("chartdiv", {
-        "hideCredits":true,
-        "type": "serial",
-        "theme": "light",
-        "legend": {
-            "equalWidths": false,
-            "position": "top",
-            "valueAlign": "left",
-            "valueWidth": 10,
-        },
-        "dataProvider": [
-        
-        @foreach ($category_reports as $key => $value)
-            {
 
-            "category": "{{ $key }}".replace(/&amp;/g, '&'),
-            "Complete": @if(isset($value['Complete'])) {{ $value['Complete']}} @else 0 @endif,
-            "In process": @if(isset($value['In process'])) {{ $value['In process']}} @else 0 @endif,
-            "Not funded": @if(isset($value['Not funded'])) {{ $value['Not funded']}} @else 0 @endif,
-            "Project Status Needed": @if(isset($value['Project Status Needed'])) {{ $value['Project Status Needed']}} @else 0 @endif
-            },    
-        @endforeach
-         ],
-        "valueAxes": [{
-            "stackType": "regular",
-            "axisAlpha": 0.5,
-            "gridAlpha": 0,
-            "title": "Number of Projects"
-        }],
-        "graphs": [{
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Complete",
-            "type": "column",
-            "color": "#000000",
-            "lineColor": "#8ec73d",
-            "valueField": "Complete"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "In process",
-            "type": "column",
-            "color": "#000000",
-            "lineColor": "#ffeb00",
-            "valueField": "In process"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Not funded",
-            "type": "column",
-            "color": "#000000",
-            "lineColor": "#d3272d",
-            "valueField": "Not funded"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Project Status Needed",
-            "type": "column",
-            "color": "#000000",
-            "lineColor": "#c1c1c1",
-            "valueField": "Project Status Needed"
-        }],
-        "rotate": true,
-        "categoryField": "category",
-        "categoryAxis": {
-            "gridPosition": "start",
-            "axisAlpha": 5,
-            "gridAlpha": 0,
-            "position": "left",
-            "title": "Project Category"
-        },
-        "export": {
-            "enabled": true
-         }
-    });
-</script>
+@include('frontEnd.categorychart')
+@include('frontEnd.votechart')
+@include('frontEnd.costchart')
 <script>
     var locations = <?php print_r(json_encode($projects)) ?>;
     var sumlat = 0.0;

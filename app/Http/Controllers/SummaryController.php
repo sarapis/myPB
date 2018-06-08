@@ -34,11 +34,25 @@ class SummaryController extends Controller
                 $category_reports[$value->category_type_topic_standardize][$value->project_status_category] = $value->count;
             }
 
-            $sqlQuery = 'SELECT vote_range, project_status_category, count(*) as count FROM (select project_status_category, case  when votes = 0 then \'unkown\'when votes >= 1 and votes < 500 then \'1-499\'when votes >= 500 and votes < 1000 then \'1-999\'when votes >= 1000 and votes < 1500 then \'1000-1499\'when votes >= 1500 and votes < 2000 then \'1500-1999\'when votes >= 2000 and votes < 2500 then \'2000-2499\'when votes >= 2500 and votes < 3000 then \'2500-2999\'else \'3000+\' end as vote_range from mypb.projects) as temp group by temp.vote_range, temp.project_status_category';
+            $sqlQuery = 'SELECT vote_range, project_status_category, count(*) as count FROM (select project_status_category, case  when votes = 0 then \'unkown\'when votes >= 1 and votes < 500 then \'1-499\'when votes >= 500 and votes < 1000 then \'500-999\'when votes >= 1000 and votes < 1500 then \'1000-1499\'when votes >= 1500 and votes < 2000 then \'1500-1999\'when votes >= 2000 and votes < 2500 then \'2000-2499\'when votes >= 2500 and votes < 3000 then \'2500-2999\'else \'3000+\' end as vote_range from mypb.projects) as temp group by temp.vote_range, temp.project_status_category';
             $vote_query = DB::select($sqlQuery); 
             $vote_reports;
             foreach ($vote_query as $value) {
                 $vote_reports[$value->vote_range][$value->project_status_category] = $value->count;
+            }
+
+            $sql_cost = 'SELECT cost_range, project_status_category, count(*) as count FROM (select project_status_category, case  when cost_num >= 0 and cost_num < 100000 then \'0-$99,999\'when cost_num >= 100000 and cost_num < 200000 then \'100k-$199,999\'when cost_num >= 200000 and cost_num < 300000 then \'200k-$299,999\'when cost_num >= 300000 and cost_num < 400000 then \'300k-$399,999\'when cost_num >= 400000 and cost_num <
+                500000 then \'400k-$499,999\'when cost_num >= 500000 and cost_num <
+                600000 then \'500k-$599,999\'when cost_num >= 600000 and cost_num <
+                700000 then \'600k-$699,999\'when cost_num >= 700000 and cost_num <
+                800000 then \'700k-$799,999\'when cost_num >= 800000 and cost_num <
+                900000 then \'800k-$899,999\'when cost_num >= 900000 and cost_num <
+                1000000 then \'900k-$999,999\'else \'$1,000,000+\' end as cost_range from
+                mypb.projects) as temp group by temp.cost_range, temp.project_status_category';
+            $cost_query = DB::select($sql_cost); 
+            $cost_reports;
+            foreach ($cost_query as $value) {
+                $cost_reports[$value->cost_range][$value->project_status_category] = $value->count;
             }
 
             // $project_agency = Project::with('agency')->where('project_title', '=', 'Laptops for Schools in District 8 - Renaissance Charter HS - Site 7 of 9')->first();
@@ -120,7 +134,7 @@ class SummaryController extends Controller
 
         $location_maps = Project::all();
         
-        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports'));
+        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports'));
     }
 
   
