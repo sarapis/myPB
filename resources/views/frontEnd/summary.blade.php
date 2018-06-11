@@ -20,13 +20,37 @@ Summary
     width       : 100%;
     height      : 450px;
     font-size   : 14px;
-}    
+}
+
+#chartdiv_agency {
+  width: 100%;
+  height: 500px;
+  font-size: 11px;
+}
+
+.amcharts-pie-slice {
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition-duration: 0.3s;
+  transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  cursor: pointer;
+  box-shadow: 0 0 30px 0 #000;
+}
+
+.amcharts-pie-slice:hover {
+  transform: scale(1.1);
+  filter: url(#shadow);
+}                               
 #map{
     position: fixed !important;
 }
 </style>
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/pie.js"></script>
 <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
@@ -61,6 +85,14 @@ Summary
                     </div>
                     <div class="panel-body p-0">
                         <div id="chartdiv_cost"></div>                   
+                    </div>
+                </div>
+                <div class="panel m-15 content-panel">
+                    <div class="panel-title pt-5 pb-0 text-center">
+                        <h3>PROJECTS BY AGENCY</h3>
+                    </div>
+                    <div class="panel-body p-0">
+                        <div id="chartdiv_agency"></div>                   
                     </div>
                 </div>
             </div>
@@ -99,6 +131,7 @@ Summary
 @include('frontEnd.categorychart')
 @include('frontEnd.votechart')
 @include('frontEnd.costchart')
+@include('frontEnd.agencychart')
 <script>
     var locations = <?php print_r(json_encode($projects)) ?>;
     var sumlat = 0.0;

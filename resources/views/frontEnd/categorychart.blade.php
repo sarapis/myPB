@@ -81,6 +81,7 @@
             "gridPosition": "start",
             "axisAlpha": 0.3,
             "gridAlpha": 0,
+            "gridThickness" : 0,
             "position": "left",
             "title": "Project Category"
         },

@@ -57,18 +57,10 @@ class SummaryController extends Controller
 
             // $project_agency = Project::with('agency')->where('project_title', '=', 'Laptops for Schools in District 8 - Renaissance Charter HS - Site 7 of 9')->first();
 
-            $project_agency = Agency::with('project')->where('agency_code', '=', 'SCA')->first();
+            $agency_reports = Agency::orderBy('agency_name')->get();
             // var_dump($project_agency);
             // exit();
-            $agency_report;
-            foreach ($project_agency as $value) {
-                if (isset($value->agency[0]->agency_name)) {
-                    if(isset($agency_report[$value->agency[0]->agency_name])) {
-                        $agency_report[$value->agency[0]->agency_name][$value->project_status_category];
-                    }
-                }
-            }
-
+           
             if ($request->input('search')) {
 
                 $search = $request->input('search');
@@ -134,7 +126,7 @@ class SummaryController extends Controller
 
         $location_maps = Project::all();
         
-        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports'));
+        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'agency_reports'));
     }
 
   
