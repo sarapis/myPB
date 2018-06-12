@@ -1,7 +1,7 @@
 <script>
     var cost_reports = <?php echo(json_encode($cost_reports)) ?>;
 
-    console.log(cost_reports);
+    // console.log(cost_reports);
     var chart = AmCharts.makeChart("chartdiv_cost", {
         "hideCredits":true,
         "type": "serial",

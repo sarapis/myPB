@@ -1,72 +1,91 @@
 <script>
-var agency_reports = <?php echo(json_encode($agency_reports)) ?>;
 
-console.log(agency_reports);
+    var chart = AmCharts.makeChart("chartdiv_agency", {
+        "hideCredits":true,
+        "type": "serial",
+        "theme": "light",
+        "legend": {
+            "equalWidths": false,
+            "position": "top",
+            "valueAlign": "left",
+            "valueWidth": 10,
+        },
+        "dataProvider": [
+        
+        @foreach ($output as $key => $value)
+            {
 
-var chart = AmCharts.makeChart("chartdiv_agency", {
-  "hideCredits":true,
-  "type": "pie",
-  "startDuration": 0,
-  "theme": "light",
-  "addClassNames": false,
-  "hideLabelsPercent": 0.5,
-  // "legend":{
-  //  	"position":"right",
-  //   "marginRight":0,
-  //   "autoMargins":false,
-  //   "maxColumns": 3
-  // },
-  "innerRadius": "30%",
-  "defs": {
-    "filter": [{
-      "id": "shadow",
-      "width": "200%",
-      "height": "200%",
-      "feOffset": {
-        "result": "offOut",
-        "in": "SourceAlpha",
-        "dx": 1000,
-        "dy": 0
-      },
-      "feGaussianBlur": {
-        "result": "blurOut",
-        "in": "offOut",
-        "stdDeviation": 5
-      },
-      "feBlend": {
-        "in": "SourceGraphic",
-        "in2": "blurOut",
-        "mode": "normal"
-      }
-    }]
-  },
-  "dataProvider": [
-  @foreach ($agency_reports as $key => $value)
-    {
-      "country": "{{$value['agency_name']}}",
-      'litres': @if(isset($value['projects'])) {{ count(explode(',', $value['projects'])) }} @else 0 @endif
-    },    
-  @endforeach
- ],
-  "valueField": "litres",
-  "titleField": "country",
-  "export": {
-    "enabled": true
-  }
-});
-
-chart.addListener("init", handleInit);
-
-chart.addListener("rollOverSlice", function(e) {
-  handleRollOver(e);
-});
-
-function handleInit(){
-  chart.legend.addListener("rollOverItem", handleRollOver);
-}
-
-function handleRollOver(e){
-  var wedge = e.dataItem.wedge.node;
-  wedge.parentNode.appendChild(wedge);
-}
+            "category": "{{ $value['key'] }}",
+            "Complete": @if(isset($value['Complete'])) {{ $value['Complete']}} @else 0 @endif,
+            "In process": @if(isset($value['In process'])) {{ $value['In process']}} @else 0 @endif,
+            "Not funded": @if(isset($value['Not funded'])) {{ $value['Not funded']}} @else 0 @endif,
+            "Project Status Needed": @if(isset($value['Project Status Needed'])) {{ $value['Project Status Needed']}} @else 0 @endif
+            },    
+        @endforeach
+         ],
+        "valueAxes": [{
+            "stackType": "regular",
+            "axisAlpha": 0,
+            "gridAlpha": 0.2,
+            "title": "Number of Projects"
+        }],
+        "graphs": [{
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 1,
+            // "labelText": "[[value]]",
+            "lineAlpha": 1,
+            "title": "Complete",
+            "type": "column",
+            "color": "#000000",
+            "lineColor": "#8ec73d",
+            "fixedColumnWidth": 25,
+            "valueField": "Complete"
+        }, {
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 1,
+            // "labelText": "[[value]]",
+            "lineAlpha": 1,
+            "title": "In process",
+            "type": "column",
+            "color": "#000000",
+            "lineColor": "#ffeb00",
+            "fixedColumnWidth": 25,
+            "valueField": "In process"
+        }, {
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 1,
+            // "labelText": "[[value]]",
+            "lineAlpha": 1,
+            "title": "Not funded",
+            "type": "column",
+            "color": "#000000",
+            "lineColor": "#d3272d",
+            "fixedColumnWidth": 25,
+            "valueField": "Not funded"
+        }, {
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 1,
+            // "labelText": "[[value]]",
+            "lineAlpha": 1,
+            "title": "Project Status Needed",
+            "type": "column",
+            "color": "#000000",
+            "lineColor": "#c1c1c1",
+            "fixedColumnWidth": 25,
+            "valueField": "Project Status Needed"
+        }],
+        "rotate": true,
+        "categoryField": "category",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha": 0.3,
+            "gridAlpha": 0,
+            "gridThickness" : 0,
+            "position": "left",
+            "title": "Implementing Agency"
+        },
+        "export": {
+            "enabled": true
+         }
+    });
 </script>

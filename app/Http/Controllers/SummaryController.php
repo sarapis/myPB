@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\DB;
 
 class SummaryController extends Controller
 {
+    public function compare($a, $b)
+    {
+       return ($a['total']< $b['total']);
+    }
     public function index(Request $request)
     {
             $districts = District::orderBy('name')->get();
@@ -60,7 +64,85 @@ class SummaryController extends Controller
             $agency_reports = Agency::orderBy('agency_name')->get();
             // var_dump($project_agency);
             // exit();
-           
+            foreach ($agency_reports as $value) {
+
+            }
+            $projects = Project::all();
+            $count = [];
+
+            foreach ($projects as $array_key => $value) {
+                if(isset($value->agency_code))
+                {
+                    $agency_codes = explode(',',$value->agency_code);
+                    
+                    $status = $value->project_status_category;
+                    for($i = 0; $i < count($agency_codes); $i++)
+                    {
+                        $code_name;
+                        foreach ($agency_reports as $key => $agency) {
+                            if($agency->recordid == $agency_codes[$i])
+                            {
+                                $code_name = $agency->agency_name;
+                            }
+                        }
+                        if(isset($count[$code_name]))
+                        {
+
+                            if(isset($count[$code_name][$status]))
+                                $count[$code_name][$status] ++;
+                            else
+                                $count[$code_name][$status] = 1;
+                            $count[$code_name]['total'] ++;
+
+                        }
+                        else
+                        {
+                            $count[$code_name] = [];
+                            $count[$code_name]['key'] = $code_name;
+                            $count[$code_name]['total'] = 0;
+                        }
+                    }
+                }
+            }
+
+            
+            usort($count,array($this,'compare'));
+
+            $output = [];
+
+            for($i = 0; $i < count($count); $i ++)
+            {
+
+                if($i < 9)
+                    $output[$i] = $count[$i];
+                else
+                {
+                    $output[8]['total'] += $count[$i]['total'];
+
+                    $output[8]['key'] = "other";                    
+
+                    if(isset($output[8]['In process']) && isset($count[$i]['In process']))
+                        $output[8]['In process'] += $count[$i]['In process'];
+                    else if(!isset($output[8]['In process']) && isset($count[$i]['In process']))
+                        $output[8]['In process'] = $count[$i]['In process'];
+                    if(isset($output[8]['Complete']) && isset($count[$i]['Complete']))
+                        $output[8]['Complete'] += $count[$i]['Complete'];
+                    else if(!isset($output[8]['Complete']) && isset($count[$i]['Complete']))
+                        $output[8]['Complete'] = $count[$i]['Complete'];
+                    if(isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
+                        $output[8]['Not funded'] += $count[$i]['Not funded'];
+                    else if(!isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
+                        $output[8]['Not funded'] = $count[$i]['Not funded'];
+                    if(isset($output[8]['Project Status Needed']) && isset($count[$i]['Project Status Needed']))
+                        $output[8]['Project Status Needed'] += $count[$i]['Project Status Needed'];
+                    else if(!isset($output[8]['Project Status Needed'])  && isset($count[$i]['Project Status Needed']))
+                        $output[8]['Project Status Needed'] = $count[$i]['Project Status Needed'];
+                }
+            }
+
+            // var_dump($output);
+            // exit();
+
             if ($request->input('search')) {
 
                 $search = $request->input('search');
@@ -126,7 +208,7 @@ class SummaryController extends Controller
 
         $location_maps = Project::all();
         
-        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'agency_reports'));
+        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output'));
     }
 
   

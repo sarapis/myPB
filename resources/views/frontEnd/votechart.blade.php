@@ -1,7 +1,7 @@
 <script>
     var vote_reports = <?php print_r(json_encode($vote_reports)) ?>;
 
-    console.log(vote_reports);
+    // console.log(vote_reports);
 
     var chart = AmCharts.makeChart("chartdiv_vote", {
         "hideCredits":true,
@@ -131,6 +131,7 @@
             "gridThickness" : 0,
             "position": "left",
             "autoWrap": true,
+            "twoLineMode" : true,
             "title": "Number of Votes"
         },
         "export": {
