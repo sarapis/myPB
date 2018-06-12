@@ -119,7 +119,7 @@ class SummaryController extends Controller
                 {
                     $output[8]['total'] += $count[$i]['total'];
 
-                    $output[8]['key'] = "other";                    
+                    $output[8]['key'] = "Other";                    
 
                     if(isset($output[8]['In process']) && isset($count[$i]['In process']))
                         $output[8]['In process'] += $count[$i]['In process'];
