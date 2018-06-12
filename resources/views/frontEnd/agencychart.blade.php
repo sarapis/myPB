@@ -9,10 +9,12 @@ var chart = AmCharts.makeChart("chartdiv_agency", {
   "startDuration": 0,
   "theme": "light",
   "addClassNames": false,
+  "hideLabelsPercent": 0.5,
   // "legend":{
   //  	"position":"right",
-  //   "marginRight":100,
-  //   "autoMargins":false
+  //   "marginRight":0,
+  //   "autoMargins":false,
+  //   "maxColumns": 3
   // },
   "innerRadius": "30%",
   "defs": {
