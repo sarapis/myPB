@@ -51,8 +51,8 @@ ul#ui-id-1 {
                 <div class="panel m-15 content-panel">
 
                     <div class="panel-body p-0">
-                        <div class="example table-responsive">
-                            <table class="table"  id="test_table" data-pagination="true" data-show-columns="true">
+                        <div class="example table-responsive mb-0">
+                            <table class="table mb-0"  id="test_table" data-pagination="true" data-show-columns="true">
                                 <thead>
                                   <tr>
                                     <th class="text-center">Status</th>
@@ -113,18 +113,17 @@ ul#ui-id-1 {
                                   <tr>
                                     <td colspan="5">
                                       <div class="text-right">
-                                        <ul class="pagination">
-                                            
-                                        </ul>
+                                        <div class="pagination m-0">
+                                            {{ $projects->appends(\Request::except('page'))->render() }}
+                                        </div>
                                       </div>
                                     </td>
                                   </tr>
                                 </tfoot>
                             </table>
+
                         </div>
-                        <div class="pagination">
-                        {{ $projects->appends(\Request::except('page'))->render() }}
-                        </div>
+                        
                     </div>
                     <!-- End Example Striped Rows -->
                 </div>

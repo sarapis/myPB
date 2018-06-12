@@ -678,3 +678,30 @@ p{
 .fd-link{
   display: block;
 }
+.pagination>li {
+  margin: 5px;
+}
+.pagination>li>a, .pagination>li>span{
+  width: 41px;
+  height: 41px;
+  background-color: transparent;
+  border-radius: 50%;
+  background-color: #e1e1e1;
+  border: solid 2px #acacac;
+  font-weight: 400;
+  font-size: 20px;
+  color: #424242;
+  padding: 5px 13px 19px 10px;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+  background-color: #3f8a7b;
+  border: solid 2px #acacac;
+  font-weight: 600;
+  font-size: 20px;
+}
+.pagination>li:first-child>a, .pagination>li:first-child>span{
+  border-radius: 50%;
+}
+.pagination>li:last-child>a, .pagination>li:last-child>span{
+  border-radius: 50%;
+}

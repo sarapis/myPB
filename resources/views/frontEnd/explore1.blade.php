@@ -44,7 +44,7 @@ Breakpoints();
           <div class="panel m-15 content-panel">
               <div class="panel-body p-0">
 
-                      <table class="table table-striped toggle-arrow-tiny" id="example" style="width:100%">
+                      <table class="table table-striped toggle-arrow-tiny mb-0" id="example" style="width:100%">
                           <thead>
                               <tr class="footable-header">
                                   <th class="text-center">Status</th>
@@ -194,11 +194,21 @@ $(document).ready(function(){
 <script>
   $(document).ready(function() {
     $('#example').DataTable( {
-        
         "pageLength": 25,
         "searching": false,
         "info":     false,
-        "lengthChange": false
+        "lengthChange": false,
+        "dom": '<"top"i>rt<"bottom"flp><"clear">',
+        language:
+        {
+            paginate:
+            {
+                previous: "<<",
+                next: ">>",
+                first: "|<",
+                last: ">|"
+            }
+        }    
     } );
 } );
 </script>
