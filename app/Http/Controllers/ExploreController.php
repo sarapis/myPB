@@ -23,9 +23,6 @@ class ExploreController extends Controller
             $address_district= District::where('name', '=', 1)->get();
             
 
-
-           
-
             if ($request->input('search')) {
 
                 $search = $request->input('search');
@@ -157,6 +154,7 @@ class ExploreController extends Controller
                 $city = $request->input('City');
                 $sort = $request->input('selected_sort');
                 $location = $request->input('address');
+                $profile_name = $request->input('profile_name');
 
                 // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city);
                 //  exit(); 
@@ -166,7 +164,20 @@ class ExploreController extends Controller
                  // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
                  // exit(); 
                
+                if ($profile_name!=null) {
 
+                    $districts = District::orderBy('name')->get();
+                    $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+                    $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+                    $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+
+                    $project = Project::where('project_title', '=', $profile_name)->first();
+                    $district = $project->district_ward_name;
+                    $contact = Contact::where('district_ward_name', 'like', '%'.$district.'%')->first();
+
+                    return view('frontEnd.profile', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'));
+                }
+          
                 if($district!=NULL){
 
                     $district = District::where('name', '=', $district)->first();
@@ -277,7 +288,7 @@ class ExploreController extends Controller
 
                     $projects = $projects->with('district')->where(function($q) use($search){
                         $q->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district',function($qq) use($search) {
-                            $qq->where('name', 'like', '%'.$search.'%');
+                            $qq->where('naFme', 'like', '%'.$search.'%');
                         });
                     });
                 }

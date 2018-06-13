@@ -66,7 +66,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-Ba1uQA_-eQ0zAA-ymOSrfrakLUZsHo">
     </script>
   <script src="{{asset('js/gmaps.js')}}"></script>
-
+  <script src="{{asset('js/filter_ajaxscript.js')}}"></script>
  <style>
   body{
     top: 0 !important;

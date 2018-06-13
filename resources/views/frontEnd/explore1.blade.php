@@ -70,7 +70,7 @@ Breakpoints();
                                   </td>
                                   <td>
                                       @if($project->project_title!='')
-                                          <a href="/profile/{{$project->id}}">{{$project->project_title}}</a>
+                                          <a class="profile_name">{{$project->project_title}}</a>
                                       @endif
                                   </td>
                                   <td><i class="fa fa-chevron-right" style="padding-top: 8px;color: #000000;float: right;padding-right: 10px;"></i></td>
@@ -86,6 +86,7 @@ Breakpoints();
           <div id="map" style="position: fixed !important;width: 28%;"></div>
       </div>
   </div>
+
 <script>
 $(document).ready(function(){
     $(document).ajaxStart(function(){

@@ -209,7 +209,7 @@ $(function () {
         select: selectItem,
         minLength: 2,
         change: function() {
-            console.log(selectItem);
+            // console.log(selectItem);
 
         }
     });

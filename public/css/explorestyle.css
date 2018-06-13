@@ -705,3 +705,6 @@ p{
 .pagination>li:last-child>a, .pagination>li:last-child>span{
   border-radius: 50%;
 }
+.table a {
+    color: #424242 !important;
+}

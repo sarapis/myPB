@@ -1,7 +1,4 @@
-@extends('layouts.app')
-@section('title')
-Profile
-@stop
+
 <meta name="description" content="{{$project->project_title}}">
 <style>
     @media (max-width: 991px){
@@ -22,6 +19,27 @@ Profile
       height: 100% !important;
       z-index: 999 !important;
     }
+    .profile_animation{
+      position: relative;
+      -webkit-animation-name: example;  /* Safari 4.0 - 8.0 */
+      -webkit-animation-duration: 0.5s;  /* Safari 4.0 - 8.0 */    
+      -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+      animation-name: example;
+      animation-duration: 0.5s;    
+      animation-fill-mode: forwards;
+
+    }
+    .navbar-container{
+      display: none !important;
+    }
+    @-webkit-keyframes example {
+      from {left: 100%;}
+      to {left: 0px;}
+    }
+    @keyframes example {
+      from {left: 100%;}
+      to {left: 0px;}
+    }
     @media (max-width: 768px) {
       #map{
           width: 100% !important;
@@ -35,16 +53,15 @@ Profile
       }  
     }
 </style>
-@section('content')
-<div class="wrapper">
 
-  @include('layouts.sidebar')
-
-  <div id="content" class="container">
+ 
     <div class="row container-fluid m-0 p-0">
       <div class="col-md-8">
-        <div class="row">
-          <button type="button" id="btn-status" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left waves-effect waves-classic ml-15 mt-30 mb-0" style=""><b><span>{{$project->project_title}} </span><a href="/explore"> <i class="icon wb-close" aria-hidden="true"></i></a></b></button>
+        <div class="row" id="profile_btn">
+          <button type="button" id="btn-profile" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left waves-effect waves-classic ml-15 mt-30 mb-0" style=""><b><span>{{$project->project_title}} </span><i class="icon wb-close" aria-hidden="true"></i></a></b></button>
+
+<!--           <button type="button" id="btn-profile" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left"><b><span> {{$project->project_title}} </span><i class="icon wb-close" aria-hidden="true"></i></b></button> -->
+
         </div>
         @if($project->project_status_category=='Complete')
             <h4 class="m-0 pt-20 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
@@ -135,8 +152,7 @@ Profile
         </div>
       </div>
     </div>
-  </div>
-</div>
+
 <script>
     $(document).ready(function(){
         if(screen.width < 768){
@@ -191,4 +207,3 @@ Profile
     });
 
   </script>
-@endsection

@@ -82,7 +82,7 @@ ul#ui-id-1 {
                                         </td>
                                         <td class="pr-30">
                                             @if($project->project_title!='')
-                                                <a href="/profile/{{$project->id}}">{{$project->project_title}}</a>
+                                                <a class="profile_name">{{$project->project_title}}</a>
                                             @endif
                                         </td>
                                         <!-- <td>
@@ -144,6 +144,7 @@ ul#ui-id-1 {
     };
 });
 </script>
+
 <script>
     $(document).ready(function(){
         if(screen.width < 768){
