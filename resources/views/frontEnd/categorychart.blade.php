@@ -9,7 +9,7 @@
             "equalWidths": false,
             "position": "top",
             "valueAlign": "left",
-            "valueWidth": 10,
+            "valueWidth": 10
         },
         "dataProvider": [
         

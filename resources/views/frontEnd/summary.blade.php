@@ -23,9 +23,10 @@ Summary
 }
 
 #chartdiv_agency {
-  width: 100%;
-  height: 500px;
+  width: 98%;
+  height: 450px;
   font-size: 11px;
+  padding-left: 10px;
 }
 
 .amcharts-pie-slice {
@@ -45,7 +46,9 @@ Summary
   filter: url(#shadow);
 }                               
 #map{
-    position: fixed !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    height: 400px !important;
 }
 </style>
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -61,9 +64,12 @@ Summary
     <div id="content" class="container">
         <!-- <div id="map" style="height: 30vh;"></div> -->
         <!-- Example Striped Rows -->
-        <div class="row" style="margin-right: 0">
-            <div class="col-md-8 pr-0">
-                <div class="panel m-15 content-panel">
+        <div class="row ml-10 mr-10">
+            <div class="col-md-12 p-10">
+                <div id="map"></div>
+            </div>
+            <div class="col-md-6 p-10">
+                <div class="panel m-0 mb-15 content-panel">
                     <div class="panel-title pt-5 pb-0 text-center">
                         <h3>PROJECTS BY CATEGORY</h3>
                     </div>
@@ -71,15 +77,7 @@ Summary
                         <div id="chartdiv_category"></div>                   
                     </div>
                 </div>
-                <div class="panel m-15 content-panel">
-                    <div class="panel-title pt-5 pb-0 text-center">
-                        <h3>PROJECTS BY VOTE</h3>
-                    </div>
-                    <div class="panel-body p-0">
-                        <div id="chartdiv_vote"></div>                   
-                    </div>
-                </div>
-                <div class="panel m-15 content-panel">
+                 <div class="panel m-0 mb-15 content-panel">
                     <div class="panel-title pt-5 pb-0 text-center">
                         <h3>PROJECTS BY COST</h3>
                     </div>
@@ -87,7 +85,17 @@ Summary
                         <div id="chartdiv_cost"></div>                   
                     </div>
                 </div>
-                <div class="panel m-15 content-panel">
+            </div>
+            <div class="col-md-6 p-10">              
+                <div class="panel m-0 mb-15 content-panel">
+                    <div class="panel-title pt-5 pb-0 text-center">
+                        <h3>PROJECTS BY VOTE</h3>
+                    </div>
+                    <div class="panel-body p-0">
+                        <div id="chartdiv_vote"></div>                   
+                    </div>
+                </div>
+                <div class="panel m-0 mb-15 content-panel">
                     <div class="panel-title pt-5 pb-0 text-center">
                         <h3>PROJECTS BY AGENCY</h3>
                     </div>
@@ -95,9 +103,6 @@ Summary
                         <div id="chartdiv_agency"></div>                   
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 p-0">
-                <div id="map" style="position: fixed !important;width: 28%;"></div>
             </div>
         </div>
     </div>
@@ -133,26 +138,37 @@ Summary
 @include('frontEnd.costchart')
 @include('frontEnd.agencychart')
 <script>
-    var locations = <?php print_r(json_encode($projects)) ?>;
+    var locations = <?php print_r(json_encode($location_maps)) ?>;
+  
+
     var sumlat = 0.0;
     var sumlng = 0.0;
-    for(var i = 0; i < locations['data'].length; i ++)
+    for(var i = 0; i < locations.length; i ++)
     {
-        sumlat += parseFloat(locations['data'][i].latitude);
-        sumlng += parseFloat(locations['data'][i].longitude);
+        sumlat += parseFloat(locations[i].latitude);
+        sumlng += parseFloat(locations[i].longitude);
 
     }
-    var avglat = sumlat/locations['data'].length;
-    var avglng = sumlng/locations['data'].length;
+
+    var avglat = sumlat/locations.length;
+    var avglng = sumlng/locations.length;
+
+  
+
+    if(!avglat){
+        avglat = 40.730981;
+        avglng = -73.998107
+    }
+
     var mymap = new GMaps({
       el: '#map',
       lat: avglat,
       lng: avglng,
-      zoom:10
+      zoom:13
     });
 
 
-    $.each( locations['data'], function(index, value ){
+    $.each( locations, function(index, value ){
         var icon;
         var statusicon;
         if(value.project_status_category == "Complete"){

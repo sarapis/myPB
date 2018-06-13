@@ -8,14 +8,14 @@
             "equalWidths": false,
             "position": "top",
             "valueAlign": "left",
-            "valueWidth": 10,
+            "valueWidth": 10
         },
         "dataProvider": [
         
         @foreach ($output as $key => $value)
             {
 
-            "category": "{{ $value['key'] }}",
+            "category": "{{ $value['key'] }}".replace(/&amp;/g, '&'),
             "Complete": @if(isset($value['Complete'])) {{ $value['Complete']}} @else 0 @endif,
             "In process": @if(isset($value['In process'])) {{ $value['In process']}} @else 0 @endif,
             "Not funded": @if(isset($value['Not funded'])) {{ $value['Not funded']}} @else 0 @endif,
@@ -82,8 +82,11 @@
             "gridAlpha": 0,
             "gridThickness" : 0,
             "position": "left",
-            "title": "Implementing Agency"
+            "title": "Implementing Agency",
+            "ignoreAxisWidth": true,
+             "autoWrap": true
         },
+        "marginLeft": 140,
         "export": {
             "enabled": true
          }
