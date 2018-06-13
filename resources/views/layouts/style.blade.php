@@ -67,6 +67,14 @@
     </script>
   <script src="{{asset('js/gmaps.js')}}"></script>
   <script src="{{asset('js/filter_ajaxscript.js')}}"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113999334-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113999334-1');
+</script>
  <style>
   body{
     top: 0 !important;
