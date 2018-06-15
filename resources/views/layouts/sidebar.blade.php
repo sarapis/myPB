@@ -7,7 +7,7 @@
             <div class="mb-5">
                 <div class="input-search">
                     <i class="input-search-icon md-search" aria-hidden="true"></i>
-                    <input type="text" class="form-control search-form" name="search" placeholder="Search for Projects" id="search_address">
+                    <input type="text" class="form-control search-form" name="search" placeholder="Search Keywords" id="search_address">
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                     <form method="get" class="mb-5" id="search_location">
                         <div class="input-search">
                             <i class="input-search-icon md-search" aria-hidden="true"></i>
-                            <input id="location" type="text" class="form-control search-form" name="address" placeholder="Search Street Address">
+                            <input id="location" type="text" class="form-control search-form" name="address" placeholder="Search Address for District">
                         </div>
                     </form>
                 </div>
