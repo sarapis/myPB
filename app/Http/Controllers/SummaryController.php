@@ -479,7 +479,21 @@ class SummaryController extends Controller
                 $city = $request->input('City');
                 $sort = $request->input('selected_sort');
                 $location = $request->input('address');
+                $profile_name = $request->input('profile_name');
 
+                if ($profile_name!=null) {
+
+                    $districts = District::orderBy('name')->get();
+                    $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+                    $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+                    $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+
+                    $project = Project::where('project_title', '=', $profile_name)->first();
+                    $district = $project->district_ward_name;
+                    $contact = Contact::where('district_ward_name', 'like', '%'.$district.'%')->first();
+
+                    return view('frontEnd.profile1', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'));
+                }
                 // var_dump($location);
                 // exit();
 

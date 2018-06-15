@@ -711,3 +711,7 @@ p{
 .tab-content>.active {
   background: #f4f3f3;
 }
+.profile_name{
+  color: #424242 !important;
+  font-weight: 500;
+}
