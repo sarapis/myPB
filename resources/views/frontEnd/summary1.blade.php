@@ -62,7 +62,7 @@
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="feedback-title">Your district doesn't have Participatory Budgeting (PB) yet. PB is a democratic process in which community members directly decide how to spend part of a public budget in their neighborhood. In the US and Canada 414,000 people have worked together to decide how to spend over $299 Million dollars during the last decade - and we’re just getting started. To advocate to your elected officials to PB, get their contact info <a href="https://myreps.participatorybudgeting.org" target="_blank" style="text-decoration: underline;">here.</a></h4>
+          <h4 class="feedback-title">No Projects <a href="https://myreps.participatorybudgeting.org" target="_blank" style="text-decoration: underline;">here.</a></h4>
         </div>
         @endif
         <div class="col-md-12 p-10">
