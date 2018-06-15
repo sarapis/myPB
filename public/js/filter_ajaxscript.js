@@ -9,6 +9,11 @@
               sendfilter();
           });
 
+          $(document).on('click', ".overlay", function () {
+              profile_name="";
+              sendfilter();
+          });
+
           $(document).on('click', ".profile_name", function () {
              profile_name = $(this).html();
                     // console.log(profile_name);
