@@ -62,7 +62,7 @@
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
-          <h4 class="feedback-title">No Projects <a href="https://myreps.participatorybudgeting.org" target="_blank" style="text-decoration: underline;">here.</a></h4>
+          <h4 class="feedback-title">No Projects</h4>
         </div>
         @endif
         <div class="col-md-12 p-10">
