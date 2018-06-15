@@ -211,7 +211,7 @@
             ///
             $("*").animsition({
               inClass: 'fade-in',
-              inDuration: 800,
+              inDuration: 100,
               loading: true,
               loadingClass: 'loader-overlay',
               loadingParentElement: 'html',
