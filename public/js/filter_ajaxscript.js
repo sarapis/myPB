@@ -218,29 +218,35 @@
               loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
               onLoadEvent: true
             });
-            
+            var ajax_url;
+            if(window.location.href.search('explore') != -1)
+              ajax_url = '/range';
+            else if(window.location.href.search('summary') != -1)
+              ajax_url = '/filter';
             $.ajaxSetup({
               headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
               }
             })    
-            $.ajax({
-              type: 'POST',
-              url: "/range",
-              data: form_data,
-              contentType: false, // The content type used when sending data to the server.
-              cache: false, // To unable request pages to be cached
-              processData: false,
-              success: function(data) {
+            
+              $.ajax({
+                type: 'POST',
+                url: ajax_url,
+                data: form_data,
+                contentType: false, // The content type used when sending data to the server.
+                cache: false, // To unable request pages to be cached
+                processData: false,
+                success: function(data) {
+                    
+                  $('.loader-overlay').remove();
                   
-                $('.loader-overlay').remove();
+                  $('#content').html(data);
+                },
+                error: function(errResponse) {
                 
-                $('#content').html(data);
-              },
-              error: function(errResponse) {
-              
-              }
-            });
+                }
+              });
+
           }
       });
       

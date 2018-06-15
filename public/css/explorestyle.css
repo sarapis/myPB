@@ -708,3 +708,6 @@ p{
 .table a {
     color: #424242 !important;
 }
+.tab-content>.active {
+  background: #f4f3f3;
+}

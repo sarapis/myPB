@@ -73,7 +73,7 @@ class ExploreController extends Controller
                 
                 
                 if($address_district == NULL){
-                    return redirect('/explore')->with('success', 'no rpoject');
+                    return redirect('/explore')->with('success', 'no project');
                 }
                 
                 $address_district=$address_district->name;
@@ -134,7 +134,7 @@ class ExploreController extends Controller
             //return response()->json($projects);
 
     }
-    public function filterValues1(Request $request)
+    public function filterexplore(Request $request)
     {
        
                 
@@ -275,7 +275,7 @@ class ExploreController extends Controller
                 
                 
                     if($address_district == NULL){
-                        return redirect('/explore')->with('success', 'no rpoject');
+                        return redirect('/explore')->with('success', 'no project');
                     }
                     
                     $address_district=$address_district->name;
@@ -288,7 +288,7 @@ class ExploreController extends Controller
 
                     $projects = $projects->with('district')->where(function($q) use($search){
                         $q->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district',function($qq) use($search) {
-                            $qq->where('naFme', 'like', '%'.$search.'%');
+                            $qq->where('name', 'like', '%'.$search.'%');
                         });
                     });
                 }
@@ -299,6 +299,7 @@ class ExploreController extends Controller
 
 
     }
+
     /**
      * Show the form for editing the specified resource.
      *
