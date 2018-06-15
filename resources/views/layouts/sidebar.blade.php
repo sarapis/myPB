@@ -88,8 +88,8 @@
                         <a href="#cityagency" class="text-side" data-toggle="collapse" aria-expanded="false">City Agency</a>
                         <ul class="collapse list-unstyled option-ul" id="cityagency">
                             @foreach($cities as $city)
-                                @if($city->name_dept_agency_cbo!='')
-                                <li class="option-li">{{$city->name_dept_agency_cbo}}</li>
+                                @if($city->agency_name!='')
+                                <li class="option-li">{{$city->agency_name}}</li>
                                 @endif
                             @endforeach
                         </ul>

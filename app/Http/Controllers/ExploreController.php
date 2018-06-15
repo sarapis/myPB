@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Project;
 use App\District;
 use App\Contact;
+use App\Agency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -19,7 +20,7 @@ class ExploreController extends Controller
             $districts = District::orderBy('name')->get();
             $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
             $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-            $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+            $cities = Agency::orderBy('agency_name')->get(['agency_name']);
             $address_district= District::where('name', '=', 1)->get();
             
 

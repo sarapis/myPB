@@ -24,7 +24,7 @@ class SummaryController extends Controller
             $districts = District::orderBy('name')->get();
             $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
             $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-            $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+            $cities = Agency::orderBy('agency_name')->get(['agency_name']);
             $address_district= District::where('name', '=', 1)->get();
             
             if ($request->input('search')) {
