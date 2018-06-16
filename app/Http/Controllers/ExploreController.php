@@ -20,7 +20,7 @@ class ExploreController extends Controller
             $districts = District::orderBy('name')->get();
             $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
             $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-            $cities = Agency::orderBy('agency_name')->get(['agency_name']);
+            $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
             $address_district= District::where('name', '=', 1)->get();
             
 
@@ -197,7 +197,7 @@ class ExploreController extends Controller
                 }
 
                 if($city!=NULL){
-                    $projects = $projects->where('name_dept_agency_cbo', '=', $city);
+                    $projects = $projects->where('name_dept_agency_cbo',  'like', '%'.$city.'%');
                 }
                 
                 if($sort!=NULL){
