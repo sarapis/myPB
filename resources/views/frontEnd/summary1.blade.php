@@ -57,8 +57,7 @@
 
     <div class="row ml-10 mr-10">
         @if($output == NULL)
-        <div class="alert dark alert-dismissible mt-20 ml-10 mr-10 mb-0" role="alert" style="background: #3f8a7b;
-                    color: white;">
+        <div class="alert dark alert-dismissible mt-20 ml-10 mr-10 mb-0" role="alert" style="background: #3f8a7b; color: white;">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -181,7 +180,7 @@
             icon = '<button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"></button>';
             statusicon = "/images/icon/status-needed-map-pin.png";
         }
-        else if(value.project_status_category == "Not funded"){
+        else if(value.project_status_category == "Lost vote"){
             icon = '<button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-remove" aria-hidden="true"></i></button>';
             statusicon = "/images/icon/not-funded-map-pin.png";
         }

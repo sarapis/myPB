@@ -73,7 +73,7 @@ ul#ui-id-1 {
                                                     <button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic"><i class="icon fa-check" aria-hidden="true"></i></button>
                                                 @elseif($project->project_status_category=='Project Status Needed')
                                                     <button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic"></button>
-                                                @elseif($project->project_status_category=='Not funded')
+                                                @elseif($project->project_status_category=='Lost vote')
                                                     <button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic"><i class="icon fa-remove" aria-hidden="true"></i></button>
                                                 @else
                                                     <button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic"><i class="icon fa-minus" aria-hidden="true"></i></button>
@@ -191,7 +191,7 @@ ul#ui-id-1 {
             icon = '<button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"></button>';
             statusicon = "/images/icon/status-needed-map-pin.png";
         }
-        else if(value.project_status_category == "Not funded"){
+        else if(value.project_status_category == "Lost vote"){
             icon = '<button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-remove" aria-hidden="true"></i></button>';
             statusicon = "/images/icon/not-funded-map-pin.png";
         }

@@ -18,7 +18,7 @@
             "category": "{{ $value['key'] }}".replace(/&amp;/g, '&'),
             "Complete": @if(isset($value['Complete'])) {{ $value['Complete']}} @else 0 @endif,
             "In process": @if(isset($value['In process'])) {{ $value['In process']}} @else 0 @endif,
-            "Not funded": @if(isset($value['Not funded'])) {{ $value['Not funded']}} @else 0 @endif,
+            "Lost vote": @if(isset($value['Lost vote'])) {{ $value['Lost vote']}} @else 0 @endif,
             "Project Status Needed": @if(isset($value['Project Status Needed'])) {{ $value['Project Status Needed']}} @else 0 @endif
             },    
         @endforeach
@@ -56,12 +56,12 @@
             "fillAlphas": 1,
             // "labelText": "[[value]]",
             "lineAlpha": 1,
-            "title": "Not funded",
+            "title": "Lost vote",
             "type": "column",
             "color": "#000000",
             "lineColor": "#d3272d",
             "fixedColumnWidth": 25,
-            "valueField": "Not funded"
+            "valueField": "Lost vote"
         }, {
             "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
             "fillAlphas": 1,
@@ -82,9 +82,9 @@
             "gridAlpha": 0,
             "gridThickness" : 0,
             "position": "left",
-            "title": "Implementing Agency",
-            "ignoreAxisWidth": true,
-             "autoWrap": true
+            "title": "Implementing Agency"
+            // "ignoreAxisWidth": true,
+            //  "autoWrap": true
         },
         "marginLeft": 140,
         "export": {

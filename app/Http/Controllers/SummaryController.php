@@ -147,10 +147,10 @@ class SummaryController extends Controller
                             $output[8]['Complete'] += $count[$i]['Complete'];
                         else if(!isset($output[8]['Complete']) && isset($count[$i]['Complete']))
                             $output[8]['Complete'] = $count[$i]['Complete'];
-                        if(isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
-                            $output[8]['Not funded'] += $count[$i]['Not funded'];
-                        else if(!isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
-                            $output[8]['Not funded'] = $count[$i]['Not funded'];
+                        if(isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                            $output[8]['Lost vote'] += $count[$i]['Lost vote'];
+                        else if(!isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                            $output[8]['Lost vote'] = $count[$i]['Lost vote'];
                         if(isset($output[8]['Project Status Needed']) && isset($count[$i]['Project Status Needed']))
                             $output[8]['Project Status Needed'] += $count[$i]['Project Status Needed'];
                         else if(!isset($output[8]['Project Status Needed'])  && isset($count[$i]['Project Status Needed']))
@@ -324,10 +324,10 @@ class SummaryController extends Controller
                             $output[8]['Complete'] += $count[$i]['Complete'];
                         else if(!isset($output[8]['Complete']) && isset($count[$i]['Complete']))
                             $output[8]['Complete'] = $count[$i]['Complete'];
-                        if(isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
-                            $output[8]['Not funded'] += $count[$i]['Not funded'];
-                        else if(!isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
-                            $output[8]['Not funded'] = $count[$i]['Not funded'];
+                        if(isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                            $output[8]['Lost vote'] += $count[$i]['Lost vote'];
+                        else if(!isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                            $output[8]['Lost vote'] = $count[$i]['Lost vote'];
                         if(isset($output[8]['Project Status Needed']) && isset($count[$i]['Project Status Needed']))
                             $output[8]['Project Status Needed'] += $count[$i]['Project Status Needed'];
                         else if(!isset($output[8]['Project Status Needed'])  && isset($count[$i]['Project Status Needed']))
@@ -394,7 +394,7 @@ class SummaryController extends Controller
                         foreach ($agency_reports as $key => $agency) {
                             if($agency->recordid == $agency_codes[$i])
                             {
-                                $code_name = $agency->agency_name;
+                                $code_name = $agency->agency_code;
                             }
                         }
                         if(isset($count[$code_name]))
@@ -441,10 +441,10 @@ class SummaryController extends Controller
                         $output[8]['Complete'] += $count[$i]['Complete'];
                     else if(!isset($output[8]['Complete']) && isset($count[$i]['Complete']))
                         $output[8]['Complete'] = $count[$i]['Complete'];
-                    if(isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
-                        $output[8]['Not funded'] += $count[$i]['Not funded'];
-                    else if(!isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
-                        $output[8]['Not funded'] = $count[$i]['Not funded'];
+                    if(isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                        $output[8]['Lost vote'] += $count[$i]['Lost vote'];
+                    else if(!isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                        $output[8]['Lost vote'] = $count[$i]['Lost vote'];
                     if(isset($output[8]['Project Status Needed']) && isset($count[$i]['Project Status Needed']))
                         $output[8]['Project Status Needed'] += $count[$i]['Project Status Needed'];
                     else if(!isset($output[8]['Project Status Needed'])  && isset($count[$i]['Project Status Needed']))
@@ -677,7 +677,7 @@ class SummaryController extends Controller
 
                 // $project_agency = Project::with('agency')->where('project_title', '=', 'Laptops for Schools in District 8 - Renaissance Charter HS - Site 7 of 9')->first();
 
-                $agency_reports = Agency::orderBy('agency_name')->get();
+                $agency_reports = Agency::orderBy('agency_code')->get();
                 // var_dump($project_agency);
                 // exit();
 
@@ -696,7 +696,7 @@ class SummaryController extends Controller
                             foreach ($agency_reports as $key => $agency) {
                                 if($agency->recordid == $agency_codes[$i])
                                 {
-                                    $code_name = $agency->agency_name;
+                                    $code_name = $agency->agency_code;
                                 }
                             }
                             if(isset($count[$code_name]))
@@ -743,10 +743,10 @@ class SummaryController extends Controller
                             $output[8]['Complete'] += $count[$i]['Complete'];
                         else if(!isset($output[8]['Complete']) && isset($count[$i]['Complete']))
                             $output[8]['Complete'] = $count[$i]['Complete'];
-                        if(isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
-                            $output[8]['Not funded'] += $count[$i]['Not funded'];
-                        else if(!isset($output[8]['Not funded']) && isset($count[$i]['Not funded']))
-                            $output[8]['Not funded'] = $count[$i]['Not funded'];
+                        if(isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                            $output[8]['Lost vote'] += $count[$i]['Lost vote'];
+                        else if(!isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                            $output[8]['Lost vote'] = $count[$i]['Lost vote'];
                         if(isset($output[8]['Project Status Needed']) && isset($count[$i]['Project Status Needed']))
                             $output[8]['Project Status Needed'] += $count[$i]['Project Status Needed'];
                         else if(!isset($output[8]['Project Status Needed'])  && isset($count[$i]['Project Status Needed']))

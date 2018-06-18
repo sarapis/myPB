@@ -486,7 +486,7 @@ p{
 }
 @media (max-width: 991px) {
   .page{
-  padding-top: 50px;
+  padding-top: 68px;
   } 
 }
 .collapse.navbar-collapse.navbar-collapse-toolbar.show{
@@ -504,7 +504,7 @@ p{
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
+    z-index: 2;
     display: none;
     top: 0;
 }

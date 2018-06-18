@@ -23,10 +23,9 @@ Summary
 }
 
 #chartdiv_agency {
-  width: 98%;
+  width: 100%;
   height: 450px;
   font-size: 11px;
-  padding-left: 10px;
 }
 
 .amcharts-pie-slice {
@@ -49,6 +48,7 @@ Summary
     z-index: 1 !important;
     width: 100% !important;
     height: 400px !important;
+    display: block !important;
 }
 </style>
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -190,7 +190,7 @@ Summary
             icon = '<button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"></button>';
             statusicon = "/images/icon/status-needed-map-pin.png";
         }
-        else if(value.project_status_category == "Not funded"){
+        else if(value.project_status_category == "Lost vote"){
             icon = '<button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-remove" aria-hidden="true"></i></button>';
             statusicon = "/images/icon/not-funded-map-pin.png";
         }
