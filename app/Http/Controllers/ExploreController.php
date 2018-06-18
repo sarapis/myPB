@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Project;
 use App\District;
 use App\Contact;
+use App\Agency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -19,7 +20,7 @@ class ExploreController extends Controller
             $districts = District::orderBy('name')->get();
             $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
             $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-            $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+            $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
             $address_district= District::where('name', '=', 1)->get();
             
 
@@ -101,7 +102,7 @@ class ExploreController extends Controller
         $districts = District::orderBy('name')->get();
         $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
         $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+        $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
 
         $project = Project::find($id);
         $district = $project->district_ward_name;
@@ -126,7 +127,7 @@ class ExploreController extends Controller
         $districts = District::orderBy('name')->get();
         $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
         $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-        $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+        $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
       
         // var_dump($projects);
         // exit();
@@ -169,7 +170,7 @@ class ExploreController extends Controller
                     $districts = District::orderBy('name')->get();
                     $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
                     $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-                    $cities = Project::orderBy('name_dept_agency_cbo')->distinct()->get(['name_dept_agency_cbo']);
+                    $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
 
                     $project = Project::where('project_title', '=', $profile_name)->first();
                     $district = $project->district_ward_name;
@@ -196,7 +197,7 @@ class ExploreController extends Controller
                 }
 
                 if($city!=NULL){
-                    $projects = $projects->where('name_dept_agency_cbo', '=', $city);
+                    $projects = $projects->where('name_dept_agency_cbo',  'like', '%'.$city.'%');
                 }
                 
                 if($sort!=NULL){

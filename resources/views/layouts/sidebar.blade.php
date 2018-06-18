@@ -7,7 +7,7 @@
             <div class="mb-5">
                 <div class="input-search">
                     <i class="input-search-icon md-search" aria-hidden="true"></i>
-                    <input type="text" class="form-control search-form" name="search" placeholder="Search for Projects" id="search_address">
+                    <input type="text" class="form-control search-form" name="search" placeholder="Search Keywords" id="search_address">
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                     <form method="get" class="mb-5" id="search_location">
                         <div class="input-search">
                             <i class="input-search-icon md-search" aria-hidden="true"></i>
-                            <input id="location" type="text" class="form-control search-form" name="address" placeholder="Search Street Address">
+                            <input id="location" type="text" class="form-control search-form" name="address" placeholder="Search Address for District">
                         </div>
                     </form>
                 </div>
@@ -88,8 +88,8 @@
                         <a href="#cityagency" class="text-side" data-toggle="collapse" aria-expanded="false">City Agency</a>
                         <ul class="collapse list-unstyled option-ul" id="cityagency">
                             @foreach($cities as $city)
-                                @if($city->name_dept_agency_cbo!='')
-                                <li class="option-li">{{$city->name_dept_agency_cbo}}</li>
+                                @if($city->agency_name!='')
+                                <li class="option-li">{{$city->agency_name}}</li>
                                 @endif
                             @endforeach
                         </ul>
