@@ -74,7 +74,7 @@ Profile
             <h4 class="m-0 pt-20 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
         @elseif($project->project_status_category=='Project Status Needed')
             <h4 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button>{{$project->project_title}}</h4>
-        @elseif($project->project_status_category=='Not funded')
+        @elseif($project->project_status_category=='Lost vote')
             <h4 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
         @else
             <h4 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
@@ -88,7 +88,7 @@ Profile
                 @elseif($project->project_status_category=='Project Status Needed')
                   <div class="pull-right">  <button type="button" class="btn btn-floating  btn-xs mr-10"></button>
                   </div>
-                @elseif($project->project_status_category=='Not funded')
+                @elseif($project->project_status_category=='Lost vote')
                     <div class="pull-right"><button type="button" class="btn btn-floating btn-danger btn-xs mr-10"><i class="icon fa-remove mr-0" aria-hidden="true"></i></button></div>
                 @else
                     <div class="pull-right"><button type="button" class="btn btn-floating btn-warning btn-xs mr-10"><i class="icon fa-minus mr-0" aria-hidden="true"></i></button></div>
@@ -107,7 +107,7 @@ Profile
           </div>
         </div>
 
-        @if($project->project_status_category != 'Not funded' && $project->project_status_category != 'Project Status Needed')
+        @if($project->project_status_category != 'Lost vote' && $project->project_status_category != 'Project Status Needed')
           @if($project->project_budget_type=='Capital')
           <div class="panel mb-0">
             <div class="panel-body p-15">
@@ -125,7 +125,7 @@ Profile
         @endif
 
         <!-- Panel -->      
-        @if($project->project_status_category != 'Not funded' && $project->project_status_category != 'Project Status Needed')
+        @if($project->project_status_category != 'Lost vote' && $project->project_status_category != 'Project Status Needed')
         <div class="panel mb-15">
           <div class="panel-body p-15">
               <h4><b>IMPLEMENTATION PLAN</b></h4>
@@ -193,7 +193,7 @@ Profile
     if(status == 'Complete'){
         statusicon = "/images/icon/completed-map-pin.png"
       }
-    if(status == 'Not funded'){
+    if(status == 'Lost vote'){
         statusicon = "/images/icon/not-funded-map-pin.png"
       }
     if(status == 'In process'){
