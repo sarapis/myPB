@@ -502,7 +502,7 @@ p{
 .overlay {
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background: rgba(0, 0, 0, 0.7);
     z-index: 2;
     display: none;
