@@ -86,7 +86,7 @@ Breakpoints();
           <div id="map" style="position: fixed !important;width: 28%;"></div>
       </div>
   </div>
-
+  @include('layouts.footer')
 <script>
 $(document).ready(function(){
     $(document).ajaxStart(function(){

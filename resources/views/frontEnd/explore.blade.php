@@ -132,6 +132,7 @@ ul#ui-id-1 {
                 <div id="map" style="position: fixed !important;width: 28%;"></div>
             </div>
         </div>
+        @include('layouts.footer')
     </div>
 </div>
 <script>

@@ -200,7 +200,6 @@ p{
 #content {
     width: calc(100% - 270px);
     padding: 0px;
-    transition: all 0.3s;
     background: white;
 /*    position: absolute;
     top: 0;

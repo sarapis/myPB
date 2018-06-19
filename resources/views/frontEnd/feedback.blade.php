@@ -52,30 +52,7 @@ Feedback
         </div>
           <!-- End Panel -->
     </div>
-<!--     <div class="fade-in">
-      <div class="loader-overlay">
-        <div class="loader-content">
-          <div class="loader-index">
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-
-<!-- <script>
-  function initAutocomplete() {
-
-      var options = {
-        types: ['geocode'],
-        componentRestrictions: { country: 'us'}
-       };
-
-      var input = document.getElementById('location');
-      var searchBox = new google.maps.places.Autocomplete(input, options);
-  }
-  </script> -->
-
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-RQR_KenWPqcgUbOtMLreNVWeTV1wcSo&libraries=places&callback=initAutocomplete" async defer></script> -->
+@include('layouts.footer')
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

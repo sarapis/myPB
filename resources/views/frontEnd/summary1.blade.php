@@ -106,7 +106,7 @@
         </div>]
         @endif
     </div>
-
+    @include('layouts.footer')
 
 <script>
  $(document).ready(function () {

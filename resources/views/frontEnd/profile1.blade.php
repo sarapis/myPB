@@ -60,8 +60,6 @@
         <div class="row" id="profile_btn">
           <button type="button" id="btn-profile" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left waves-effect waves-classic ml-15 mt-30 mb-0" style=""><b><span>{{$project->project_title}} </span><i class="icon wb-close" aria-hidden="true"></i></a></b></button>
 
-<!--           <button type="button" id="btn-profile" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left"><b><span> {{$project->project_title}} </span><i class="icon wb-close" aria-hidden="true"></i></b></button> -->
-
         </div>
         @if($project->project_status_category=='Complete')
             <h4 class="m-0 pt-20 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
@@ -152,7 +150,7 @@
         </div>
       </div>
     </div>
-
+    @include('layouts.footer')
 <script>
     $(document).ready(function(){
         if(screen.width < 768){

@@ -160,6 +160,7 @@ Profile
       </div>
     </div>
   </div>
+  @include('layouts.footer')
 </div>
 <script>
     $(document).ready(function(){
