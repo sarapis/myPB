@@ -482,6 +482,9 @@ p{
   .goog-te-gadget-simple .goog-te-menu-value span {
     font-size: 12px !important;
   }
+  .btn-profile{
+    width: 100% !important;
+  }
 }
 @media (max-width: 991px) {
   .page{
