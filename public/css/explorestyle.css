@@ -713,4 +713,5 @@ p{
 .profile_name{
   color: #424242 !important;
   font-weight: 500;
+  cursor: pointer;
 }

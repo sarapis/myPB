@@ -179,7 +179,7 @@
 
     var status = locations.project_status_category;
     var statusicon = '';
-    console.log(status);
+    // console.log(status);
     if(status == 'Complete'){
         statusicon = "/images/icon/completed-map-pin.png"
       }

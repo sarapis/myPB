@@ -1,7 +1,8 @@
 <script type="text/javascript">
 
 
-      $(document).ready(function () {
+      $(document).ready(function (e) {
+          e.preventDefault();
           var selected_sort="";
           var profile_name="";
           $("#sidebar").mCustomScrollbar({
