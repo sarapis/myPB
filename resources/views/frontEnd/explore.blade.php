@@ -145,7 +145,7 @@ ul#ui-id-1 {
     };
 });
 </script>
-
+<script src="{{asset('js/filter_ajaxscript.js')}}"></script>
 <script>
     $(document).ready(function(){
         if(screen.width < 768){

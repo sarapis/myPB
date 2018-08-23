@@ -39,7 +39,7 @@
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-
+<script src="{{asset('js/filter_ajaxscript.js')}}"></script>
   <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
   <script>
   Breakpoints();
@@ -48,7 +48,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-Ba1uQA_-eQ0zAA-ymOSrfrakLUZsHo">
     </script>
   <script src="{{asset('js/gmaps.js')}}"></script>
-  <script src="{{asset('js/filter_ajaxscript.js')}}"></script>
+  
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113999334-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
