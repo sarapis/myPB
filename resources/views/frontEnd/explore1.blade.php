@@ -33,6 +33,7 @@
   padding: 0;
 }
 </style>
+<script src="{{asset('js/markerclusterer.js')}}"></script>
 <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
 <script>
 Breakpoints();
@@ -144,7 +145,13 @@ $(document).ready(function(){
       el: '#map',
       lat: avglat,
       lng: avglng,
-      zoom:10
+      zoom:10,
+      markerClusterer: function(map) {
+        options = {
+            imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+        }
+        return new MarkerClusterer(map, [], options);
+      }
     });
 
 
@@ -175,6 +182,9 @@ $(document).ready(function(){
           infoWindow: {
             maxWidth: 250,
             content: (icon+'<a class="profile_name">'+value.project_title+'</a>')
+          },
+          markerClusterer: function(map) {
+            return new MarkerClusterer(map);
           }
         });
    });
