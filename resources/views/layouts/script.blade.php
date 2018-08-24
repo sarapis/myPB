@@ -2,6 +2,7 @@
   <script src="../../../frontend/global/vend/babel-external-helpers/babel-external-helpers.js"></script>
   <script src="../../../frontend/global/vend/tether/tether.js"></script>
 <!--   <script src="../../../frontend/global/vend/bootstrap/bootstrap.js"></script> -->
+  <script src="../../../frontend/global/vend/animsition/animsition.js"></script>
   <script src="../../../frontend/global/vend/mousewheel/jquery.mousewheel.js"></script>
   <script src="../../../frontend/global/vend/asscrollbar/jquery-asScrollbar.js"></script>
   <script src="../../../frontend/global/vend/asscrollable/jquery-asScrollable.js"></script>
