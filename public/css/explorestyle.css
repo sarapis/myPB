@@ -629,7 +629,6 @@ p{
 }
 
 .ui-widget-content {
-  background: #ffffff;
   color: #333333;
 }
 .ui-widget.ui-widget-content {
@@ -643,12 +642,15 @@ p{
 }
 #slider-range.ui-widget-content{
   background: #000000;
+  height: 3px;
 }
 #slider-range-year.ui-widget-content{
   background: #000000;
+  height: 3px;
 }
 #slider-range-vote.ui-widget-content{
   background: #000000;
+  height: 3px;
 }
 
 #slider-range.ui-widget.ui-widget-content{

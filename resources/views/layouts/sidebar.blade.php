@@ -98,11 +98,11 @@
                 <!-- Example Range -->
                 <div class="row range-side">
                     <div class="col-xs-5 pl-5 pt-10"><a class="text-side">Cost</a></div>
-                    <div class="col-xs-7 example mb-0 p-0">
+                    <div class="col-xs-7 example mb-0 p-0 mt-10 pt-3">
                         
                          
-                        <div id="slider-range" class="ml-10 mr-10"></div>
-                        <p class="text-side text-center mt-15 mb-0">
+                        <div id="slider-range" class="ml-10 mr-10 mb-20"></div>
+                        <p class="text-side text-center mb-0">
                           <input type="text" id="amount" readonly style="border:0;    width: 100%;text-align: center;">
                         </p>
                     </div>
@@ -110,12 +110,12 @@
                 <!-- End Example Range -->
                 <!-- Example Range -->
                 <div class="row range-side">
-                    <div class="col-xs-5 pl-5 pt-10"><a class="text-side">Year of Vote</a></div>
-                    <div class="col-xs-7 example mb-0 p-0">
+                    <div class="col-xs-5 pl-5 pt-10 pr-5"><a class="text-side">Year of Vote</a></div>
+                    <div class="col-xs-7 example mb-0 p-0 mt-10 pt-3">
                         
                          
-                        <div id="slider-range-year" class="ml-10 mr-10"></div>
-                        <p class="text-side text-center mt-15 mb-0">
+                        <div id="slider-range-year" class="ml-10 mr-10 mb-20"></div>
+                        <p class="text-side text-center mb-0">
                           <input type="text" id="amount-year" readonly style="border:0;    width: 100%;text-align: center;">
                         </p>
                     </div>
@@ -134,11 +134,11 @@
                 <!-- Example Range -->
                 <div class="row range-side">
                     <div class="col-xs-5 pl-5 pt-10"><a class="text-side">Vote</a></div>
-                    <div class="col-xs-7 example mb-0 p-0">
+                    <div class="col-xs-7 example mb-0 p-0 mt-10 pt-3">
                         
                          
-                        <div id="slider-range-vote" class="ml-10 mr-10"></div>
-                        <p class="text-side text-center mt-15 mb-0">
+                        <div id="slider-range-vote" class="ml-10 mr-10 mb-20"></div>
+                        <p class="text-side text-center mb-0">
                           <input type="text" id="amount-vote" readonly style="border:0;    width: 100%;text-align: center;">
                         </p>
                     </div>
