@@ -166,7 +166,7 @@
         }
     });
 </script>
-<script src="{{asset('js/filter_ajaxscript.js')}}"></script>
+
  <script type="text/javascript">
 
     var locations = <?php print_r(json_encode($project)) ?>;

@@ -2,19 +2,22 @@
 
 
       $(document).ready(function () {
+
+          
           var selected_sort="";
           var profile_name="";
-          $(document).on('click', "#profile_btn button", function () {
+
+          $('#profile_btn button').click(function(){  
               profile_name="";
               sendfilter();
           });
 
-          $(document).on('click', ".overlay", function () {
+          $('.overlay').click(function(){  
               profile_name="";
               sendfilter();
           });
 
-          $(document).on('click', ".profile_name", function () {
+          $('.profile_name').click(function(){
              profile_name = $(this).html();
                     // console.log(profile_name);
                     // debugger;

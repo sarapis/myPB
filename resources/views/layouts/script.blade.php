@@ -1,3 +1,4 @@
+<script src="{{asset('js/filter_ajaxscript.js')}}"></script>
 <!-- Core  -->
   <script src="../../../frontend/global/vend/babel-external-helpers/babel-external-helpers.js"></script>
   <script src="../../../frontend/global/vend/tether/tether.js"></script>

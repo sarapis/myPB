@@ -162,7 +162,7 @@ Profile
   </div>
   @include('layouts.footer')
 </div>
-<script src="{{asset('js/filter_ajaxscript.js')}}"></script>
+
 <script>
     $(document).ready(function(){
         if(screen.width < 768){

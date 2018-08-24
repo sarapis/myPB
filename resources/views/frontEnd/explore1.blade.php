@@ -87,7 +87,7 @@ Breakpoints();
       </div>
   </div>
   @include('layouts.footer')
-<script src="{{asset('js/filter_ajaxscript.js')}}"></script>
+
 <script>
 $(document).ready(function(){
     $(document).ajaxStart(function(){
