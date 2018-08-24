@@ -31,10 +31,10 @@
   <link rel="stylesheet" href="../../../frontend/global/fonts/material-design/material-design.min.css">
   <link rel="stylesheet" href="../../../frontend/global/fonts/brand-icons/brand-icons.min.css">
   <link rel="stylesheet" href="../../../frontend/global/vend/asrange/asRange.css">
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+
   <link rel="stylesheet" href="../../../css/explorestyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+
 
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
