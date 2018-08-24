@@ -157,13 +157,9 @@ class ExploreController extends Controller
                 $location = $request->input('address');
                 $profile_name = $request->input('profile_name');
 
-                // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city);
-                //  exit(); 
 
                 $projects = Project::whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereBetween('vote_year', [$year_min, $year_max]);
                            
-                 // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
-                 // exit(); 
                
                 if ($profile_name!=null) {
 
@@ -250,15 +246,10 @@ class ExploreController extends Controller
 
                     $result  = json_decode($content);
                     
-                    // var_dump($result->features[0]);
-                    // exit();
-                    //$housenumber=$result->features[3]->properties->housenumber;
-                    // var_dump($housenumber);
-                    // exit();
+
                     $name=$result->features[0]->properties->name;
                     $zip=$result->features[0]->properties->postalcode;
-                    // var_dump($street, $zipcode);
-                    // exit();
+
                     $name = str_replace(" ","%20",$name);
                     $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
 
@@ -283,9 +274,6 @@ class ExploreController extends Controller
                 }
                  if($search != NULL)
                 {
-                    // $projects = $projects->with('district')->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district', function ($q)  use($search){
-                    // $q->where('name', 'like', '%'.$search.'%');
-                    // });
 
                     $projects = $projects->with('district')->where(function($q) use($search){
                         $q->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district',function($qq) use($search) {

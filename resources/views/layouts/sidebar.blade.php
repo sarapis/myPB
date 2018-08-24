@@ -13,8 +13,8 @@
         </div>
     </div>
     <!-- Example Tabs In The Panel -->
-    <div class="nav-tabs-horizontal sidebar-tab" data-plugin="tabs">
-        <ul class="nav nav-tabs nav-tabs-line" role="tablist" style="height: 45px;">
+    <div class="nav-tabs-horizontal sidebar-tab p-0" data-plugin="tabs">
+        <ul class="nav nav-tabs nav-tabs-line" role="tablist" style="height: 45px;border-radius:0;">
             <li class="nav-item tab-menu active"><a class="nav-link" data-toggle="tab" href="#exampleTopHome"
             aria-controls="exampleTopHome" role="tab" id="tab_filter">FILTER</a></li>
             <li class="nav-item tab-menu"><a class="nav-link" data-toggle="tab" href="#exampleTopComponents"
