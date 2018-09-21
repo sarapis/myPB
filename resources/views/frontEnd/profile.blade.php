@@ -162,6 +162,7 @@ Profile
   </div>
   @include('layouts.footer')
 </div>
+
 <script>
     $(document).ready(function(){
         if(screen.width < 768){
@@ -190,7 +191,7 @@ Profile
 
     var status = locations.project_status_category;
     var statusicon = '';
-    console.log(status);
+    // console.log(status);
     if(status == 'Complete'){
         statusicon = "/images/icon/completed-map-pin.png"
       }

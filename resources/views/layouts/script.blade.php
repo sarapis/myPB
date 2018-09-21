@@ -60,41 +60,5 @@ $('#widget').draggable();
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 
-<!-- <script>
-
-    $("#content").swipe({
-        swipeStatus:function(event, phase, direction, distance, duration, fingers)
-            {
-                if (phase=="move" && direction =="right") {
-
-                // console.log('aaaaa');
-                     $("#sidebar").addClass("active");
-                     return false;
-                }
-                if (phase=="move" && direction =="left") {
-
-                       $("#sidebar").removeClass("active");
-                       return false;
-                }
-            }
-    });
-    // $("#sidebar").swipe({
-    //     swipeStatus:function(event, phase, direction, distance, duration, fingers)
-    //         {
-    //             // if (phase=="move" && direction =="right") {
-
-    //             // // console.log('aaaaa');
-    //             //      $("#sidebar").addClass("active");
-    //             //      return false;
-    //             // }
-    //             if (phase=="move" && direction =="left") {
-
-    //                    $("#sidebar").removeClass("active");
-    //                    return false;
-    //             }
-    //         }
-    // }); 
-
-</script> -->
 
 

@@ -166,6 +166,7 @@
         }
     });
 </script>
+
  <script type="text/javascript">
 
     var locations = <?php print_r(json_encode($project)) ?>;
@@ -179,7 +180,7 @@
 
     var status = locations.project_status_category;
     var statusicon = '';
-    console.log(status);
+    // console.log(status);
     if(status == 'Complete'){
         statusicon = "/images/icon/completed-map-pin.png"
       }

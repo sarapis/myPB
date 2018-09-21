@@ -13,3 +13,4 @@
 
 
 @include('layouts.script')
+</html>

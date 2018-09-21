@@ -13,7 +13,8 @@
   <!-- Stylesheets -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css" />
-   <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+   
+   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" href="../../../frontend/global/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../../frontend/global/css/bootstrap-extend.min.css">
 
@@ -26,37 +27,19 @@
   <link rel="stylesheet" href="../../../frontend/global/vend/slidepanel/slidePanel.css">
   <link rel="stylesheet" href="../../../frontend/global/vend/flag-icon-css/flag-icon.css">
   <link rel="stylesheet" href="../../../frontend/global/vend/waves/waves.css">
-  <!-- Fonts -->
-<!--   <link rel="stylesheet" href="../../../frontend/global/vend/footable/footable.bootstrap.css">
-  <link rel="stylesheet" href="../../../frontend/global/vend/footable/footable.core.css">
-  <link rel="stylesheet" href="../../assets/examples/css/tables/footable.css"> -->
   <link rel="stylesheet" href="../../../../frontend/global/fonts/web-icons/web-icons.css">
    <link rel="stylesheet" href="../../../../frontend/global/fonts/font-awesome/font-awesome.css">
   <link rel="stylesheet" href="../../../frontend/global/fonts/material-design/material-design.min.css">
   <link rel="stylesheet" href="../../../frontend/global/fonts/brand-icons/brand-icons.min.css">
   <link rel="stylesheet" href="../../../frontend/global/vend/asrange/asRange.css">
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+
   <link rel="stylesheet" href="../../../css/explorestyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-  <!--script src="https://raw.githubusercontent.com/719media/bootstrap-table/bootstrap4/src/bootstrap-table.js"></script-->
-  <!--[if lt IE 9]>
-    <script src="../../../frontend/global/vend/html5shiv/html5shiv.min.js"></script>
-    <![endif]-->
-  <!--[if lt IE 10]>
-    <script src="../../../frontend/global/vend/media-match/media.match.min.js"></script>
-    <script src="../../../frontend/global/vend/respond/respond.min.js"></script>
-    <![endif]-->
-  <!-- Scripts -->
-  
-<!--   <script src="../../../frontend/global/vend/jquery/jquery.js"></script> -->
- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
-
+<script src="{{asset('js/filter_ajaxscript.js')}}"></script>
   <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>
   <script>
   Breakpoints();
@@ -65,7 +48,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-Ba1uQA_-eQ0zAA-ymOSrfrakLUZsHo">
     </script>
   <script src="{{asset('js/gmaps.js')}}"></script>
-  <script src="{{asset('js/filter_ajaxscript.js')}}"></script>
+  <script src="{{asset('js/markerclusterer.js')}}"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113999334-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
