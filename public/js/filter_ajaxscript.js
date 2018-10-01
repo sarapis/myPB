@@ -4,6 +4,7 @@
       $(document).ready(function () {
           var selected_sort="";
           var profile_name="";
+          var change_url = 0;
           $(document).on('click', "#profile_btn button", function () {
               profile_name="";
               sendfilter();
@@ -16,6 +17,7 @@
 
           $(document).on('click', ".profile_name", function () {
              profile_name = $(this).html();
+             change_url = 1;
                     // console.log(profile_name);
                     // debugger;
                     sendfilter();
@@ -224,7 +226,7 @@
               onLoadEvent: true
             });
             var ajax_url;
-            if(window.location.href.search('explore') != -1)
+            if(window.location.href.search('project') != -1)
               ajax_url = '/range';
             else if(window.location.href.search('summary') != -1)
               ajax_url = '/filter';
@@ -244,8 +246,15 @@
                 success: function(data) {
                     
                   $('.loader-overlay').remove();
-                  
+
                   $('#content').html(data);
+                  if(change_url == 1){
+                      window.history.replaceState({url: "" + window.location.href + ""}, '', '/project/'+profile_name);
+                      change_url = 0;
+                    }
+                  else{
+                    window.history.replaceState({url: "" + window.location.href + ""}, '', '/project');
+                  }
                 },
                 error: function(errResponse) {
                 

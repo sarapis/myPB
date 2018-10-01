@@ -159,8 +159,9 @@ Profile
         </div>
       </div>
     </div>
+    @include('layouts.footer')
   </div>
-  @include('layouts.footer')
+  
 </div>
 
 <script>

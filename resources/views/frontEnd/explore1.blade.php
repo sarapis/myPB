@@ -32,6 +32,9 @@
 .col-sm-12{
   padding: 0;
 }
+.overlay{
+    display: none !important;
+}
 </style>
 <script src="{{asset('js/markerclusterer.js')}}"></script>
 <script src="../../../frontend/global/vend/breakpoints/breakpoints.js"></script>

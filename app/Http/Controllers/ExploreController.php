@@ -104,10 +104,10 @@ class ExploreController extends Controller
         $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
         $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
 
-        $project = Project::find($id);
+        $project = Project::where('project_title', '=', $id)->first();
         $district = $project->district_ward_name;
         $contact = Contact::where('district_ward_name', 'like', '%'.$district.'%')->first();
-        return view('frontEnd.profile', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'));
+        return view('frontEnd.profile', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'))->render();
     }
 
 

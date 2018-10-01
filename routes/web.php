@@ -22,10 +22,10 @@ Route::get('/admin', function () {
 });
 Route::get('/about', ['uses' => 'HomeController@about']);
 Route::get('/feedback', ['uses' => 'HomeController@feedback']);
-Route::get('/explore', 'ExploreController@index');
+Route::get('/project', 'ExploreController@index');
 
 // Route::post('/explore', 'ExploreController@index');
-Route::get('/profile/{id}', 'ExploreController@profile');
+Route::get('/project/{id}', 'ExploreController@profile');
 Route::get('/explore/status_{id}', 'ExploreController@status');
 Route::get('/explore/district_{id}', 'ExploreController@district');
 Route::get('/explore/category_{id}', 'ExploreController@category');

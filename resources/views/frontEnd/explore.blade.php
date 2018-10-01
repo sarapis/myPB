@@ -85,26 +85,7 @@ ul#ui-id-1 {
                                                 <a class="profile_name">{{$project->project_title}}</a>
                                             @endif
                                         </td>
-                                        <!-- <td>
-                                            @if($project->cost_num!='')
-                                                ${{number_format($project->cost_num)}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($project->process->vote_year!='')
-                                                {{$project->process->vote_year}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($project->votes!='')
-                                                {{$project->votes}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($project->status_date_updated!='')
-                                                {{$project->status_date_updated}}
-                                            @endif
-                                        </td> -->
+
                                         <td><i class="fa fa-chevron-right" style="padding-top: 8px;color: #000000;"></i></td>
                                     </tr>
                                     @endforeach
