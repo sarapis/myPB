@@ -56,13 +56,13 @@ function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,es,fr,ru,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
 }
 
-// setTimeout(function(){
-//   var iframe = $('.goog-te-menu-frame');
-//   $('table a .text', iframe.contents()).eq(1).text('中文');
-//   $('table a .text', iframe.contents()).eq(2).text('Français');
-//   $('table a .text', iframe.contents()).eq(3).text('Pусский');
-//   $('table a .text', iframe.contents()).eq(4).text('Español');
-// }, 10000);
+setTimeout(function(){
+  var iframe = $('.goog-te-menu-frame');
+  $('table a .text', iframe.contents()).eq(1).text('中文');
+  $('table a .text', iframe.contents()).eq(2).text('Français');
+  $('table a .text', iframe.contents()).eq(3).text('Pусский');
+  $('table a .text', iframe.contents()).eq(4).text('Español');
+}, 10000);
 
 
 </script>
