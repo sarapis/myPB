@@ -248,13 +248,17 @@
                   $('.loader-overlay').remove();
 
                   $('#content').html(data);
-                  if(change_url == 1){
+                  if(change_url == 1 && window.location.href.search('project') != -1){
                       window.history.replaceState({url: "" + window.location.href + ""}, '', '/project/'+profile_name);
                       change_url = 0;
                     }
-                  else{
+                  else if(window.location.href.search('project') != -1){
                     window.history.replaceState({url: "" + window.location.href + ""}, '', '/project');
                   }
+                  else{
+                   window.history.replaceState({url: "" + window.location.href + ""}, '', '/summary'); 
+                  }
+                  $('link[rel="canonical"]').attr('href', window.location.href);
                 },
                 error: function(errResponse) {
                 
@@ -263,4 +267,9 @@
 
           }
       });
+
+window.onpopstate = function (event) {
+    var currentState = history.state;
+    document.body.innerHTML = currentState.innerhtml;
+};
       

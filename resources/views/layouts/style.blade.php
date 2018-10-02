@@ -9,6 +9,7 @@
   <meta name="_token" content="{!! csrf_token() !!}" />
   <title>@yield('title')| PBNYC</title>
   <link rel="apple-touch-icon" href="../../frontend/assets/images/apple-touch-icon.png">
+  <link rel="canonical" href="" />
   <link rel="shortcut icon" href="../../frontend/assets/images/favicon.ico">
   <!-- Stylesheets -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -44,7 +45,7 @@
   <script>
   Breakpoints();
   </script>
-  <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5a98fe1e54d8310013ae576a&product=inline-share-buttons' async='async'></script>
+  <script type='text/javascript' src='{{asset("js/sharethis.js#property=5a98fe1e54d8310013ae576a&product=inline-share-buttons")}}' async='async'></script>
  <!--  <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5bb2cb9985136400117096ad&product=inline-share-buttons' async='async'></script> -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo-Ba1uQA_-eQ0zAA-ymOSrfrakLUZsHo">
     </script>

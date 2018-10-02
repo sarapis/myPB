@@ -56,13 +56,32 @@ function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,es,fr,ru,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
 }
 
-setTimeout(function(){
+setInterval(function(){
   var iframe = $('.goog-te-menu-frame');
   $('table a .text', iframe.contents()).eq(1).text('中文');
   $('table a .text', iframe.contents()).eq(2).text('Français');
   $('table a .text', iframe.contents()).eq(3).text('Pусский');
   $('table a .text', iframe.contents()).eq(4).text('Español');
-}, 10000);
+  $('.st-btn[data-network="blogger"]').hide();
+  $('.st-btn[data-network="delicious"]').hide();
+  $('.st-btn[data-network="digg"]').hide();
+  $('.st-btn[data-network="flipboard"]').hide();
+  $('.st-btn[data-network="googleplus"]').hide();
+  $('.st-btn[data-network="livejournal"]').hide();
+  $('.st-btn[data-network="mailru"]').hide();
+  $('.st-btn[data-network="meneame"]').hide();
+  $('.st-btn[data-network="messenger"]').hide();
+  $('.st-btn[data-network="odnoklassniki"]').hide();
+  $('.st-btn[data-network="pinterest"]').hide();
+  $('.st-btn[data-network="reddit"]').hide();
+  $('.st-btn[data-network="tumblr"]').hide();
+  $('.st-btn[data-network="twitter"]').hide();
+  $('.st-btn[data-network="vk"]').hide();
+  $('.st-btn[data-network="wechat"]').hide();
+  $('.st-btn[data-network="weibo"]').hide();
+  $('.st-btn[data-network="whatsapp"]').hide();
+  $('.st-btn[data-network="xing"]').hide();
+}, 500);
 
 
 </script>
