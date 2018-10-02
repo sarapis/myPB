@@ -720,3 +720,24 @@ p{
   font-weight: 500;
   cursor: pointer;
 }
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front{
+  background: white !important;
+}
+#st-el-2 .st-btns  .st-btn{
+    display: none;
+}
+#st-el-2 .st-btn[data-network='facebook'] {
+    display: inline-block;
+}
+#st-el-2 .st-btn[data-network='email'] {
+    display: inline-block;
+}
+#st-el-2 .st-btn[data-network='linkedin'] {
+    display: inline-block;
+}
+#st-el-2 .st-btn[data-network='print'] {
+    display: inline-block;
+}
+#st-el-2 .st-btn[data-network='twitter'] {
+    display: inline-block;
+}

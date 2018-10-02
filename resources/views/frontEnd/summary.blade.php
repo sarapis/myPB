@@ -50,6 +50,12 @@ Summary
     height: 400px !important;
     display: block !important;
 }
+#sidebar{
+    display: none !important;
+}
+#content{
+    width: 100% !important;
+}
 </style>
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>

@@ -47,6 +47,12 @@
     width: 100% !important;
     height: 400px !important;
 }
+#sidebar{
+    display: none !important;
+}
+#content{
+    width: 100% !important;
+}
 </style>
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
@@ -103,7 +109,7 @@
                     <div id="chartdiv_agency"></div>                   
                 </div>
             </div>
-        </div>]
+        </div>
         @endif
     </div>
     @include('layouts.footer')
