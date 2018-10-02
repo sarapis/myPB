@@ -724,20 +724,20 @@ p{
   background: white !important;
 }
 #st-el-2 .st-btns  .st-btn{
-    display: none;
+    display: none !important;
 }
 #st-el-2 .st-btn[data-network='facebook'] {
-    display: inline-block;
+    display: inline-block !important;
 }
 #st-el-2 .st-btn[data-network='email'] {
-    display: inline-block;
+    display: inline-block !important;
 }
 #st-el-2 .st-btn[data-network='linkedin'] {
-    display: inline-block;
+    display: inline-block !important;
 }
 #st-el-2 .st-btn[data-network='print'] {
-    display: inline-block;
+    display: inline-block !important;
 }
 #st-el-2 .st-btn[data-network='twitter'] {
-    display: inline-block;
+    display: inline-block !important;
 }
