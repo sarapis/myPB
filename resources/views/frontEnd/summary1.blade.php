@@ -47,11 +47,8 @@
     width: 100% !important;
     height: 400px !important;
 }
-#sidebar{
+.ui-widget-header{
     display: none !important;
-}
-#content{
-    width: 100% !important;
 }
 </style>
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
