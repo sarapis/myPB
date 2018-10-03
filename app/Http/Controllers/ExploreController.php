@@ -35,7 +35,7 @@ class ExploreController extends Controller
             }
 
             if ($request->input('address')) {
-                $location = $request->get('address');
+                $location = $request->input('address');
                 // var_dump($location);
                 // exit();
                 $location = str_replace("+","%20",$location);
@@ -74,7 +74,7 @@ class ExploreController extends Controller
                 
                 
                 if($address_district == NULL){
-                    return redirect('/explore')->with('success', 'no project');
+                    return redirect('/project')->with('success', 'no project');
                 }
                 
                 $address_district=$address_district->name;
@@ -267,7 +267,7 @@ class ExploreController extends Controller
                 
                 
                     if($address_district == NULL){
-                        return redirect('/explore')->with('success', 'no project');
+                        return redirect('/project')->with('success', 'no project');
                     }
                     
                     $address_district=$address_district->name;

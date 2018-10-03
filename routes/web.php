@@ -23,7 +23,7 @@ Route::get('/admin', function () {
 Route::get('/about', ['uses' => 'HomeController@about']);
 Route::get('/feedback', ['uses' => 'HomeController@feedback']);
 Route::get('/project', 'ExploreController@index');
-
+Route::post('/project', 'ExploreController@index');
 // Route::post('/explore', 'ExploreController@index');
 Route::get('/project/{id}', 'ExploreController@profile');
 Route::get('/explore/status_{id}', 'ExploreController@status');

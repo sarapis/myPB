@@ -41,7 +41,8 @@
                 </div> -->
                 <div class="form-group" style="padding: 7px 7px 0 7px; margin-bottom: 0px;">
                     <!--begin::Form-->
-                    <form method="get" class="mb-5" id="search_location">
+                    <form method="post" class="mb-5" id="search_location">
+                        {!! csrf_field() !!}
                         <div class="input-search">
                             <i class="input-search-icon md-search" aria-hidden="true"></i>
                             <input id="location" type="text" class="form-control search-form" name="address" placeholder="Search Address for District">
@@ -178,9 +179,9 @@
 
 </nav>
 @if(isset($location) == TRUE)
-    <input type="hidden" name="location" id="location" value="{{$location}}">
+    <input type="hidden" name="location" id="location1" value="{{$location}}">
 @else
-    <input type="hidden" name="location" id="location" value="">
+    <input type="hidden" name="location" id="location1" value="">
 @endif
 
 <script>
