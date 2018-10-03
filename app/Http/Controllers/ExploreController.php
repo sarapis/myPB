@@ -232,7 +232,6 @@ class ExploreController extends Controller
 
                 }
                 $address_district="";
-
                 if($location != NULL)
                 {
                     

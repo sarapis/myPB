@@ -200,7 +200,8 @@
             if(selected_sort)
             form_data.append('selected_sort',selected_sort);
             form_data.append('is_ajax',1);
-            form_data.append('address',$('#location1').val());
+            console.log($('#location').val());
+            form_data.append('address',$('#location').val());
             form_data.append('profile_name', profile_name);
             $('#filter_buttons button').each(function(index){
                 
@@ -258,7 +259,6 @@
                   else{
                    window.history.replaceState({url: "" + window.location.href + ""}, '', '/summary'); 
                   }
-                  $('link[rel="canonical"]').attr('href', window.location.href);
                 },
                 error: function(errResponse) {
                 

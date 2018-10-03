@@ -94,24 +94,25 @@ Breakpoints();
 
 <script>
 $(document).ready(function(){
-    $(document).ajaxStart(function(){
+    $(document)..ajaxSend(function( event, jqxhr, settings ){
+        if(settings.url.indexOf("geo") == -1){
+           $("*").animsition({
+            inClass: 'fade-in',
+            inDuration: 800,
+            loading: true,
+            loadingClass: 'loader-overlay',
+            loadingParentElement: 'html',
+            loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
+            onLoadEvent: true
+          });
 
-         $("*").animsition({
-          inClass: 'fade-in',
-          inDuration: 800,
-          loading: true,
-          loadingClass: 'loader-overlay',
-          loadingParentElement: 'html',
-          loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
-          onLoadEvent: true
-        });
-
-        var address_district = <?php echo json_encode($address_district); ?>;
-        if( address_district != ''){
-        
-            $('#btn-district span').html("District:"+address_district);
-            $('#btn-district').show();
-        };
+          var address_district = <?php echo json_encode($address_district); ?>;
+          if( address_district != ''){
+          
+              $('#btn-district span').html("District:"+address_district);
+              $('#btn-district').show();
+          };
+        }
     });
     $(document).ajaxComplete(function(){
 

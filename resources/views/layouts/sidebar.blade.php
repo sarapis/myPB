@@ -179,9 +179,9 @@
 
 </nav>
 @if(isset($location) == TRUE)
-    <input type="hidden" name="location" id="location1" value="{{$location}}">
+    <input type="hidden" name="location1" id="location1" value="{{$location}}">
 @else
-    <input type="hidden" name="location" id="location1" value="">
+    <input type="hidden" name="location1" id="location1" value="">
 @endif
 
 <script>
@@ -189,7 +189,7 @@
 $(function () {
     var getData = function (request, response) {
         $.getJSON(
-            "https://geosearch.planninglabs.nyc/v1/autocomplete?text=" + request.term,
+            "https://cors-anywhere.herokuapp.com/https://geosearch.planninglabs.nyc/v1/autocomplete?text=" + request.term,
             function (data) {
                 response(data.features);
                 
