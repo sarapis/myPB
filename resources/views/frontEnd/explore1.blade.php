@@ -94,7 +94,7 @@ Breakpoints();
 
 <script>
 $(document).ready(function(){
-    $(document)..ajaxSend(function( event, jqxhr, settings ){
+    $(document).ajaxSend(function( event, jqxhr, settings ){
         if(settings.url.indexOf("geo") == -1){
            $("*").animsition({
             inClass: 'fade-in',
@@ -106,14 +106,18 @@ $(document).ready(function(){
             onLoadEvent: true
           });
 
-          var address_district = <?php echo json_encode($address_district); ?>;
-          if( address_district != ''){
           
-              $('#btn-district span').html("District:"+address_district);
-              $('#btn-district').show();
-          };
         }
     });
+    $(document).ready(function(){
+      var address_district = <?php echo json_encode($address_district); ?>;
+      if( address_district != ''){
+      
+          $('#btn-district span').html("District:"+address_district);
+          $('#btn-district').show();
+      };  
+    })
+    
     $(document).ajaxComplete(function(){
 
         $('.loader-overlay').remove();

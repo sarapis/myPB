@@ -149,12 +149,14 @@ class ExploreController extends Controller
                 $search = $request->input('Search');
 
 
-                $district = $request->input('District');
+                // $district = $request->input('District');
                 $status = $request->input('Status');
                 $category = $request->input('Category');        
                 $city = $request->input('City');
                 $sort = $request->input('selected_sort');
                 $location = $request->input('address');
+                // var_dump($location);
+                // exit();
                 $profile_name = $request->input('profile_name');
 
 
@@ -175,13 +177,13 @@ class ExploreController extends Controller
                     return view('frontEnd.profile1', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'));
                 }
           
-                if($district!=NULL){
+                // if($district!=NULL){
 
-                    $district = District::where('name', '=', $district)->first();
-                    $district = $district->recordid;
-                    $projects = $projects->where('district_ward_name', '=', $district);
+                //     $district = District::where('name', '=', $district)->first();
+                //     $district = $district->recordid;
+                //     $projects = $projects->where('district_ward_name', '=', $district);
                     
-                }
+                // }
                 
                 if($status!=NULL){
 
@@ -232,6 +234,7 @@ class ExploreController extends Controller
 
                 }
                 $address_district="";
+
                 if($location != NULL)
                 {
                     
@@ -263,13 +266,14 @@ class ExploreController extends Controller
                     });
 
                     $address_district=District::where('cityCouncilDistrict', '=', $cityCouncilDistrict)->first();
-                
+                    
                 
                     if($address_district == NULL){
                         return redirect('/project')->with('success', 'no project');
                     }
                     
                     $address_district=$address_district->name;
+
                 }
                  if($search != NULL)
                 {
@@ -282,7 +286,7 @@ class ExploreController extends Controller
                 }
                 $projects = $projects->get();
 
-
+                
                 return view('frontEnd.explore1', compact('projects','address_district'))->render();
 
 

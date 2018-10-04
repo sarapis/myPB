@@ -14,6 +14,13 @@
               profile_name="";
               sendfilter();
           });
+          setTimeout(function () {
+              $('.ui-menu').click(function(){
+                  //$('#search_location').submit();
+                  console.log(111);
+                  sendfilter();
+              });
+          }, 1000);
 
           $(document).on('click', ".profile_name", function () {
              profile_name = $(this).html();
@@ -66,6 +73,9 @@
               sendfilter();
           });
 
+          // $('#location').change(function(){
+          //   sendfilter();
+          // });
           
 
           $('#projectstatus li').click(function(){

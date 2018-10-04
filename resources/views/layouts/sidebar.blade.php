@@ -41,13 +41,13 @@
                 </div> -->
                 <div class="form-group" style="padding: 7px 7px 0 7px; margin-bottom: 0px;">
                     <!--begin::Form-->
-                    <form method="post" class="mb-5" id="search_location">
+               
                         {!! csrf_field() !!}
                         <div class="input-search">
                             <i class="input-search-icon md-search" aria-hidden="true"></i>
                             <input id="location" type="text" class="form-control search-form" name="address" placeholder="Search Address for District">
                         </div>
-                    </form>
+                    
                 </div>
                 <ul class="list-unstyled components mb-0 pb-5">
 <!--                <li class="option-side">
@@ -215,9 +215,9 @@ $(function () {
         }
     });
 
-    $('.ui-menu').click(function(){
-        $('#search_location').submit();
-    });
+    // $('.ui-menu').click(function(){
+    //     $('#search_location').submit();
+    // });
 
   
 });
