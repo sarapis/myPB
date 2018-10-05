@@ -126,6 +126,8 @@
 
           $('#filter_buttons button').click(function(){
               $(this).hide();
+              if( $(this).attr('id') == 'btn-district')
+                $('#location').val("");
               sendfilter();
           });
 
