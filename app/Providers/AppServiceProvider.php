@@ -14,6 +14,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        view()->composer('layouts.header', function($view)
+        {
+            $view->with('layout', \App\Layout::first());
+        });
+
+        view()->composer('layouts.footer', function($view)
+        {
+            $view->with('layout', \App\Layout::first());
+        });
+
+        view()->composer('backLayout.sidebarMenu', function($view)
+        {
+            $view->with('layout', \App\Layout::first());
+        });
     }
 
     /**

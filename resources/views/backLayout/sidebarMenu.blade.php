@@ -1,13 +1,13 @@
 
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="{{url('dashboard')}}" class="site_title"><i class="fa fa-paw"></i> <span>PBNYC</span></a>
+    <a href="{{url('dashboard')}}" class="site_title"><i class="fa fa-paw"></i> <span>{{$layout->site_name}}</span></a>
   </div>
 
   <div class="clearfix"></div>
 
   <!-- menu profile quick info -->
-  <div class="profile">
+  <!-- <div class="profile">
     <div class="profile_pic">
       <img src="{{ URL::asset('/images/myPB.png') }}" alt="..." class="img-circle profile_img">
     </div>
@@ -15,23 +15,27 @@
       <span>Welcome,</span>
       <h2>{{Sentinel::getUser()->first_name.' ' .Sentinel::getUser()->last_name }}</h2>
     </div>
-  </div>
+  </div> -->
   <!-- /menu profile quick info -->
 
   <br />
 
   <!-- sidebar menu -->
   <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-    <div class="menu_section" style="padding-top: 70px;">
+    <div class="menu_section" style="padding-top: 0px;">
       <ul class="nav side-menu">
         <li><a href="/" target="_blank"><i class="fa fa-desktop blue"></i> View PBNYC</a></li>
       </ul>
     </div>
     <div class="menu_section">
       <h3>Main</h3>
-      <ul class="nav side-menu">
-        <li><a href="{{route('pages.index')}}"><i class="fa fa-windows"></i> Pages</span></a>
-        </li>    
+      <ul class="nav side-menu">  
+        <li><a><i class="fa fa-windows"></i> Pages <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="/layout_edit">Site Text</a></li>
+            <li><a href="{{route('pages.index')}}">Pages</a></li>
+          </ul>
+        </li>     
         <li><a href="/datasync"><i class="fa fa-database"></i> Datasync</a>
         </li>
         <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>

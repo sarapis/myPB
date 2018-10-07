@@ -2,10 +2,10 @@
     z-index: 1;">
   	<div class="row footer-feedback">
     	<div class="col-md-8 text-center" style="padding-left: 85px;padding-right: 85px;">
-    		<h3 class="feedback-title">Love it? Change it? We'd love to hear your thoughts!</h3>
+    		<h3 class="feedback-title">{{$layout->contact_text}}</h3>
     	</div>
     	<div class="col-md-4 feedback-btn">
-    		<button class="btn btn-block btn-feedback waves-effect waves-classic" style="padding: 0;"><a href="/feedback" style="display: block;line-height: 45px;">Feedback</a></button>
+    		<button class="btn btn-block btn-feedback waves-effect waves-classic" style="padding: 0;"><a href="{{$layout->contact_btn_link}}" style="display: block;line-height: 45px;">{{$layout->contact_btn_label}}</a></button>
     	</div>
     </div>
     <div class="row footer-content">

@@ -1,11 +1,12 @@
   <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse bg-custom" role="navigation">
     <div class="navbar-header">
       <a class="navbar-brand p-25 pl-15" href="/">
-        <img class="navbar-brand-logo navbar-brand-logo-normal" src="../../images/mypb.png"
-        title="myPB">
-        <img class="navbar-brand-logo navbar-brand-logo-special" src="../../images/mypb.png"
-        title="myPB">
+        <img class="navbar-brand-logo navbar-brand-logo-normal" src="../../images/{{$layout->logo}}"
+        title="{{$layout->site_name}}">
+        <img class="navbar-brand-logo navbar-brand-logo-special" src="../../images/{{$layout->logo}}"
+        title="{{$layout->site_name}}">
       </a>
+      
       <!-- <a class="navbar-brand nav-item nav-link mr-0 pl-0 pr-5" href="/explore">Explore</a>
       <a class="navbar-brand nav-item nav-link mr-0 pl-0 pr-5" href="/about">About</a>
       <a class="navbar-brand nav-item nav-link mr-0 pl-0 pr-5" href="https://www.participatorybudgeting.org/donate/" target="_blank">Donate</a>

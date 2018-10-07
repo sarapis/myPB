@@ -71,6 +71,8 @@ Route::post('/filter', 'SummaryController@filtersummary');
         Route::resource('tb_district', 'DistrictController');
         Route::resource('tb_contacts', 'ContactController');
         Route::resource('tb_agency', 'AgencyController');
+
+        Route::resource('layout_edit', 'EditlayoutController');
         
         Route::get('/datasync', ['uses' => 'PagesController@datasync']);
  });

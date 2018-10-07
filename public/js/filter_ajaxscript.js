@@ -5,6 +5,7 @@
           var selected_sort="";
           var profile_name="";
           var change_url = 0;
+          var pervious_url = 0;
           $(document).on('click', "#profile_btn button", function () {
               profile_name="";
               sendfilter();
@@ -239,10 +240,18 @@
               onLoadEvent: true
             });
             var ajax_url;
-            if(window.location.href.search('project') != -1)
-              ajax_url = '/range';
-            else if(window.location.href.search('summary') != -1)
-              ajax_url = '/filter';
+            if(pervious_url == 0){
+              if(window.location.href.search('project') != -1)
+                ajax_url = '/range';
+              else if(window.location.href.search('summary') != -1)
+                ajax_url = '/filter';
+            }
+            else{
+              if(pervious_url == 1)
+                ajax_url = '/range';
+              else if(pervious_url == 2)
+                ajax_url = '/filter'; 
+            }
             $.ajaxSetup({
               headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -261,16 +270,33 @@
                   $('.loader-overlay').remove();
 
                   $('#content').html(data);
+                  if(change_url == 0){
+                    if(pervious_url == 1){
+                      window.history.replaceState({url: "" + window.location.href + ""}, '', '/project');
+                    }
+                    else{
+                      window.history.replaceState({url: "" + window.location.href + ""}, '', '/summary');
+
+                    }
+                    pervious_url = 0;
+                  }
                   if(change_url == 1 && window.location.href.search('project') != -1){
+                    
                       window.history.replaceState({url: "" + window.location.href + ""}, '', '/project/'+profile_name);
                       change_url = 0;
+                      pervious_url = 1;
                     }
-                  else if(window.location.href.search('project') != -1){
-                    window.history.replaceState({url: "" + window.location.href + ""}, '', '/project');
+                  // else if(window.location.href.search('project') != -1){
+                  //   window.history.replaceState({url: "" + window.location.href + ""}, '', '/project');
+                  // }
+                  if(change_url == 1 && window.location.href.search('summary') != -1) {
+                    
+                    window.history.replaceState({url: "" + window.location.href + ""}, '', '/project/'+profile_name);
+                    change_url = 0;
+                    pervious_url = 2;
                   }
-                  else{
-                   window.history.replaceState({url: "" + window.location.href + ""}, '', '/summary'); 
-                  }
+                  
+
                 },
                 error: function(errResponse) {
                 
