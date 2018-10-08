@@ -273,7 +273,10 @@ class ExploreController extends Controller
                     
                 
                     if($address_district == NULL){
-                        return redirect('/project')->with('success', 'no project');
+                        // return redirect('/project')->with('success', 'no project')->render();
+                        $projects = Project::all();
+                        $address_district = "";
+                        return view('frontEnd.explore1', compact('projects','address_district'))->with('successMsg','Property is updated .')->render();
                     }
                     
                     $address_district=$address_district->name;

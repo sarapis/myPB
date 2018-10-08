@@ -268,15 +268,14 @@
                 success: function(data) {
                     
                   $('.loader-overlay').remove();
-
+                  console.log(pervious_url);
                   $('#content').html(data);
                   if(change_url == 0){
                     if(pervious_url == 1){
                       window.history.replaceState({url: "" + window.location.href + ""}, '', '/project');
                     }
-                    else{
+                    else if(pervious_url == 2){
                       window.history.replaceState({url: "" + window.location.href + ""}, '', '/summary');
-
                     }
                     pervious_url = 0;
                   }
