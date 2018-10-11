@@ -184,6 +184,8 @@ return [
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         //Log Viewer
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        //PDF Generator
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class
     ],
@@ -238,6 +240,7 @@ return [
         'HTML' => Collective\Html\HtmlFacade::class,
         'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
         'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 
     ],

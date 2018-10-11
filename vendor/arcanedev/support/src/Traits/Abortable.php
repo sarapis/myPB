@@ -5,13 +5,16 @@
  *
  * @package  Arcanedev\Support\Traits
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ *
+ * @deprecated Use directly the abort() helper function instead.
  */
 trait Abortable
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
+     |  Main Methods
+     | -----------------------------------------------------------------
      */
+
     /**
      * Throw Page not found [404].
      *

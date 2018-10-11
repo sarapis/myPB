@@ -60,7 +60,7 @@
 
     <div class="row ml-10 mr-10">
         @if($output == NULL)
-        <div class="alert dark alert-dismissible mt-20 ml-10 mr-10 mb-0" role="alert" style="background: #3f8a7b; color: white;">
+        <div class="alert dark alert-dismissible mt-20 ml-10 mr-10 mb-0" role="alert" style="background: #3f8a7b; color: white;width: 170px;">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>

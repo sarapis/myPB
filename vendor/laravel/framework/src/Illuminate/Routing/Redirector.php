@@ -3,10 +3,13 @@
 namespace Illuminate\Routing;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Traits\Macroable;
 use Illuminate\Session\Store as SessionStore;
 
 class Redirector
 {
+    use Macroable;
+
     /**
      * The URL generator instance.
      *
@@ -144,7 +147,7 @@ class Redirector
      * Create a new redirect response to a named route.
      *
      * @param  string  $route
-     * @param  array   $parameters
+     * @param  mixed   $parameters
      * @param  int     $status
      * @param  array   $headers
      * @return \Illuminate\Http\RedirectResponse
@@ -158,7 +161,7 @@ class Redirector
      * Create a new redirect response to a controller action.
      *
      * @param  string  $action
-     * @param  array   $parameters
+     * @param  mixed   $parameters
      * @param  int     $status
      * @param  array   $headers
      * @return \Illuminate\Http\RedirectResponse

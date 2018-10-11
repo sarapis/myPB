@@ -595,7 +595,7 @@ class SummaryController extends Controller
 
                     $cityCouncilDistrict=$geo->place->cityCouncilDistrict;
                     
-                    $projects= $projects->with('district')->orwhereHas('district', function ($q)  use($cityCouncilDistrict){
+                    $projects= $projects->with('district')->whereHas('district', function ($q)  use($cityCouncilDistrict){
                         $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
                     });
 

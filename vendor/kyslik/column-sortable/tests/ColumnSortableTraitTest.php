@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnhandledExceptionInspection */
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
@@ -10,19 +10,24 @@ class ColumnSortableTraitTest extends \Orchestra\Testbench\TestCase
 {
 
     /**
-     * @var
+     * @var \User
      */
     private $user;
 
     /**
-     * @var
+     * @var \Profile
      */
     private $profile;
 
     /**
-     * @var
+     * @var \Comment
      */
     private $comment;
+
+    /**
+     * @var \Post
+     */
+    private $post;
 
     /**
      * @var
@@ -36,13 +41,15 @@ class ColumnSortableTraitTest extends \Orchestra\Testbench\TestCase
     public function setUp()
     {
         parent::setUp();
+        app()->register(\Kyslik\ColumnSortable\ColumnSortableServiceProvider::class);
 
-        $this->app['config']->set('database.default', 'sqlite');
-        $this->app['config']->set('database.connections.sqlite.database', ':memory:');
+        config()->set('database.default', 'sqlite');
+        config()->set('database.connections.sqlite.database', ':memory:');
 
         $this->user    = new User();
         $this->profile = new Profile();
         $this->comment = new Comment();
+        $this->post    = new Post();
 
         $this->configDefaultDirection = 'asc';
     }
@@ -50,36 +57,50 @@ class ColumnSortableTraitTest extends \Orchestra\Testbench\TestCase
 
     public function testSortableWithoutDefaultAndRequestParameters()
     {
+        config()->set('columnsortable.default_first_column', false);
         $query = $this->user->scopeSortable($this->user->newQuery());
+        $this->assertEmpty($query->getQuery()->orders);
+
+        config()->set('columnsortable.default_first_column', true);
+        $this->user->sortable = ['name', 'id'];
+
+        $query = $this->user->scopeSortable($this->user->newQuery());
+        $this->assertEquals([
+            [
+                'column'    => 'users.'.array_first($this->user->sortable),
+                'direction' => $this->configDefaultDirection,
+            ],
+        ], $query->getQuery()->orders);
+
+        $query = $this->post->scopeSortable($this->post->newQuery());
         $this->assertEmpty($query->getQuery()->orders);
     }
 
 
-
-
-
     public function testSortableWithRequestParameters()
     {
+        config()->set('columnsortable.default_first_column', false);
+
         $usersTable = $this->user->getTable();
-        Input::replace(['sort' => 'name', 'order' => 'asc']);
+        Input::replace(['sort' => 'name', 'direction' => 'asc']);
         $resultArray = $this->user->scopeSortable($this->user->newQuery())->getQuery()->orders;
         $expected    = ['column' => $usersTable.'.name', 'direction' => 'asc'];
         $this->assertEquals($expected, head($resultArray));
 
-        Input::replace(['sort' => 'name', 'order' => 'desc']);
+        Input::replace(['sort' => 'name', 'direction' => 'desc']);
         $resultArray = $this->user->scopeSortable($this->user->newQuery())->getQuery()->orders;
         $expected    = ['column' => $usersTable.'.name', 'direction' => 'desc'];
         $this->assertEquals($expected, head($resultArray));
 
-        Input::replace(['sort' => 'name', 'order' => '']);
+        Input::replace(['sort' => 'name', 'direction' => '']);
         $result = $this->user->scopeSortable($this->user->newQuery())->getQuery()->orders;
         $this->assertNull($result);
 
-        Input::replace(['sort' => '', 'order' => 'asc']);
+        Input::replace(['sort' => '', 'direction' => 'asc']);
         $result = $this->user->scopeSortable($this->user->newQuery())->getQuery()->orders;
         $this->assertNull($result);
 
-        Input::replace(['sort' => '', 'order' => '']);
+        Input::replace(['sort' => '', 'direction' => '']);
         $result = $this->user->scopeSortable($this->user->newQuery())->getQuery()->orders;
         $this->assertNull($result);
 
@@ -111,65 +132,44 @@ class ColumnSortableTraitTest extends \Orchestra\Testbench\TestCase
         $query         = $this->user->newQuery()->with(['profile']);
         $relation      = $query->getRelation('profile');
         $resultQuery   = $this->invokeMethod($this->user, 'queryJoinBuilder', [$query, $relation]);
-        $expectedQuery =
-            $this->user->newQuery()->select('users.*')->join('profiles', 'users.id', '=', 'profiles.user_id');
+        $expectedQuery = $this->user->newQuery()->select('users.*')->leftJoin('profiles', 'users.id', '=', 'profiles.user_id');
         $this->assertEquals($expectedQuery->toSql(), $resultQuery->toSql());
 
         $query         = $this->profile->newQuery()->with(['user']);
         $relation      = $query->getRelation('user');
         $resultQuery   = $this->invokeMethod($this->user, 'queryJoinBuilder', [$query, $relation]);
-        $expectedQuery =
-            $this->profile->newQuery()->select('profiles.*')->join('users', 'profiles.user_id', '=', 'users.id');
+        $expectedQuery = $this->profile->newQuery()->select('profiles.*')->leftJoin('users', 'profiles.user_id', '=', 'users.id');
         $this->assertEquals($expectedQuery->toSql(), $resultQuery->toSql());
 
         $query         = $this->comment->newQuery()->with(['parent']);
         $relation      = $query->getRelation('parent');
         $resultQuery   = $this->invokeMethod($this->comment, 'queryJoinBuilder', [$query, $relation]);
-        $expectedQuery =
-            $this->comment->newQuery()->from('comments as parent_comments')->select('parent_comments.*')->join('comments', 'parent_comments.parent_id', '=', 'comments.id');
+        $expectedQuery = $this->comment->newQuery()->from('comments as parent_comments')->select('parent_comments.*')
+                                       ->leftJoin('comments', 'parent_comments.parent_id', '=', 'comments.id');
         $this->assertEquals($expectedQuery->toSql(), $resultQuery->toSql());
-    }
-    
-    /**
-     * Call protected/private method of a class.
-     *
-     * @param object &$object    Instantiated object that we will run method on.
-     * @param string $methodName Method name to call
-     * @param array  $parameters Array of parameters to pass into method.
-     *
-     * @return mixed Method return.
-     */
-    protected function invokeMethod(&$object, $methodName, array $parameters = [])
-    {
-        $reflection = new \ReflectionClass(get_class($object));
-        $method     = $reflection->getMethod($methodName);
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($object, $parameters);
     }
 
 
     public function testSortableOverridingQueryOrderBuilder()
     {
-        $sortParameters = ['sort' => 'address', 'order' => 'desc'];
+        $sortParameters = ['sort' => 'address', 'direction' => 'desc'];
         $query          = $this->user->newQuery();
         $resultQuery    = $this->invokeMethod($this->user, 'queryOrderBuilder', [$query, $sortParameters]);
-        $expectedQuery  =
-            $this->user->newQuery()->join('profiles', 'users.id', '=', 'profiles.user_id')->orderBy('address', 'desc')
-                       ->select('users.*');
+        $expectedQuery  = $this->user->newQuery()->join('profiles', 'users.id', '=', 'profiles.user_id')->orderBy('address', 'desc')
+                                     ->select('users.*');
         $this->assertEquals($expectedQuery, $resultQuery);
     }
 
 
     public function testSortableOverridingQueryOrderBuilderOnRelation()
     {
-        $sortParameters = ['sort' => 'profile.composite', 'order' => 'desc'];
+        $sortParameters = ['sort' => 'profile.composite', 'direction' => 'desc'];
         $query          = $this->user->newQuery();
 
         $resultQuery = $this->invokeMethod($this->user, 'queryOrderBuilder', [$query, $sortParameters]);
 
         $expectedQuery =
-            $this->user->newQuery()->join('profiles', 'users.id', '=', 'profiles.user_id')->orderBy('phone', 'desc')
+            $this->user->newQuery()->leftJoin('profiles', 'users.id', '=', 'profiles.user_id')->orderBy('phone', 'desc')
                        ->orderBy('address', 'desc')->select('users.*');
 
         $this->assertEquals($expectedQuery, $resultQuery);
@@ -178,7 +178,7 @@ class ColumnSortableTraitTest extends \Orchestra\Testbench\TestCase
 
     public function testSortableAs()
     {
-        $sortParameters = ['sort' => 'nick_name', 'order' => 'asc'];
+        $sortParameters = ['sort' => 'nick_name', 'direction' => 'asc'];
         $query          = $this->user->newQuery()->select('name as nick_name');
         $resultQuery    = $this->invokeMethod($this->user, 'queryOrderBuilder', [$query, $sortParameters]);
         $expectedQuery  = $this->user->newQuery()->select('name as nick_name')->orderBy('nick_name', 'asc');
@@ -218,81 +218,101 @@ class ColumnSortableTraitTest extends \Orchestra\Testbench\TestCase
     }
 
 
-    public function testParseSortParameters()
+    public function testParseParameters()
     {
         $array       = [];
-        $resultArray = $this->invokeMethod($this->user, 'parseSortParameters', [$array]);
+        $resultArray = $this->invokeMethod($this->user, 'parseParameters', [$array]);
         $expected    = [null, null];
         $this->assertEquals($expected, $resultArray);
 
         $array       = ['sort' => ''];
-        $resultArray = $this->invokeMethod($this->user, 'parseSortParameters', [$array]);
+        $resultArray = $this->invokeMethod($this->user, 'parseParameters', [$array]);
         $expected    = [null, null];
         $this->assertEquals($expected, $resultArray);
 
-        $array       = ['order' => ''];
-        $resultArray = $this->invokeMethod($this->user, 'parseSortParameters', [$array]);
+        $array       = ['direction' => ''];
+        $resultArray = $this->invokeMethod($this->user, 'parseParameters', [$array]);
         $expected    = [null, null];
         $this->assertEquals($expected, $resultArray);
 
-        $array       = ['order' => 'foo'];
-        $resultArray = $this->invokeMethod($this->user, 'parseSortParameters', [$array]);
+        $array       = ['direction' => 'foo'];
+        $resultArray = $this->invokeMethod($this->user, 'parseParameters', [$array]);
         $expected    = [null, null];
         $this->assertEquals($expected, $resultArray);
 
-        $array       = ['sort' => 'foo', 'order' => ''];
-        $resultArray = $this->invokeMethod($this->user, 'parseSortParameters', [$array]);
+        $array       = ['sort' => 'foo', 'direction' => ''];
+        $resultArray = $this->invokeMethod($this->user, 'parseParameters', [$array]);
         $expected    = ['foo', $this->configDefaultDirection];
         $this->assertEquals($expected, $resultArray);
 
-        $array       = ['sort' => 'foo', 'order' => 'desc'];
-        $resultArray = $this->invokeMethod($this->user, 'parseSortParameters', [$array]);
+        $array       = ['sort' => 'foo', 'direction' => 'desc'];
+        $resultArray = $this->invokeMethod($this->user, 'parseParameters', [$array]);
         $expected    = ['foo', 'desc'];
         $this->assertEquals($expected, $resultArray);
 
-        $array       = ['sort' => 'foo', 'order' => 'asc'];
-        $resultArray = $this->invokeMethod($this->user, 'parseSortParameters', [$array]);
+        $array       = ['sort' => 'foo', 'direction' => 'asc'];
+        $resultArray = $this->invokeMethod($this->user, 'parseParameters', [$array]);
         $expected    = ['foo', 'asc'];
         $this->assertEquals($expected, $resultArray);
 
-        $array       = ['sort' => 'foo', 'order' => 'bar'];
-        $resultArray = $this->invokeMethod($this->user, 'parseSortParameters', [$array]);
+        $array       = ['sort' => 'foo', 'direction' => 'bar'];
+        $resultArray = $this->invokeMethod($this->user, 'parseParameters', [$array]);
         $expected    = ['foo', $this->configDefaultDirection];
         $this->assertEquals($expected, $resultArray);
     }
 
 
-    public function testFormatToSortParameters()
+    public function testFormatToParameters()
     {
         $array       = [];
-        $resultArray = $this->invokeMethod($this->user, 'formatToSortParameters', [$array]);
+        $resultArray = $this->invokeMethod($this->user, 'formatToParameters', [$array]);
         $expected    = [];
         $this->assertEquals($expected, $resultArray);
 
         $array       = null;
-        $resultArray = $this->invokeMethod($this->user, 'formatToSortParameters', [$array]);
+        $resultArray = $this->invokeMethod($this->user, 'formatToParameters', [$array]);
         $expected    = [];
         $this->assertEquals($expected, $resultArray);
 
         $array       = 'foo';
-        $resultArray = $this->invokeMethod($this->user, 'formatToSortParameters', [$array]);
-        $expected    = ['sort' => 'foo', 'order' => $this->configDefaultDirection];
+        $resultArray = $this->invokeMethod($this->user, 'formatToParameters', [$array]);
+        $expected    = ['sort' => 'foo', 'direction' => $this->configDefaultDirection];
         $this->assertEquals($expected, $resultArray);
 
         $array       = ['foo'];
-        $resultArray = $this->invokeMethod($this->user, 'formatToSortParameters', [$array]);
-        $expected    = ['sort' => 'foo', 'order' => $this->configDefaultDirection];
+        $resultArray = $this->invokeMethod($this->user, 'formatToParameters', [$array]);
+        $expected    = ['sort' => 'foo', 'direction' => $this->configDefaultDirection];
         $this->assertEquals($expected, $resultArray);
 
         $array       = ['foo' => 'desc'];
-        $resultArray = $this->invokeMethod($this->user, 'formatToSortParameters', [$array]);
-        $expected    = ['sort' => 'foo', 'order' => 'desc'];
+        $resultArray = $this->invokeMethod($this->user, 'formatToParameters', [$array]);
+        $expected    = ['sort' => 'foo', 'direction' => 'desc'];
         $this->assertEquals($expected, $resultArray);
 
         $array       = ['foo' => 'desc', 'bar' => 'asc'];
-        $resultArray = $this->invokeMethod($this->user, 'formatToSortParameters', [$array]);
-        $expected    = ['sort' => 'foo', 'order' => 'desc'];
+        $resultArray = $this->invokeMethod($this->user, 'formatToParameters', [$array]);
+        $expected    = ['sort' => 'foo', 'direction' => 'desc'];
         $this->assertEquals($expected, $resultArray);
+    }
+
+
+    /**
+     * Call protected/private method of a class.
+     *
+     * @param object &$object    Instantiated object that we will run method on.
+     * @param string $methodName Method name to call
+     * @param array  $parameters Array of parameters to pass into method.
+     *
+     * @return mixed Method return.
+     * @throws \ReflectionException
+     */
+    protected function invokeMethod(&$object, $methodName, array $parameters = [])
+    {
+        $reflection = new \ReflectionClass(get_class($object));
+        $method     = $reflection->getMethod($methodName);
+        $method->setAccessible(true);
+
+        return $method->invokeArgs($object, $parameters);
     }
 }
 
@@ -329,8 +349,7 @@ class User extends Model
 
     public function addressSortable($query, $direction)
     {
-        return $query->join('profiles', 'users.id', '=', 'profiles.user_id')->orderBy('address', $direction)
-                     ->select('users.*');
+        return $query->join('profiles', 'users.id', '=', 'profiles.user_id')->orderBy('address', $direction)->select('users.*');
     }
 }
 
@@ -370,6 +389,7 @@ class Profile extends Model
  */
 class Comment extends Model
 {
+
     use \Kyslik\ColumnSortable\Sortable;
 
     /**
@@ -378,7 +398,7 @@ class Comment extends Model
     public $sortable = [
         'body',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
 
@@ -389,4 +409,13 @@ class Comment extends Model
     {
         return $this->belongsTo(Comment::class, 'parent_id');
     }
+}
+
+/**
+ * Class Post
+ */
+class Post extends Model
+{
+
+    use \Kyslik\ColumnSortable\Sortable;
 }

@@ -7,12 +7,13 @@
     "require": {
         "php": ">=5.6.4",
         "arcanedev/log-viewer": "^4.4",
+        "barryvdh/laravel-dompdf": "^0.8.3",
         "cartalyst/sentinel": "2.0.*",
-        "laravel/framework": "5.4.*",
+        "kyslik/column-sortable": "5.6.*",
+        "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.4",
-        "roland/crud": "dev-master",
-        "kyslik/column-sortable": "5.4.*"
+        "laravelcollective/html": "^5.6",
+        "roland/crud": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -45,12 +46,12 @@
             "php artisan key:generate"
         ],
         "post-install-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
+            "Illuminate\\Foundation\\ComposerScripts::postInstall"
+            
         ],
         "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate"
+        
         ]
     },
     "config": {

@@ -50,6 +50,9 @@ Summary
     height: 400px !important;
     display: block !important;
 }
+ul#ui-id-1 {
+    width: 260px !important;
+}
 .ui-widget-header{
     display: none !important;
 }

@@ -2,21 +2,24 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Column sorting for Laravel 5.*](#column-sorting-for-laravel-5)
+- [Column sorting for Laravel 5.5-7](#column-sorting-for-laravel-55-7)
 - [Setup](#setup)
   - [Composer](#composer)
+    - [Laravel's >=5.5 auto discovery](#laravels-55-auto-discovery)
+    - [Manual installation (pre 5.5)](#manual-installation-pre-55)
   - [Publish configuration](#publish-configuration)
 - [Usage](#usage)
   - [Blade Extension](#blade-extension)
   - [Configuration in few words](#configuration-in-few-words)
   - [Font Awesome (default font classes)](#font-awesome-default-font-classes)
+    - [Font Awesome 5](#font-awesome-5)
   - [Full Example](#full-example)
     - [Routes](#routes)
     - [Controller's `index()` method](#controllers-index-method)
-    - [View](#view)
+    - [View (_pagination included_)](#view-_pagination-included_)
 - [HasOne / BelongsTo Relation sorting](#hasone--belongsto-relation-sorting)
-    - [Define hasOne relation](#define-hasone-relation)
-    - [Define belongsTo relation](#define-belongsto-relation)
+  - [Define hasOne relation](#define-hasone-relation)
+  - [Define belongsTo relation](#define-belongsto-relation)
   - [Define `$sortable` arrays](#define-sortable-arrays)
   - [Blade and relation sorting](#blade-and-relation-sorting)
 - [ColumnSortable overriding (advanced)](#columnsortable-overriding-advanced)
@@ -26,17 +29,13 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Column sorting for Laravel 5.*
+# Column sorting for Laravel 5.5-7
 [![Latest Version](https://img.shields.io/github/release/Kyslik/column-sortable.svg?style=flat-square)](https://github.com/Kyslik/column-sortable/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/Kyslik/column-sortable.svg?style=flat-square)](https://packagist.org/packages/Kyslik/column-sortable)
-[![Build Status](https://travis-ci.org/Kyslik/column-sortable.svg?branch=L5.4)](https://travis-ci.org/Kyslik/column-sortable)
+[![Build Status](https://travis-ci.org/Kyslik/column-sortable.svg?branch=L5.5-7)](https://travis-ci.org/Kyslik/column-sortable)
 
-Package for handling column sorting in Laravel 5.[1-5].
-
-Simply put: [this hack](http://hack.swic.name/laravel-column-sorting-made-easy/) in package with blade extension and Font Awesome icon support.
-
->This is my shot at universal and easy to use model sorting in Laravel. The end result allows you to sort an Eloquent model using any column by clicking the column name. Everything is done in PHP, no JS involved.
+Package for handling column sorting in Laravel 5.[5-7]. For earlier versions of Laravel checkout branch [L5.1-3](https://github.com/Kyslik/column-sortable/tree/L5.1-3)
 
 # Setup
 
@@ -47,16 +46,22 @@ Pull this package in through Composer (development/latest version `dev-master`)
 ```json
 {
     "require": {
-        "kyslik/column-sortable": "5.4.*"
+        "kyslik/column-sortable": "5.7.*"
     }
 }
 ```
 
-    $ composer update
+    composer update
 
->**Note**: Major and minor versions should match with Laravel, build versions are separate from Laravel versioning scheme. Example: If you are using Laravel 5.2, column-sortable version should be `5.2.*`.
+>**Note**: Major and minor versions should match with Laravel's version, for example if you are using Laravel 5.4, column-sortable version should be `5.4.*`.
 
-Add the package to your application service providers in `config/app.php`
+### Laravel's >=5.5 auto discovery
+
+Simply install the package and let Laravel do its magic.
+
+### Manual installation (pre 5.5)
+
+Add the service provider to array of providers in `config/app.php`
 
 ```php
 'providers' => [
@@ -69,11 +74,12 @@ Add the package to your application service providers in `config/app.php`
     Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
 ],
 ```
+
 ## Publish configuration
 
 Publish the package configuration file to your application.
 
-    $ php artisan vendor:publish --provider="Kyslik\ColumnSortable\ColumnSortableServiceProvider" --tag="config"
+    php artisan vendor:publish --provider="Kyslik\ColumnSortable\ColumnSortableServiceProvider" --tag="config"
 
 See configuration file [(`config/columnsortable.php`)](https://github.com/Kyslik/column-sortable/blob/master/src/config/columnsortable.php) yourself and make adjustments as you wish.
 
@@ -83,11 +89,10 @@ Use **Sortable** trait inside your *Eloquent* model(s). Define `$sortable` array
 
 >**Note**: `Scheme::hasColumn()` is run only when `$sortable` is not defined - less DB hits per request.
 
-
 ```php
 use Kyslik\ColumnSortable\Sortable;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract 
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
     use Authenticatable, CanResetPassword, Sortable;
     ...
@@ -97,7 +102,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                         'email',
                         'created_at',
                         'updated_at'];
-                        
     ...
 }
 ```
@@ -108,22 +112,23 @@ You're set to go.
 
 ## Blade Extension
 
-There is one blade extension for you to use **@sortablelink()**
+There is a blade extension for you to use **@sortablelink()**
 
 ```blade
-@sortablelink('column', 'Title', ['parameter' => 'smile'])
+@sortablelink('column', 'Title', ['parameter' => 'smile'],  ['rel' => 'nofollow'])
 ```
 
-**Column** (1st) parameter is `order by`, **Title** (2nd) parameter is displayed inside anchor tags and `array()` parameter (3rd) is default (GET) query strings parameter.  
+**Column** (1st) parameter is column in database, **Title** (2nd) parameter is displayed inside anchor tags, `array()` parameter (3rd) is default (GET) query strings parameter and `array()` parameter (4th) is for additional anchor-tag attributes.  
 
-You can omit 2nd and 3rd parameter.
+You can omit 2nd, 3rd and 4th parameter.
 
 Possible examples and usages of blade extension:
 
 ```blade
 @sortablelink('name')
 @sortablelink('name', 'Username')
-@sortablelink('address', trans('fields.address'), ['filter' => 'active,visible'])
+@sortablelink('address', trans('fields.address'), ['filter' => 'active, visible'])
+@sortablelink('address', trans('fields.address'), ['filter' => 'active, visible'], ['class' => 'btn btn-block', 'rel' => 'nofollow'])
 ```
 
 If you do not fill **Title** (2nd parameter) column name is used instead.
@@ -132,9 +137,7 @@ If you do not fill **Title** (2nd parameter) column name is used instead.
 
 ## Configuration in few words
 
-
 **Sortablelink** blade extension distinguishes between *types* (**numeric**, **amount** and **alpha**) and applies different class for each of them.  
-
 
 See following snippet:
 
@@ -155,13 +158,30 @@ See following snippet:
 ],
 ```
 
-Rest of the [config file](https://github.com/Kyslik/column-sortable/blob/master/src/config/columnsortable.php) should be crystal clear and I advise you to read it.
+Rest of the [config file](https://github.com/Kyslik/column-sortable/blob/master/src/config/columnsortable.php) should be crystal clear and I advise you to skim it.
 
 ## Font Awesome (default font classes)
 
-Install [Font-Awesome](https://github.com/FortAwesome/Font-Awesome) for visual [Joy](http://www.imdb.com/character/ch0411388/). Search "sort" in [cheatsheet](http://fortawesome.github.io/Font-Awesome/cheatsheet/) and see used icons (12) yourself.
+Install [Font-Awesome](https://fontawesome.com/v4.7.0/) for visual [Joy](http://pixar.wikia.com/wiki/Joy). Search "sort" in [cheatsheet](https://fontawesome.com/v4.7.0/icons/) and see used icons (12) yourself.
+
+### Font Awesome 5
+
+Change the suffix class in the [config file](https://github.com/Kyslik/column-sortable/blob/master/src/config/columnsortable.php) from `-asc`/`-desc` (FA 4) to `-up`/`-down` (FA 5) respectively.
+
+ ```php
+/* this is FA 5 compatible.
+suffix class that is appended when ascending direction is applied */
+'asc_suffix'                    => '-up',
+
+/* suffix class that is appended when descending direction is applied */
+'desc_suffix'                   => '-down',
+```
+
+> **Note**: If you haven't published the config yet, follow the [instructions above](#publish-configuration).
 
 ## Full Example
+
+You may be interested in [working example repository](https://github.com/Kyslik/column-sortable-example), where package usage is demonstrated.
 
 ### Routes
 
@@ -175,12 +195,13 @@ Route::get('users', ['as' => 'users.index', 'uses' => 'HomeController@index']);
 public function index(User $user)
 {
     $users = $user->sortable()->paginate(10);
-    
+
     return view('user.index')->withUsers($users);
 }
 ```
 
-You can set default sort when nothing is in (URL) query strings yet.
+You can set default sorting parameters which will be applied when URL is empty.
+
 >**For example**: page is loaded for first time, default direction is [configurable](https://github.com/Kyslik/column-sortable/blob/master/src/config/columnsortable.php#L77) (asc)
 
 ```php
@@ -194,9 +215,7 @@ $users = $user->sortable(['name' => 'desc'])->paginate(10);
 // produces ->orderBy('users.name', 'desc')
 ```
 
-### View
-
-_pagination included_
+### View (_pagination included_)
 
 ```blade
 @sortablelink('id', 'Id')
@@ -212,7 +231,7 @@ _pagination included_
 
 # HasOne / BelongsTo Relation sorting
 
-### Define hasOne relation
+## Define hasOne relation
 
 In order to make relation sorting work, you have to define **hasOne()** relation in your model.
 
@@ -220,14 +239,15 @@ In order to make relation sorting work, you have to define **hasOne()** relation
 /**
 * Get the user_detail record associated with the user.
 */
-public function detail()    
+public function detail()
 {
     return $this->hasOne(App\UserDetail::class);
 }
 ```
 
-### Define belongsTo relation
->**Note**: in case we have self-referencing model (like comments, categories); parent table will be aliased with `parent_` string, for more information see [issue #60](https://github.com/Kyslik/column-sortable/issues/60).
+## Define belongsTo relation
+
+>**Note**: in case there is a self-referencing model (like comments, categories etc.); parent table will be aliased with `parent_` string, for more information see [issue #60](https://github.com/Kyslik/column-sortable/issues/60).
 
 ```php
 /**
@@ -244,7 +264,6 @@ In *User* model we define **hasOne** relation to *UserDetail* model (which holds
 ## Define `$sortable` arrays
 
 Define `$sortable` array in both models (else, package uses `Scheme::hasColumn()` which is an extra database query).
-
 
 for *User*
 
@@ -266,17 +285,18 @@ In order to tell package to sort using relation:
 @sortablelink('detail.phone_number', 'phone')
 @sortablelink('user.name', 'name')
 ```
+
 >**Note**: package works with relation "name" (method) that you define in model instead of table name.
 
->**WARNING**: do not use combination of two different relations at the same time, you are going to get errors that relation is not defined.
+>**WARNING**: do not use combination of two different relations at the same time, you are going to get errors that relation is not defined
 
-In config file you can set your own separator if `.` (dot) is not what you want.
+In config file you can set your own separator in case `.` (dot) is not what you want.
 
 ```php
 'uri_relation_column_separator' => '.'
 ```
 
-# ColumnSortable overloading (advanced)
+# ColumnSortable overriding (advanced)
 
 It is possible to override ColumnSortable relation feature, basically you can write your own join(s) / queries and apply `orderBy()` manually.
 
@@ -286,10 +306,10 @@ See example:
 class User extends Model
 {
     use Sortable;
-    
+
     public $sortable = ['name'];
     ...
-    
+
     public function addressSortable($query, $direction)
     {
         return $query->join('user_details', 'users.id', '=', 'user_details.user_id')
@@ -303,16 +323,14 @@ Controller is the same `$users = $user->sortable()->paginate(10);`
 
 In view just use `@sortablelink('address')`
 
-
 >Huge thanks to @neutralrockets and his comments on [#8](https://github.com/Kyslik/column-sortable/issues/8). Another example on how to use overriding is issue [#41](https://github.com/Kyslik/column-sortable/issues/41#issuecomment-250895909).
-
 
 # Aliasing
 
-It is possible to declare `$sortableAs` array and use it to alias (bypass column exists check), and ignore prefixing with table. 
+It is possible to declare `$sortableAs` array and use it to alias (bypass column exists check), and ignore prefixing with table.
 
 In model
- 
+
 ```php
 ...
 $sortableAs = ['nick_name'];
@@ -326,17 +344,16 @@ $users = $user->select(['name as nick_name'])->sortable(['nick_name'])->paginate
 ```
 
 In view
+
 ```blade
 @sortablelink('nick_name', 'nick')
 ```
-
 
 See [#44](https://github.com/Kyslik/column-sortable/issues/44) for more information on aliasing.
 
 ## Using `withCount()`
 
-Aliasing is useful when you want to sort results with [`withCount()`](https://laravel.com/docs/5.5/eloquent-relationships#counting-related-models), see [issue #49](https://github.com/Kyslik/column-sortable/issues/49) for more information.
-
+Aliasing is useful when you want to sort results with [`withCount()`](https://laravel.com/docs/5.6/eloquent-relationships#counting-related-models), see [issue #49](https://github.com/Kyslik/column-sortable/issues/49) for more information.
 
 # Exception to catch
 
@@ -354,10 +371,10 @@ Example how to catch:
 ```php
 ...
 try {
-    $users = $user->with('detail')->sortable(['detail.phone_number'])->paginate(5);    
+    $users = $user->with('detail')->sortable(['detail.phone_number'])->paginate(5);
 } catch (\Kyslik\ColumnSortable\Exceptions\ColumnSortableException $e) {
     dd($e);
 }
 ```
 
->**Note**: I strongly recommend to catch **ColumnSortableException** because there is a user input in question (GET parameter) and any user can modify it in such way that package throws ColumnSortableException with code 0.
+>**Note**: I strongly recommend to catch **ColumnSortableException** because there is a user input in question (GET parameter) and any user can modify it in such way that package throws ColumnSortableException with code `0`.
