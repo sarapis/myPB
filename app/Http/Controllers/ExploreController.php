@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class ExploreController extends Controller
 {
@@ -108,6 +109,23 @@ class ExploreController extends Controller
         $district = $project->district_ward_name;
         $contact = Contact::where('district_ward_name', 'like', '%'.$district.'%')->first();
         return view('frontEnd.profile', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'))->render();
+    }
+
+    public function profiledown($id)
+    {
+        $districts = District::orderBy('name')->get();
+        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+        $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
+
+        $project = Project::where('project_title', '=', $id)->first();
+        $district = $project->district_ward_name;
+        $contact = Contact::where('district_ward_name', 'like', '%'.$district.'%')->first();
+
+        $pdf = PDF::loadView('frontEnd.profile1', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'));
+
+        return $pdf->download('profile.pdf');
+
     }
 
 

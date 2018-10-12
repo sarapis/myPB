@@ -100,14 +100,14 @@
 
         @if($project->project_status_category != 'Lost vote' && $project->project_status_category != 'Project Status Needed')
           @if($project->project_budget_type=='Capital')
-          <div class="panel mb-0">
+          <div class="panel mb-15">
             <div class="panel-body p-15">
               <h5 class="profile-title">This is a <b>Capital Project</b> so it will likely take between 3-7 years from funding to completion.</h5>
             </div>
           </div>
           @endif
           @if($project->project_budget_type=='Expense')
-          <div class="panel mb-0">
+          <div class="panel mb-15">
             <div class="panel-body p-15">
               <h5 class="profile-title">This is an <b>Expense Project</b> so it will likely be completed within 1-2 years.</h5>
             </div>
@@ -130,7 +130,7 @@
             <button class="btn btn-block btn-profile waves-effect waves-classic waves-effect waves-classic"><a href="mailto:{{$contact->email}}" target="_top"  class="ui-link">Email Your Council Member</a></button>
           </div>
         </div>
-        <div class="panel mb-0">
+        <div class="panel mb-15">
           <div class="panel-body p-15">
               <h4><b>PROJECT DETAILS</b></h4>
               <h5 class="profile-title"><b>{{$project->category_type_topic_standardize}}</b></h5>

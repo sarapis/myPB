@@ -26,6 +26,8 @@ Route::get('/project', 'ExploreController@index');
 Route::post('/project', 'ExploreController@index');
 // Route::post('/explore', 'ExploreController@index');
 Route::get('/project/{id}', 'ExploreController@profile');
+Route::get('/profilepdf_{id}', 'ExploreController@profiledown');
+
 Route::get('/explore/status_{id}', 'ExploreController@status');
 Route::get('/explore/district_{id}', 'ExploreController@district');
 Route::get('/explore/category_{id}', 'ExploreController@category');

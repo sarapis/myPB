@@ -103,23 +103,8 @@ Breakpoints();
   </div>
   @include('layouts.footer')
 
-<script>
-$(document).ready(function(){
-    $(document).ajaxSend(function( event, jqxhr, settings ){
-        if(settings.url.indexOf("geo") == -1){
-           $("*").animsition({
-            inClass: 'fade-in',
-            inDuration: 800,
-            loading: true,
-            loadingClass: 'loader-overlay',
-            loadingParentElement: 'html',
-            loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
-            onLoadEvent: true
-          });
 
-          
-        }
-    });
+<script>
     $(document).ready(function(){
       var address_district = <?php echo json_encode($address_district); ?>;
       if( address_district != ''){
@@ -127,17 +112,8 @@ $(document).ready(function(){
           $('#btn-district span').html("District:"+address_district);
           $('#btn-district').show();
       };  
-    })
-    
-    $(document).ajaxComplete(function(){
-
-        $('.loader-overlay').remove();
-
     });
-});
-</script>
 
-<script>
   var locations = <?php print_r(json_encode($projects)) ?>;
   
 

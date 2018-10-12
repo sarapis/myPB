@@ -42,10 +42,10 @@
                 <div class="form-group" style="padding: 7px 7px 0 7px; margin-bottom: 0px;">
                     <!--begin::Form-->
                
-                        {!! csrf_field() !!}
-                        <div class="input-search">
+                        <div class="input-search" style="display: flex;background: white;">
                             <i class="input-search-icon md-search" aria-hidden="true"></i>
-                            <input id="location" type="text" class="form-control search-form" name="address" placeholder="Search Address for District">
+                            <input id="location" type="text" class="form-control search-form pr-0" name="address" placeholder="Search Address for District">
+                            <img id="loading" style="display:none;width: 30px;height: 30px;margin: 8px" src="http://www.exitcertified.com/commonFiles/images/loadingIndicator_2.gif" />
                         </div>
                     
                 </div>
@@ -210,6 +210,7 @@ $(function () {
         select: selectItem,
         minLength: 2,
         change: function() {
+            $('#loading').hide();
             // console.log(selectItem);
 
         }

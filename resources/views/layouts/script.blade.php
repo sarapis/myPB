@@ -91,5 +91,34 @@ setInterval(function(){
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 
+  <script type="text/javascript">
+    $(document).ready(function(){
+    $(document).ajaxSend(function( event, jqxhr, settings ){
+        if(settings.url.indexOf("geo") == -1){
+           $("*").animsition({
+            inClass: 'fade-in',
+            inDuration: 800,
+            loading: true,
+            loadingClass: 'loader-overlay',
+            loadingParentElement: 'html',
+            loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
+            onLoadEvent: true
+          });
+
+          
+        }
+        else{
+          $('#loading').show();
+        }
+    });
+
+    $(document).ajaxComplete(function(){
+
+        $('.loader-overlay').remove();
+        $('#loading').hide();
+    });
+});
+  </script>
+
 
 

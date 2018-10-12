@@ -68,7 +68,6 @@ Profile
         <div class="row" id="profile_btn">
           <button type="button" id="btn-profile" class="btn btn-round btn-default example-default-hover btn-sm waves-effect waves-classic pull-left waves-effect waves-classic ml-15 mt-30 mb-0" style=""><b><span>{{$project->project_title}} </span><i class="icon wb-close" aria-hidden="true"></i></a></b>
           </button>
-
         </div>
         @if($project->project_status_category=='Complete')
             <h4 class="m-0 pt-20 pb-30"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
@@ -79,7 +78,7 @@ Profile
         @else
             <h4 class="m-0 pt-30 pb-30"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus mr-0" aria-hidden="true"></i></button>{{$project->project_title}}</h4>
         @endif
-
+        <!-- <a class="btn btn-info mb-15" href="/profilepdf_{{$project->project_title}}">Download PDF</a> -->
         <div class="panel mb-15">
           <div class="panel-body p-15">
             <h4><div class="pull-left pt-5"><b>{{$project->project_status}}</b></div>
@@ -109,14 +108,14 @@ Profile
 
         @if($project->project_status_category != 'Lost vote' && $project->project_status_category != 'Project Status Needed')
           @if($project->project_budget_type=='Capital')
-          <div class="panel mb-0">
+          <div class="panel mb-15">
             <div class="panel-body p-15">
               <h5 class="profile-title">This is a <b>Capital Project</b> so it will likely take between 3-7 years from funding to completion.</h5>
             </div>
           </div>
           @endif
           @if($project->project_budget_type=='Expense')
-          <div class="panel mb-0">
+          <div class="panel mb-15">
             <div class="panel-body p-15">
               <h5 class="profile-title">This is an <b>Expense Project</b> so it will likely be completed within 1-2 years.</h5>
             </div>
@@ -139,7 +138,7 @@ Profile
             <button class="btn btn-block btn-profile waves-effect waves-classic waves-effect waves-classic"><a href="mailto:{{$contact->email}}" target="_top"  class="ui-link">Email Your Council Member</a></button>
           </div>
         </div>
-        <div class="panel mb-0">
+        <div class="panel mb-15">
           <div class="panel-body p-15">
               <h4><b>PROJECT DETAILS</b></h4>
               <h5 class="profile-title"><b>{{$project->category_type_topic_standardize}}</b></h5>
