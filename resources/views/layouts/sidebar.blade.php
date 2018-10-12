@@ -27,25 +27,14 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="exampleTopHome" role="tabpanel">
-            <!-- <div class="form-group" style="margin: 0;">
-                    <form method="get" action="/explore">
-                        <div class="form-group">
-                          
-                            <div class="input-search sidebar-search">
-                                <i class="input-search-icon md-search" aria-hidden="true"></i>
-                                <input id="location" type="text" class="form-control text-black" name="address" placeholder="Search Street Address" style="border-radius:0;">
-                            </div>
-                          
-                        </div>
-                    </form>
-                </div> -->
+ 
                 <div class="form-group" style="padding: 7px 7px 0 7px; margin-bottom: 0px;">
                     <!--begin::Form-->
                
                         <div class="input-search" style="display: flex;background: white;">
                             <i class="input-search-icon md-search" aria-hidden="true"></i>
                             <input id="location" type="text" class="form-control search-form pr-0" name="address" placeholder="Search Address for District">
-                            <img id="loading" style="display:none;width: 30px;height: 30px;margin: 8px" src="http://www.exitcertified.com/commonFiles/images/loadingIndicator_2.gif" />
+                            <img id="loading" style="display:none;width: 32px;height: 32px;margin: 6px" src="../../images/loading.gif" />
                         </div>
                     
                 </div>
