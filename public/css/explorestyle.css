@@ -741,3 +741,6 @@ p{
 #st-el-2 .st-btn[data-network='twitter'] {
     display: inline-block !important;
 }
+.nav-tabs{
+  cursor: pointer;
+}
