@@ -151,7 +151,7 @@ Profile
       <div class="col-md-4 pl-0 pt-15 pr-0">
         <!-- Panel -->
         <div class="panel">
-          <div id="map" class="mr-0 mt-0" style="width: 27%;"></div>
+          <div id="map" class="mr-0 mt-0" style="width: 27% !important;"></div>
           <div class="panel-body profile-location">
               <h4>{{$project->project_address_clean}}</h4>
               <h4>{{$project->location_city}}, {{$project->state}}, {{$project->zipcode}}</h4>

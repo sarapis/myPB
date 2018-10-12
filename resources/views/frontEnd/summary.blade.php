@@ -46,7 +46,6 @@ Summary
 }                               
 #map{
     z-index: 1 !important;
-    width: 100% !important;
     height: 400px !important;
     display: block !important;
 }
@@ -82,7 +81,7 @@ ul#ui-id-1 {
                     </div>
                 @endif
 
-                <div id="map"></div>
+                <div id="map" style="width: 100%;"></div>
             </div>
             <div class="col-md-6 p-10">
                 <div class="panel m-0 mb-15 content-panel">
