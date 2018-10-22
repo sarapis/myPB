@@ -42,7 +42,7 @@
 Breakpoints();
 </script>
 
-  <div class="row" style="margin-right: 0">
+  <div class="row" style="margin-right: 0;min-height: calc(100vh - 296px);">
       <div class="col-md-8 pr-0">
           @if(!empty($successMsg))
                 <div class="pl-15 pr-15 pt-15">

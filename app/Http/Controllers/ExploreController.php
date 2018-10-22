@@ -263,25 +263,36 @@ class ExploreController extends Controller
                     $location = str_replace("+","%20",$location);
                     $location = str_replace(",",",",$location);
                     $location = str_replace(" ","%20",$location);
+                    $location = str_replace("NY","",$location);
+                    $location = str_replace("USA","",$location);
+
+                    // var_dump($location);
+                    // exit();
+                    // $content = file_get_contents("https://geosearch.planninglabs.nyc/v1/autocomplete?text=".$location);
+
+
+                    // $result  = json_decode($content);
                     
 
-                    $content = file_get_contents("https://geosearch.planninglabs.nyc/v1/autocomplete?text=".$location);
+                    // $name=$result->features[0]->properties->name;
+                    // $zip=$result->features[0]->properties->postalcode;
 
+                    // $name = str_replace(" ","%20",$name);
 
-                    $result  = json_decode($content);
-                    
+                    // $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
 
-                    $name=$result->features[0]->properties->name;
-                    $zip=$result->features[0]->properties->postalcode;
-
-                    $name = str_replace(" ","%20",$name);
-                    $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
+                    $url = 'https://api.cityofnewyork.us/geoclient//v1/search.json?input=' . $location . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
 
                     $geoclient = file_get_contents($url);
 
                     $geo  = json_decode($geoclient);
 
-                    $cityCouncilDistrict=$geo->place->cityCouncilDistrict;
+                    // $cityCouncilDistrict=$geo->place->cityCouncilDistrict;
+
+                    $cityCouncilDistrict=$geo->results[0]->response->cityCouncilDistrict;
+
+                    // var_dump($cityCouncilDistrict);
+                    // exit();
                     
                     $projects= $projects->with('district')->whereHas('district', function ($q)  use($cityCouncilDistrict){
                         $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
@@ -292,7 +303,7 @@ class ExploreController extends Controller
                 
                     if($address_district == NULL){
                         // return redirect('/project')->with('success', 'no project')->render();
-                        $projects = Project::all();
+                        $projects = [];
                         $address_district = "";
                         return view('frontEnd.explore1', compact('projects','address_district'))->with('successMsg','Property is updated .')->render();
                     }

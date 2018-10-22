@@ -17,7 +17,7 @@ Home
 </style>
 @section('content')
 
-    <div class="row pt-20 pl-15" style="margin-right: 0">
+    <div class="row pt-20 pl-15" style="margin-right: 0;min-height: calc(100vh - 296px);">
         <div class="col-xl-7 col-md-7">
           <!-- Panel -->
           <div class="panel">

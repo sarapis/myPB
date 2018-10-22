@@ -35,7 +35,7 @@ ul#ui-id-1 {
     <div id="content" class="container">
         <!-- <div id="map" style="height: 30vh;"></div> -->
         <!-- Example Striped Rows -->
-        <div class="row" style="margin-right: 0">
+        <div class="row" style="margin-right: 0;min-height: calc(100vh - 296px);">
             <div class="col-md-8 pr-0">
                 @if (session('success'))
                 <div class="pl-15 pr-15 pt-15">
