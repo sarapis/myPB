@@ -37,7 +37,7 @@ ul#ui-id-1 {
         <!-- Example Striped Rows -->
         <div class="row" style="margin-right: 0;min-height: calc(100vh - 296px);">
             <div class="col-md-8 pr-0">
-                @if (session('success'))
+                @if(!empty($success))
                 <div class="pl-15 pr-15 pt-15">
                     <div class="alert dark alert-dismissible" role="alert" style="background: #3f8a7b;
                     color: white;">
@@ -154,6 +154,12 @@ ul#ui-id-1 {
     }
     var avglat = sumlat/locations['data'].length;
     var avglng = sumlng/locations['data'].length;
+
+    if(!avglat){
+        avglat = 40.730981;
+        avglng = -73.998107
+    }
+
     var mymap = new GMaps({
       el: '#map',
       lat: avglat,

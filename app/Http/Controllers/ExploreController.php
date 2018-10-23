@@ -75,7 +75,10 @@ class ExploreController extends Controller
                 
                 
                 if($address_district == NULL){
-                    return redirect('/project')->with('success', 'no project');
+
+                    $projects = Project::where('project_title', '=', 'aaaaa')->paginate(20);
+                    $address_district = "";
+                    return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district','location'))->with('success','no project');
                 }
                 
                 $address_district=$address_district->name;
@@ -259,37 +262,34 @@ class ExploreController extends Controller
 
                 if($location != NULL)
                 {
-                    
+
                     $location = str_replace("+","%20",$location);
                     $location = str_replace(",",",",$location);
                     $location = str_replace(" ","%20",$location);
-                    $location = str_replace("NY","",$location);
-                    $location = str_replace("USA","",$location);
-
-                    // var_dump($location);
-                    // exit();
-                    // $content = file_get_contents("https://geosearch.planninglabs.nyc/v1/autocomplete?text=".$location);
-
-
-                    // $result  = json_decode($content);
                     
 
-                    // $name=$result->features[0]->properties->name;
-                    // $zip=$result->features[0]->properties->postalcode;
+                    $content = file_get_contents("https://geosearch.planninglabs.nyc/v1/autocomplete?text=".$location);
 
-                    // $name = str_replace(" ","%20",$name);
 
-                    // $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
-
-                    $url = 'https://api.cityofnewyork.us/geoclient//v1/search.json?input=' . $location . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
+                    $result  = json_decode($content);
+                    
+                    // var_dump($result->features[0]);
+                    // exit();
+                    //$housenumber=$result->features[3]->properties->housenumber;
+                    // var_dump($housenumber);
+                    // exit();
+                    $name=$result->features[0]->properties->name;
+                    $zip=$result->features[0]->properties->postalcode;
+                    // var_dump($street, $zipcode);
+                    // exit();
+                    $name = str_replace(" ","%20",$name);
+                    $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
 
                     $geoclient = file_get_contents($url);
 
                     $geo  = json_decode($geoclient);
 
-                    // $cityCouncilDistrict=$geo->place->cityCouncilDistrict;
-
-                    $cityCouncilDistrict=$geo->results[0]->response->cityCouncilDistrict;
+                    $cityCouncilDistrict=$geo->place->cityCouncilDistrict;
 
                     // var_dump($cityCouncilDistrict);
                     // exit();

@@ -33,7 +33,8 @@ Home
                 <div class="panel-body bg-custom">
                     <div class="form-group">
                         <h4 class="text-white">Does your NYC neighborhood do PB?</h4>
-                        <form method="get" action="/explore">
+                        <form method="post" action="/project">
+                            {{ csrf_field() }}
                           <div class="form-group">
                               
                                 <div class="input-search">
