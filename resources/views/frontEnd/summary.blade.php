@@ -52,7 +52,7 @@ Summary
 ul#ui-id-1 {
     width: 260px !important;
 }
-.ui-widget-header{
+#tab_sort{
     display: none !important;
 }
 </style>

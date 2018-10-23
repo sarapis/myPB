@@ -47,7 +47,7 @@
     width: 100% !important;
     height: 400px !important;
 }
-.ui-widget-header{
+#tab_sort{
     display: none !important;
 }
 </style>
