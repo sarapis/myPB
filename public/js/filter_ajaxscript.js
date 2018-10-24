@@ -277,6 +277,9 @@
                     else if(pervious_url == 2){
                       window.history.replaceState({url: "" + window.location.href + ""}, '', '/summary');
                     }
+                    else if(pervious_url == 0){
+                      window.history.replaceState({url: "" + window.location.href + ""}, '', '/project');
+                    }
                     pervious_url = 0;
                   }
                   if(change_url == 1 && window.location.href.search('project') != -1){

@@ -19,10 +19,10 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="/project"><b>Projects</b></a>
           </li>
-          <li class="nav-item">
-            <div id="google_translate_element" class="nav-link"><!-- <b>Languages</b> -->
+<!--           <li class="nav-item">
+            <div id="google_translate_element" class="nav-link">
             </div>
-          </li>
+          </li> -->
           <li class="nav-item">
             <div class="sharethis-inline-share-buttons pt-10"></div>
           </li>

@@ -132,30 +132,22 @@ class ExploreController extends Controller
     }
 
 
-    public function filterValues(Request $request)
+    public function district($id)
     {
-        $price_min = (int)$request->input('price_min');
-        $price_max = (int)$request->input('price_max');
-        $year_min = $request->input('year_min');
-        $year_max = $request->input('year_max');
-        $vote_min = (int)$request->input('vote_min');
-        $vote_max = (int)$request->input('vote_max');
-                
+            $districts = District::orderBy('name')->get();
+            $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
+            $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
+            $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
+            $address_district= District::where('cityCouncilDistrict', '=', $id)->first()->name;
+            
+            $distinct_name = District::where('cityCouncilDistrict', '=', $id)->first()->recordid;
+            $projects = Project::where('district_ward_name', '=', $distinct_name)->paginate(20);
 
-        $projects = Project::with('process')->whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereHas('process', function ($q)  use($year_min, $year_max){
-               $q->whereBetween('vote_year', [$year_min, $year_max]); })->sortable()->paginate(20);
-
-        $districts = District::orderBy('name')->get();
-        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
-        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-        $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
-      
-        // var_dump($projects);
-        // exit();
-      return view('frontEnd.explore1', compact('projects'))->render();
-            //return response()->json($projects);
-
+            $location_maps = Project::where('district_ward_name', '=', $distinct_name)->get();
+            
+            return view('frontEnd.explore', compact('projects', 'districts', 'states', 'categories', 'cities', 'count', 'address_district', 'location_maps'))->render();
     }
+
     public function filterexplore(Request $request)
     {
        
