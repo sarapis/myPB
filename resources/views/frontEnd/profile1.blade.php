@@ -50,6 +50,12 @@
         }
       .overlay{
         display: none !important;
+      }
+       #sidebar{
+        display: none !important;
+      }
+      #content{
+        height: 100vh !important;
       }  
     }
 </style>

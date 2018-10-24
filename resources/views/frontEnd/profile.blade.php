@@ -22,19 +22,10 @@ Profile
       height: 100% !important;
       z-index: 999 !important;
     }
-/*    .profile_animation{
-      position: relative;
-      -webkit-animation-name: example;  /* Safari 4.0 - 8.0 */
-      -webkit-animation-duration: 0.5s;  /* Safari 4.0 - 8.0 */    
-      -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-      animation-name: example;
-      animation-duration: 0.5s;    
-      animation-fill-mode: forwards;
 
-    }*/
-   /* .navbar-container{
-      display: block !important;
-    }*/
+    .navbar-container{
+      display: none !important;
+    }
   /*  @-webkit-keyframes example {
       from {left: 100%;}
       to {left: 0px;}
@@ -53,7 +44,13 @@ Profile
         }
       .overlay{
         display: none !important;
-      }  
+      }
+      #sidebar{
+        display: none !important;
+      }
+      #content{
+        height: 100vh !important;
+      }   
     }
 </style>
 @section('content')
