@@ -18,7 +18,7 @@
           setTimeout(function () {
               $('.ui-menu').click(function(){
                   //$('#search_location').submit();
-                  console.log(111);
+                  // console.log(111);
                   sendfilter();
               });
           }, 1000);
@@ -61,6 +61,7 @@
 
               var value = $(this).html();
               $('#btn-district span').html("District: "+value);
+              $('#btn-district span').attr('ajax_text',"District: "+value);
               $('#btn-district').show();
               sendfilter();
           });
@@ -68,6 +69,7 @@
           $('#search_address').change(function(){
               var value = $(this).val();
               $('#btn-search span').html("Search: "+value);
+              $('#btn-search span').attr('ajax_text',"Search: "+value);
               $('#btn-search').show();
               if(value == "")
                 $('#btn-search').hide();
@@ -82,13 +84,15 @@
           $('#projectstatus li').click(function(){
               var value = $('span',this).attr('ajax_text');
               $('#btn-status span').html("Status: "+value);
+              $('#btn-status span').attr('ajax_text',"Status: "+value);
               $('#btn-status').show();
               sendfilter();
           });
-          $('#projectcategory li').click(function(){
+          $('#projectcategorycd li').click(function(){
               var value = $(this).attr('ajax_text');
 
               $('#btn-category span').html("Category: "+value);
+              $('#btn-category span').attr('ajax_text',"Category: "+value);
               
 
               $('#btn-category').show();
@@ -96,7 +100,9 @@
           });
           $('#cityagency li').click(function(){
               var value = $(this).attr('ajax_text');
+              console.log(value);
               $('#btn-city span').html("City: "+value);
+              $('#btn-city span').attr('ajax_text',"City: "+value);
 
               $('#btn-city').show();
               sendfilter();
@@ -220,7 +226,7 @@
                 
                 if($(this).css('display') != 'none')
                 {
-                  var values = $('span', $(this)).html();
+                  var values = $('span', $(this)).attr('ajax_text');
 
                   value_array = values.split(':');
                   value_array[1] = value_array[1].replace('&amp;','&');    

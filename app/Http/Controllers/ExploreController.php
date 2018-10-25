@@ -164,8 +164,10 @@ class ExploreController extends Controller
 
                 // $district = $request->input('District');
                 $status = $request->input('Status');
+
                 $category = $request->input('Category');        
                 $city = $request->input('City');
+
                 $sort = $request->input('selected_sort');
                 $location = $request->input('address');
                 // var_dump($location);
@@ -212,7 +214,8 @@ class ExploreController extends Controller
                 }
 
                 if($city!=NULL){
-                    $projects = $projects->where('name_dept_agency_cbo',  'like', '%'.$city.'%');
+                    
+                    $projects = $projects->where('name_dept_agency_cbo', '=', $city);
                 }
                 
                 if($sort!=NULL){
