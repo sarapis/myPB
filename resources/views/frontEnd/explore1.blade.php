@@ -85,7 +85,7 @@ Breakpoints();
                                   </td>
                                   <td>
                                       @if($project->project_title!='')
-                                          <a class="profile_name">{{$project->project_title}}</a>
+                                          <a class="profile_name" ajax_text="{{$project->project_title}}">{{$project->project_title}}</a>
                                       @endif
                                   </td>
                                   <td><i class="fa fa-chevron-right" style="padding-top: 8px;color: #000000;float: right;padding-right: 10px;"></i></td>

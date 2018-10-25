@@ -44,13 +44,13 @@
                         <a href="#projectstatus" class="text-side" data-toggle="collapse" aria-expanded="false">Project Status</a>
                         <ul class="collapse list-unstyled option-ul" id="projectstatus">
                     
-                            <li class="option-li"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Complete</span></li>
+                            <li class="option-li"><button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-10"><i class="icon fa-check" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;" ajax_text = "Complete">Complete</span></li>
 
-                            <li class="option-li"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">In process</span></li>
+                            <li class="option-li"><button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-10"><i class="icon fa-minus" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;" ajax_text = "In Process">In process</span></li>
                         
-                            <li class="option-li"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;">Lost vote</span></li>
+                            <li class="option-li"><button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-10"><i class="icon fa-remove" aria-hidden="true"></i></button><span style="position: absolute; line-height: 20px; padding: 5px;" ajax_text = "Lost vote">Lost vote</span></li>
                       
-                            <li class="option-li"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;">Status Needed</span></li>
+                            <li class="option-li"><button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-10"></button><span style="position: absolute; line-height: 20px; padding: 5px;" ajax_text = "Status Needed">Status Needed</span></li>
                     
                             
                         </ul>
@@ -60,7 +60,7 @@
                         <ul class="collapse list-unstyled option-ul" id="projectcategory">
                             @foreach($categories as $category)
                                 @if($category->category_type_topic_standardize!='')
-                                <li class="option-li">{{$category->category_type_topic_standardize}}</li>
+                                <li class="option-li"  ajax_text = "{{$category->category_type_topic_standardize}}">{{$category->category_type_topic_standardize}}</li>
                                 @endif
                             @endforeach
                         </ul>
@@ -70,7 +70,7 @@
                         <ul class="collapse list-unstyled option-ul" id="cityagency">
                             @foreach($cities as $city)
                                 @if($city->agency_name!='')
-                                <li class="option-li">{{$city->agency_name}}</li>
+                                <li class="option-li" ajax_text="{{$city->agency_name}}">{{$city->agency_name}}</li>
                                 @endif
                             @endforeach
                         </ul>

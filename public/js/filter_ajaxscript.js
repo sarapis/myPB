@@ -24,7 +24,7 @@
           }, 1000);
 
           $(document).on('click', ".profile_name", function () {
-             profile_name = $(this).html();
+             profile_name = $(this).attr('ajax_text');
              change_url = 1;
                     // console.log(profile_name);
                     // debugger;
@@ -80,13 +80,13 @@
           
 
           $('#projectstatus li').click(function(){
-              var value = $('span',this).html();
+              var value = $('span',this).attr('ajax_text');
               $('#btn-status span').html("Status: "+value);
               $('#btn-status').show();
               sendfilter();
           });
           $('#projectcategory li').click(function(){
-              var value = $(this).html();
+              var value = $(this).attr('ajax_text');
 
               $('#btn-category span').html("Category: "+value);
               
@@ -95,7 +95,7 @@
               sendfilter();
           });
           $('#cityagency li').click(function(){
-              var value = $(this).html();
+              var value = $(this).attr('ajax_text');
               $('#btn-city span').html("City: "+value);
 
               $('#btn-city').show();

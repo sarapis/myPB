@@ -82,7 +82,7 @@ ul#ui-id-1 {
                                         </td>
                                         <td class="pr-30">
                                             @if($project->project_title!='')
-                                                <a class="profile_name">{{$project->project_title}}</a>
+                                                <a class="profile_name" ajax_text="{{$project->project_title}}">{{$project->project_title}}</a>
                                             @endif
                                         </td>
 
