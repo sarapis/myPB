@@ -150,6 +150,7 @@
       
         var value1 = ui.values[0]; var value2 = ui.values[1];
         $( "#btn-cost span" ).html("Cost: " + $("#amount").val());
+        $( "#btn-cost span" ).attr("ajax_text","Cost: " + $("#amount").val());
         $('#btn-cost').show();
         
       }
@@ -176,6 +177,7 @@
           $( "#amount-year" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
           var value1 = ui.values[0]; var value2 = ui.values[1];
           $( "#btn-year span" ).html("Year of Vote: " + $("#amount-year").val());
+          $( "#btn-year span" ).attr("ajax_text","Year of Vote: " + $("#amount-year").val());
           $('#btn-year').show();
            } 
     }); 
@@ -194,6 +196,7 @@
         $( "#amount-vote" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         var value1 = ui.values[0]; var value2 = ui.values[1];
         $( "#btn-vote span" ).html("Vote: " + $("#amount-vote").val());
+        $( "#btn-vote span" ).attr("ajax_text","Vote: " + $("#amount-vote").val());
         $('#btn-vote').show();
         }
     });
