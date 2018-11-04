@@ -129,6 +129,7 @@ ul#ui-id-1 {
     if( address_district != ''){
     
         $('#btn-district span').html("District: "+address_district);
+        $('#btn-district span').attr('ajax_text',"District: "+address_district);
         $('#btn-district').show();
     };
 });
