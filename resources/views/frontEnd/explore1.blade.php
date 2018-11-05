@@ -118,7 +118,7 @@ Breakpoints();
   var locations = <?php print_r(json_encode($projects)) ?>;
   
 
-     var sumlat = 0.0;
+    var sumlat = 0.0;
     var sumlng = 0.0;
     for(var i = 0; i < locations.length; i ++)
     {

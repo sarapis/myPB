@@ -88,7 +88,7 @@
               $('#btn-status').show();
               sendfilter();
           });
-          $('#projectcategorycd li').click(function(){
+          $('#projectcategory li').click(function(){
               var value = $(this).attr('ajax_text');
 
               $('#btn-category span').html("Category: "+value);
