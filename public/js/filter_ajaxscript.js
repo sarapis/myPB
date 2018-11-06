@@ -6,6 +6,7 @@
           var profile_name="";
           var change_url = 0;
           var pervious_url = 0;
+          var slide_downed = 0;
           $(document).on('click', "#profile_btn button", function () {
               profile_name="";
               sendfilter();
@@ -146,6 +147,7 @@
       max: 1500000,
       values: [ 0, 1500000 ],
       slide: function( event, ui ) {
+        slide_downed = 1;
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       
         var value1 = ui.values[0]; var value2 = ui.values[1];
@@ -174,6 +176,7 @@
         max: 2018, 
         values: [ 2012, 2018 ], 
         slide: function( event, ui ) { 
+          slide_downed = 1;
           $( "#amount-year" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
           var value1 = ui.values[0]; var value2 = ui.values[1];
           $( "#btn-year span" ).html("Year of Vote: " + $("#amount-year").val());
@@ -193,6 +196,7 @@
       max: 5293,
       values: [ 0, 5293 ],
       slide: function( event, ui ) {
+        slide_downed = 1;
         $( "#amount-vote" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
         var value1 = ui.values[0]; var value2 = ui.values[1];
         $( "#btn-vote span" ).html("Vote: " + $("#amount-vote").val());
@@ -204,8 +208,9 @@
     $( "#amount-vote" ).val(  $( "#slider-range-vote" ).slider( "values", 0 ) +
       " - " + $( "#slider-range-vote" ).slider( "values", 1 ) );
     
-    $('.ui-slider-handle.ui-corner-all.ui-state-default').mouseup(function(){
+    $(document).mouseup(function(){
           sendfilter();      
+          slide_downed = 0;
       });
 
           function sendfilter(){
