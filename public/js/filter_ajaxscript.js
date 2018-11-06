@@ -209,6 +209,7 @@
       " - " + $( "#slider-range-vote" ).slider( "values", 1 ) );
     
     $(document).mouseup(function(){
+        if(slide_downed == 1)
           sendfilter();      
           slide_downed = 0;
       });
