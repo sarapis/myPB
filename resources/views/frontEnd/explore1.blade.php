@@ -177,7 +177,7 @@ Breakpoints();
           icon: statusicon,
           infoWindow: {
             maxWidth: 250,
-            content: (icon+'<a class="profile_name">'+value.project_title+'</a>')
+            content: (icon+'<a class="profile_name" ajax_text="'+value.project_title+'">'+value.project_title+'</a>')
           },
           markerClusterer: function(map) {
             return new MarkerClusterer(map);

@@ -258,14 +258,19 @@
             if(pervious_url == 0){
               if(window.location.href.search('project') != -1)
                 ajax_url = '/range';
-              else if(window.location.href.search('summary') != -1)
+              else if(window.location.href.search('summary') != -1){
+                if(change_url == 0)
+                  pervious_url = 2;
                 ajax_url = '/filter';
+              }
             }
             else{
               if(pervious_url == 1)
                 ajax_url = '/range';
-              else if(pervious_url == 2)
+              else if(pervious_url == 2){
+
                 ajax_url = '/filter'; 
+              }
             }
             $.ajaxSetup({
               headers: {
