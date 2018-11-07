@@ -99,7 +99,13 @@ Profile
         <div class="panel mb-15">
           <div class="panel-body p-15">
             <h4><b>BALLOT INFORMATION</b></h4>
-            <h5 class="profile-title">Project appeared on {{$project->district->name}} PBNYC ballot in {{$project->vote_year}} with a cost of ${{number_format($project->cost_text)}}. {{$project->win_text}} with @if($project->vote==0) an unknown number of votes @else {{$project->votes}} votes @endif </h5>
+            <h5 class="profile-title">Project appeared on {{$project->district->name}} PBNYC ballot in {{$project->vote_year}} with a cost of ${{number_format($project->cost_text)}}. @if($project->project_status_category=='Project Status Needed')
+              Project status is unknown with  an unknown number of votes
+            @else {{$project->win_text}} with 
+              @if($project->votes==0) an unknown number of 
+              @else {{$project->votes}} 
+              @endif votes. 
+            @endif</h5>
           </div>
         </div>
 
