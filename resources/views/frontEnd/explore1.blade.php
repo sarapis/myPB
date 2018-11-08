@@ -112,78 +112,80 @@ Breakpoints();
           $('#btn-district span').html("District:"+address_district);
           $('#btn-district span').attr('ajax_text',"District: "+address_district);
           $('#btn-district').show();
-      };  
-    });
+      };
 
-  var locations = <?php print_r(json_encode($projects)) ?>;
+      var locations = <?php print_r(json_encode($projects)) ?>;
   
 
-    var sumlat = 0.0;
-    var sumlng = 0.0;
-    for(var i = 0; i < locations.length; i ++)
-    {
-        sumlat += parseFloat(locations[i].latitude);
-        sumlng += parseFloat(locations[i].longitude);
+      var sumlat = 0.0;
+      var sumlng = 0.0;
+      for(var i = 0; i < locations.length; i ++)
+      {
+          sumlat += parseFloat(locations[i].latitude);
+          sumlng += parseFloat(locations[i].longitude);
 
-    }
-
-    var avglat = sumlat/locations.length;
-    var avglng = sumlng/locations.length;
-
-  
-
-    if(!avglat){
-        avglat = 40.730981;
-        avglng = -73.998107
-    }
-
-    var mymap = new GMaps({
-      el: '#map',
-      lat: avglat,
-      lng: avglng,
-      zoom:10,
-      markerClusterer: function(map) {
-        options = {
-            imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-        }
-        return new MarkerClusterer(map, [], options);
       }
-    });
 
+      var avglat = sumlat/locations.length;
+      var avglng = sumlng/locations.length;
 
-    $.each( locations, function(index, value ){
-        var icon;
-        var statusicon;
-        if(value.project_status_category == "Complete"){
-            icon = '<button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-check" aria-hidden="true"></i></button>';
-            statusicon = "/images/icon/completed-map-pin.png";
-        }
-        else if(value.project_status_category == "Project Status Needed"){
-            icon = '<button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"></button>';
-            statusicon = "/images/icon/status-needed-map-pin.png";
-        }
-        else if(value.project_status_category == "Lost vote"){
-            icon = '<button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-remove" aria-hidden="true"></i></button>';
-            statusicon = "/images/icon/not-funded-map-pin.png";
-        }
-        else{
-            icon ='<button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-minus" aria-hidden="true"></i></button>';
-            statusicon = "/images/icon/in-progress-map-pin.png";
-        }
+    
 
-        mymap.addMarker({
-          lat: value.latitude,
-          lng: value.longitude,
-          icon: statusicon,
-          infoWindow: {
-            maxWidth: 250,
-            content: (icon+'<a class="profile_name" ajax_text="'+value.project_title+'">'+value.project_title+'</a>')
-          },
-          markerClusterer: function(map) {
-            return new MarkerClusterer(map);
+      if(!avglat){
+          avglat = 40.730981;
+          avglng = -73.998107
+      }
+
+      var zoom = 10;
+      if($('#btn-district').css('display') != 'none')
+          zoom = 13;
+      var mymap = new GMaps({
+        el: '#map',
+        lat: avglat,
+        lng: avglng,
+        zoom:zoom,
+        markerClusterer: function(map) {
+          options = {
+              imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
           }
+          return new MarkerClusterer(map, [], options);
+        }
+      });
+
+
+      $.each( locations, function(index, value ){
+          var icon;
+          var statusicon;
+          if(value.project_status_category == "Complete"){
+              icon = '<button type="button" class="btn btn-floating btn-success btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-check" aria-hidden="true"></i></button>';
+              statusicon = "/images/icon/completed-map-pin.png";
+          }
+          else if(value.project_status_category == "Project Status Needed"){
+              icon = '<button type="button" class="btn btn-floating  btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"></button>';
+              statusicon = "/images/icon/status-needed-map-pin.png";
+          }
+          else if(value.project_status_category == "Lost vote"){
+              icon = '<button type="button" class="btn btn-floating btn-danger btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-remove" aria-hidden="true"></i></button>';
+              statusicon = "/images/icon/not-funded-map-pin.png";
+          }
+          else{
+              icon ='<button type="button" class="btn btn-floating btn-warning btn-xs waves-effect waves-classic mr-5" style="box-shadow:none;"><i class="icon fa-minus" aria-hidden="true"></i></button>';
+              statusicon = "/images/icon/in-progress-map-pin.png";
+          }
+
+          mymap.addMarker({
+            lat: value.latitude,
+            lng: value.longitude,
+            icon: statusicon,
+            infoWindow: {
+              maxWidth: 250,
+              content: (icon+'<a class="profile_name" ajax_text="'+value.project_title+'">'+value.project_title+'</a>')
+            },
+            markerClusterer: function(map) {
+              return new MarkerClusterer(map);
+            }
+          });
         });
-   });
 
         if(screen.width < 768){
           var text= $('.navbar-container').css('height');
@@ -196,6 +198,9 @@ Breakpoints();
           var height = text.slice(0, -2);
           $('.page').css('margin-top', height);
         }
+    });
+
+  
 
 </script>
 
