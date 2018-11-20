@@ -329,9 +329,13 @@ class ExploreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function downloadcsv()
     {
-        //
+
+        $projects = Project::all();
+        $csvExporter = new \Laracsv\Export();
+
+        return $csvExporter->build($projects, ['project_id'=>'Project_ID', 'project_title'=>'Project_Title', 'project_description'=>'Project_Description', 'category_re_coded'=>'Category re-coded','project_status'=>'Project_Status', 'district.name'=>'District-Ward_Name', 'win_text'=>'Win_Text', 'votes'=>'Votes', 'pb_cycle'=>'PB_Cycle', 'cos_num'=>'Cost_Num', 'fiscal_year', 'cost_appropriated', 'vote_year'=>'Vote_Year', 'name_dept_agency_cbo'=>'Name_Dept_Agency_CBO', 'project_status_category'=>'Project_Status_Category', 'project_status_detail'=>'Project_Status_Detail'])->download();
     }
 
     /**

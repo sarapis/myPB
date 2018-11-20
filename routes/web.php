@@ -24,6 +24,8 @@ Route::get('/about', ['uses' => 'HomeController@about']);
 Route::get('/feedback', ['uses' => 'HomeController@feedback']);
 Route::get('/project', 'ExploreController@index');
 Route::post('/project', 'ExploreController@index');
+Route::get('/download_csv', 'ExploreController@downloadcsv');
+
 // Route::post('/explore', 'ExploreController@index');
 Route::get('/project/district{id}', 'ExploreController@district');
 Route::get('/project/{id}', 'ExploreController@profile');

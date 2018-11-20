@@ -52,17 +52,18 @@ ul#ui-id-1 {
 
                     <div class="panel-body p-0">
                         <div class="example table-responsive mb-0">
-                            <table class="table mb-0"  id="test_table" data-pagination="true" data-show-columns="true">
+                            <table class="table table-striped toggle-arrow-tiny mb-0"  id="test_table" data-pagination="true" data-show-columns="true">
                                 <thead>
                                   <tr>
                                     <th class="text-center">Status</th>
                                     <th class="pr-20">Name</th>
-                                    <!-- <th data-breakpoints="all">@sortablelink('cost_num', 'Price')</th>
+                                   <!--  <th data-breakpoints="all">@sortablelink('cost_num', 'Price')</th>
                                     <th data-breakpoints="all">@sortablelink('process.vote_year', 'Year')</th>
                                     <th data-breakpoints="all">@sortablelink('votes', 'Votes')</th>
-                                    <th data-breakpoints="all">@sortablelink('status_date_updated', 'Update')</th>
-                                    <th data-toggle="true"></th> -->
+                                    <th data-breakpoints="all">@sortablelink('status_date_updated', 'Update')</th> -->
+                                    <a href="/download_csv"><button type="button" class="btn btn-raised btn-info pull-right download-csv">Download CSV</button></a>
                                   </tr>
+
                                 </thead>
                                 <tbody>
                                     @foreach($projects as $project)
@@ -85,7 +86,6 @@ ul#ui-id-1 {
                                                 <a class="profile_name" ajax_text="{{$project->project_title}}">{{$project->project_title}}</a>
                                             @endif
                                         </td>
-
                                         <td><i class="fa fa-chevron-right" style="padding-top: 8px;color: #000000;"></i></td>
                                     </tr>
                                     @endforeach

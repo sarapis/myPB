@@ -29,6 +29,9 @@
   width: 100%;
   margin: 0;
 }
+#example_wrapper{
+  margin-top: 20px;
+}
 .col-sm-12{
   padding: 0;
 }
@@ -61,10 +64,11 @@ Breakpoints();
 
                       <table class="table table-striped toggle-arrow-tiny mb-0" id="example" style="width:100%">
                           <thead>
-                              <tr class="footable-header">
+                              <tr>
                                   <th class="text-center">Status</th>
                                   <th data-toggle="true" class="pr-20">Name</th>
                                   <th></th>
+                                   <a href="/download_csv"><button type="button" class="btn btn-raised btn-info pull-right download-csv">Download CSV</button></a>
                               </tr>
                           </thead>
                           <tbody>

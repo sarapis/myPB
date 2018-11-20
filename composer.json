@@ -13,7 +13,8 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.6",
-        "roland/crud": "dev-master"
+        "roland/crud": "dev-master",
+        "usmanhalalit/laracsv": "1.*@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

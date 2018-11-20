@@ -747,3 +747,14 @@ p{
 .ui-helper-hidden-accessible{
   display: none !important;
 }
+.download-csv{
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  background-color: #b8e6e2;
+  color: #424242;
+  border: 0;
+}
+.table-responsive{
+  border-color: transparent;
+}

@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
                 $table->string('project_id')->nullable();
                 $table->string('project_title')->nullable();
                 $table->text('project_description')->nullable();
+                $table->string('category_re_coded')->nullable();
                 $table->string('project_status')->nullable();
                 $table->integer('project_status_flag')->nullable();
                 $table->string('status_date_updated')->nullable();

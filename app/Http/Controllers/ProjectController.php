@@ -43,6 +43,7 @@ class ProjectController extends Controller
                 $project->project_title = isset($record['fields']['Project_Title'])?$record['fields']['Project_Title']:null;
                 $project->project_description = isset($record['fields']['Project_Description'])?$record['fields']['Project_Description']:null;
                 $project->project_status = isset($record['fields']['Project_Status'])?$record['fields']['Project_Status']:null;
+                $project->category_re_coded = isset($record['fields']['Category_re-coded'])?implode(",", $record['fields']['Category_re-coded']):null;
                 // if(isset($record['fields']['Project_Status']))
                 // {
                 //     $flag = array('Not funded: Lost vote'=> 3, 'Not funded: Not Eligible'=>3, 'Not funded: Requires Additional Funds'=>3, 'Not funded: Funds Not Appropriated'=>3,'In process: Funds Appropriated'=>2, 'In process: In Design'=>2, 'In process: Out for Bid'=> 2, 'In process: Part of Capital Plan - Funding Approved'=> 2,  'In process: Pre-construction'=> 2, 'In process: PREPARING BID'=> 2, 'In process: Scoping'=>2, 'In process: Under Construction'=>2, 'Complete'=>1, 'Project Status Needed'=>4);
