@@ -68,7 +68,7 @@ Breakpoints();
                                   <th class="text-center">Status</th>
                                   <th data-toggle="true" class="pr-20">Name</th>
                                   <th></th>
-                                   <a href="/download_csv"><button type="button" class="btn btn-raised btn-info pull-right download-csv">Download CSV</button></a>
+                                  <button type="button" class="btn btn-raised btn-info pull-right download" id="download_csv">Download CSV</button>
                               </tr>
                           </thead>
                           <tbody>
@@ -105,6 +105,11 @@ Breakpoints();
           <div id="map" style="position: fixed !important;width: 28%;"></div>
       </div>
   </div>
+  <form action="/download_csvss" method="post" id="download_form">
+      @csrf
+      <input type="text" id="hidden_projects" name="projects">
+      <input type="submit" name="submit" id="download_submit">
+  </form>
   @include('layouts.footer')
 
 

@@ -61,7 +61,7 @@ ul#ui-id-1 {
                                     <th data-breakpoints="all">@sortablelink('process.vote_year', 'Year')</th>
                                     <th data-breakpoints="all">@sortablelink('votes', 'Votes')</th>
                                     <th data-breakpoints="all">@sortablelink('status_date_updated', 'Update')</th> -->
-                                    <a href="/download_csv"><button type="button" class="btn btn-raised btn-info pull-right download-csv">Download CSV</button></a>
+                                    <button type="button" class="btn btn-raised btn-info pull-right download" id="download_csv">Download CSV</button>
                                   </tr>
 
                                 </thead>
@@ -116,6 +116,11 @@ ul#ui-id-1 {
         @include('layouts.footer')
     </div>
 </div>
+<form action="/download_csvss" method="post" id="download_form">
+    @csrf
+    <input type="text" id="hidden_projects" name="projects">
+    <input type="submit" name="submit" id="download_submit">
+</form>
 <script>
  $(document).ready(function () {
     var address_district = <?php echo json_encode($address_district); ?>;

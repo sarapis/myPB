@@ -33,6 +33,10 @@ class AirtableGenerate extends Seeder
 		    [		
 	    		'id'=>'5',
 	    		'name' 			=> 'Agency'
+		    ],
+		    [		
+	    		'id'=>'6',
+	    		'name' 			=> 'Community_Board'
 		    ]
 		]);
     }

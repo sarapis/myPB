@@ -747,7 +747,7 @@ p{
 .ui-helper-hidden-accessible{
   display: none !important;
 }
-.download-csv{
+#download_csv{
   position: absolute;
   right: 10px;
   top: 12px;
@@ -757,4 +757,7 @@ p{
 }
 .table-responsive{
   border-color: transparent;
+}
+#download_form{
+  display: none;
 }

@@ -124,6 +124,7 @@ class EditlayoutController extends Controller
         $layout->contact_btn_label=$request->contact_btn_label;
         $layout->contact_btn_link=$request->contact_btn_link;
         $layout->footer=$request->footer;
+        $layout->pdf_footer=$request->pdf_footer;
         $layout->save();
 
         Session::flash('message', 'Page updated!');

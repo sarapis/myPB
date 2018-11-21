@@ -83,7 +83,15 @@ Edit Layout
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Footer
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <textarea id="summernote" type="text" name="footer" class="optional form-control col-md-7 col-xs-12">{{$layout->footer}}</textarea>
+                  <textarea id="footer" type="text" name="footer" class="optional form-control col-md-7 col-xs-12">{{$layout->footer}}</textarea>
+                </div>
+              </div>
+
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">PDF Footer
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <textarea id="pdf_footer" type="text" name="pdf_footer" class="optional form-control col-md-7 col-xs-12">{{$layout->pdf_footer}}</textarea>
                 </div>
               </div>
 
@@ -104,8 +112,11 @@ Edit Layout
 @section('scripts')
 <script>
 $(document).ready(function() {
-    $('#summernote').summernote({
+    $('#footer').summernote({
         height: 200
+    });
+    $('#pdf_footer').summernote({
+        height: 100
     });
 });
 

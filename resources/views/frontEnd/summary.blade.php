@@ -55,6 +55,9 @@ ul#ui-id-1 {
 #tab_sort{
     display: none !important;
 }
+.nav.nav-tabs.nav-tabs-line.ui-tabs-nav.ui-corner-all.ui-helper-reset.ui-helper-clearfix.ui-widget-header{
+    display: none;
+}
 </style>
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>

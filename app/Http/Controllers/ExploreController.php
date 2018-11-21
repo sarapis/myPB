@@ -114,7 +114,7 @@ class ExploreController extends Controller
         return view('frontEnd.profile', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'))->render();
     }
 
-    public function profiledown($id)
+    public function download_pdf($id)
     {
         $districts = District::orderBy('name')->get();
         $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
@@ -323,21 +323,140 @@ class ExploreController extends Controller
 
     }
 
+    public function downloadcsv(Request $request)
+    {
+                
+        $price_min = (int)$request->input('price_min');
+        $price_max = (int)$request->input('price_max');
+        $year_min = $request->input('year_min');
+        $year_max = $request->input('year_max');
+        $vote_min = (int)$request->input('vote_min');
+        $vote_max = (int)$request->input('vote_max');
+
+        $search = $request->input('Search');
+
+
+        // $district = $request->input('District');
+        $status = $request->input('Status');
+
+        $category = $request->input('Category');        
+        $city = $request->input('City');
+
+        $sort = $request->input('selected_sort');
+        $location = $request->input('address');
+        // var_dump($location);
+        // exit();
+        $profile_name = $request->input('profile_name');
+
+
+        $projects = Project::whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereBetween('vote_year', [$year_min, $year_max]);
+                   
+        
+        if($status!=NULL){
+
+            $projects = $projects->where('project_status_category', 'like', '%'.$status.'%');
+        }
+
+        if($category!=NULL){
+            $projects = $projects->where('category_type_topic_standardize', '=', $category);
+        }
+
+        if($city!=NULL){
+            
+            $projects = $projects->where('name_dept_agency_cbo', '=', $city);
+        }
+        
+
+        $address_district="";
+
+        if($location != NULL)
+        {
+
+            $location = str_replace("+","%20",$location);
+            $location = str_replace(",",",",$location);
+            $location = str_replace(" ","%20",$location);
+            
+
+            $content = file_get_contents("https://geosearch.planninglabs.nyc/v1/autocomplete?text=".$location);
+
+
+            $result  = json_decode($content);
+            
+            // var_dump($result->features[0]);
+            // exit();
+            //$housenumber=$result->features[3]->properties->housenumber;
+            // var_dump($housenumber);
+            // exit();
+            $name=$result->features[0]->properties->name;
+            $zip=$result->features[0]->properties->postalcode;
+            // var_dump($street, $zipcode);
+            // exit();
+            $name = str_replace(" ","%20",$name);
+            $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
+
+            $geoclient = file_get_contents($url);
+
+            $geo  = json_decode($geoclient);
+
+            $cityCouncilDistrict=$geo->place->cityCouncilDistrict;
+
+            // var_dump($cityCouncilDistrict);
+            // exit();
+            
+            $projects= $projects->with('district')->whereHas('district', function ($q)  use($cityCouncilDistrict){
+                $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
+            });
+
+            $address_district=District::where('cityCouncilDistrict', '=', $cityCouncilDistrict)->first();
+            
+        
+            if($address_district == NULL){
+                // return redirect('/project')->with('success', 'no project')->render();
+                $projects = [];
+                $address_district = "";
+                return view('frontEnd.explore1', compact('projects','address_district'))->with('successMsg','Property is updated .')->render();
+            }
+            
+            $address_district=$address_district->name;
+
+        }
+         if($search != NULL)
+        {
+
+            $projects = $projects->with('district')->where(function($q) use($search){
+                $q->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district',function($qq) use($search) {
+                    $qq->where('name', 'like', '%'.$search.'%');
+                });
+            });
+        }
+        
+        $projects = $projects->select('id')->get();
+        return json_encode($projects);
+        // exit();
+
+        // $csvExporter = new \Laracsv\Export();
+
+        // return $csvExporter->build($projects, ['project_id'=>'Project_ID', 'project_title'=>'Project_Title', 'project_description'=>'Project_Description', 'category_re_coded'=>'Category re-coded','project_status'=>'Project_Status', 'district.name'=>'District-Ward_Name', 'win_text'=>'Win_Text', 'votes'=>'Votes', 'pb_cycle'=>'PB_Cycle', 'cos_num'=>'Cost_Num', 'fiscal_year', 'cost_appropriated', 'vote_year'=>'Vote_Year', 'name_dept_agency_cbo'=>'Name_Dept_Agency_CBO', 'project_status_category'=>'Project_Status_Category', 'project_status_detail'=>'Project_Status_Detail'])->download();
+    }
+    public function downloadcsvsss(Request $request){
+        $projects = $request->input('projects');
+        $projects = json_decode($projects);
+        $ids = [];
+
+        for($i = 0; $i < count($projects); $i++){
+            $ids[$i] = $projects[$i]->id;
+        }
+        $projects = Project::whereIn('id',$ids)->get();
+        $csvExporter = new \Laracsv\Export();
+
+        return $csvExporter->build($projects, ['project_id'=>'Project_ID', 'project_title'=>'Project_Title', 'project_description'=>'Project_Description', 'category_re_coded'=>'Category re-coded','project_status'=>'Project_Status', 'district.name'=>'District-Ward_Name', 'win_text'=>'Win_Text', 'votes'=>'Votes', 'pb_cycle'=>'PB_Cycle', 'cos_num'=>'Cost_Num', 'fiscal_year', 'cost_appropriated', 'vote_year'=>'Vote_Year', 'name_dept_agency_cbo'=>'Name_Dept_Agency_CBO', 'project_status_category'=>'Project_Status_Category', 'project_status_detail'=>'Project_Status_Detail'])->download();
+    }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function downloadcsv()
-    {
-
-        $projects = Project::all();
-        $csvExporter = new \Laracsv\Export();
-
-        return $csvExporter->build($projects, ['project_id'=>'Project_ID', 'project_title'=>'Project_Title', 'project_description'=>'Project_Description', 'category_re_coded'=>'Category re-coded','project_status'=>'Project_Status', 'district.name'=>'District-Ward_Name', 'win_text'=>'Win_Text', 'votes'=>'Votes', 'pb_cycle'=>'PB_Cycle', 'cos_num'=>'Cost_Num', 'fiscal_year', 'cost_appropriated', 'vote_year'=>'Vote_Year', 'name_dept_agency_cbo'=>'Name_Dept_Agency_CBO', 'project_status_category'=>'Project_Status_Category', 'project_status_detail'=>'Project_Status_Detail'])->download();
-    }
-
     /**
      * Update the specified resource in storage.
      *

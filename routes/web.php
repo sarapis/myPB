@@ -24,12 +24,12 @@ Route::get('/about', ['uses' => 'HomeController@about']);
 Route::get('/feedback', ['uses' => 'HomeController@feedback']);
 Route::get('/project', 'ExploreController@index');
 Route::post('/project', 'ExploreController@index');
-Route::get('/download_csv', 'ExploreController@downloadcsv');
+
 
 // Route::post('/explore', 'ExploreController@index');
 Route::get('/project/district{id}', 'ExploreController@district');
 Route::get('/project/{id}', 'ExploreController@profile');
-Route::get('/profilepdf_{id}', 'ExploreController@profiledown');
+
 
 
 Route::get('/explore/status_{id}', 'ExploreController@status');
@@ -42,8 +42,11 @@ Route::get('/explore/cityagency_{id}', 'ExploreController@cityagency');
 Route::get('/summary', 'SummaryController@index');
 
 Route::post('/range', 'ExploreController@filterexplore');
+Route::post('/download_csv', 'ExploreController@downloadcsv');
+Route::post('/download_csvss', 'ExploreController@downloadcsvsss');
 
 Route::post('/filter', 'SummaryController@filtersummary');
+Route::post('/download_pdf', 'SummaryController@download_pdf');
 
  Route::group(['middleware' => ['web', 'auth', 'permission'] ], function () {
         Route::get('dashboard', ['uses' => 'HomeController@dashboard', 'as' => 'home.dashboard']);
@@ -70,6 +73,7 @@ Route::post('/filter', 'SummaryController@filtersummary');
         Route::get('/sync_district-ward', ['uses' => 'DistrictController@airtable']);
         Route::get('/sync_contacts', ['uses' => 'ContactController@airtable']);
         Route::get('/sync_agency', ['uses' => 'AgencyController@airtable']);
+        Route::get('/sync_community_board', ['uses' => 'CommunityController@airtable']);
 
         //Route::get('/tb_projects', ['uses' => 'ProjectController@index']);
         Route::resource('tb_projects', 'ProjectController');

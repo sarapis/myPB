@@ -124,6 +124,11 @@
                         </p>
                     </div>
                 </div>
+                @if(Request::is('summary', 'summary/*'))
+                <div class="text-center mt-25">
+                    <a href="/download_pdf"><button type="button" class="btn btn-raised btn-info">Generate PDF</button></a>
+                </div>
+                @endif
                 <!-- End Example Range -->
             </div>
             <div class="tab-pane" id="exampleTopComponents" role="tabpanel">
