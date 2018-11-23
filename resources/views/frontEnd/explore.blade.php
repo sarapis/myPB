@@ -116,7 +116,7 @@ ul#ui-id-1 {
         @include('layouts.footer')
     </div>
 </div>
-<form action="/download_csvss" method="post" id="download_form">
+<form action="/download_csv" method="post" id="download_form">
     @csrf
     <input type="text" id="hidden_projects" name="projects">
     <input type="submit" name="submit" id="download_submit">

@@ -105,7 +105,7 @@ Breakpoints();
           <div id="map" style="position: fixed !important;width: 28%;"></div>
       </div>
   </div>
-  <form action="/download_csvss" method="post" id="download_form">
+  <form action="/download_csv" method="post" id="download_form">
       @csrf
       <input type="text" id="hidden_projects" name="projects">
       <input type="submit" name="submit" id="download_submit">

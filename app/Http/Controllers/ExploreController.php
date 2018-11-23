@@ -114,23 +114,6 @@ class ExploreController extends Controller
         return view('frontEnd.profile', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'))->render();
     }
 
-    public function download_pdf($id)
-    {
-        $districts = District::orderBy('name')->get();
-        $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
-        $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
-        $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
-
-        $project = Project::where('project_title', '=', $id)->first();
-        $district = $project->district_ward_name;
-        $contact = Contact::where('district_ward_name', 'like', '%'.$district.'%')->first();
-
-        $pdf = PDF::loadView('frontEnd.profile1', compact('districts', 'states', 'categories', 'cities', 'project', 'contact'));
-
-        return $pdf->download('profile.pdf');
-
-    }
-
 
     public function district($id)
     {
@@ -323,7 +306,7 @@ class ExploreController extends Controller
 
     }
 
-    public function downloadcsv(Request $request)
+    public function exportcsv(Request $request)
     {
                 
         $price_min = (int)$request->input('price_min');
@@ -432,13 +415,10 @@ class ExploreController extends Controller
         
         $projects = $projects->select('id')->get();
         return json_encode($projects);
-        // exit();
 
-        // $csvExporter = new \Laracsv\Export();
-
-        // return $csvExporter->build($projects, ['project_id'=>'Project_ID', 'project_title'=>'Project_Title', 'project_description'=>'Project_Description', 'category_re_coded'=>'Category re-coded','project_status'=>'Project_Status', 'district.name'=>'District-Ward_Name', 'win_text'=>'Win_Text', 'votes'=>'Votes', 'pb_cycle'=>'PB_Cycle', 'cos_num'=>'Cost_Num', 'fiscal_year', 'cost_appropriated', 'vote_year'=>'Vote_Year', 'name_dept_agency_cbo'=>'Name_Dept_Agency_CBO', 'project_status_category'=>'Project_Status_Category', 'project_status_detail'=>'Project_Status_Detail'])->download();
     }
-    public function downloadcsvsss(Request $request){
+
+    public function downloadcsv(Request $request){
         $projects = $request->input('projects');
         $projects = json_decode($projects);
         $ids = [];

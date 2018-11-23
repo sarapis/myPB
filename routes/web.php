@@ -42,10 +42,11 @@ Route::get('/explore/cityagency_{id}', 'ExploreController@cityagency');
 Route::get('/summary', 'SummaryController@index');
 
 Route::post('/range', 'ExploreController@filterexplore');
+Route::post('/export_csv', 'ExploreController@exportcsv');
 Route::post('/download_csv', 'ExploreController@downloadcsv');
-Route::post('/download_csvss', 'ExploreController@downloadcsvsss');
 
 Route::post('/filter', 'SummaryController@filtersummary');
+Route::post('/export_pdf', 'SummaryController@exportpdf');
 Route::post('/download_pdf', 'SummaryController@download_pdf');
 
  Route::group(['middleware' => ['web', 'auth', 'permission'] ], function () {

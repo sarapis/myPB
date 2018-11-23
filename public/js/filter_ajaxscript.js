@@ -366,19 +366,19 @@ $(document).ready(function () {
       var ajax_url;
       if(pervious_url == 0){
         if(window.location.href.search('project') != -1)
-          ajax_url = '/download_csv';
+          ajax_url = '/export_csv';
         else if(window.location.href.search('summary') != -1){
           if(change_url == 0)
             pervious_url = 2;
-          ajax_url = '/download_pdf';
+          ajax_url = '/export_pdf';
         }
       }
       else{
         if(pervious_url == 1)
-          ajax_url = '/download_csv';
+          ajax_url = '/export_csv';
         else if(pervious_url == 2){
 
-          ajax_url = '/download_pdf'; 
+          ajax_url = '/export_pdf'; 
         }
       }
       $.ajaxSetup({

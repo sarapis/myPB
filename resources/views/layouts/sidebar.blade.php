@@ -126,7 +126,7 @@
                 </div>
                 @if(Request::is('summary', 'summary/*'))
                 <div class="text-center mt-25">
-                    <a href="/download_pdf"><button type="button" class="btn btn-raised btn-info">Generate PDF</button></a>
+                    <button type="button" class="btn btn-raised btn-info download">Generate PDF</button>
                 </div>
                 @endif
                 <!-- End Example Range -->

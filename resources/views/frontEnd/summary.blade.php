@@ -126,6 +126,11 @@ ul#ui-id-1 {
         @include('layouts.footer')
     </div>
 </div>
+<form action="/download_pdf" method="post" id="download_form">
+    @csrf
+    <input type="text" id="hidden_projects" name="projects">
+    <input type="submit" name="submit" id="download_submit">
+</form>
 <script>
  $(document).ready(function () {
     var address_district = <?php echo json_encode($address_district); ?>;
