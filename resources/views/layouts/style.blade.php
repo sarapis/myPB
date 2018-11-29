@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../../../frontend/global/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../../frontend/global/css/bootstrap-extend.min.css">
 
-  <link rel="stylesheet" href="../../frontend/assets/css/site.min.css">
+  <link rel="stylesheet" href="../../../frontend/assets/css/site.min.css">
   <!-- Plugins -->
   <link rel="stylesheet" href="../../../frontend/global/vend/animsition/animsition.css">
   <link rel="stylesheet" href="../../../frontend/global/vend/asscrollable/asScrollable.css">

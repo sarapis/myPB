@@ -761,3 +761,17 @@ p{
 #download_form{
   display: none;
 }
+.community-link{
+  display: block;
+  font-family: inherit;
+  font-size: 1.05em;
+  line-height: inherit;
+}
+.link-title-board{
+  font-weight: 400;
+}
+.link-title{
+  font-size: 1.2em;
+  font-weight: 500;
+  line-height: 1.2em;
+}

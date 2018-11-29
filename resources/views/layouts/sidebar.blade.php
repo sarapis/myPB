@@ -129,6 +129,23 @@
                     <button type="button" class="btn btn-raised btn-info download">Generate PDF</button>
                 </div>
                 @endif
+                @if(Request::is('summary', 'summary/district*'))
+                @if($communities!='')
+                <div class="panel m-5 mt-20 p-5 pt-10 content-panel" style="background: #ffffff;">
+                    
+                    <p class="link-title">{{$address_district}}</p>
+                    <p class="link-title">Community Data Profiles</p>
+                    @foreach($communities as $community)
+                        <p class="link-title-board mt-5">{{$community->community_board}}</p>
+                        <a class="community-link" href="{{$community->civicdashboards}}" target="_blank">Civic Dashboards</a>
+                        <a class="community-link" href="{{$community->data2go}}" target="_blank">Data2go.nyc</a>
+                        <a class="community-link" href="{{$community->community_profiles_planning}}" target="_blank">NYC Planning Labs</a>
+                        <a class="community-link" href="{{$community->cccnewyork}}" target="_blank">Citizens Committee for Children</a>
+                    @endforeach
+                    
+                </div>
+                @endif
+                @endif
                 <!-- End Example Range -->
             </div>
             <div class="tab-pane" id="exampleTopComponents" role="tabpanel">

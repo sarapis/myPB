@@ -40,6 +40,7 @@ Route::get('/explore/cityagency_{id}', 'ExploreController@cityagency');
 // Route::get('/filter', 'ExploreController@filterValues');
 
 Route::get('/summary', 'SummaryController@index');
+Route::get('/summary/district{id}', 'SummaryController@district');
 
 Route::post('/range', 'ExploreController@filterexplore');
 Route::post('/export_csv', 'ExploreController@exportcsv');
