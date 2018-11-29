@@ -129,6 +129,16 @@ ul#ui-id-1 {
 <form action="/download_pdf" method="post" id="download_form">
     @csrf
     <input type="text" id="hidden_projects" name="projects">
+    <input type="text" id="hidden_price_min" name="price_min">
+    <input type="text" id="hidden_price_max" name="price_max">
+    <input type="text" id="hidden_year_min" name="year_min">
+    <input type="text" id="hidden_year_max" name="year_max">
+    <input type="text" id="hidden_vote_min" name="vote_min">
+    <input type="text" id="hidden_vote_max" name="vote_max">
+    <input type="text" id="hidden_address" name="address" value="{{$address_district}}">
+    <input type="text" id="hidden_status" name="status">
+    <input type="text" id="hidden_category" name="category">
+    <input type="text" id="hidden_city" name="city">
     <input type="submit" name="submit" id="download_submit">
 </form>
 <script>

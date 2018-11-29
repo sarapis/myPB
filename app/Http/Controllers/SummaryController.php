@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
-use PDF;
+use VerumConsilium\Browsershot\Facades\PDF;
+use App\Layout;
 
 class SummaryController extends Controller
 {
@@ -509,16 +510,24 @@ class SummaryController extends Controller
         }
         
         if($status!=NULL){
-
             $projects = $projects->where('project_status_category', 'like', '%'.$status.'%');
+        }
+        else {
+            $status = "";
         }
 
         if($category!=NULL){
             $projects = $projects->where('category_type_topic_standardize', '=', $category);
         }
+        else {
+            $category = "";
+        }
 
         if($city!=NULL){
             $projects = $projects->where('name_dept_agency_cbo',  'like', '%'.$city.'%');
+        }
+        else {
+            $city = "";
         }
         
         if($sort!=NULL){
@@ -683,7 +692,7 @@ class SummaryController extends Controller
             {
                 $agency_codes = explode(',',$value->agency_code);
                 
-                $status = $value->project_status_category;
+                $status1 = $value->project_status_category;
                 for($i = 0; $i < count($agency_codes); $i++)
                 {
                     $code_name;
@@ -696,10 +705,10 @@ class SummaryController extends Controller
                     if(isset($count[$code_name]))
                     {
 
-                        if(isset($count[$code_name][$status]))
-                            $count[$code_name][$status] ++;
+                        if(isset($count[$code_name][$status1]))
+                            $count[$code_name][$status1] ++;
                         else
-                            $count[$code_name][$status] = 1;
+                            $count[$code_name][$status1] = 1;
                         $count[$code_name]['total'] ++;
 
                     }
@@ -748,7 +757,9 @@ class SummaryController extends Controller
             }
         }
 
-        return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output'))->render();
+
+
+        return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'city', 'category', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'status'))->render();
 
 
     }
@@ -756,7 +767,6 @@ class SummaryController extends Controller
     public function exportpdf(Request $request)
     {
        
-                
         $price_min = (int)$request->input('price_min');
         $price_max = (int)$request->input('price_max');
         $year_min = $request->input('year_min');
@@ -769,6 +779,7 @@ class SummaryController extends Controller
 
         $district = $request->input('District');
         $status = $request->input('Status');
+
         $category = $request->input('Category');        
         $city = $request->input('City');
         $sort = $request->input('selected_sort');
@@ -861,8 +872,13 @@ class SummaryController extends Controller
             });
         }
 
+
         $projects = $projects->select('id')->get();
+
+        $filter_value = [$price_min, $price_max, $year_min, $year_max, $vote_min, $vote_max, $address_district, $status, $category, $city];
+
         return json_encode($projects);
+        // return json($projects, $price_min, $price_max, $year_min, $year_max, $vote_min, $vote_max, $address_district, $status, $category, $city);
 
     }
 
@@ -871,6 +887,23 @@ class SummaryController extends Controller
 
         $projects = $request->input('projects');
         $projects = json_decode($projects);
+
+
+        $price_min = (int)$request->input('price_min');
+        $price_max = (int)$request->input('price_max');
+        $year_min = $request->input('year_min');
+        $year_max = $request->input('year_max');
+        $vote_min = (int)$request->input('vote_min');
+        $vote_max = (int)$request->input('vote_max');
+
+
+  
+        $status = $request->input('status');
+        $category = $request->input('category');        
+        $city = $request->input('city');
+        $location = $request->input('address');
+    
+
         $ids = [];
 
         for($i = 0; $i < count($projects); $i++){
@@ -882,6 +915,7 @@ class SummaryController extends Controller
         $address_district="";
 
         $location_maps = $projects->get();
+        $limit_maps = $projects_origin->take(50)->get();
 
         $category_query = $projects->select('category_type_topic_standardize', 'project_status_category', DB::raw('count(*) as count'))->groupBy('category_type_topic_standardize', 'project_status_category')->get();
 
@@ -946,7 +980,7 @@ class SummaryController extends Controller
             {
                 $agency_codes = explode(',',$value->agency_code);
                 
-                $status = $value->project_status_category;
+                $status1 = $value->project_status_category;
                 for($i = 0; $i < count($agency_codes); $i++)
                 {
                     $code_name;
@@ -959,10 +993,10 @@ class SummaryController extends Controller
                     if(isset($count[$code_name]))
                     {
 
-                        if(isset($count[$code_name][$status]))
-                            $count[$code_name][$status] ++;
+                        if(isset($count[$code_name][$status1]))
+                            $count[$code_name][$status1] ++;
                         else
-                            $count[$code_name][$status] = 1;
+                            $count[$code_name][$status1] = 1;
                         $count[$code_name]['total'] ++;
 
                     }
@@ -1009,14 +1043,17 @@ class SummaryController extends Controller
                 else if(!isset($output[8]['Project Status Needed'])  && isset($count[$i]['Project Status Needed']))
                     $output[8]['Project Status Needed'] = $count[$i]['Project Status Needed'];
             }
-        }
+        } 
 
-        // return view('frontEnd.pdf', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output'));
+        $pdf_footer = Layout::find(1)->pdf_footer;
+
+        return PDF::loadView('frontEnd.pdf', compact('projects', 'address_district', 'limit_maps', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'pdf_footer', 'price_min', 'price_max', 'year_min', 'year_max', 'vote_min', 'vote_max', 'status', 'category', 'city', 'location'))->download();
+        // $pdf = PDF::loadView('frontEnd.pdf', compact('address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output'))->download('summary.pdf');
 
 
-        $pdf = PDF::loadView('frontEnd.pdf', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output'));
+       // return view('frontEnd.pdf', compact('projects', 'address_district', 'limit_maps', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'pdf_footer', 'price_min', 'price_max', 'year_min', 'year_max', 'vote_min', 'vote_max', 'status', 'category', 'city', 'location'));
 
-        return $pdf->download('profile.pdf');
+
 
     }
 
