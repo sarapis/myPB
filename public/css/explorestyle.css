@@ -766,6 +766,7 @@ p{
   font-family: inherit;
   font-size: 1.05em;
   line-height: inherit;
+  text-decoration: underline;
 }
 .link-title-board{
   font-weight: 400;
