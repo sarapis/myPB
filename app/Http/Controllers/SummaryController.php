@@ -460,7 +460,6 @@ class SummaryController extends Controller
 
         $communities = '';
 
-
         $projectids = Project::select('id')->get();
         $projectids = json_encode($projectids);
         
@@ -774,7 +773,7 @@ class SummaryController extends Controller
         }
         $communities = "";
         if($district_name != "")
-            $communities = Community::with('district')->where('district_ward', 'like', '%'.$district_name.'%')->get();
+            $communities = Community::with('district')->where('district_ward', 'like', '%'.$district_name.'%')->orderBy('community_board')->get();
 
         return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'city', 'category', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'status', 'communities', 'projectids'))->render();
 
@@ -1102,7 +1101,7 @@ class SummaryController extends Controller
 
         $location_maps = Project::where('district_ward_name', '=', $district_name)->get();
 
-        $communities = Community::with('district')->where('district_ward', 'like', '%'.$district_name.'%')->sortBy('community_board')->get();
+        $communities = Community::with('district')->where('district_ward', 'like', '%'.$district_name.'%')->orderBy('community_board')->get();
 
         $projectids = Project::where('district_ward_name', '=', $district_name)->select('id')->get();
         $projectids = json_encode($projectids);
