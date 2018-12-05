@@ -137,7 +137,7 @@ ul#ui-id-1 {
 </div>
 <form action="/download_pdf" method="post" id="download_form">
     @csrf
-    <input type="text" id="hidden_projects" name="projects">
+    <input type="text" id="hidden_projects" name="projects" value="{{$projectids}}">
     <input type="text" id="hidden_price_min" name="price_min">
     <input type="text" id="hidden_price_max" name="price_max">
     <input type="text" id="hidden_year_min" name="year_min">

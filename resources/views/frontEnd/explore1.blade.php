@@ -68,7 +68,7 @@ Breakpoints();
                                   <th class="text-center">Status</th>
                                   <th data-toggle="true" class="pr-20">Name</th>
                                   <th></th>
-                                  <button type="button" class="btn btn-raised btn-info pull-right download" id="download_csv">Download CSV</button>
+                                  <button type="button" class="btn btn-raised btn-info pull-right" id="download_csv">Download CSV</button>
                               </tr>
                           </thead>
                           <tbody>
@@ -107,7 +107,7 @@ Breakpoints();
   </div>
   <form action="/download_csv" method="post" id="download_form">
       @csrf
-      <input type="text" id="hidden_projects" name="projects">
+      <input type="text" id="hidden_projects" name="projects" value="{{$projectids}}">
       <input type="submit" name="submit" id="download_submit">
   </form>
   @include('layouts.footer')

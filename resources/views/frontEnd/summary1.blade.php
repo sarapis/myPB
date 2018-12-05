@@ -112,7 +112,7 @@
     @include('layouts.footer')
 <form action="/download_pdf" method="post" id="download_form">
     @csrf
-    <input type="text" id="hidden_projects" name="projects">
+    <input type="text" id="hidden_projects" name="projects" value="{{$projectids}}">
     <input type="text" id="hidden_price_min" name="price_min">
     <input type="text" id="hidden_price_max" name="price_max">
     <input type="text" id="hidden_year_min" name="year_min">
@@ -221,3 +221,28 @@
 </script>
 
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    console.log("{{$communities}}");
+    $('.communities_panel').remove();
+    @if($communities!='')
+
+    var div = '<div class="communities_panel panel m-5 mt-20 p-5 pt-10 content-panel" style="background: #ffffff;"></div>';
+    $('.tab-content').append($(div));
+    
+    $('.communities_panel').append('<p class="link-title">{{$address_district}}</p>');
+    $('.communities_panel').append('<p class="link-title">Community Data Profiles</p>');
+    @foreach($communities as $community)
+      $('.communities_panel').append('<p class="link-title-board mt-5">{{$community->community_board}}</p>');
+      $('.communities_panel').append('<a class="community-link" href="{{$community->civicdashboards}}" target="_blank">Civic Dashboards</a>');
+      $('.communities_panel').append('<a class="community-link" href="{{$community->data2go}}" target="_blank">Data2go.nyc</a>');
+      $('.communities_panel').append('<a class="community-link" href="{{$community->community_profiles_planning}}" target="_blank">NYC Planning Labs</a>');
+      $('.communities_panel').append('<a class="community-link" href="{{$community->cccnewyork}}" target="_blank">Citizens Committee for Children</a>');
+    @endforeach
+    console.log($(div));
+    @endif
+    
+
+  });
+  
+</script>

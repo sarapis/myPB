@@ -28,7 +28,7 @@ class SummaryController extends Controller
             $states = Project::orderBy('project_status')->distinct()->get(['project_status']);
             $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
             $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
-            $address_district= District::where('name', '=', 1)->get();
+            $address_district= '';
             
             if ($request->input('search')) {
 
@@ -459,8 +459,12 @@ class SummaryController extends Controller
         $location_maps = Project::all();
 
         $communities = '';
+
+
+        $projectids = Project::select('id')->get();
+        $projectids = json_encode($projectids);
         
-        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'communities'));
+        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'communities', 'projectids'));
     }
 
   
@@ -569,6 +573,7 @@ class SummaryController extends Controller
 
         }
         $address_district="";
+        $district_name ="";
 
         if($location != NULL)
         {
@@ -613,9 +618,12 @@ class SummaryController extends Controller
                 return redirect('/summary')->with('success', 'no project');
             }
             
-            $address_district=$address_district->name;
+            $district_name = $address_district->recordid;
+            $address_district= $address_district->name;
+             
         }
-         if($search != NULL)
+
+        if($search != NULL)
         {
             // $projects = $projects->with('district')->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district', function ($q)  use($search){
             // $q->where('name', 'like', '%'.$search.'%');
@@ -630,7 +638,11 @@ class SummaryController extends Controller
 
         $projects_origin = $projects;
 
+    
         $location_maps = $projects->get();
+
+        $projectids = $projects_origin->select('id')->get();
+        $projectids = json_encode($projectids);
 
         $category_query = $projects->select('category_type_topic_standardize', 'project_status_category', DB::raw('count(*) as count'))->groupBy('category_type_topic_standardize', 'project_status_category')->get();
 
@@ -645,6 +657,7 @@ class SummaryController extends Controller
 
         $ids = "";
         $id_array = $location_maps->pluck('id')->toArray();
+
         $ids = join(', ', $id_array);
         // var_dump($ids);
         // exit();
@@ -759,129 +772,12 @@ class SummaryController extends Controller
                     $output[8]['Project Status Needed'] = $count[$i]['Project Status Needed'];
             }
         }
+        $communities = "";
+        if($district_name != "")
+            $communities = Community::with('district')->where('district_ward', 'like', '%'.$district_name.'%')->get();
 
-        $communities = ''; 
+        return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'city', 'category', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'status', 'communities', 'projectids'))->render();
 
-        return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'city', 'category', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'status', 'communities'))->render();
-
-
-    }
-
-    public function exportpdf(Request $request)
-    {
-       
-        $price_min = (int)$request->input('price_min');
-        $price_max = (int)$request->input('price_max');
-        $year_min = $request->input('year_min');
-        $year_max = $request->input('year_max');
-        $vote_min = (int)$request->input('vote_min');
-        $vote_max = (int)$request->input('vote_max');
-
-        $search = $request->input('Search');
-
-
-        $district = $request->input('District');
-        $status = $request->input('Status');
-
-        $category = $request->input('Category');        
-        $city = $request->input('City');
-        $sort = $request->input('selected_sort');
-        $location = $request->input('address');
-        $profile_name = $request->input('profile_name');
-
-
-        $projects = Project::whereBetween('cost_num', [$price_min, $price_max])->whereBetween('votes', [$vote_min, $vote_max])->whereBetween('vote_year', [$year_min, $year_max]);
-                   
-         // var_dump($price_min,$price_max,$year_min,$year_max,$vote_min,$vote_max,$district,$status,$category,$city,count($projects));
-         // exit(); 
-       
-
-        if($district!=NULL){
-
-            $district = District::where('name', '=', $district)->first();
-            $district = $district->recordid;
-            $projects = $projects->where('district_ward_name', '=', $district);
-            
-        }
-        
-        if($status!=NULL){
-
-            $projects = $projects->where('project_status_category', 'like', '%'.$status.'%');
-        }
-
-        if($category!=NULL){
-            $projects = $projects->where('category_type_topic_standardize', '=', $category);
-        }
-
-        if($city!=NULL){
-            $projects = $projects->where('name_dept_agency_cbo',  'like', '%'.$city.'%');
-        }
-        
-        
-        $address_district="";
-
-        if($location != NULL)
-        {
-            
-            $location = str_replace("+","%20",$location);
-            $location = str_replace(",",",",$location);
-            $location = str_replace(" ","%20",$location);
-            
-
-            $content = file_get_contents("https://geosearch.planninglabs.nyc/v1/autocomplete?text=".$location);
-
-
-            $result  = json_decode($content);
-            
-            // var_dump($result->features[0]);
-            // exit();
-            //$housenumber=$result->features[3]->properties->housenumber;
-            // var_dump($housenumber);
-            // exit();
-            $name=$result->features[0]->properties->name;
-            $zip=$result->features[0]->properties->postalcode;
-            // var_dump($street, $zipcode);
-            // exit();
-            $name = str_replace(" ","%20",$name);
-            $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
-
-            $geoclient = file_get_contents($url);
-
-            $geo  = json_decode($geoclient);
-
-            $cityCouncilDistrict=$geo->place->cityCouncilDistrict;
-            
-            $projects= $projects->with('district')->whereHas('district', function ($q)  use($cityCouncilDistrict){
-                $q->where('cityCouncilDistrict', '=', $cityCouncilDistrict);
-            });
-
-            $address_district=District::where('cityCouncilDistrict', '=', $cityCouncilDistrict)->first();
-        
-        
-            if($address_district == NULL){
-
-                return redirect('/summary')->with('success', 'no project');
-            }
-            
-            $address_district=$address_district->name;
-        }
-         if($search != NULL)
-        {
-
-            $projects = $projects->with('district')->where(function($q) use($search){
-                $q->where('project_title', 'like', '%'.$search.'%')->orwhere('project_description', 'like', '%'.$search.'%')->orwhere('neighborhood', 'like', '%'.$search.'%')->orwhereHas('district',function($qq) use($search) {
-                    $qq->where('name', 'like', '%'.$search.'%');
-                });
-            });
-        }
-
-
-        $projects = $projects->select('id')->get();
-
-        $filter_value = [$price_min, $price_max, $year_min, $year_max, $vote_min, $vote_max, $address_district, $status, $category, $city];
-
-        return json_encode($projects);
-        // return json($projects, $price_min, $price_max, $year_min, $year_max, $vote_min, $vote_max, $address_district, $status, $category, $city);
 
     }
 
@@ -1067,11 +963,13 @@ class SummaryController extends Controller
         $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
         $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
         
-        $distinct_name = District::where('cityCouncilDistrict', '=', $id)->first()->recordid;
+        $district_name = District::where('cityCouncilDistrict', '=', $id)->first()->recordid;
         $address_district= District::where('cityCouncilDistrict', '=', $id)->first()->name;
-        $projects = Project::where('district_ward_name', '=', $distinct_name)->get();
+        $projects = Project::where('district_ward_name', '=', $district_name)->get();
 
-        $category_query = Project::where('district_ward_name', '=', $distinct_name)->select('category_type_topic_standardize', 'project_status_category', DB::raw('count(*) as count'))->groupBy('category_type_topic_standardize', 'project_status_category')->get();
+        $projects_origin =$projects;
+
+        $category_query = Project::where('district_ward_name', '=', $district_name)->select('category_type_topic_standardize', 'project_status_category', DB::raw('count(*) as count'))->groupBy('category_type_topic_standardize', 'project_status_category')->get();
 
         $category_reports;
         foreach ($category_query as $value) {
@@ -1202,12 +1100,15 @@ class SummaryController extends Controller
         }
 
 
-        $location_maps = Project::where('district_ward_name', '=', $distinct_name)->get();
+        $location_maps = Project::where('district_ward_name', '=', $district_name)->get();
 
-        $communities = Community::with('district')->where('district_ward', 'like', '%'.$distinct_name.'%')->get();
+        $communities = Community::with('district')->where('district_ward', 'like', '%'.$district_name.'%')->sortBy('community_board')->get();
+
+        $projectids = Project::where('district_ward_name', '=', $district_name)->select('id')->get();
+        $projectids = json_encode($projectids);
 
         
-        return view('frontEnd.summary_district', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'communities'));
+        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'communities', 'projectids'));
     }
 
     /**

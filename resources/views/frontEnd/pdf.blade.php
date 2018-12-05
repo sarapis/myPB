@@ -103,7 +103,7 @@
                 <h1>{!! date('m/d/Y') !!}</h1>
             </div>
             <div style="display: inline-block;">
-                <h1>FILTERED BY @if($status!='') Status: <span>{{$status}}</span> @endif @if($category!='') Category: <span>{{$category}}</span> @endif @if($city!='') City: <span>{{$city}}</span> @endif</h1>
+                <h1>FILTERED BY @if($location!='') District: <span>{{$location}}</span> @endif @if($status!='') Status: <span>{{$status}}</span> @endif @if($category!='') Category: <span>{{$category}}</span> @endif @if($city!='') Agency: <span>{{$city}}</span> @endif</h1>
                 <h1> Cost: <span>${{$price_min}}-${{$price_max}}</span> Year of Vote: <span>{{$year_min}}-{{$year_max}}</span> Vote: <span>{{$vote_min}}-{{$vote_max}}</span></h1>
             </div>
         </div>
@@ -122,16 +122,16 @@
             </div>
             <div id="chart2" class="text-align">
 
-                <h4>PROJECTS BY COST</h4>
-          
-                <div id="chartdiv_cost"></div>                   
-                    
-            </div>
-            <div id="chart3" class="text-align">              
-
                 <h4>PROJECTS BY VOTE</h4>
 
                 <div id="chartdiv_vote"></div>                   
+                    
+            </div>
+            <div id="chart3" class="text-align">
+
+                <h4>PROJECTS BY COST</h4>
+          
+                <div id="chartdiv_cost"></div>                                    
 
             </div>
             <div id="chart4" class="text-align">
@@ -239,7 +239,7 @@
               size: [1200, 200],
               lat: avglat,
               lng: avglng,
-              zoom:10,
+              zoom:12,
               markers: marker
             });
             url += '&key=AIzaSyDo-Ba1uQA_-eQ0zAA-ymOSrfrakLUZsHo';

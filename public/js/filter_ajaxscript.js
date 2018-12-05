@@ -323,104 +323,118 @@ $(document).ready(function () {
 
     }
 
-    $(document).on('click', ".download", function (){
-     
-      var form_data = new FormData();    
-      // var form_data = [];
-      // var form_name = [];
-      form_data.append('price_min',$( "#slider-range" ).slider( "values", 0 ));
-      $('#hidden_price_min').val($("#slider-range" ).slider( "values", 0 ));
-      form_data.append('price_max',$( "#slider-range" ).slider( "values", 1 ));
-      $('#hidden_price_max').val($( "#slider-range" ).slider( "values", 1 ));
-      form_data.append('vote_min',$( "#slider-range-vote" ).slider( "values", 0 ));
-      $('#hidden_vote_min').val($( "#slider-range-vote" ).slider( "values", 0 ));
-      form_data.append('vote_max',$( "#slider-range-vote" ).slider( "values", 1 ));
-      $('#hidden_vote_max').val($( "#slider-range-vote" ).slider( "values", 1 ));
-      form_data.append('year_min',$( "#slider-range-year" ).slider( "values", 0 ));
-      $('#hidden_year_min').val($( "#slider-range-year" ).slider( "values", 0 ));
-      form_data.append('year_max',$( "#slider-range-year" ).slider( "values", 1 ));
-      $('#hidden_year_max').val($( "#slider-range-year" ).slider( "values", 1 ));
-      if(selected_sort)
-      form_data.append('selected_sort',selected_sort);
-
-      form_data.append('is_ajax',1);
-      console.log($('#location').val());
-      form_data.append('address',$('#location').val());
-    
-      form_data.append('profile_name', profile_name);
-     
-      $('#filter_buttons button').each(function(index){
-          
-          if($(this).css('display') != 'none')
-          {
-            var values = $('span', $(this)).attr('ajax_text');
-
-            value_array = values.split(':');
-            value_array[1] = value_array[1].replace('&amp;','&');    
-            value_array[1] = value_array[1].slice(1);
-            form_data.append(value_array[0],value_array[1]);
-            $('#hidden_'+value_array[0].toLowerCase()).val(value_array[1]);
-            //form_data[] = value_array[1];
-          }
-      });
-      ///
-      $("*").animsition({
-        inClass: 'fade-in',
-        inDuration: 100,
-        loading: true,
-        loadingClass: 'loader-overlay',
-        loadingParentElement: 'html',
-        loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
-        onLoadEvent: true
-      });
-      var ajax_url;
-      if(pervious_url == 0){
-        if(window.location.href.search('project') != -1)
-          ajax_url = '/export_csv';
-        else if(window.location.href.search('summary') != -1){
-          if(change_url == 0)
-            pervious_url = 2;
-          ajax_url = '/export_pdf';
-        }
-      }
-      else{
-        if(pervious_url == 1)
-          ajax_url = '/export_csv';
-        else if(pervious_url == 2){
-
-          ajax_url = '/export_pdf'; 
-        }
-      }
-
-
-
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-      })    
-    
-      $.ajax({
-        type: 'POST',
-        url: ajax_url,
-        data: form_data,
-        contentType: false, // The content type used when sending data to the server.
-        cache: false, // To unable request pages to be cached
-        processData: false,
-        success: function(data) {
-          $('#hidden_projects').val(data);
-          $('#download_submit').click();
-
-          $('.loader-overlay').remove();
-          console.log(pervious_url);        
-
-        },
-        error: function(errResponse) {
-        
-        }
-      });
-
+    $(document).on('click', "#download_csv", function (){
+        $('#download_submit').click();
     });
+
+    $(document).on('click', "#download_pdf", function (){
+      $('#hidden_price_min').val($("#slider-range" ).slider( "values", 0 ));
+      $('#hidden_price_max').val($( "#slider-range" ).slider( "values", 1 ));
+      $('#hidden_vote_min').val($( "#slider-range-vote" ).slider( "values", 0 ));
+      $('#hidden_vote_max').val($( "#slider-range-vote" ).slider( "values", 1 ));
+      $('#hidden_year_min').val($( "#slider-range-year" ).slider( "values", 0 ));
+      $('#hidden_year_max').val($( "#slider-range-year" ).slider( "values", 1 ));
+      $('#download_submit').click();
+    });
+
+    // $(document).on('click', ".download", function (){
+     
+    //   var form_data = new FormData();    
+    //   // var form_data = [];
+    //   // var form_name = [];
+    //   form_data.append('price_min',$( "#slider-range" ).slider( "values", 0 ));
+    //   $('#hidden_price_min').val($("#slider-range" ).slider( "values", 0 ));
+    //   form_data.append('price_max',$( "#slider-range" ).slider( "values", 1 ));
+    //   $('#hidden_price_max').val($( "#slider-range" ).slider( "values", 1 ));
+    //   form_data.append('vote_min',$( "#slider-range-vote" ).slider( "values", 0 ));
+    //   $('#hidden_vote_min').val($( "#slider-range-vote" ).slider( "values", 0 ));
+    //   form_data.append('vote_max',$( "#slider-range-vote" ).slider( "values", 1 ));
+    //   $('#hidden_vote_max').val($( "#slider-range-vote" ).slider( "values", 1 ));
+    //   form_data.append('year_min',$( "#slider-range-year" ).slider( "values", 0 ));
+    //   $('#hidden_year_min').val($( "#slider-range-year" ).slider( "values", 0 ));
+    //   form_data.append('year_max',$( "#slider-range-year" ).slider( "values", 1 ));
+    //   $('#hidden_year_max').val($( "#slider-range-year" ).slider( "values", 1 ));
+    //   if(selected_sort)
+    //   form_data.append('selected_sort',selected_sort);
+
+    //   form_data.append('is_ajax',1);
+    //   console.log($('#location').val());
+    //   form_data.append('address',$('#location').val());
+    
+    //   form_data.append('profile_name', profile_name);
+     
+    //   $('#filter_buttons button').each(function(index){
+          
+    //       if($(this).css('display') != 'none')
+    //       {
+    //         var values = $('span', $(this)).attr('ajax_text');
+
+    //         value_array = values.split(':');
+    //         value_array[1] = value_array[1].replace('&amp;','&');    
+    //         value_array[1] = value_array[1].slice(1);
+    //         form_data.append(value_array[0],value_array[1]);
+    //         $('#hidden_'+value_array[0].toLowerCase()).val(value_array[1]);
+    //         //form_data[] = value_array[1];
+    //       }
+    //   });
+    //   ///
+    //   $("*").animsition({
+    //     inClass: 'fade-in',
+    //     inDuration: 100,
+    //     loading: true,
+    //     loadingClass: 'loader-overlay',
+    //     loadingParentElement: 'html',
+    //     loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
+    //     onLoadEvent: true
+    //   });
+    //   var ajax_url;
+    //   if(pervious_url == 0){
+    //     if(window.location.href.search('project') != -1)
+    //       ajax_url = '/export_csv';
+    //     else if(window.location.href.search('summary') != -1){
+    //       if(change_url == 0)
+    //         pervious_url = 2;
+    //       ajax_url = '/export_pdf';
+    //     }
+    //   }
+    //   else{
+    //     if(pervious_url == 1)
+    //       ajax_url = '/export_csv';
+    //     else if(pervious_url == 2){
+
+    //       ajax_url = '/export_pdf'; 
+    //     }
+    //   }
+
+
+
+    //   $.ajaxSetup({
+    //     headers: {
+    //       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    //     }
+    //   })    
+    
+    //   $.ajax({
+    //     type: 'POST',
+    //     url: ajax_url,
+    //     data: form_data,
+    //     contentType: false, // The content type used when sending data to the server.
+    //     cache: false, // To unable request pages to be cached
+    //     processData: false,
+    //     success: function(data) {
+    //       $('#hidden_projects').val(data);
+    //       $('#download_submit').click();
+
+    //       $('.loader-overlay').remove();
+    //       console.log(pervious_url);        
+
+    //     },
+    //     error: function(errResponse) {
+        
+    //     }
+    //   });
+
+    // });
 });
 
 window.onpopstate = function (event) {

@@ -61,7 +61,7 @@ ul#ui-id-1 {
                                     <th data-breakpoints="all">@sortablelink('process.vote_year', 'Year')</th>
                                     <th data-breakpoints="all">@sortablelink('votes', 'Votes')</th>
                                     <th data-breakpoints="all">@sortablelink('status_date_updated', 'Update')</th> -->
-                                    <button type="button" class="btn btn-raised btn-info pull-right download" id="download_csv">Download CSV</button>
+                                    <button type="button" class="btn btn-raised btn-info pull-right" id="download_csv">Download CSV</button>
                                   </tr>
 
                                 </thead>
@@ -118,7 +118,7 @@ ul#ui-id-1 {
 </div>
 <form action="/download_csv" method="post" id="download_form">
     @csrf
-    <input type="text" id="hidden_projects" name="projects">
+    <input type="text" id="hidden_projects" name="projects" value="{{$projectids}}">
     <input type="submit" name="submit" id="download_submit">
 </form>
 <script>
