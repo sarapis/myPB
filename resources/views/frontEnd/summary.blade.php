@@ -148,6 +148,7 @@ ul#ui-id-1 {
     <input type="text" id="hidden_status" name="status">
     <input type="text" id="hidden_category" name="category">
     <input type="text" id="hidden_city" name="city">
+    <input type="text" id="hidden_keyword" name="keyword" value="{{$search}}">
     <input type="submit" name="submit" id="download_submit">
 </form>
 <script>

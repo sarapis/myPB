@@ -73,6 +73,7 @@
         #chart3{position: absolute;top: 680px;width: 100mm;}
         #chart4{position: absolute;top: 680px;right:0;width: 100mm;}
         .logo{width: 2.5em;vertical-align: unset;}
+        .alert{background-color: #3f8a7b; color: white;width: 170px;}
         h1{font-size:1em; text-transform: uppercase; font-weight:bold; margin:0; margin:0.5em 0; color:#555;}
         h4{font-size:0.8em;text-align: center; text-transform: uppercase; font-weight:normal; margin:0; margin:0.5em 0; color:#555;}
         h2{text-align: center; font-size:2em; font-weight:normal; margin:0; margin:0 0 1em; color:#222;}
@@ -103,15 +104,24 @@
                 <h1>{!! date('m/d/Y') !!}</h1>
             </div>
             <div style="display: inline-block;">
-                <h1>FILTERED BY @if($location!='') District: <span>{{$location}}</span> @endif @if($status!='') Status: <span>{{$status}}</span> @endif @if($category!='') Category: <span>{{$category}}</span> @endif @if($city!='') Agency: <span>{{$city}}</span> @endif</h1>
+                <h1>FILTERED BY @if($keyword!='') Keyword: <span>{{$keyword}}</span> @endif @if($location!='') District: <span>{{$location}}</span> @endif @if($status!='') Status: <span>{{$status}}</span> @endif @if($category!='') Category: <span>{{$category}}</span> @endif @if($city!='') Agency: <span>{{$city}}</span> @endif</h1>
                 <h1> Cost: <span>${{$price_min}}-${{$price_max}}</span> Year of Vote: <span>{{$year_min}}-{{$year_max}}</span> Vote: <span>{{$vote_min}}-{{$vote_max}}</span></h1>
             </div>
         </div>
         <div class="row">
+           @if($projects == '')
+            <div class="alert dark alert-dismissible mt-20 ml-10 mr-10 mb-0" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="feedback-title">No Projects</h4>
+            </div>
+            @endif
             <div class="col-md-12">
                <div class="print-show" id="map"></div>
                   
             </div>
+            @if($projects!='')
             <div id="chart1" class="text-align">
 
                 <h4>PROJECTS BY CATEGORY</h4>
@@ -141,6 +151,7 @@
                 <div id="chartdiv_agency"></div>                   
                   
             </div>
+            @endif
         </div>
 
         <footer>

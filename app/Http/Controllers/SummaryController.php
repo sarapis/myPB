@@ -29,6 +29,7 @@ class SummaryController extends Controller
             $categories = Project::orderBy('category_type_topic_standardize')->distinct()->get(['category_type_topic_standardize']);
             $cities = Agency::whereNotNull('projects')->orderBy('agency_name')->get(['agency_name']);
             $address_district= '';
+            $search= '';
             
             if ($request->input('search')) {
 
@@ -162,8 +163,9 @@ class SummaryController extends Controller
                 }
 
                 $location_maps = $projects;
+                $communities = '';
 
-                return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output'));
+                return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'search', 'projectids', 'communities'));
             }
 
             if ($request->input('address')) {
@@ -180,11 +182,6 @@ class SummaryController extends Controller
 
                 $result  = json_decode($content);
                 
-                // var_dump($result->features[0]);
-                // exit();
-                //$housenumber=$result->features[3]->properties->housenumber;
-                // var_dump($housenumber);
-                // exit();
                 $name=$result->features[0]->properties->name;
                 $zip=$result->features[0]->properties->postalcode;
                 // var_dump($street, $zipcode);
@@ -338,7 +335,9 @@ class SummaryController extends Controller
                     }
                 }
 
-                return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output'))->render();
+                $communities = '';
+
+                return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'search', 'projectids', 'communities'))->render();
                 
             }
 
@@ -463,7 +462,7 @@ class SummaryController extends Controller
         $projectids = Project::select('id')->get();
         $projectids = json_encode($projectids);
         
-        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'communities', 'projectids'));
+        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'communities', 'projectids', 'search'));
     }
 
   
@@ -587,15 +586,10 @@ class SummaryController extends Controller
 
             $result  = json_decode($content);
             
-            // var_dump($result->features[0]);
-            // exit();
-            //$housenumber=$result->features[3]->properties->housenumber;
-            // var_dump($housenumber);
-            // exit();
+
             $name=$result->features[0]->properties->name;
             $zip=$result->features[0]->properties->postalcode;
-            // var_dump($street, $zipcode);
-            // exit();
+
             $name = str_replace(" ","%20",$name);
             $url = 'https://api.cityofnewyork.us/geoclient/v1/place.json?name=' . $name . '&zip=' . $zip . '&app_id=0359f714&app_key=27da16447759b5111e7dcc067d73dfc8';
 
@@ -638,10 +632,17 @@ class SummaryController extends Controller
         $projects_origin = $projects;
 
     
-        $location_maps = $projects->get();
+        $location_maps = $projects_origin->get();
 
         $projectids = $projects_origin->select('id')->get();
-        $projectids = json_encode($projectids);
+
+        if($projectids == null){
+            $projectids = '';
+        }
+        else{
+            $projectids = json_encode($projectids);
+        }
+
 
         $category_query = $projects->select('category_type_topic_standardize', 'project_status_category', DB::raw('count(*) as count'))->groupBy('category_type_topic_standardize', 'project_status_category')->get();
 
@@ -657,17 +658,19 @@ class SummaryController extends Controller
         $ids = "";
         $id_array = $location_maps->pluck('id')->toArray();
 
-        $ids = join(', ', $id_array);
-        // var_dump($ids);
-        // exit();
+        $ids = join(',', $id_array);
+        
         if($ids == ""){
 
             $category_reports = [];
             $vote_reports =[];
             $cost_reports =[];
             $output =[];
+            $communities = "";
+            $projectids = '';
 
-            return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'ids'))->render();
+
+            return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'city', 'category', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'status', 'communities', 'projectids', 'search'))->render();
         }
 
         $sqlQuery = 'SELECT vote_range, project_status_category, count(*) as count FROM (select project_status_category, case  when votes = 0 then \'unknown\'when votes >= 1 and votes < 500 then \'1-499\'when votes >= 500 and votes < 1000 then \'500-999\'when votes >= 1000 and votes < 1500 then \'1000-1499\'when votes >= 1500 and votes < 2000 then \'1500-1999\'when votes >= 2000 and votes < 2500 then \'2000-2499\'when votes >= 2500 and votes < 3000 then \'2500-2999\'else \'3000+\' end as vote_range from projects where projects.id in (' . $ids . ')) as temp group by temp.vote_range, temp.project_status_category';
@@ -775,7 +778,7 @@ class SummaryController extends Controller
         if($district_name != "")
             $communities = Community::with('district')->where('district_ward', 'like', '%'.$district_name.'%')->orderBy('community_board')->get();
 
-        return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'city', 'category', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'status', 'communities', 'projectids'))->render();
+        return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'city', 'category', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'status', 'communities', 'projectids', 'search'))->render();
 
 
     }
@@ -785,7 +788,6 @@ class SummaryController extends Controller
 
         $projects = $request->input('projects');
         $projects = json_decode($projects);
-
 
         $price_min = (int)$request->input('price_min');
         $price_max = (int)$request->input('price_max');
@@ -800,156 +802,161 @@ class SummaryController extends Controller
         $category = $request->input('category');        
         $city = $request->input('city');
         $location = $request->input('address');
-    
-
-        $ids = [];
-
-        for($i = 0; $i < count($projects); $i++){
-            $ids[$i] = $projects[$i]->id;
-        }        $projects = Project::whereIn('id',$ids);
-
-        $projects_origin = $projects;
-
+        $keyword = $request->input('keyword');
         $address_district="";
-
-        $location_maps = $projects->get();
-        $limit_maps = $projects_origin->take(50)->get();
-
-        $category_query = $projects->select('category_type_topic_standardize', 'project_status_category', DB::raw('count(*) as count'))->groupBy('category_type_topic_standardize', 'project_status_category')->get();
-
+        $limit_maps = [];
         $category_reports=[];
+        $vote_reports =[];
+        $cost_reports =[];
+        $output =[];
 
-        foreach ($category_query as $value) {
-            if ($value->category_type_topic_standardize == null){ 
-                continue;
+
+        if($projects != null)
+        {
+            $ids = [];
+
+            for($i = 0; $i < count($projects); $i++){
+                $ids[$i] = $projects[$i]->id;
+            }        $projects = Project::whereIn('id',$ids);
+
+            $projects_origin = $projects;         
+
+            $location_maps = $projects->get();
+            $limit_maps = $projects_origin->take(50)->get();
+
+            $category_query = $projects->select('category_type_topic_standardize', 'project_status_category', DB::raw('count(*) as count'))->groupBy('category_type_topic_standardize', 'project_status_category')->get();
+
+
+            foreach ($category_query as $value) {
+                if ($value->category_type_topic_standardize == null){ 
+                    continue;
+                }
+                $category_reports[$value->category_type_topic_standardize][$value->project_status_category] = $value->count;
             }
-            $category_reports[$value->category_type_topic_standardize][$value->project_status_category] = $value->count;
-        }
 
-        $ids = "";
-        $id_array = $location_maps->pluck('id')->toArray();
-        $ids = join(', ', $id_array);
-        // var_dump($ids);
-        // exit();
-        if($ids == ""){
+            $ids = "";
+            $id_array = $location_maps->pluck('id')->toArray();
+            $ids = join(', ', $id_array);
+            // var_dump($ids);
+            // exit();
+            if($ids == ""){
 
-            $category_reports = [];
-            $vote_reports =[];
-            $cost_reports =[];
-            $output =[];
+                $category_reports = [];
+                $vote_reports =[];
+                $cost_reports =[];
+                $output =[];
+            }
 
-            return view('frontEnd.summary1', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'ids'))->render();
-        }
+            $sqlQuery = 'SELECT vote_range, project_status_category, count(*) as count FROM (select project_status_category, case  when votes = 0 then \'unknown\'when votes >= 1 and votes < 500 then \'1-499\'when votes >= 500 and votes < 1000 then \'500-999\'when votes >= 1000 and votes < 1500 then \'1000-1499\'when votes >= 1500 and votes < 2000 then \'1500-1999\'when votes >= 2000 and votes < 2500 then \'2000-2499\'when votes >= 2500 and votes < 3000 then \'2500-2999\'else \'3000+\' end as vote_range from projects where projects.id in (' . $ids . ')) as temp group by temp.vote_range, temp.project_status_category';
+            $vote_query = DB::select($sqlQuery); 
 
-        $sqlQuery = 'SELECT vote_range, project_status_category, count(*) as count FROM (select project_status_category, case  when votes = 0 then \'unknown\'when votes >= 1 and votes < 500 then \'1-499\'when votes >= 500 and votes < 1000 then \'500-999\'when votes >= 1000 and votes < 1500 then \'1000-1499\'when votes >= 1500 and votes < 2000 then \'1500-1999\'when votes >= 2000 and votes < 2500 then \'2000-2499\'when votes >= 2500 and votes < 3000 then \'2500-2999\'else \'3000+\' end as vote_range from projects where projects.id in (' . $ids . ')) as temp group by temp.vote_range, temp.project_status_category';
-        $vote_query = DB::select($sqlQuery); 
+            $vote_reports;
+            foreach ($vote_query as $value) {
+                $vote_reports[$value->vote_range][$value->project_status_category] = $value->count;
+            }
 
-        $vote_reports;
-        foreach ($vote_query as $value) {
-            $vote_reports[$value->vote_range][$value->project_status_category] = $value->count;
-        }
+            $sql_cost = 'SELECT cost_range, project_status_category, count(*) as count FROM (select project_status_category, case  when cost_num >= 0 and cost_num < 100000 then \'0-$99,999\'when cost_num >= 100000 and cost_num < 200000 then \'100k-$199,999\'when cost_num >= 200000 and cost_num < 300000 then \'200k-$299,999\'when cost_num >= 300000 and cost_num < 400000 then \'300k-$399,999\'when cost_num >= 400000 and cost_num <
+                500000 then \'400k-$499,999\'when cost_num >= 500000 and cost_num <
+                600000 then \'500k-$599,999\'when cost_num >= 600000 and cost_num <
+                700000 then \'600k-$699,999\'when cost_num >= 700000 and cost_num <
+                800000 then \'700k-$799,999\'when cost_num >= 800000 and cost_num <
+                900000 then \'800k-$899,999\'when cost_num >= 900000 and cost_num <
+                1000000 then \'900k-$999,999\'else \'$1,000,000+\' end as cost_range from
+                mypb.projects where cost_num != \'null\' and projects.id in (' . $ids . ')) as temp group by temp.cost_range, temp.project_status_category';
 
-        $sql_cost = 'SELECT cost_range, project_status_category, count(*) as count FROM (select project_status_category, case  when cost_num >= 0 and cost_num < 100000 then \'0-$99,999\'when cost_num >= 100000 and cost_num < 200000 then \'100k-$199,999\'when cost_num >= 200000 and cost_num < 300000 then \'200k-$299,999\'when cost_num >= 300000 and cost_num < 400000 then \'300k-$399,999\'when cost_num >= 400000 and cost_num <
-            500000 then \'400k-$499,999\'when cost_num >= 500000 and cost_num <
-            600000 then \'500k-$599,999\'when cost_num >= 600000 and cost_num <
-            700000 then \'600k-$699,999\'when cost_num >= 700000 and cost_num <
-            800000 then \'700k-$799,999\'when cost_num >= 800000 and cost_num <
-            900000 then \'800k-$899,999\'when cost_num >= 900000 and cost_num <
-            1000000 then \'900k-$999,999\'else \'$1,000,000+\' end as cost_range from
-            mypb.projects where cost_num != \'null\' and projects.id in (' . $ids . ')) as temp group by temp.cost_range, temp.project_status_category';
+            $cost_query = DB::select($sql_cost); 
+            $cost_reports;
+            foreach ($cost_query as $value) {
+                $cost_reports[$value->cost_range][$value->project_status_category] = $value->count;
+            }
 
-        $cost_query = DB::select($sql_cost); 
-        $cost_reports;
-        foreach ($cost_query as $value) {
-            $cost_reports[$value->cost_range][$value->project_status_category] = $value->count;
-        }
+            // $project_agency = Project::with('agency')->where('project_title', '=', 'Laptops for Schools in District 8 - Renaissance Charter HS - Site 7 of 9')->first();
 
-        // $project_agency = Project::with('agency')->where('project_title', '=', 'Laptops for Schools in District 8 - Renaissance Charter HS - Site 7 of 9')->first();
+            $agency_reports = Agency::orderBy('agency_code')->get();
+            // var_dump($project_agency);
+            // exit();
 
-        $agency_reports = Agency::orderBy('agency_code')->get();
-        // var_dump($project_agency);
-        // exit();
+            $projects = $location_maps;
+            $count = [];
 
-        $projects = $location_maps;
-        $count = [];
-
-        foreach ($projects as $array_key => $value) {
-            if(isset($value->agency_code))
-            {
-                $agency_codes = explode(',',$value->agency_code);
-                
-                $status1 = $value->project_status_category;
-                for($i = 0; $i < count($agency_codes); $i++)
+            foreach ($projects as $array_key => $value) {
+                if(isset($value->agency_code))
                 {
-                    $code_name;
-                    foreach ($agency_reports as $key => $agency) {
-                        if($agency->recordid == $agency_codes[$i])
-                        {
-                            $code_name = $agency->agency_code;
+                    $agency_codes = explode(',',$value->agency_code);
+                    
+                    $status1 = $value->project_status_category;
+                    for($i = 0; $i < count($agency_codes); $i++)
+                    {
+                        $code_name;
+                        foreach ($agency_reports as $key => $agency) {
+                            if($agency->recordid == $agency_codes[$i])
+                            {
+                                $code_name = $agency->agency_code;
+                            }
                         }
-                    }
-                    if(isset($count[$code_name]))
-                    {
+                        if(isset($count[$code_name]))
+                        {
 
-                        if(isset($count[$code_name][$status1]))
-                            $count[$code_name][$status1] ++;
+                            if(isset($count[$code_name][$status1]))
+                                $count[$code_name][$status1] ++;
+                            else
+                                $count[$code_name][$status1] = 1;
+                            $count[$code_name]['total'] ++;
+
+                        }
                         else
-                            $count[$code_name][$status1] = 1;
-                        $count[$code_name]['total'] ++;
-
-                    }
-                    else
-                    {
-                        $count[$code_name] = [];
-                        $count[$code_name]['key'] = $code_name;
-                        $count[$code_name]['total'] = 0;
+                        {
+                            $count[$code_name] = [];
+                            $count[$code_name]['key'] = $code_name;
+                            $count[$code_name]['total'] = 0;
+                        }
                     }
                 }
             }
-        }
 
-        
-        usort($count,array($this,'compare'));
+            
+            usort($count,array($this,'compare'));
 
-        $output = [];
+            $output = [];
 
-        for($i = 0; $i < count($count); $i ++)
-        {
-
-            if($i < 9)
-                $output[$i] = $count[$i];
-            else
+            for($i = 0; $i < count($count); $i ++)
             {
-                $output[8]['total'] += $count[$i]['total'];
 
-                $output[8]['key'] = "Other";                    
+                if($i < 9)
+                    $output[$i] = $count[$i];
+                else
+                {
+                    $output[8]['total'] += $count[$i]['total'];
 
-                if(isset($output[8]['In process']) && isset($count[$i]['In process']))
-                    $output[8]['In process'] += $count[$i]['In process'];
-                else if(!isset($output[8]['In process']) && isset($count[$i]['In process']))
-                    $output[8]['In process'] = $count[$i]['In process'];
-                if(isset($output[8]['Complete']) && isset($count[$i]['Complete']))
-                    $output[8]['Complete'] += $count[$i]['Complete'];
-                else if(!isset($output[8]['Complete']) && isset($count[$i]['Complete']))
-                    $output[8]['Complete'] = $count[$i]['Complete'];
-                if(isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
-                    $output[8]['Lost vote'] += $count[$i]['Lost vote'];
-                else if(!isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
-                    $output[8]['Lost vote'] = $count[$i]['Lost vote'];
-                if(isset($output[8]['Project Status Needed']) && isset($count[$i]['Project Status Needed']))
-                    $output[8]['Project Status Needed'] += $count[$i]['Project Status Needed'];
-                else if(!isset($output[8]['Project Status Needed'])  && isset($count[$i]['Project Status Needed']))
-                    $output[8]['Project Status Needed'] = $count[$i]['Project Status Needed'];
-            }
-        } 
+                    $output[8]['key'] = "Other";                    
+
+                    if(isset($output[8]['In process']) && isset($count[$i]['In process']))
+                        $output[8]['In process'] += $count[$i]['In process'];
+                    else if(!isset($output[8]['In process']) && isset($count[$i]['In process']))
+                        $output[8]['In process'] = $count[$i]['In process'];
+                    if(isset($output[8]['Complete']) && isset($count[$i]['Complete']))
+                        $output[8]['Complete'] += $count[$i]['Complete'];
+                    else if(!isset($output[8]['Complete']) && isset($count[$i]['Complete']))
+                        $output[8]['Complete'] = $count[$i]['Complete'];
+                    if(isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                        $output[8]['Lost vote'] += $count[$i]['Lost vote'];
+                    else if(!isset($output[8]['Lost vote']) && isset($count[$i]['Lost vote']))
+                        $output[8]['Lost vote'] = $count[$i]['Lost vote'];
+                    if(isset($output[8]['Project Status Needed']) && isset($count[$i]['Project Status Needed']))
+                        $output[8]['Project Status Needed'] += $count[$i]['Project Status Needed'];
+                    else if(!isset($output[8]['Project Status Needed'])  && isset($count[$i]['Project Status Needed']))
+                        $output[8]['Project Status Needed'] = $count[$i]['Project Status Needed'];
+                }
+            } 
+        }
 
         $pdf_footer = Layout::find(1)->pdf_footer;
 
-        return PDF::loadView('frontEnd.pdf', compact('projects', 'address_district', 'limit_maps', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'pdf_footer', 'price_min', 'price_max', 'year_min', 'year_max', 'vote_min', 'vote_max', 'status', 'category', 'city', 'location'))->download();
+        return PDF::loadView('frontEnd.pdf', compact('projects', 'address_district', 'limit_maps', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'pdf_footer', 'price_min', 'price_max', 'year_min', 'year_max', 'vote_min', 'vote_max', 'status', 'category', 'city', 'location', 'keyword'))->download();
         // $pdf = PDF::loadView('frontEnd.pdf', compact('address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output'))->download('summary.pdf');
 
 
-       // return view('frontEnd.pdf', compact('projects', 'address_district', 'limit_maps', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'pdf_footer', 'price_min', 'price_max', 'year_min', 'year_max', 'vote_min', 'vote_max', 'status', 'category', 'city', 'location'));
+       // return view('frontEnd.pdf', compact('projects', 'address_district', 'limit_maps', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'pdf_footer', 'price_min', 'price_max', 'year_min', 'year_max', 'vote_min', 'vote_max', 'status', 'category', 'city', 'location', 'keyword'));
 
 
 
@@ -964,6 +971,7 @@ class SummaryController extends Controller
         
         $district_name = District::where('cityCouncilDistrict', '=', $id)->first()->recordid;
         $address_district= District::where('cityCouncilDistrict', '=', $id)->first()->name;
+        $search ='';
         $projects = Project::where('district_ward_name', '=', $district_name)->get();
 
         $projects_origin =$projects;
@@ -981,18 +989,19 @@ class SummaryController extends Controller
         $ids = "";
         $id_array = $projects->pluck('id')->toArray();
         $ids = join(', ', $id_array);
-        // var_dump($ids);
-        // exit();
+     
         if($ids == ""){
 
             $category_reports = [];
             $vote_reports =[];
             $cost_reports =[];
             $output =[];
+            $projectids =[];
+            $communities =[];
 
             $location_maps = $projects;
 
-            return view('frontEnd.summary_district', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'ids'))->render();
+            return view('frontEnd.summary_district', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'projectids', 'search', 'communities'))->render();
         }
 
         $sqlQuery = 'SELECT vote_range, project_status_category, count(*) as count FROM (select project_status_category, case  when votes = 0 then \'unknown\'when votes >= 1 and votes < 500 then \'1-499\'when votes >= 500 and votes < 1000 then \'500-999\'when votes >= 1000 and votes < 1500 then \'1000-1499\'when votes >= 1500 and votes < 2000 then \'1500-1999\'when votes >= 2000 and votes < 2500 then \'2000-2499\'when votes >= 2500 and votes < 3000 then \'2500-2999\'else \'3000+\' end as vote_range from projects where projects.id in (' . $ids . ')) as temp group by temp.vote_range, temp.project_status_category';
@@ -1107,7 +1116,7 @@ class SummaryController extends Controller
         $projectids = json_encode($projectids);
 
         
-        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'communities', 'projectids'));
+        return view('frontEnd.summary', compact('projects', 'districts', 'states', 'categories', 'cities', 'address_district', 'location_maps', 'category_reports', 'vote_reports', 'cost_reports', 'output', 'communities', 'projectids', 'search'));
     }
 
     /**

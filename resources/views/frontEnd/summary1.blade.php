@@ -59,7 +59,7 @@
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
     <div class="row ml-10 mr-10">
-        @if($output == NULL)
+        @if($projectids == '')
         <div class="alert dark alert-dismissible mt-20 ml-10 mr-10 mb-0" role="alert" style="background: #3f8a7b; color: white;width: 170px;">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
@@ -70,7 +70,7 @@
         <div class="col-md-12 p-10">
             <div id="map"></div>
         </div>
-        @if($output != NULL && $category_reports != NULL && $vote_reports !=NULL && $cost_reports !=NULL)
+        @if($projectids != '')
         <div class="col-md-6 p-10">
             <div class="panel m-0 mb-15 content-panel">
                 <div class="panel-title pt-5 pb-0 text-center">
@@ -120,9 +120,10 @@
     <input type="text" id="hidden_vote_min" name="vote_min">
     <input type="text" id="hidden_vote_max" name="vote_max">
     <input type="text" id="hidden_address" name="address" value="{{$address_district}}">
-    <input type="text" id="hidden_status" name="status">
-    <input type="text" id="hidden_category" name="category">
-    <input type="text" id="hidden_city" name="city">
+    <input type="text" id="hidden_status" name="status" value="{{$status}}">
+    <input type="text" id="hidden_category" name="category" value="{{$category}}">
+    <input type="text" id="hidden_city" name="city" value="{{$city}}">
+    <input type="text" id="hidden_keyword" name="keyword" value="{{$search}}">
     <input type="submit" name="submit" id="download_submit">
 </form>
 <script>

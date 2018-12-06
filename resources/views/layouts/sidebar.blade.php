@@ -126,7 +126,7 @@
                 </div>
                 @if(Request::is('summary', 'summary/*'))
                 <div class="text-center mt-25">
-                    <button type="button" class="btn btn-raised btn-info download" id="download_pdf">Generate PDF</button>
+                    <button type="button" class="btn btn-raised btn-info download" id="download_pdf">Download PDF</button>
                 </div>
                 @endif
                 @if(Request::is('summary', 'summary/*'))
