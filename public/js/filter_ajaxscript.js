@@ -324,7 +324,29 @@ $(document).ready(function () {
     }
 
     $(document).on('click', "#download_csv", function (){
-        $('#download_submit').click();
+      $('#hidden_price_min').val($("#slider-range" ).slider( "values", 0 ));
+      $('#hidden_price_max').val($( "#slider-range" ).slider( "values", 1 ));
+      $('#hidden_vote_min').val($( "#slider-range-vote" ).slider( "values", 0 ));
+      $('#hidden_vote_max').val($( "#slider-range-vote" ).slider( "values", 1 ));
+      $('#hidden_year_min').val($( "#slider-range-year" ).slider( "values", 0 ));
+      $('#hidden_year_max').val($( "#slider-range-year" ).slider( "values", 1 ));
+      $('#filter_buttons button').each(function(index){
+          
+          if($(this).css('display') != 'none')
+          {
+            var values = $('span', $(this)).attr('ajax_text');
+
+            value_array = values.split(':');
+            value_array[1] = value_array[1].replace('&amp;','&');    
+            value_array[1] = value_array[1].slice(1);
+
+            var id = '#hidden_'+value_array[0].toLowerCase();
+            $(id).val(value_array[1]);
+            //form_data[] = value_array[1];
+          }
+      });
+      debugger;
+      $('#download_submit').click();
     });
 
     $(document).on('click', "#download_pdf", function (){

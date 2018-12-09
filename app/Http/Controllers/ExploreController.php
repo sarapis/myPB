@@ -332,9 +332,21 @@ class ExploreController extends Controller
         $projects = $request->input('projects');
         $projects = json_decode($projects);
         $ids = [];
-        $blank = collect([(object)['name'=>'Source','description'=>'http://please.kill.me'],
-                  (object)['name'=>'Filter By', 'description'=>'ABC EFG HIJ'],
-                  (object)['name'=>'Downloaded', 'description'=>'1997-08-15']]);
+
+        $price_min = (int)$request->input('price_min');
+        $price_max = (int)$request->input('price_max');
+        $year_min = $request->input('year_min');
+        $year_max = $request->input('year_max');
+        $vote_min = (int)$request->input('vote_min');
+        $vote_max = (int)$request->input('vote_max');
+
+
+  
+        $status = $request->input('status');
+        $category = $request->input('category');        
+        $city = $request->input('city');
+        $location = $request->input('address');
+        $keyword = $request->input('keyword');
 
 
         for($i = 0; $i < count($projects); $i++){
@@ -348,6 +360,26 @@ class ExploreController extends Controller
 
         $url = env("APP_URL", "localhost:8000");
         $csv->description = $url.'/project';
+        $csv->save();
+
+        $csv = CSV::find(2);
+        $description = '';
+        if($keyword != "")
+            $description = $description."Keyword: ".$keyword.", ";
+        if($location != "")
+            $description = $description."District: ".$location.", ";
+        if($status != "")
+            $description = $description."Status: ".$status.", ";
+        if($category != "")
+            $description = $description."Category: ".$category.", ";
+        if($city != "")
+            $description = $description."Agency: ".$city.", ";
+        
+        $description = $description." Cost: ".$price_min.'-'.$price_max.", ";
+        $description = $description." Year of Vote: ".$year_min.'-'.$year_max.", ";
+        $description = $description." Vote: ".$vote_min.'-'.$vote_max;
+
+        $csv->description = $description;
         $csv->save();
 
         $csv = CSV::find(3);
