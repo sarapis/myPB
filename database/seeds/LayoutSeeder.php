@@ -12,7 +12,7 @@ class LayoutGenerate extends Seeder
     public function run()
     {
     	DB::table('layout')->delete();
-         DB::table('layout')->insert([
+        DB::table('layout')->insert([
 			    [		'id' 			=> '1',
 			    		'logo' 		=> 'mypb.png',
 			    		'site_name' 		=> 'myPB',

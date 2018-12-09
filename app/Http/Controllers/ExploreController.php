@@ -8,6 +8,7 @@ use App\Project;
 use App\District;
 use App\Contact;
 use App\Agency;
+use App\CSV;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -331,6 +332,10 @@ class ExploreController extends Controller
         $projects = $request->input('projects');
         $projects = json_decode($projects);
         $ids = [];
+        $blank = collect([(object)['name'=>'Source','description'=>'http://please.kill.me'],
+                  (object)['name'=>'Filter By', 'description'=>'ABC EFG HIJ'],
+                  (object)['name'=>'Downloaded', 'description'=>'1997-08-15']]);
+
 
         for($i = 0; $i < count($projects); $i++){
             $ids[$i] = $projects[$i]->id;
@@ -338,7 +343,22 @@ class ExploreController extends Controller
         $projects = Project::whereIn('id',$ids)->get();
         $csvExporter = new \Laracsv\Export();
 
-        return $csvExporter->build($projects, ['project_id'=>'Project_ID', 'project_title'=>'Project_Title', 'project_description'=>'Project_Description', 'category_re_coded'=>'Category re-coded','project_status'=>'Project_Status', 'district.name'=>'District-Ward_Name', 'win_text'=>'Win_Text', 'votes'=>'Votes', 'pb_cycle'=>'PB_Cycle', 'cos_num'=>'Cost_Num', 'fiscal_year', 'cost_appropriated', 'vote_year'=>'Vote_Year', 'name_dept_agency_cbo'=>'Name_Dept_Agency_CBO', 'project_status_category'=>'Project_Status_Category', 'project_status_detail'=>'Project_Status_Detail'])->download();
+        
+        $csv = CSV::find(1);
+
+        $url = env("APP_URL", "localhost:8000");
+        $csv->description = $url.'/project';
+        $csv->save();
+
+        $csv = CSV::find(3);
+        $csv->description = date('m/d/Y H:i:s');
+        $csv->save();
+        // var_dump($projects);
+        // var_dump($collection);
+        // exit();
+        $csv = CSV::all();
+
+        return $csvExporter->build($projects, ['project_id'=>'Project_ID', 'project_title'=>'Project_Title', 'project_description'=>'Project_Description', 'category_re_coded'=>'Category re-coded','project_status'=>'Project_Status', 'district.name'=>'District-Ward_Name', 'win_text'=>'Win_Text', 'votes'=>'Votes', 'pb_cycle'=>'PB_Cycle', 'cos_num'=>'Cost_Num', 'fiscal_year', 'cost_appropriated', 'vote_year'=>'Vote_Year', 'name_dept_agency_cbo'=>'Name_Dept_Agency_CBO', 'project_status_category'=>'Project_Status_Category', 'project_status_detail'=>'Project_Status_Detail'])->build($csv, ['name'=>'', 'description'=>''])->download();
     }
     /**
      * Show the form for editing the specified resource.

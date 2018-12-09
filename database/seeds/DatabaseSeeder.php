@@ -11,8 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-          $this->call(UsersGenerate::class);
-          $this->call(AirtableGenerate::class);
-          $this->call(LayoutGenerate::class);
+
+          $this->call(CsvtableGenerate::class);
     }
 }
