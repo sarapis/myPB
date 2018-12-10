@@ -186,7 +186,7 @@ CREATE TABLE `csv` (
 
 LOCK TABLES `csv` WRITE;
 /*!40000 ALTER TABLE `csv` DISABLE KEYS */;
-INSERT INTO `csv` VALUES (1,'Source: ','http://localhost/project'),(2,'Filtered by: ',''),(3,'Downloaded: ','2018/12/06 18:04:13');
+INSERT INTO `csv` VALUES (1,'Source: ','http://localhost/project'),(2,'Filtered by: ','Keyword: Real, Status: In Process, Category: Biking & Transit,  Cost: 271257-1500000,  Year of Vote: 2015-2018,  Vote: 0-5293'),(3,'Downloaded: ','12/09/2018 14:15:39');
 /*!40000 ALTER TABLE `csv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -613,4 +613,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-09 14:12:48
+-- Dump completed on 2018-12-10 20:10:59
