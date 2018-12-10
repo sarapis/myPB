@@ -358,7 +358,7 @@ class ExploreController extends Controller
         
         $csv = CSV::find(1);
 
-        $url = env("SITE_NAME", "localhost:8000");
+        $url = env("APP_URL", "localhost:8000");
         $csv->description = $url.'/project';
         $csv->save();
 
